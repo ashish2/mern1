@@ -4,6 +4,7 @@ class TodoList extends Component {
 	constructor(props) {
 		super(props);
 
+		this.state = { data: [] };
 		this.callList = this.callList.bind(this);
 		//this.props.pollInterval = 5000;
 	}
@@ -14,7 +15,7 @@ class TodoList extends Component {
 		axios.get('/todo/todos')
 		.then(result => {
 			console.log("/todos get calll made: ", result);
-			this.setState({data: res.data});
+			this.setState({data: result.data});
 		});
 	}
 
