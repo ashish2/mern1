@@ -29,6 +29,7 @@ class TodoList extends Component {
 		// This.state not working!!!
 		let todoNodes = this.state.data.map( todo => {
 			return (
+				<h1>Todo List</h2>
 				<div className="panel panel-primary">
 					Date: {todo.date}
 				</div>

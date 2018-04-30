@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, IndexRoute, Switch} from 'react-router-dom';
 
+import Home from './home';
 import Header from './header';
 import TodoForm from './TodoForm';
-import TodoList from './TodoList';
+//import TodoList from './TodoList';
 
 
 export default class Main extends Component {
 
 	render() { 
 		return (
-				<Router>
-			<Switch>
-				<Route exact path='' component={Header} />
-				<Route exact path='/' component={Header} />
-				<Route exact path='/todoform' component={TodoForm} />
-				<Route exact path='/todolist' component={TodoList} />
-			</Switch>
-				</Router>
+				<Switch>
+					<Route exact path="/" component={Home} />
+					<Route exact path="/todoform" component={TodoForm} />
+				</Switch>
 		);
 	}
 }
