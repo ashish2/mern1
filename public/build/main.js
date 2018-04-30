@@ -25,11 +25,7 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(
-		_reactRouterDom2.default,
-		null,
-		_react2.default.createElement(_App2.default, null)
-	), document.getElementById("root"));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById("root"));
 
 /***/ }),
 /* 1 */
@@ -26198,6 +26194,16 @@ webpackJsonp([0,1],[
 	
 	var _main2 = _interopRequireDefault(_main);
 	
+	var _home = __webpack_require__(/*! ./home */ 254);
+	
+	var _home2 = _interopRequireDefault(_home);
+	
+	var _TodoForm = __webpack_require__(/*! ./TodoForm */ 227);
+	
+	var _TodoForm2 = _interopRequireDefault(_TodoForm);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 184);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26219,23 +26225,41 @@ webpackJsonp([0,1],[
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					'div',
-					{ className: 'App' },
-					_react2.default.createElement(_header2.default, null),
+					_reactRouterDom.BrowserRouter,
+					null,
 					_react2.default.createElement(
 						'div',
-						{ className: 'App-header' },
+						{ className: 'App' },
 						_react2.default.createElement(
-							'h2',
+							'nav',
 							null,
-							' Company Y '
+							_react2.default.createElement(
+								_reactRouterDom.Link,
+								{ to: '/' },
+								'Home'
+							),
+							_react2.default.createElement(
+								_reactRouterDom.Link,
+								{ to: '/todoform' },
+								'TodoForm'
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _home2.default }),
+							_react2.default.createElement(_reactRouterDom.Route, { path: '/todoform', component: _TodoForm2.default })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'App-header' },
+							_react2.default.createElement(
+								'h2',
+								null,
+								' Company Y '
+							)
 						)
-					),
-					_react2.default.createElement(_main2.default, null),
-					'//',
-					_react2.default.createElement(TodoForm, null),
-					'//',
-					_react2.default.createElement(TodoList, { data: this.state.data })
+					)
 				);
 			}
 		}]);
@@ -26303,6 +26327,24 @@ webpackJsonp([0,1],[
 									_reactRouterDom.Link,
 									{ to: '/' },
 									'Home'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									_reactRouterDom.Link,
+									{ to: '/todoform' },
+									'TodoForm'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									_reactRouterDom.Link,
+									{ to: '/todolist' },
+									'TodoList'
 								)
 							),
 							_react2.default.createElement(
@@ -26388,14 +26430,16 @@ webpackJsonp([0,1],[
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					_reactRouterDom.Switch,
+					_reactRouterDom.BrowserRouter,
 					null,
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '', component: _header2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _header2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todoform', component: _TodoForm2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todolist', component: _TodoList2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/users', component: Users }),
-					_react2.default.createElement(_reactRouterDom.Route, { path: '/users/:id', component: UserDetails })
+					_react2.default.createElement(
+						_reactRouterDom.Switch,
+						null,
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '', component: _header2.default }),
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _header2.default }),
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todoform', component: _TodoForm2.default }),
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todolist', component: _TodoList2.default })
+					)
 				);
 			}
 		}]);
@@ -28236,6 +28280,65 @@ webpackJsonp([0,1],[
 	}(_react.Component);
 	
 	exports.default = TodoList;
+
+/***/ }),
+/* 254 */
+/*!************************!*\
+  !*** ./views/home.jsx ***!
+  \************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 184);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Home = function (_Component) {
+		_inherits(Home, _Component);
+	
+		function Home() {
+			_classCallCheck(this, Home);
+	
+			return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+		}
+	
+		_createClass(Home, [{
+			key: 'render',
+			value: function render() {
+	
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h1',
+						null,
+						'This is HOME!'
+					)
+				);
+			}
+		}]);
+	
+		return Home;
+	}(_react.Component);
+	
+	exports.default = Home;
 
 /***/ })
 ]);
