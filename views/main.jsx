@@ -3,11 +3,15 @@ import {BrowserRouter as Router, Route, IndexRoute, Switch} from 'react-router-d
 
 import Home from './home';
 import Header from './header';
-import TodoForm from './TodoForm';
-//import TodoList from './TodoList';
+import TodoForm from './todo/TodoForm';
+//import TodoList from './todo/TodoList';
 
 
 export default class Main extends Component {
+
+	constructor(props) {
+		super(props);
+	}
 
 	render() { 
 		return (
