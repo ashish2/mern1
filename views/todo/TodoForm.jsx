@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 //import style from './style';
+import DocumentTitle from 'react-document-title';
 import axios from 'axios';
 
 export default class TodoForm extends Component {
@@ -31,6 +32,7 @@ export default class TodoForm extends Component {
 		const { date, type, category, amount } = this.state;
 
 		return (
+			<DocumentTitle title="Todo Form">
 			<div>
            		 <h1> Add Todo</h1>
            		 <form  onSubmit={ this.handleSubmit }>
@@ -77,6 +79,7 @@ export default class TodoForm extends Component {
            		     <button type="submit" className="btn btn-primary">Submit</button>
            		 </form>
            		</div>
+			</DocumentTitle>
 		)
 
 	}

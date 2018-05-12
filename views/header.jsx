@@ -12,6 +12,7 @@ export default class Header extends Component {
 			<nav>
 			<ul>
 			<li><Link to='/'>Home</Link></li>
+			<li><Link to='/login'>Login</Link></li>
 			<li><Link to='/todoform'>TodoForm</Link></li>
 			<li><Link to='/todolist'>TodoList</Link></li>
 			<li><Link to='/users'>Users</Link></li>

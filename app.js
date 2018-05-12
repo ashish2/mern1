@@ -32,6 +32,9 @@ app.use('/users', usersRouter);
 app.use('/todo', todoRouter);
 app.use('/reactpractice', reactpracticeRouter);
 */
+app.use('/*', function(req, res, next){
+	res.sendFile("./public/index.html");
+});
 var routelist = require('./routes/routelist');
 
 // catch 404 and forward to error handler
