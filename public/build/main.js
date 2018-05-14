@@ -47243,7 +47243,7 @@ webpackJsonp([0,1],[
 	              { className: 'form-group' },
 	              _react2.default.createElement(
 	                'label',
-	                { 'for': 'datetimepicker1' },
+	                { htmlFor: 'datetimepicker1' },
 	                'Date'
 	              ),
 	              _react2.default.createElement(
@@ -47262,7 +47262,7 @@ webpackJsonp([0,1],[
 	              { className: 'form-group' },
 	              _react2.default.createElement(
 	                'label',
-	                { 'for': 'category' },
+	                { htmlFor: 'category' },
 	                'Category'
 	              ),
 	              _react2.default.createElement(
@@ -47290,18 +47290,18 @@ webpackJsonp([0,1],[
 	              { className: 'form-group' },
 	              _react2.default.createElement(
 	                'label',
-	                { 'for': 'type' },
+	                { htmlFor: 'type' },
 	                'Type'
 	              ),
 	              _react2.default.createElement(
 	                'label',
-	                { 'for': 'cash' },
+	                { htmlFor: 'cash' },
 	                'Cash'
 	              ),
 	              _react2.default.createElement('input', { type: 'radio', className: 'form-control', id: 'type1', name: 'type', value: 'cash', placeholder: 'Type', onChange: this.change }),
 	              _react2.default.createElement(
 	                'label',
-	                { 'for': 'credit' },
+	                { htmlFor: 'credit' },
 	                'Credit'
 	              ),
 	              _react2.default.createElement('input', { type: 'radio', className: 'form-control', id: 'type2', name: 'type', value: 'credit', placeholder: 'Type', onChange: this.change })
@@ -47311,7 +47311,7 @@ webpackJsonp([0,1],[
 	              { className: 'form-group' },
 	              _react2.default.createElement(
 	                'label',
-	                { 'for': 'amount' },
+	                { htmlFor: 'amount' },
 	                'Amount'
 	              ),
 	              _react2.default.createElement('input', { type: 'amount', className: 'form-control',

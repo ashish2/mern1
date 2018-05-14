@@ -38,7 +38,7 @@ export default class TodoForm extends Component {
            		 <form  onSubmit={ this.handleSubmit }>
 
            		     <div className="form-group">
-           		         <label for="datetimepicker1">Date</label>
+           		         <label htmlFor="datetimepicker1">Date</label>
            		         <div className='input-group date' id='datetimepicker1'>
            		             <input type='date' name="date" className="form-control" onChange={this.change} />
            		             <span className="input-group-addon">
@@ -49,7 +49,7 @@ export default class TodoForm extends Component {
 
 
            		     <div className="form-group">
-           		         <label for="category">Category</label>
+           		         <label htmlFor="category">Category</label>
            		         <select className="form-control" id="category" name="category" onChange={this.change} >
            		             <option value="">Select</option>
            		             <option value="cat1">Cat1</option>
@@ -59,15 +59,15 @@ export default class TodoForm extends Component {
            		     </div>
 
            		     <div className="form-group">
-           		         <label for="type">Type</label>
-				 <label for="cash">Cash</label>
+           		         <label htmlFor="type">Type</label>
+				 <label htmlFor="cash">Cash</label>
            		         <input type="radio" className="form-control" id="type1" name="type" value="cash" placeholder="Type" onChange={this.change}/>
-				 <label for="credit">Credit</label>
+				 <label htmlFor="credit">Credit</label>
            		         <input type="radio" className="form-control" id="type2" name="type" value="credit" placeholder="Type" onChange={this.change}/>
            		     </div>
            		     
 			     <div className="form-group">
-           		         <label for="amount">Amount</label>
+           		         <label htmlFor="amount">Amount</label>
            		         <input type="amount" className="form-control" 
            		          id="amount" 
 				  name="amount"
