@@ -10,6 +10,11 @@ export default class Login extends Component {
 			email: "",
 			password: "",
 		};
+
+		// If isAuthenticated True then redirect to the path in url
+		// else show login
+		//if(isAuthenticated)
+			//<Redirect path="">
 	}
 
 	validateForm() {

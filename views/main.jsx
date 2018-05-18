@@ -6,6 +6,7 @@ import Header from './header';
 import Login from './Login';
 import TodoForm from './todo/TodoForm';
 //import TodoList from './todo/TodoList';
+import EnsureLoggedInContainer from './EnsureLoggedInContainer';
 
 
 export default class Main extends Component {
@@ -18,8 +19,10 @@ export default class Main extends Component {
 		return (
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route exact path="/todoform" component={TodoForm} />
 					<Route exact path="/login" component={Login} />
+					<Route component={EnsureLoggedInContainer}>
+						<Route exact path="/todoform" component={TodoForm} />
+					</Route>
 				</Switch>
 		);
 	}

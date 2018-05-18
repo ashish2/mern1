@@ -26214,8 +26214,32 @@ webpackJsonp([0,1],[
 		}
 	
 		_createClass(App, [{
+			key: 'componentDidUpdate',
+	
+			// Writing for Login/Logout
+			value: function componentDidUpdate(prevProps) {
+				var _props = this.props,
+				    dispatch = _props.dispatch,
+				    redirectUrl = _props.redirectUrl;
+	
+				var isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
+				var isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
+	
+				if (isLoggingIn) {
+					dispatch(navigateTo(redirectUrl));
+				} else if (isLoggingOut) {
+					// do any kind of cleanup or post-logout redirection here
+	
+				}
+			}
+			// ---
+	
+	
+		}, {
 			key: 'render',
 			value: function render() {
+	
+				// return this.props.children;
 				return _react2.default.createElement(
 					'div',
 					{ className: 'App' },
@@ -26244,6 +26268,20 @@ webpackJsonp([0,1],[
 	
 		return App;
 	}(_react.Component);
+	
+	/*
+	function mapStateProps(state) {
+		return {
+			isLoggedIn: state.loggedIn,
+			redirectUrl: state.redirectUrl
+		}
+	}
+	
+	
+	//export default App;
+	export default connect(mapStateToProps)(App);
+	*/
+	
 	
 	exports.default = App;
 
@@ -26400,6 +26438,10 @@ webpackJsonp([0,1],[
 	
 	var _TodoForm2 = _interopRequireDefault(_TodoForm);
 	
+	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 509);
+	
+	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26407,7 +26449,6 @@ webpackJsonp([0,1],[
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
 	//import TodoList from './todo/TodoList';
 	
 	
@@ -26427,8 +26468,12 @@ webpackJsonp([0,1],[
 					_reactRouterDom.Switch,
 					null,
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todoform', component: _TodoForm2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default })
+					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
+					_react2.default.createElement(
+						_reactRouterDom.Route,
+						{ component: _EnsureLoggedInContainer2.default },
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todoform', component: _TodoForm2.default })
+					)
 				);
 			}
 		}]);
@@ -26825,6 +26870,11 @@ webpackJsonp([0,1],[
 				email: "",
 				password: ""
 			};
+	
+			// If isAuthenticated True then redirect to the path in url
+			// else show login
+			//if(isAuthenticated)
+			//<Redirect path="">
 			return _this;
 		}
 	
@@ -48900,6 +48950,100 @@ webpackJsonp([0,1],[
 	  };
 	};
 
+
+/***/ }),
+/* 509 */
+/*!*******************************************!*\
+  !*** ./views/EnsureLoggedInContainer.jsx ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var EnsureLoggedInContainer = function (_React$Component) {
+		_inherits(EnsureLoggedInContainer, _React$Component);
+	
+		function EnsureLoggedInContainer(props) {
+			_classCallCheck(this, EnsureLoggedInContainer);
+	
+			//this.props = props;
+			var _this = _possibleConstructorReturn(this, (EnsureLoggedInContainer.__proto__ || Object.getPrototypeOf(EnsureLoggedInContainer)).call(this, props));
+	
+			_this.state = {
+				isLoggedIn: true
+			};
+			return _this;
+		}
+	
+		_createClass(EnsureLoggedInContainer, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var _props = this.props,
+				    dispatch = _props.dispatch,
+				    currentURL = _props.currentURL;
+	
+	
+				if (!this.state.isLoggedIn) {
+					console.log("!isloggedin");
+					dispatch(setRedirectUrl(currentURL));
+					//browserHistory.replace("/login");
+				}
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				console.log("this: ", this);
+				console.log("this.state: ", this.state);
+	
+				if (this.state.isLoggedIn) {
+					console.log("isloggedin: ", this.state.isLoggedIn);
+					//return this.props.children;
+					// Pass to children Routes, or else,
+					// Redirect to the route User was going to (next parameter in url)
+					return null;
+				} else {
+					// Redirect to Login with next parameter as this Route which user hit
+					console.log("isloggedin else");
+					return null;
+				}
+			}
+		}]);
+	
+		return EnsureLoggedInContainer;
+	}(_react2.default.Component);
+	
+	/*
+	function mapStateToProps(state, ownProps) {
+		return {
+			isLoggedIn: state.loggedIn,
+			currentURL: ownProps.location.pathname
+		}
+	}
+	
+	//export default EnsureLoggedInContainer
+	export default connect(mapStateToProps)(EnsureLoggedInContainer)
+	*/
+	
+	
+	exports.default = EnsureLoggedInContainer;
 
 /***/ })
 ]);
