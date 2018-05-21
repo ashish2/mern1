@@ -42,10 +42,20 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+/*
 app.get('*', function(req, res, next){
 	res.sendFile("./public/index.html");
 	//res.render('./public/index.html');
 });
+*/
+
+// serve static assets normally
+app.use(express.static(__dirname + '/public'))
+
+// Handles all routes so you do not get a not found error
+app.get('*', function (req, res){
+	    res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+})
 
 // error handler
 app.use(function(err, req, res, next) {

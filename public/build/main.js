@@ -48970,6 +48970,10 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _Login = __webpack_require__(/*! ./Login */ 232);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48996,33 +49000,38 @@ webpackJsonp([0,1],[
 		_createClass(EnsureLoggedInContainer, [{
 			key: "componentDidMount",
 			value: function componentDidMount() {
-				var _props = this.props,
-				    dispatch = _props.dispatch,
-				    currentURL = _props.currentURL;
-	
+				//const {dispatch, currentURL} = this.props;
 	
 				if (!this.state.isLoggedIn) {
-					console.log("!isloggedin");
-					dispatch(setRedirectUrl(currentURL));
+					//dispatch(setRedirectUrl(currentURL));
 					//browserHistory.replace("/login");
 				}
 			}
 		}, {
 			key: "render",
 			value: function render() {
+				//const ThemeContext = React.createContext('light');
+				//      <ThemeContext.Consumer>
+				//          {theme => <Component {...props} theme={theme} />}
+				//      </ThemeContext.Consumer>
+				//
+	
 				console.log("this: ", this);
-				console.log("this.state: ", this.state);
 	
 				if (this.state.isLoggedIn) {
-					console.log("isloggedin: ", this.state.isLoggedIn);
+					console.log("isloggedin: ", " this.props: ", this.props);
+					console.log("isloggedin: ", this.state.isLoggedIn, " children: ", this.props.children);
 					//return this.props.children;
 					// Pass to children Routes, or else,
 					// Redirect to the route User was going to (next parameter in url)
+					//return null;
+					//return this.props.children;
+					//<Redirect
 					return null;
 				} else {
 					// Redirect to Login with next parameter as this Route which user hit
 					console.log("isloggedin else");
-					return null;
+					return _react2.default.createElement(_Login2.default, { nextpage: this.props.location });
 				}
 			}
 		}]);
