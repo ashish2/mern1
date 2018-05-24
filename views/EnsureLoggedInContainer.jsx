@@ -29,6 +29,7 @@ class EnsureLoggedInContainer extends React.Component {
 		//
 
 		console.log("this: ", this);
+		//console.log("localStorage: ", localStorage);
 
 		if(this.state.isLoggedIn) {
 			console.log("isloggedin: ", " this.props: ", this.props);

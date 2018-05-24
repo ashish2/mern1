@@ -26416,6 +26416,10 @@ webpackJsonp([0,1],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	//import TodoList from './todo/TodoList';
+	
+	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -26449,8 +26453,43 @@ webpackJsonp([0,1],[
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	//import TodoList from './todo/TodoList';
 	
+	/*
+	const PrivateRoute = ({component: Component, ...rest}) => (
+	    <Route {...rest} render={props => (
+	        !localStorage.getItem('user')
+	            ? <component {...props} />
+	            : <FadeIn> <Redirect to={{ pathname: '/login', state: { from: props.location } }} /> </FadeIn>
+	    )} />
+	)
+	*/
+	
+	/*
+	*/
+	// This Works
+	//<PrivateRoute exact path="/todoform" component={TodoForm} />
+	var PrivateRoute = function PrivateRoute(path, component) {
+		for (var _len = arguments.length, rest = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+			rest[_key - 2] = arguments[_key];
+		}
+	
+		return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
+				return !localStorage.getItem('user') ? _react2.default.createElement(path.component, props) : _react2.default.createElement(
+					FadeIn,
+					null,
+					' ',
+					_react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login', state: { from: props.location } } }),
+					' '
+				);
+			} }));
+	};
+	
+	/*
+	<PrivateRoute exact path="/todoform" component={TodoForm} />
+						<Route component={EnsureLoggedInContainer}>
+							<Route exact path="/todoform" component={TodoForm} />
+						</Route>
+	*/
 	
 	var Main = function (_Component) {
 		_inherits(Main, _Component);
@@ -26469,11 +26508,7 @@ webpackJsonp([0,1],[
 					null,
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
-					_react2.default.createElement(
-						_reactRouterDom.Route,
-						{ component: _EnsureLoggedInContainer2.default },
-						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/todoform', component: _TodoForm2.default })
-					)
+					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default })
 				);
 			}
 		}]);
@@ -26870,6 +26905,8 @@ webpackJsonp([0,1],[
 				email: "",
 				password: ""
 			};
+	
+			console.log("Login props: ", props);
 	
 			// If isAuthenticated True then redirect to the path in url
 			// else show login
@@ -47239,6 +47276,8 @@ webpackJsonp([0,1],[
 	    _this.state = { date: '', category: '', type: '', amount: '' };
 	    _this.change = _this.change.bind(_this);
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	
+	    console.log("todoForm props: ", props);
 	    return _this;
 	  }
 	
@@ -49017,6 +49056,7 @@ webpackJsonp([0,1],[
 				//
 	
 				console.log("this: ", this);
+				//console.log("localStorage: ", localStorage);
 	
 				if (this.state.isLoggedIn) {
 					console.log("isloggedin: ", " this.props: ", this.props);

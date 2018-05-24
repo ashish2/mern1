@@ -9,6 +9,9 @@ export default class TodoForm extends Component {
 		this.state = { date: '', category: '', type: '', amount: '' };
 		this.change = this.change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+
+
+		console.log("todoForm props: ", props);
 	}
 
 	change(e) {

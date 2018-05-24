@@ -11,6 +11,8 @@ export default class Login extends Component {
 			password: "",
 		};
 
+		console.log("Login props: ", props);
+
 		// If isAuthenticated True then redirect to the path in url
 		// else show login
 		//if(isAuthenticated)
