@@ -19,12 +19,19 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 */
 
 /*
-*/
 // This Works
 //<PrivateRoute exact path="/todoform" component={TodoForm} />
 const PrivateRoute = (path, component, ...rest) => (
     <Route {...rest} render={props => (
         !localStorage.getItem('user')
+            ? <path.component {...props} />
+            : <FadeIn> <Redirect to={{ pathname: '/login', state: { from: props.location } }} /> </FadeIn>
+    )} />
+)
+*/
+const PrivateRoute = (path, component, ...rest) => (
+    <Route {...rest} render={props => (
+        localStorage.getItem('user')
             ? <path.component {...props} />
             : <FadeIn> <Redirect to={{ pathname: '/login', state: { from: props.location } }} /> </FadeIn>
     )} />

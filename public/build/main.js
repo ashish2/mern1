@@ -26411,7 +26411,7 @@ webpackJsonp([0,1],[
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	    value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -26465,23 +26465,30 @@ webpackJsonp([0,1],[
 	*/
 	
 	/*
-	*/
 	// This Works
 	//<PrivateRoute exact path="/todoform" component={TodoForm} />
+	const PrivateRoute = (path, component, ...rest) => (
+	    <Route {...rest} render={props => (
+	        !localStorage.getItem('user')
+	            ? <path.component {...props} />
+	            : <FadeIn> <Redirect to={{ pathname: '/login', state: { from: props.location } }} /> </FadeIn>
+	    )} />
+	)
+	*/
 	var PrivateRoute = function PrivateRoute(path, component) {
-		for (var _len = arguments.length, rest = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-			rest[_key - 2] = arguments[_key];
-		}
+	    for (var _len = arguments.length, rest = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	        rest[_key - 2] = arguments[_key];
+	    }
 	
-		return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
-				return !localStorage.getItem('user') ? _react2.default.createElement(path.component, props) : _react2.default.createElement(
-					FadeIn,
-					null,
-					' ',
-					_react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login', state: { from: props.location } } }),
-					' '
-				);
-			} }));
+	    return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
+	            return localStorage.getItem('user') ? _react2.default.createElement(path.component, props) : _react2.default.createElement(
+	                FadeIn,
+	                null,
+	                ' ',
+	                _react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login', state: { from: props.location } } }),
+	                ' '
+	            );
+	        } }));
 	};
 	
 	/*
@@ -26492,28 +26499,28 @@ webpackJsonp([0,1],[
 	*/
 	
 	var Main = function (_Component) {
-		_inherits(Main, _Component);
+	    _inherits(Main, _Component);
 	
-		function Main(props) {
-			_classCallCheck(this, Main);
+	    function Main(props) {
+	        _classCallCheck(this, Main);
 	
-			return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
-		}
+	        return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
+	    }
 	
-		_createClass(Main, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					_reactRouterDom.Switch,
-					null,
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
-					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
-					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default })
-				);
-			}
-		}]);
+	    _createClass(Main, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                _reactRouterDom.Switch,
+	                null,
+	                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
+	                _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
+	                _react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default })
+	            );
+	        }
+	    }]);
 	
-		return Main;
+	    return Main;
 	}(_react.Component);
 	
 	exports.default = Main;
