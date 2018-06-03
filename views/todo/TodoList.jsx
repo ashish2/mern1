@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
+import {connect} from 'react-redux';
+//import { todoList } from '../store/todo/actions';
 
+//@connect
 class TodoList extends Component {
 	constructor(props) {
 		super(props);
@@ -21,17 +24,29 @@ class TodoList extends Component {
 	}
 
 	componentDidMount() {
-	        this.callList();
-	        //setInterval(this.callList, this.props.pollInterval);
-	        setInterval(this.callList, 5000);
+	        //this.callList();
+	        ///setInterval(this.callList, this.props.pollInterval);
+	        ///setInterval(this.callList, 5000);
+		this.props.loadTodos();
+	}
+
+	renderLoading() {
+		return (
+			<p>
+				Loading...
+			</p>
+		);
 	}
 
 	render() {
+		if (!this.props.todos) 
+			return this.renderLoading();
+
 		// This.state not working!!!
 		let todoNodes = this.state.data.map( todo => {
 			return (
 				<DocumentTitle title="Todo List">
-				<h1>Todo List</h2>
+				<h1>Todo List</h1>
 				<div className="panel panel-primary">
 					Date: {todo.date}
 				</div>
