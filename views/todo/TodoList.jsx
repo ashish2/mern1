@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from 'react-document-title';
 import {connect} from 'react-redux';
-//import { todoList } from '../store/todo/actions';
+import { todoList } from '../store/todo/actions';
 
 //@connect
 class TodoList extends Component {
