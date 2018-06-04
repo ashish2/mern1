@@ -18,8 +18,6 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 )
 */
 
-/*
-*/
 // This Works
 //<PrivateRoute exact path="/todoform" component={TodoForm} />
 const PrivateRoute = (path, component, ...rest) => (
