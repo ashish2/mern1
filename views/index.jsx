@@ -5,8 +5,19 @@ import App from './App';
 
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-//import todoApp from './reducers';
-//const store = createStore(todoApp)
+// Pass reducers to the store here
+import todoReducer from './reducers/todo';
+import userReducer from './reducers/user';
+
+initialStateOfStore = {};
+
+const reducers = combineReducers({ userReducer, todoReducer });
+const store = createStore(reducers, initialStateOfStore);
+
+/*
+const reducer = (state, action) => {
+}
+*/
 
 ReactDOM.render( 
 		(	
