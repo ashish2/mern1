@@ -4,20 +4,8 @@ import BrowserRouter from 'react-router-dom';
 import App from './App';
 
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-// Pass reducers to the store here
-import todoReducer from './reducers/todo';
-import userReducer from './reducers/user';
+import * as store from './store';
 
-initialStateOfStore = {};
-
-const reducers = combineReducers({ userReducer, todoReducer });
-const store = createStore(reducers, initialStateOfStore);
-
-/*
-const reducer = (state, action) => {
-}
-*/
 
 ReactDOM.render( 
 		(	

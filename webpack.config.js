@@ -12,7 +12,7 @@ module.exports = {
     module: {
         loaders: [
             {test: /\.jsx?$/, loader: 'babel', 
-            exclude: /(node_modules|bower_components)/, query: { presets: ['react', 'es2015'] }},
+            exclude: /(node_modules|bower_components)/, query: { presets: ['react', 'es2015', 'stage-2'] }},
         ]
     },
     resolve: {
@@ -20,6 +20,6 @@ module.exports = {
     },
     plugins: [
         definePlugin,
-        commonsPlugin
+        commonsPlugin,
     ]
 };

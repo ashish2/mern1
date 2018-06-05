@@ -6,6 +6,8 @@ import Header from './header';
 import Login from './Login';
 import TodoForm from './todo/TodoForm';
 //import TodoList from './todo/TodoList';
+import Users from './components/Users';
+
 import EnsureLoggedInContainer from './EnsureLoggedInContainer';
 
 /*
@@ -50,6 +52,7 @@ export default class Main extends Component {
 					<Route exact path="/" component={Home} />
 					<Route exact path="/login" component={Login} />
 					<PrivateRoute exact path="/todoform" component={TodoForm} />
+					<PrivateRoute exact path="/userlist" component={UserList} />
 				</Switch>
 		);
 	}
