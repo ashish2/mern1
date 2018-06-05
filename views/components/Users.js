@@ -4,13 +4,14 @@ import {connect} from "react-redux";
 import { readUsers } from "../actions/userActions";
 
 /*
+*/
 @connect( (store) => {
 	return {
 		users: store.users
 	}
 })
-*/
 
+/*
 const mapStateToProps = state => {
 	return {
 		todos: state.todos
@@ -22,10 +23,12 @@ const mapDispatchToProps = dispatch => {
 		toggleTodo: id => dispatch(toggleTodo(id))
 	}
 }
+*/
 
 class Users extends React.Component {
 	constructor(props){
 		super(props);
+		console.log("Users this.props: ", this.props);
 	}
 
 	componentWillMount(){
@@ -33,7 +36,7 @@ class Users extends React.Component {
 	}
 
 	render() {
-		u = this.props.users;
+		const u = this.props.users;
 		console.log("Users HERE");
 
 		return <div>
@@ -42,7 +45,9 @@ class Users extends React.Component {
 	}
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+// Working, With mapStateToProps and mapDispatchToProps
+//export default connect(mapStateToProps, mapDispatchToProps)(Users);
+// Working with @connect also
+export default Users;
 
 

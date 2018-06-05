@@ -26307,6 +26307,7 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.default = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -26423,6 +26424,7 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.default = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -26545,6 +26547,7 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.default = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -26889,6 +26892,7 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.default = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -47255,6 +47259,7 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -49020,6 +49025,8 @@ webpackJsonp([0,1],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _dec, _class;
+	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -49037,44 +49044,35 @@ webpackJsonp([0,1],[
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	/*
-	@connect( (store) => {
-		return {
-			users: store.users
-		}
-	})
-	*/
-	
-	var mapStateToProps = function mapStateToProps(state) {
+	const mapStateToProps = state => {
 		return {
 			todos: state.todos
-		};
-	};
+		}
+	}
 	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	const mapDispatchToProps = dispatch => {
 		return {
-			toggleTodo: function (_toggleTodo) {
-				function toggleTodo(_x) {
-					return _toggleTodo.apply(this, arguments);
-				}
+			toggleTodo: id => dispatch(toggleTodo(id))
+		}
+	}
+	*/
 	
-				toggleTodo.toString = function () {
-					return _toggleTodo.toString();
-				};
-	
-				return toggleTodo;
-			}(function (id) {
-				return dispatch(toggleTodo(id));
-			})
+	/*
+	*/
+	var Users = (_dec = (0, _reactRedux.connect)(function (store) {
+		return {
+			users: store.users
 		};
-	};
-	
-	var Users = function (_React$Component) {
+	}), _dec(_class = function (_React$Component) {
 		_inherits(Users, _React$Component);
 	
 		function Users(props) {
 			_classCallCheck(this, Users);
 	
-			return _possibleConstructorReturn(this, (Users.__proto__ || Object.getPrototypeOf(Users)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (Users.__proto__ || Object.getPrototypeOf(Users)).call(this, props));
+	
+			console.log("Users this.props: ", _this.props);
+			return _this;
 		}
 	
 		_createClass(Users, [{
@@ -49085,7 +49083,7 @@ webpackJsonp([0,1],[
 		}, {
 			key: "render",
 			value: function render() {
-				u = this.props.users;
+				var u = this.props.users;
 				console.log("Users HERE");
 	
 				return _react2.default.createElement(
@@ -49097,9 +49095,13 @@ webpackJsonp([0,1],[
 		}]);
 	
 		return Users;
-	}(_react2.default.Component);
+	}(_react2.default.Component)) || _class);
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Users);
+	// Working, With mapStateToProps and mapDispatchToProps
+	//export default connect(mapStateToProps, mapDispatchToProps)(Users);
+	// Working with @connect also
+	
+	exports.default = Users;
 
 /***/ }),
 /* 510 */
@@ -51552,7 +51554,9 @@ webpackJsonp([0,1],[
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Pass reducers to the store here
-	var initialStateOfStore = {};
+	var initialStateOfStore = {
+		users: [{ name: "u1", age: 1 }, { name: "u2", age: 2 }, { name: "u3", age: 3 }]
+	};
 	
 	/*
 	// * This is how you write a middleware

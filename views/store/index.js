@@ -11,7 +11,13 @@ import {applyMiddleware, createStore} from 'redux';
 import todoReducer from '../reducers/todo';
 import userReducer from '../reducers/user';
 
-var initialStateOfStore = {};
+var initialStateOfStore = {
+	users: [
+	{ name: "u1", age: 1},
+	{ name: "u2", age: 2},
+	{ name: "u3", age: 3},
+	]
+};
 
 /*
 // * This is how you write a middleware
