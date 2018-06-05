@@ -6,6 +6,7 @@ import App from './App';
 import {Provider} from 'react-redux';
 import store from './store';
 
+console.log("store in index.jsx " , store);
 
 ReactDOM.render( 
 		(	

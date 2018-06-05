@@ -11,13 +11,6 @@ import {applyMiddleware, createStore} from 'redux';
 import todoReducer from '../reducers/todo';
 import userReducer from '../reducers/user';
 
-var initialStateOfStore = {
-	users: [
-	{ name: "u1", age: 1},
-	{ name: "u2", age: 2},
-	{ name: "u3", age: 3},
-	]
-};
 
 /*
 // * This is how you write a middleware
@@ -27,9 +20,8 @@ const logger = (store) => (next) => (action) => {
 }
 */
 
-//middleware = applyMiddleware(promise(), thunk, logger());
+const initialStateOfStore = {};
 const middleware = applyMiddleware(promise(), thunk, createLogger());
-
 const reducers = combineReducers({ userReducer, todoReducer });
 const store = createStore(reducers, initialStateOfStore, middleware);
 

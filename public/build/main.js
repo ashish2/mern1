@@ -31,6 +31,8 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	console.log("store in index.jsx ", _store2.default);
+	
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRedux.Provider,
 		{ store: _store2.default },
@@ -51553,11 +51555,6 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Pass reducers to the store here
-	var initialStateOfStore = {
-		users: [{ name: "u1", age: 1 }, { name: "u2", age: 2 }, { name: "u3", age: 3 }]
-	};
-	
 	/*
 	// * This is how you write a middleware
 	const logger = (store) => (next) => (action) => {
@@ -51566,9 +51563,9 @@ webpackJsonp([0,1],[
 	}
 	*/
 	
-	//middleware = applyMiddleware(promise(), thunk, logger());
+	// Pass reducers to the store here
+	var initialStateOfStore = {};
 	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger.createLogger)());
-	
 	var reducers = (0, _redux.combineReducers)({ userReducer: _user2.default, todoReducer: _todo2.default });
 	var store = (0, _redux.createStore)(reducers, initialStateOfStore, middleware);
 	
@@ -51936,10 +51933,16 @@ webpackJsonp([0,1],[
 
 	"use strict";
 	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
+	var initialStateOfStore = [{ name: "u1", age: 1 }, { name: "u2", age: 2 }, { name: "u3", age: 3 }];
+	
 	var userReducer = function userReducer() {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { name: "Will", age: 35 };
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialStateOfStore;
 		var action = arguments[1];
 	
 		switch (action.type) {
@@ -51957,6 +51960,8 @@ webpackJsonp([0,1],[
 	
 		return state;
 	};
+	
+	exports.default = userReducer;
 
 /***/ })
 ]);

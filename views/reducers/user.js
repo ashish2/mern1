@@ -1,6 +1,12 @@
 
 
-const userReducer = (state = {name: "Will", age: 35}, action) => {
+const initialStateOfStore = [
+	{ name: "u1", age: 1},
+	{ name: "u2", age: 2},
+	{ name: "u3", age: 3},
+];
+
+const userReducer = (state = initialStateOfStore, action) => {
 	switch( action.type ) {
 		case "UPDATE_USER_NAME": {
 			state = {...state, name: action.payload};
@@ -16,3 +22,5 @@ const userReducer = (state = {name: "Will", age: 35}, action) => {
 
 	return state;
 }
+
+export default userReducer;
