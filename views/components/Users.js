@@ -34,6 +34,7 @@ class Users extends React.Component {
 
 	render() {
 		u = this.props.users;
+		console.log("Users HERE");
 
 		return <div>
 			UserList

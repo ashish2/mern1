@@ -52,7 +52,7 @@ export default class Main extends Component {
 					<Route exact path="/" component={Home} />
 					<Route exact path="/login" component={Login} />
 					<PrivateRoute exact path="/todoform" component={TodoForm} />
-					<PrivateRoute exact path="/userlist" component={UserList} />
+					<PrivateRoute exact path="/users" component={Users} />
 				</Switch>
 		);
 	}

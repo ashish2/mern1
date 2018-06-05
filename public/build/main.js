@@ -27,15 +27,13 @@ webpackJsonp([0,1],[
 	
 	var _store = __webpack_require__(/*! ./store */ 542);
 	
-	var store = _interopRequireWildcard(_store);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	var _store2 = _interopRequireDefault(_store);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_reactDom2.default.render(_react2.default.createElement(
 		_reactRedux.Provider,
-		{ store: store },
+		{ store: _store2.default },
 		_react2.default.createElement(_App2.default, null)
 	), document.getElementById("root"));
 
@@ -26525,7 +26523,7 @@ webpackJsonp([0,1],[
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default }),
-					_react2.default.createElement(PrivateRoute, { exact: true, path: '/userlist', component: UserList })
+					_react2.default.createElement(PrivateRoute, { exact: true, path: '/users', component: _Users2.default })
 				);
 			}
 		}]);
@@ -49088,6 +49086,7 @@ webpackJsonp([0,1],[
 			key: "render",
 			value: function render() {
 				u = this.props.users;
+				console.log("Users HERE");
 	
 				return _react2.default.createElement(
 					"div",
@@ -51522,6 +51521,10 @@ webpackJsonp([0,1],[
 
 	"use strict";
 	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
 	var _axios = __webpack_require__(/*! axios */ 484);
 	
 	var _axios2 = _interopRequireDefault(_axios);
@@ -51565,24 +51568,32 @@ webpackJsonp([0,1],[
 	var reducers = (0, _redux.combineReducers)({ userReducer: _user2.default, todoReducer: _todo2.default });
 	var store = (0, _redux.createStore)(reducers, initialStateOfStore, middleware);
 	
-	// with thunk
-	store.dispatch(function (dispatch) {
-		dispatch({ type: "FOO" });
+	console.log("store.subscribe ", store.subscribe);
+	
+	/*
+	// with thunk, Working Fine
+	store.dispatch( (dispatch) => {
+		dispatch({type: "FOO"})
 		// some async action
-		_axios2.default.get(getUserUrl).then(function (response) {
-			dispatch({ type: "RECEIVE_USERS", payload: response.data });
-		}).catch(function (err) {
-			dispatch({ type: "RECEIVE_USERS", payload: err });
+		let readUsersUrl = "http://google.co.in";
+		axios.get(readUsersUrl).then( (response) => {
+			dispatch({type: "READ_USERS", payload: response.data})
+		}).catch((err) => {
+			dispatch({type: "READ_USERS", payload: err})
 		});
 	});
 	
-	// with promise
-	store.dispatch(function (dispatch) {
+	// with promise, Working Fine
+	store.dispatch( (dispatch) => {
+		let readUsersUrl = "http://google.co.in/users";
 		dispatch({
 			type: "READ_USERS",
-			payload: _axios2.default.get(readUserUrl)
-		});
-	});
+			payload: axios.get(readUsersUrl)
+		})
+	})
+	*/
+	
+	exports.default = store;
 
 /***/ }),
 /* 543 */

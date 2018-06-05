@@ -27,21 +27,30 @@ const middleware = applyMiddleware(promise(), thunk, createLogger());
 const reducers = combineReducers({ userReducer, todoReducer });
 const store = createStore(reducers, initialStateOfStore, middleware);
 
-// with thunk
+console.log( "store.subscribe ", store.subscribe);
+
+/*
+// with thunk, Working Fine
 store.dispatch( (dispatch) => {
 	dispatch({type: "FOO"})
 	// some async action
-	axios.get(getUserUrl).then( (response) => {
-		dispatch({type: "RECEIVE_USERS", payload: response.data})
+	let readUsersUrl = "http://google.co.in";
+	axios.get(readUsersUrl).then( (response) => {
+		dispatch({type: "READ_USERS", payload: response.data})
 	}).catch((err) => {
-		dispatch({type: "RECEIVE_USERS", payload: err})
+		dispatch({type: "READ_USERS", payload: err})
 	});
 });
 
-// with promise
+// with promise, Working Fine
 store.dispatch( (dispatch) => {
+	let readUsersUrl = "http://google.co.in/users";
 	dispatch({
 		type: "READ_USERS",
-		payload: axios.get(readUserUrl)
+		payload: axios.get(readUsersUrl)
 	})
 })
+*/
+
+export default store;
+
