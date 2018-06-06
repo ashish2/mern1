@@ -25,6 +25,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 // This Works
 //<PrivateRoute exact path="/todoform" component={TodoForm} />
 const PrivateRoute = (path, component, ...rest) => (
+		//console.log("lSTo", localStorage);
     <Route {...rest} render={props => (
         !localStorage.getItem('user')
             ? <path.component {...props} />

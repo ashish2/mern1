@@ -7,6 +7,7 @@ import Main from './main';
 class App extends Component {
 	// Writing for Login/Logout
 	componentDidUpdate(prevProps) {
+		/*
 		const { dispatch, redirectUrl } = this.props;
 		const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
 		const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
@@ -17,6 +18,7 @@ class App extends Component {
 			// do any kind of cleanup or post-logout redirection here
 
 		}
+		*/
 
 
 	}

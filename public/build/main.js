@@ -26229,21 +26229,18 @@ webpackJsonp([0,1],[
 			key: 'componentDidUpdate',
 	
 			// Writing for Login/Logout
-			value: function componentDidUpdate(prevProps) {
-				var _props = this.props,
-				    dispatch = _props.dispatch,
-				    redirectUrl = _props.redirectUrl;
+			value: function componentDidUpdate(prevProps) {}
+			/*
+	  const { dispatch, redirectUrl } = this.props;
+	  const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
+	  const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
+	  	if(isLoggingIn) {
+	  	dispatch(navigateTo(redirectUrl));
+	  } else if(isLoggingOut) {
+	  	// do any kind of cleanup or post-logout redirection here
+	  	}
+	  */
 	
-				var isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
-				var isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
-	
-				if (isLoggingIn) {
-					dispatch(navigateTo(redirectUrl));
-				} else if (isLoggingOut) {
-					// do any kind of cleanup or post-logout redirection here
-	
-				}
-			}
 			// ---
 	
 	
@@ -26491,15 +26488,18 @@ webpackJsonp([0,1],[
 			rest[_key - 2] = arguments[_key];
 		}
 	
-		return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
-				return !localStorage.getItem('user') ? _react2.default.createElement(path.component, props) : _react2.default.createElement(
-					FadeIn,
-					null,
-					' ',
-					_react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login', state: { from: props.location } } }),
-					' '
-				);
-			} }));
+		return (
+			//console.log("lSTo", localStorage);
+			_react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, { render: function render(props) {
+					return !localStorage.getItem('user') ? _react2.default.createElement(path.component, props) : _react2.default.createElement(
+						FadeIn,
+						null,
+						' ',
+						_react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/login', state: { from: props.location } } }),
+						' '
+					);
+				} }))
+		);
 	};
 	
 	/*
@@ -51403,6 +51403,8 @@ webpackJsonp([0,1],[
 	});
 	exports.readUsers = readUsers;
 	function readUsers() {
+		// run ajax call here & add data to payload and 
+		// dispatch an event so that reducer can populate store
 		return {
 			type: "READ_USERS_FULFILLED",
 			payload: {
