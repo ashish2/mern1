@@ -24,10 +24,11 @@ export default class TodoForm extends Component {
 		e.preventDefault();
 		const {date, category, type, amount } = this.state;
 
-		axios.post('/todo/todos', { date, category, type, amount })
-			.then(result => {
-				console.log("/todos post calll made: ", result);
-			});
+		axios
+		.post('/todo/todos', { date, category, type, amount })
+		.then(result => {
+			console.log("/todos post calll made: ", result);
+		});
 	}
 
 	render() {
