@@ -51394,7 +51394,7 @@ webpackJsonp([0,1],[
 /*!**************************************!*\
   !*** ./views/actions/userActions.js ***!
   \**************************************/
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
@@ -51402,16 +51402,31 @@ webpackJsonp([0,1],[
 		value: true
 	});
 	exports.readUsers = readUsers;
+	
+	var _axios = __webpack_require__(/*! axios */ 484);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function readUsers() {
 		// run ajax call here & add data to payload and 
 		// dispatch an event so that reducer can populate store
 		// With promise,
 		// return { type: READ_USERS", payload: axios.get(usersApiUrl) }
-		axios.get('/api/v1/todos').then(function (result) {
+		//
+		// Start the django server in folder
+		// /opt/lampp/htdocs/www/www2/python/venv/venv1_4/pysite_1_4
+		// & get data from here
+		// http://localhost:8000/api/v1/user/?format=json
+		// file:///opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json
+		_axios2.default.get('/api/v1/users').then(function (result) {
 			// Dispatch an event with payload
 			console.log("/todos post calll made: ", result);
+			console.log("/todos store: ", store);
 		}).catch(function (err) {
 			console.log("/todos get calll errored: ", err);
+			console.log("/todos store: ", store);
 		});
 		/*
 	 return {
