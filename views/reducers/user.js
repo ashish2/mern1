@@ -6,14 +6,26 @@ const initialStateOfStore = [
 	{ name: "u3", age: 3},
 ];
 
-const userReducer = (state = initialStateOfStore, action) => {
+const usersReducer = (state = {}, action) => {
+	console.log("uReducer state ", state, " action", action, " action.type: ", action.type);
+
 	switch( action.type ) {
-		case "UPDATE_USER_NAME": {
-			state = {...state, name: action.payload};
+		case "READ_USERS_FULFILLED": {
+			console.log("rUFul");
+			
+			const data = action.payload;
+			//const data = action.payload.data.objects;
+			//state = {...state, users: data};
+			state = {...state, users: data};
+			console.log("rUFul state ", state);
 			break;
 		}
-		case "CHANGE_AGE": {
-			state = {...state, age: action.payload};
+		case "READ_USERS_START": {
+			console.log("RUStart");
+			break;
+		}
+		case "READ_USERS_REJECTED": {
+			console.log("RURej");
 			break;
 		}
 	}
@@ -23,4 +35,4 @@ const userReducer = (state = initialStateOfStore, action) => {
 	return state;
 }
 
-export default userReducer;
+export default usersReducer;

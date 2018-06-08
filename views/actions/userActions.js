@@ -1,6 +1,7 @@
 import axios from "axios";
+import thunk from "redux-thunk";
 
-export function readUsers() {
+export function readUsers(dispatch) {
 	// run ajax call here & add data to payload and 
 	// dispatch an event so that reducer can populate store
 	// With promise,
@@ -11,16 +12,24 @@ export function readUsers() {
 	// & get data from here
 	// http://localhost:8000/api/v1/user/?format=json
 	// file:///opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json
+	
+	dispatch({ type: "READ_USERS_START", payload: null});
+
 	axios
-	.get('/api/v1/users')
+	.get('/api/users')
 	.then(result => {
 		// Dispatch an event with payload
-		console.log("/todos post calll made: ", result);
-		console.log("/todos store: ", store);
+		dispatch({	
+			type: "READ_USERS_FULFILLED",
+			payload: result.data.objects
+		});
 	})
 	.catch(err => {
 		console.log("/todos get calll errored: ", err);
-		console.log("/todos store: ", store);
+		dispatch({ 
+			type: "READ_USERS_REJECTED",
+			payload: err
+		});
 	});
 	/*
 	return {
@@ -31,4 +40,12 @@ export function readUsers() {
 		}
 	}
 	*/
+}
+
+export function readUsersPromise() {
+	console.log("userActions readUsersPromise func");
+	return {
+		type: "READ_USERS",
+		payload: axios.get('/api/users')
+	}
 }

@@ -8,8 +8,8 @@ import {combineReducers} from "redux";
 
 import {applyMiddleware, createStore} from 'redux';
 // Pass reducers to the store here
-import todoReducer from '../reducers/todo';
-import userReducer from '../reducers/user';
+import todosReducer from '../reducers/todo';
+import usersReducer from '../reducers/user';
 
 
 /*
@@ -22,10 +22,13 @@ const logger = (store) => (next) => (action) => {
 
 const initialStateOfStore = {};
 const middleware = applyMiddleware(promise(), thunk, createLogger());
-const reducers = combineReducers({ userReducer, todoReducer });
+const reducers = combineReducers({ 
+	users: usersReducer,
+	todos: todosReducer
+});
 const store = createStore(reducers, initialStateOfStore, middleware);
 
-console.log( "store.subscribe ", store.subscribe);
+//console.log( "store.subscribe ", store.subscribe);
 
 /*
 // with thunk, Working Fine

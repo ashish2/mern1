@@ -1,5 +1,5 @@
 
-const todoReducer = (state = {}, action) => {
+const todosReducer = (state = {}, action) => {
 	switch(action.type) {
 		case "UPDATE_USER_NAME": {
 			// Take the todo index to be changed & change it
@@ -19,5 +19,5 @@ const visibilityFilter = (state, action) => {
 }
 
 
-export default todoReducer;
+export default todosReducer;
 

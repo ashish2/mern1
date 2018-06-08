@@ -1,15 +1,26 @@
 import React from "react";
 import {connect} from "react-redux";
+//import thunk from "redux-thunk";
 
-import { readUsers } from "../actions/userActions";
+import { readUsers, readUsersPromise } from "../actions/userActions";
 
-/*
-*/
-@connect( (store) => {
+const mapStateToProps = (store) => {
+	console.log( "connect store ", store);
 	return {
 		users: store.users
 	}
-})
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		toggleTodo: id => dispatch(toggleTodo(id)),
+		readUsers: readUsers
+	}
+}
+
+
+//@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 
 /*
 const mapStateToProps = state => {
@@ -28,19 +39,39 @@ const mapDispatchToProps = dispatch => {
 class Users extends React.Component {
 	constructor(props){
 		super(props);
-		console.log("Users this.props: ", this.props);
+		//console.log("Users store: ", store);
 	}
 
 	componentWillMount(){
-		this.props.dispatch( readUsers() )
+		console.log("users.js compMOunted");
+		//this.props.dispatch( readUsers(this.props.dispatch) );
+		this.props.dispatch( readUsers );
+
+		//this.props.dispatch( readUsersPromise() );
+		//readUsers(this.props.dispatch);
+		//readUsers();
 	}
+	
+	//shouldComponentUpdate (){}
 
 	render() {
-		const u = this.props.users;
-		console.log("Users HERE");
+		//const u = this.props.users;
+		console.log("Users HERE", this.props);
 
+		if( !this.props.users )
+			return <button>Nothin</button>
 		return <div>
-			UserList
+			UserList u here:
+			<br />
+			<ul>
+			
+			{ this.props.users.users && 
+				this.props.users.users.map( (u, i) => 
+				<li>{u.email}</li>
+				)
+			}
+			</ul>
+
 			</div>
 	}
 }

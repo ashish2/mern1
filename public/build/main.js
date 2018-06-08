@@ -49028,6 +49028,7 @@ webpackJsonp([0,1],[
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _dec, _class;
+	//import thunk from "redux-thunk";
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
@@ -49045,6 +49046,35 @@ webpackJsonp([0,1],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var mapStateToProps = function mapStateToProps(store) {
+		console.log("connect store ", store);
+		return {
+			users: store.users
+		};
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			toggleTodo: function (_toggleTodo) {
+				function toggleTodo(_x) {
+					return _toggleTodo.apply(this, arguments);
+				}
+	
+				toggleTodo.toString = function () {
+					return _toggleTodo.toString();
+				};
+	
+				return toggleTodo;
+			}(function (id) {
+				return dispatch(toggleTodo(id));
+			}),
+			readUsers: _userActions.readUsers
+		};
+	};
+	
+	//@connect(mapStateToProps, mapDispatchToProps)
+	
+	
 	/*
 	const mapStateToProps = state => {
 		return {
@@ -49059,39 +49089,57 @@ webpackJsonp([0,1],[
 	}
 	*/
 	
-	/*
-	*/
-	var Users = (_dec = (0, _reactRedux.connect)(function (store) {
-		return {
-			users: store.users
-		};
-	}), _dec(_class = function (_React$Component) {
+	var Users = (_dec = (0, _reactRedux.connect)(mapStateToProps), _dec(_class = function (_React$Component) {
 		_inherits(Users, _React$Component);
 	
 		function Users(props) {
 			_classCallCheck(this, Users);
 	
-			var _this = _possibleConstructorReturn(this, (Users.__proto__ || Object.getPrototypeOf(Users)).call(this, props));
-	
-			console.log("Users this.props: ", _this.props);
-			return _this;
+			return _possibleConstructorReturn(this, (Users.__proto__ || Object.getPrototypeOf(Users)).call(this, props));
+			//console.log("Users store: ", store);
 		}
 	
 		_createClass(Users, [{
 			key: "componentWillMount",
 			value: function componentWillMount() {
-				this.props.dispatch((0, _userActions.readUsers)());
+				console.log("users.js compMOunted");
+				//this.props.dispatch( readUsers(this.props.dispatch) );
+				this.props.dispatch(_userActions.readUsers);
+	
+				//this.props.dispatch( readUsersPromise() );
+				//readUsers(this.props.dispatch);
+				//readUsers();
 			}
+	
+			//shouldComponentUpdate (){}
+	
 		}, {
 			key: "render",
 			value: function render() {
-				var u = this.props.users;
-				console.log("Users HERE");
+				//const u = this.props.users;
+				console.log("Users HERE", this.props);
 	
+				if (!this.props.users) return _react2.default.createElement(
+					"button",
+					null,
+					"Nothin"
+				);
 				return _react2.default.createElement(
 					"div",
 					null,
-					"UserList"
+					"UserList u here:",
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						"ul",
+						null,
+						this.props.users.users && this.props.users.users.map(function (u, i) {
+							return _react2.default.createElement(
+								"li",
+								null,
+								u.email
+							);
+						})
+					)
 				);
 			}
 		}]);
@@ -51402,14 +51450,19 @@ webpackJsonp([0,1],[
 		value: true
 	});
 	exports.readUsers = readUsers;
+	exports.readUsersPromise = readUsersPromise;
 	
 	var _axios = __webpack_require__(/*! axios */ 484);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 544);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function readUsers() {
+	function readUsers(dispatch) {
 		// run ajax call here & add data to payload and 
 		// dispatch an event so that reducer can populate store
 		// With promise,
@@ -51420,13 +51473,21 @@ webpackJsonp([0,1],[
 		// & get data from here
 		// http://localhost:8000/api/v1/user/?format=json
 		// file:///opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json
-		_axios2.default.get('/api/v1/users').then(function (result) {
+	
+		dispatch({ type: "READ_USERS_START", payload: null });
+	
+		_axios2.default.get('/api/users').then(function (result) {
 			// Dispatch an event with payload
-			console.log("/todos post calll made: ", result);
-			console.log("/todos store: ", store);
+			dispatch({
+				type: "READ_USERS_FULFILLED",
+				payload: result.data.objects
+			});
 		}).catch(function (err) {
 			console.log("/todos get calll errored: ", err);
-			console.log("/todos store: ", store);
+			dispatch({
+				type: "READ_USERS_REJECTED",
+				payload: err
+			});
 		});
 		/*
 	 return {
@@ -51437,6 +51498,14 @@ webpackJsonp([0,1],[
 	 	}
 	 }
 	 */
+	}
+	
+	function readUsersPromise() {
+		console.log("userActions readUsersPromise func");
+		return {
+			type: "READ_USERS",
+			payload: _axios2.default.get('/api/users')
+		};
 	}
 
 /***/ }),
@@ -51593,10 +51662,13 @@ webpackJsonp([0,1],[
 	// Pass reducers to the store here
 	var initialStateOfStore = {};
 	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger.createLogger)());
-	var reducers = (0, _redux.combineReducers)({ userReducer: _user2.default, todoReducer: _todo2.default });
+	var reducers = (0, _redux.combineReducers)({
+		users: _user2.default,
+		todos: _todo2.default
+	});
 	var store = (0, _redux.createStore)(reducers, initialStateOfStore, middleware);
 	
-	console.log("store.subscribe ", store.subscribe);
+	//console.log( "store.subscribe ", store.subscribe);
 	
 	/*
 	// with thunk, Working Fine
@@ -51926,7 +51998,7 @@ webpackJsonp([0,1],[
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var todoReducer = function todoReducer() {
+	var todosReducer = function todosReducer() {
 		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 		var action = arguments[1];
 	
@@ -51949,7 +52021,7 @@ webpackJsonp([0,1],[
 		return state;
 	};
 	
-	exports.default = todoReducer;
+	exports.default = todosReducer;
 
 /***/ }),
 /* 548 */
@@ -51968,19 +52040,32 @@ webpackJsonp([0,1],[
 	
 	var initialStateOfStore = [{ name: "u1", age: 1 }, { name: "u2", age: 2 }, { name: "u3", age: 3 }];
 	
-	var userReducer = function userReducer() {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialStateOfStore;
+	var usersReducer = function usersReducer() {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 		var action = arguments[1];
 	
+		console.log("uReducer state ", state, " action", action, " action.type: ", action.type);
+	
 		switch (action.type) {
-			case "UPDATE_USER_NAME":
+			case "READ_USERS_FULFILLED":
 				{
-					state = _extends({}, state, { name: action.payload });
+					console.log("rUFul");
+	
+					var data = action.payload;
+					//const data = action.payload.data.objects;
+					//state = {...state, users: data};
+					state = _extends({}, state, { users: data });
+					console.log("rUFul state ", state);
 					break;
 				}
-			case "CHANGE_AGE":
+			case "READ_USERS_START":
 				{
-					state = _extends({}, state, { age: action.payload });
+					console.log("RUStart");
+					break;
+				}
+			case "READ_USERS_REJECTED":
+				{
+					console.log("RURej");
 					break;
 				}
 		}
@@ -51988,7 +52073,7 @@ webpackJsonp([0,1],[
 		return state;
 	};
 	
-	exports.default = userReducer;
+	exports.default = usersReducer;
 
 /***/ })
 ]);
