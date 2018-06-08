@@ -64,10 +64,10 @@ class Users extends React.Component {
 			UserList u here:
 			<br />
 			<ul>
-			
-			{ this.props.users.users && 
+			{ 
+				this.props.users.users && 
 				this.props.users.users.map( (u, i) => 
-				<li>{u.email}</li>
+					<li key={i}>{u.email}</li>
 				)
 			}
 			</ul>
