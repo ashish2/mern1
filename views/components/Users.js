@@ -11,12 +11,14 @@ const mapStateToProps = (store) => {
 	}
 }
 
+// NOT USED ATM
 const mapDispatchToProps = dispatch => {
 	return {
 		toggleTodo: id => dispatch(toggleTodo(id)),
 		readUsers: readUsers
 	}
 }
+// NOT USED ATM-
 
 
 //@connect(mapStateToProps, mapDispatchToProps)

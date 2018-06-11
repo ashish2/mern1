@@ -25,25 +25,14 @@ export function readUsers(dispatch) {
 		});
 	})
 	.catch(err => {
-		console.log("/todos get calll errored: ", err);
 		dispatch({ 
 			type: "READ_USERS_REJECTED",
 			payload: err
 		});
 	});
-	/*
-	return {
-		type: "READ_USERS_FULFILLED",
-		payload: {
-			name: "Will",
-			age: 35
-		}
-	}
-	*/
 }
 
 export function readUsersPromise() {
-	console.log("userActions readUsersPromise func");
 	return {
 		type: "READ_USERS",
 		payload: axios.get('/api/users')

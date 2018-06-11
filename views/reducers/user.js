@@ -7,30 +7,22 @@ const initialStateOfStore = [
 ];
 
 const usersReducer = (state = {}, action) => {
-	console.log("uReducer state ", state, " action", action, " action.type: ", action.type);
+	//console.log("uReducer state ", state, " action", action, " action.type: ", action.type);
 
 	switch( action.type ) {
 		case "READ_USERS_FULFILLED": {
-			console.log("rUFul");
-			
 			const data = action.payload;
 			//const data = action.payload.data.objects;
-			//state = {...state, users: data};
 			state = {...state, users: data};
-			console.log("rUFul state ", state);
 			break;
 		}
 		case "READ_USERS_START": {
-			console.log("RUStart");
 			break;
 		}
 		case "READ_USERS_REJECTED": {
-			console.log("RURej");
 			break;
 		}
 	}
-
-
 
 	return state;
 }
