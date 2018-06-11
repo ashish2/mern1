@@ -49053,6 +49053,7 @@ webpackJsonp([0,1],[
 		};
 	};
 	
+	// NOT USED ATM
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
 			toggleTodo: function (_toggleTodo) {
@@ -49071,6 +49072,8 @@ webpackJsonp([0,1],[
 			readUsers: _userActions.readUsers
 		};
 	};
+	// NOT USED ATM-
+	
 	
 	//@connect(mapStateToProps, mapDispatchToProps)
 	
@@ -51483,25 +51486,14 @@ webpackJsonp([0,1],[
 				payload: result.data.objects
 			});
 		}).catch(function (err) {
-			console.log("/todos get calll errored: ", err);
 			dispatch({
 				type: "READ_USERS_REJECTED",
 				payload: err
 			});
 		});
-		/*
-	 return {
-	 	type: "READ_USERS_FULFILLED",
-	 	payload: {
-	 		name: "Will",
-	 		age: 35
-	 	}
-	 }
-	 */
 	}
 	
 	function readUsersPromise() {
-		console.log("userActions readUsersPromise func");
 		return {
 			type: "READ_USERS",
 			payload: _axios2.default.get('/api/users')
@@ -52011,7 +52003,19 @@ webpackJsonp([0,1],[
 					todo = todos[action.payload.index];
 					todo.user.name = action.payload.name;
 					state = _extends({}, state, { todos: todos });
+					break;
 				}
+			case "READ_TODOS_START":
+				{
+					console.log("todosRed READTODOS ");
+					break;
+				}
+			case "default":
+				{
+					console.log("todosRed default ");
+					break;
+				}
+	
 		}
 	
 		return state;
@@ -52044,28 +52048,24 @@ webpackJsonp([0,1],[
 		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 		var action = arguments[1];
 	
-		console.log("uReducer state ", state, " action", action, " action.type: ", action.type);
+		//console.log("uReducer state ", state, " action", action, " action.type: ", action.type);
 	
 		switch (action.type) {
 			case "READ_USERS_FULFILLED":
 				{
-					console.log("rUFul");
-	
 					var data = action.payload;
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
-					state = _extends({}, state, { users: data });
-					console.log("rUFul state ", state);
+					// FTM, adding same data in `todos` key also, FOR TESTING.
+					state = _extends({}, state, { users: data, todos: data });
 					break;
 				}
 			case "READ_USERS_START":
 				{
-					console.log("RUStart");
 					break;
 				}
 			case "READ_USERS_REJECTED":
 				{
-					console.log("RURej");
 					break;
 				}
 		}

@@ -8,7 +8,17 @@ const todosReducer = (state = {}, action) => {
 			todo = todos[action.payload.index];
 			todo.user.name = action.payload.name;
 			state = {...state, todos: todos};
+			break;
 		}
+		case "READ_TODOS_START": {
+			console.log("todosRed READTODOS ");
+			break;
+		}
+		case "default": {
+			console.log("todosRed default ");
+			break;
+		}
+
 	}
 
 	return state;
