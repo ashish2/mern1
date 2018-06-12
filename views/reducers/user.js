@@ -13,6 +13,8 @@ const usersReducer = (state = {}, action) => {
 		case "READ_USERS_FULFILLED": {
 			const data = action.payload;
 			//const data = action.payload.data.objects;
+			//state = {...state, users: data};
+			// FTM, adding same data in `todos` key also, FOR TESTING.
 			state = {...state, users: data};
 			break;
 		}

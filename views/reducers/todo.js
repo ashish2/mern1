@@ -8,7 +8,23 @@ const todosReducer = (state = {}, action) => {
 			todo = todos[action.payload.index];
 			todo.user.name = action.payload.name;
 			state = {...state, todos: todos};
+			break;
 		}
+		case "READ_TODOS_START": {
+			break;
+		}
+		case "READ_TODOS_FULFILLED": {
+			const data = action.payload;
+			//const data = action.payload.data.objects;
+			//state = {...state, users: data};
+			// FTM, adding same data in `todos` key also, FOR TESTING.
+			state = {...state, todos: data};
+			break;
+		}
+		case "default": {
+			break;
+		}
+
 	}
 
 	return state;
