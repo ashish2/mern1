@@ -15,7 +15,7 @@ const usersReducer = (state = {}, action) => {
 			//const data = action.payload.data.objects;
 			//state = {...state, users: data};
 			// FTM, adding same data in `todos` key also, FOR TESTING.
-			state = {...state, users: data, todos: data};
+			state = {...state, users: data};
 			break;
 		}
 		case "READ_USERS_START": {

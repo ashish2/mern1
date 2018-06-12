@@ -11,11 +11,17 @@ const todosReducer = (state = {}, action) => {
 			break;
 		}
 		case "READ_TODOS_START": {
-			console.log("todosRed READTODOS ");
+			break;
+		}
+		case "READ_TODOS_FULFILLED": {
+			const data = action.payload;
+			//const data = action.payload.data.objects;
+			//state = {...state, users: data};
+			// FTM, adding same data in `todos` key also, FOR TESTING.
+			state = {...state, todos: data};
 			break;
 		}
 		case "default": {
-			console.log("todosRed default ");
 			break;
 		}
 

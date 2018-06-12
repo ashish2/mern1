@@ -25,7 +25,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 510);
 	
-	var _store = __webpack_require__(/*! ./store */ 543);
+	var _store = __webpack_require__(/*! ./store */ 545);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -26387,6 +26387,15 @@ webpackJsonp([0,1],[
 								null,
 								_react2.default.createElement(
 									_reactRouterDom.Link,
+									{ to: '/todos' },
+									'Todos'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									_reactRouterDom.Link,
 									{ to: '/users' },
 									'Users'
 								)
@@ -26453,11 +26462,15 @@ webpackJsonp([0,1],[
 	
 	var _TodoForm2 = _interopRequireDefault(_TodoForm);
 	
-	var _Users = __webpack_require__(/*! ./components/Users */ 509);
+	var _Todos = __webpack_require__(/*! ./components/Todos */ 509);
+	
+	var _Todos2 = _interopRequireDefault(_Todos);
+	
+	var _Users = __webpack_require__(/*! ./components/Users */ 542);
 	
 	var _Users2 = _interopRequireDefault(_Users);
 	
-	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 542);
+	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 544);
 	
 	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
 	
@@ -26527,6 +26540,7 @@ webpackJsonp([0,1],[
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default }),
+					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todos', component: _Todos2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/users', component: _Users2.default })
 				);
 			}
@@ -49015,7 +49029,7 @@ webpackJsonp([0,1],[
 /***/ }),
 /* 509 */
 /*!***********************************!*\
-  !*** ./views/components/Users.js ***!
+  !*** ./views/components/Todos.js ***!
   \***********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49027,16 +49041,19 @@ webpackJsonp([0,1],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _dec, _class;
-	//import thunk from "redux-thunk";
-	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 510);
 	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 540);
+	var _redux = __webpack_require__(/*! redux */ 520);
+	
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 540);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 541);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -49047,71 +49064,41 @@ webpackJsonp([0,1],[
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var mapStateToProps = function mapStateToProps(store) {
-		console.log("connect store ", store);
 		return {
-			users: store.users
+			todos: store.todos
 		};
 	};
 	
-	// NOT USED ATM
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
-			toggleTodo: function (_toggleTodo) {
-				function toggleTodo(_x) {
-					return _toggleTodo.apply(this, arguments);
-				}
-	
-				toggleTodo.toString = function () {
-					return _toggleTodo.toString();
-				};
-	
-				return toggleTodo;
-			}(function (id) {
-				return dispatch(toggleTodo(id));
-			}),
-			readUsers: _userActions.readUsers
+			toggleTodo: function toggleTodo(id) {
+				return dispatch((0, _todoActions.toggleTodo)(id));
+			},
+			// readT working, directly dispath'ing on page load
+			///readT: dispatch(readTodos()),
+			// readT2 working, dispatch'ing at will by calling `function readT2` whenever we wish to
+			readT2: function readT2() {
+				return dispatch((0, _todoActions.readTodos)());
+			}
 		};
 	};
-	// NOT USED ATM-
 	
+	var Todos = function (_React$Component) {
+		_inherits(Todos, _React$Component);
 	
-	//@connect(mapStateToProps, mapDispatchToProps)
+		function Todos(props) {
+			_classCallCheck(this, Todos);
 	
-	
-	/*
-	const mapStateToProps = state => {
-		return {
-			todos: state.todos
-		}
-	}
-	
-	const mapDispatchToProps = dispatch => {
-		return {
-			toggleTodo: id => dispatch(toggleTodo(id))
-		}
-	}
-	*/
-	
-	var Users = (_dec = (0, _reactRedux.connect)(mapStateToProps), _dec(_class = function (_React$Component) {
-		_inherits(Users, _React$Component);
-	
-		function Users(props) {
-			_classCallCheck(this, Users);
-	
-			return _possibleConstructorReturn(this, (Users.__proto__ || Object.getPrototypeOf(Users)).call(this, props));
-			//console.log("Users store: ", store);
+			return _possibleConstructorReturn(this, (Todos.__proto__ || Object.getPrototypeOf(Todos)).call(this, props));
 		}
 	
-		_createClass(Users, [{
+		_createClass(Todos, [{
 			key: "componentWillMount",
 			value: function componentWillMount() {
-				console.log("users.js compMOunted");
-				//this.props.dispatch( readUsers(this.props.dispatch) );
-				this.props.dispatch(_userActions.readUsers);
-	
-				//this.props.dispatch( readUsersPromise() );
-				//readUsers(this.props.dispatch);
-				//readUsers();
+				// readT working
+				///readT();
+				// readT2 working
+				this.props.readT2();
 			}
 	
 			//shouldComponentUpdate (){}
@@ -49119,10 +49106,7 @@ webpackJsonp([0,1],[
 		}, {
 			key: "render",
 			value: function render() {
-				//const u = this.props.users;
-				console.log("Users HERE", this.props);
-	
-				if (!this.props.users) return _react2.default.createElement(
+				if (!this.props.todos) return _react2.default.createElement(
 					"button",
 					null,
 					"Nothin"
@@ -49130,15 +49114,18 @@ webpackJsonp([0,1],[
 				return _react2.default.createElement(
 					"div",
 					null,
-					"UserList u here:",
+					"Todos of users here:",
 					_react2.default.createElement("br", null),
 					_react2.default.createElement(
 						"ul",
 						null,
-						this.props.users.users && this.props.users.users.map(function (u, i) {
+						this.props.todos.todos && this.props.todos.todos.map(function (u, i) {
 							return _react2.default.createElement(
 								"li",
-								{ key: i },
+								{ key: i, onClick: function onClick() {
+										return (0, _todoActions.toggleTodo)(i);
+									} },
+								"Todo ",
 								u.email
 							);
 						})
@@ -49147,14 +49134,13 @@ webpackJsonp([0,1],[
 			}
 		}]);
 	
-		return Users;
-	}(_react2.default.Component)) || _class);
+		return Todos;
+	}(_react2.default.Component);
 	
 	// Working, With mapStateToProps and mapDispatchToProps
-	//export default connect(mapStateToProps, mapDispatchToProps)(Users);
-	// Working with @connect also
 	
-	exports.default = Users;
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Todos);
 
 /***/ }),
 /* 510 */
@@ -51442,6 +51428,287 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 540 */
+/*!************************************!*\
+  !*** ./~/redux-thunk/lib/index.js ***!
+  \************************************/
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch,
+	        getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
+
+/***/ }),
+/* 541 */
+/*!**************************************!*\
+  !*** ./views/actions/todoActions.js ***!
+  \**************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.toggleTodo = toggleTodo;
+	exports.readTodos = readTodos;
+	exports.readUsers = readUsers;
+	
+	var _axios = __webpack_require__(/*! axios */ 484);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 540);
+	
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function toggleTodo(id) {
+		console.log("toggleTodo id: ", id);
+		return {
+			type: "READ_TODOS_START",
+			payload: {
+				name: "Will",
+				age: 35
+			}
+		};
+	}
+	
+	function readTodos() {
+		// run ajax call here & add data to payload and 
+		// dispatch an event so that reducer can populate store
+		// With promise,
+		// return { type: READ_USERS", payload: axios.get(usersApiUrl) }
+		//
+		// Start the django server in folder
+		// /opt/lampp/htdocs/www/www2/python/venv/venv1_4/pysite_1_4
+		// & get data from here
+		// http://localhost:8000/api/v1/user/?format=json
+		// file:///opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json
+	
+		//let ret = { type: "READ_TODOS_START", payload: null};
+		//return ret;
+	
+		/*
+	 return {
+	 	type: "READ_TODOS_FULFILLED",
+	 	payload: [
+	 	{
+	 		name: "Will",
+	 		email: "w@w.com",
+	 		age: 35
+	 	},
+	 	{
+	 		name: "Will",
+	 		email: "z@z.com",
+	 		age: 35
+	 	}
+	 	]
+	 }
+	 */
+	
+		return function (dispatch) {
+			dispatch({
+				type: "READ_TODOS_FULFILLED",
+				payload: null
+			});
+			_axios2.default.get('/api/users').then(function (result) {
+				// Dispatch an event with payload
+				console.log("reTodos call made");
+				var ret = {
+					type: "READ_TODOS_FULFILLED",
+					payload: result.data.objects
+				};
+				dispatch(ret);
+			}).catch(function (err) {
+				console.log("reTodos Error");
+				var ret = {
+					type: "READ_TODOS_REJECTED",
+					payload: err
+				};
+				dispatch(ret);
+			});
+		};
+		/*
+	 */
+	}
+	
+	function readUsers() {
+		return {
+			type: "READ_USERS_FULFILLED",
+			payload: {
+				name: "Will",
+				age: 35
+			}
+		};
+	}
+
+/***/ }),
+/* 542 */
+/*!***********************************!*\
+  !*** ./views/components/Users.js ***!
+  \***********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _class;
+	//import thunk from "redux-thunk";
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 510);
+	
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 543);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var mapStateToProps = function mapStateToProps(store) {
+		console.log("connect store ", store);
+		return {
+			users: store.users
+		};
+	};
+	
+	// NOT USED ATM
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			toggleTodo: function (_toggleTodo) {
+				function toggleTodo(_x) {
+					return _toggleTodo.apply(this, arguments);
+				}
+	
+				toggleTodo.toString = function () {
+					return _toggleTodo.toString();
+				};
+	
+				return toggleTodo;
+			}(function (id) {
+				return dispatch(toggleTodo(id));
+			}),
+			readUsers: _userActions.readUsers
+		};
+	};
+	// NOT USED ATM-
+	
+	
+	//@connect(mapStateToProps, mapDispatchToProps)
+	
+	
+	/*
+	const mapStateToProps = state => {
+		return {
+			todos: state.todos
+		}
+	}
+	
+	const mapDispatchToProps = dispatch => {
+		return {
+			toggleTodo: id => dispatch(toggleTodo(id))
+		}
+	}
+	*/
+	
+	var Users = (_dec = (0, _reactRedux.connect)(mapStateToProps), _dec(_class = function (_React$Component) {
+		_inherits(Users, _React$Component);
+	
+		function Users(props) {
+			_classCallCheck(this, Users);
+	
+			return _possibleConstructorReturn(this, (Users.__proto__ || Object.getPrototypeOf(Users)).call(this, props));
+			//console.log("Users store: ", store);
+		}
+	
+		_createClass(Users, [{
+			key: "componentWillMount",
+			value: function componentWillMount() {
+				console.log("users.js compMOunted");
+				//this.props.dispatch( readUsers(this.props.dispatch) );
+				this.props.dispatch(_userActions.readUsers);
+	
+				//this.props.dispatch( readUsersPromise() );
+				//readUsers(this.props.dispatch);
+				//readUsers();
+			}
+	
+			//shouldComponentUpdate (){}
+	
+		}, {
+			key: "render",
+			value: function render() {
+				//const u = this.props.users;
+				console.log("Users HERE", this.props);
+	
+				if (!this.props.users) return _react2.default.createElement(
+					"button",
+					null,
+					"Nothin"
+				);
+				return _react2.default.createElement(
+					"div",
+					null,
+					"UserList u here:",
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						"ul",
+						null,
+						this.props.users.users && this.props.users.users.map(function (u, i) {
+							return _react2.default.createElement(
+								"li",
+								{ key: i },
+								u.email
+							);
+						})
+					)
+				);
+			}
+		}]);
+	
+		return Users;
+	}(_react2.default.Component)) || _class);
+	
+	// Working, With mapStateToProps and mapDispatchToProps
+	//export default connect(mapStateToProps, mapDispatchToProps)(Users);
+	// Working with @connect also
+	
+	exports.default = Users;
+
+/***/ }),
+/* 543 */
 /*!**************************************!*\
   !*** ./views/actions/userActions.js ***!
   \**************************************/
@@ -51459,7 +51726,7 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 541);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 540);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -51501,38 +51768,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 541 */
-/*!************************************!*\
-  !*** ./~/redux-thunk/lib/index.js ***!
-  \************************************/
-/***/ (function(module, exports) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	function createThunkMiddleware(extraArgument) {
-	  return function (_ref) {
-	    var dispatch = _ref.dispatch,
-	        getState = _ref.getState;
-	    return function (next) {
-	      return function (action) {
-	        if (typeof action === 'function') {
-	          return action(dispatch, getState, extraArgument);
-	        }
-	
-	        return next(action);
-	      };
-	    };
-	  };
-	}
-	
-	var thunk = createThunkMiddleware();
-	thunk.withExtraArgument = createThunkMiddleware;
-	
-	exports['default'] = thunk;
-
-/***/ }),
-/* 542 */
+/* 544 */
 /*!*******************************************!*\
   !*** ./views/EnsureLoggedInContainer.jsx ***!
   \*******************************************/
@@ -51636,7 +51872,7 @@ webpackJsonp([0,1],[
 	exports.default = EnsureLoggedInContainer;
 
 /***/ }),
-/* 543 */
+/* 545 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -51652,23 +51888,23 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 544);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 546);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 541);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 540);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 545);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 547);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
 	var _redux = __webpack_require__(/*! redux */ 520);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 547);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 549);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 548);
+	var _user = __webpack_require__(/*! ../reducers/user */ 550);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -51719,7 +51955,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 544 */
+/* 546 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -51730,7 +51966,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 545 */
+/* 547 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -51749,7 +51985,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 546);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 548);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -51952,7 +52188,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 546 */
+/* 548 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -51976,7 +52212,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 547 */
+/* 549 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -52007,12 +52243,19 @@ webpackJsonp([0,1],[
 				}
 			case "READ_TODOS_START":
 				{
-					console.log("todosRed READTODOS ");
+					break;
+				}
+			case "READ_TODOS_FULFILLED":
+				{
+					var data = action.payload;
+					//const data = action.payload.data.objects;
+					//state = {...state, users: data};
+					// FTM, adding same data in `todos` key also, FOR TESTING.
+					state = _extends({}, state, { todos: data });
 					break;
 				}
 			case "default":
 				{
-					console.log("todosRed default ");
 					break;
 				}
 	
@@ -52028,7 +52271,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 548 */
+/* 550 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/
@@ -52057,7 +52300,7 @@ webpackJsonp([0,1],[
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
-					state = _extends({}, state, { users: data, todos: data });
+					state = _extends({}, state, { users: data });
 					break;
 				}
 			case "READ_USERS_START":
