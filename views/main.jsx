@@ -5,7 +5,9 @@ import Home from './home';
 import Header from './header';
 import Login from './Login';
 import TodoForm from './todo/TodoForm';
-import TodoList from './todo/TodoList';
+//import TodoList from './todo/TodoList';
+import Users from './components/Users';
+
 import EnsureLoggedInContainer from './EnsureLoggedInContainer';
 
 /*
@@ -21,6 +23,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 // This Works
 //<PrivateRoute exact path="/todoform" component={TodoForm} />
 const PrivateRoute = (path, component, ...rest) => (
+		//console.log("lSTo", localStorage);
     <Route {...rest} render={props => (
         !localStorage.getItem('user')
             ? <path.component {...props} />
@@ -48,7 +51,7 @@ export default class Main extends Component {
 					<Route exact path="/" component={Home} />
 					<Route exact path="/login" component={Login} />
 					<PrivateRoute exact path="/todoform" component={TodoForm} />
-					<PrivateRoute exact path="/todolist" component={TodoList} />
+					<PrivateRoute exact path="/users" component={Users} />
 				</Switch>
 		);
 	}

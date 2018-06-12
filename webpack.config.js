@@ -11,8 +11,15 @@ module.exports = {
     output: {    path: 'public/build',        filename: '[name].js'    },
     module: {
         loaders: [
-            {test: /\.jsx?$/, loader: 'babel', 
-            exclude: /(node_modules|bower_components)/, query: { presets: ['react', 'es2015'] }},
+            {
+		    test: /\.jsx?$/, 
+		    loader: 'babel', 
+		    exclude: /(node_modules|bower_components)/, 
+		    query: { 
+			    presets: ['react', 'es2015', 'stage-2'],
+			    plugins: ['transform-decorators-legacy']
+		    }
+	    },
         ]
     },
     resolve: {
@@ -20,6 +27,6 @@ module.exports = {
     },
     plugins: [
         definePlugin,
-        commonsPlugin
+        commonsPlugin,
     ]
 };

@@ -1,19 +1,23 @@
-import * as types from  '../constants/types';
 
-const initialState = {
-	todos: undefined,
-}
-
-//export default function reduce(state = initialState, action = {} ) {
-export default function reduce(state = [], action = {} ) {
+const todosReducer = (state = {}, action) => {
 	switch(action.type) {
-		case types.ARTICLES_FETCHED:
-			return  {
-				...state,
-				todos: action.todos
-			};
-		default:
-			return state;
+		case "UPDATE_USER_NAME": {
+			// Take the todo index to be changed & change it
+			// assuming data in `action` var is {payload: {index: Number, name: String}}
+			todos = state.todos;
+			todo = todos[action.payload.index];
+			todo.user.name = action.payload.name;
+			state = {...state, todos: todos};
+		}
 	}
+
+	return state;
 }
+
+const visibilityFilter = (state, action) => {
+	return state;
+}
+
+
+export default todosReducer;
 

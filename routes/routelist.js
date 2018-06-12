@@ -1,6 +1,6 @@
 var r = require('./routefiles');
 
-console.log("r", r);
+//console.log("r", r);
 
 var express = require('express');
 var app = express();
