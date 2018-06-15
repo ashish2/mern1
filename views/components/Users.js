@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 
 import { readUsers, readUsersPromise } from "../actions/userActions";
 
+import Button from '@material-ui/core/Button';
+
 const mapStateToProps = (store) => {
 	console.log( "connect store ", store);
 	return {
@@ -64,6 +66,11 @@ class Users extends React.Component {
 			return <button>Nothin</button>
 		return <div>
 			UserList u here:
+			<br />
+			<Button variant="raised" color="primary">
+				Hello, World!
+			</Button>
+
 			<br />
 			<ul>
 			{ 

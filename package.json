@@ -7,6 +7,7 @@
     "build": "webpack --progress --colors -p"
   },
   "dependencies": {
+    "@material-ui/core": "^1.2.1",
     "axios": "^0.15.3",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
@@ -21,10 +22,10 @@
     "jade": "~1.11.0",
     "mongojs": "^2.4.0",
     "morgan": "~1.9.0",
-    "react": "^15.4.2",
+    "react": "^16.4.1",
     "react-bootstrap": "^0.30.10",
     "react-document-title": "^2.0.3",
-    "react-dom": "^15.4.2",
+    "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
     "react-router": "^2.6.1",
     "react-router-dom": "^4.2.2",
