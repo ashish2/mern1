@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+//import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormControlLabel } from "@material-ui/core";
 
 export default class Login extends Component {
 
@@ -38,7 +39,7 @@ export default class Login extends Component {
 	      <div className="Login">
 	        <form onSubmit={this.handleSubmit}>
 	          <FormGroup controlId="email" bsSize="large">
-	            <ControlLabel>Email</ControlLabel>
+	            <FormControlLabel>Email</FormControlLabel>
 	            <FormControl
 	              autoFocus
 	              type="email"
@@ -47,7 +48,7 @@ export default class Login extends Component {
 	            />
 	          </FormGroup>
 	          <FormGroup controlId="password" bsSize="large">
-	            <ControlLabel>Password</ControlLabel>
+	            <FormControlLabel>Password</FormControlLabel>
 	            <FormControl
 	              value={this.state.password}
 	              onChange={this.handleChange}
