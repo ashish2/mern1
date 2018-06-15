@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 //import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { Button, FormGroup, FormControl, FormControlLabel } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
 export default class Login extends Component {
 
@@ -20,6 +24,11 @@ export default class Login extends Component {
 			//<Redirect path="">
 	}
 
+	componentDidCatch(error, info) {
+		// Display fallback UI
+		this.uierror = true;
+	}
+
 	validateForm() {
 		return this.state.email.length > 0 && this.state.password.length > 0;
 	}
@@ -35,11 +44,20 @@ export default class Login extends Component {
 	}
 
 	render() {
+		if (this.uierror) 
+			return (
+				<span> Something went wrong!</span>
+			);
 	    return (
 	      <div className="Login">
 	        <form onSubmit={this.handleSubmit}>
-	          <FormGroup controlId="email" bsSize="large">
-	            <FormControlLabel>Email</FormControlLabel>
+	          <FormGroup bssize="large">
+	            <FormControlLabel control={
+			    <Switch
+		             checked="true"
+		             value="gilad"
+		            />
+		    }>Email</FormControlLabel>
 	            <FormControl
 	              autoFocus
 	              type="email"
@@ -47,8 +65,13 @@ export default class Login extends Component {
 	              onChange={this.handleChange}
 	            />
 	          </FormGroup>
-	          <FormGroup controlId="password" bsSize="large">
-	            <FormControlLabel>Password</FormControlLabel>
+	          <FormGroup bssize="large">
+	            <FormControlLabel control={
+			    <Switch
+		             checked="false"
+		             value="gilad"
+		            />
+		    }>Password</FormControlLabel>
 	            <FormControl
 	              value={this.state.password}
 	              onChange={this.handleChange}
@@ -56,8 +79,7 @@ export default class Login extends Component {
 	            />
 	          </FormGroup>
 	          <Button
-	            block
-	            bsSize="large"
+	            bssize="large"
 	            disabled={!this.validateForm()}
 	            type="submit"
 	          >
