@@ -27,6 +27,7 @@ export default class Login extends Component {
 	componentDidCatch(error, info) {
 		// Display fallback UI
 		this.uierror = true;
+		//logErrorToMyService(error, info);
 	}
 
 	validateForm() {
