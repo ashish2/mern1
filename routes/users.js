@@ -8,10 +8,10 @@ router.get('/', function(req, res, next) {
 });
 */
 
+
 usersFunc = function(req, res, next) {
-  //res.send('respond with a resource');
-  console.log("in users.js sending users.json");
-  res.sendFile('/opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json');
+  let options = {root: config.root};
+  res.sendFile('/users.json', options);
 };
 
 
