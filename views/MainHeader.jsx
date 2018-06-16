@@ -5,6 +5,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import MenuIcon from "@material-ui/core/Menu";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 
 import Header from './header';
@@ -35,17 +40,26 @@ class MainHeader extends Component {
 		return (
 			<div className="App">
 				<div className="App-header">
-					<AppBar color="primary" position="fixed">
-						App bar some
+					<AppBar color="secondary" position="static">
 						<Toolbar>
-
-							<Button color="red">
-								Button
-							</Button>
-
-							<IconButton>
-								Icon
+							<IconButton color="inherit" aria-label="Menu">
+								<AccountCircle />
 							</IconButton>
+
+							<Menu open="false">
+								<MenuIcon />
+
+								<MenuItem> Profile </MenuItem>
+								<MenuItem> Account </MenuItem>
+							</Menu>
+
+							<Typography variant="title" color="inherit">
+								Title
+							</Typography>
+
+							<Button color="inherit">
+								Login
+							</Button>
 						</Toolbar>
 					</AppBar>
 				</div>
