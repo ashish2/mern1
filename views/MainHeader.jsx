@@ -37,37 +37,23 @@ class MainHeader extends Component {
 
 
 	render() {
+
 		return (
 			<div className="App">
-				<div className="App-header">
-					<AppBar color="secondary" position="static">
-						<Toolbar>
-							<IconButton color="inherit" aria-label="Menu">
-								<AccountCircle />
-							</IconButton>
-
-							<Menu open="false">
-								<MenuIcon />
-
-								<MenuItem> Profile </MenuItem>
-								<MenuItem> Account </MenuItem>
-							</Menu>
-
-							<Typography variant="title" color="inherit">
-								Title
-							</Typography>
-
-							<Button color="inherit">
-								Login
-							</Button>
-						</Toolbar>
-					</AppBar>
-				</div>
-
 				<Router>
-					<div>
-						<Header />
-						<Main />
+					<div className="container">
+
+						<div id="header" className="App-header">
+							<Header />
+						</div>
+
+						<div id="main" className="App-main">
+							<Main />
+						</div>
+
+						<div id="footer" className="App-footer">
+						</div>
+
 					</div>
 				</Router>
 
