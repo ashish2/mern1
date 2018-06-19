@@ -6,6 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/core/Menu";
 import Menu from "@material-ui/core/Menu";
@@ -15,6 +16,14 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 export default class Header extends Component {
 
 	render() { 
+
+		let css = {
+			iconB: {
+			    marginLeft: -12,
+			    marginRight: 20,
+			}
+		};
+
 		
 		let f = false;
 		return (
@@ -30,7 +39,8 @@ export default class Header extends Component {
 			<li><Link to='/users/:id'>User Det</Link></li>
 			</ul>
 			</nav>
-			</header>,
+			</header>
+			,
 
 					<AppBar color="secondary" position="static">
 						<Toolbar>
@@ -43,15 +53,16 @@ export default class Header extends Component {
 
 								<MenuItem> Profile </MenuItem>
 								<MenuItem> Account </MenuItem>
+								<MenuItem>
+									<Link to='/login'>Login</Link>
+								</MenuItem>
 							</Menu>
 
-							<Typography variant="title" color="inherit">
-								Title
-							</Typography>
+							
 
-							<Button color="inherit">
-								Login
+							<Button color="inherit" variant="outlined" component={Link} to="/login">Login
 							</Button>
+
 						</Toolbar>
 					</AppBar>
 
