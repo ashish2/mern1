@@ -11,9 +11,24 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
+import { withStyles } from '@material-ui/core/styles';
+
 
 import Header from './header';
 import Main from './main';
+
+const styles = {
+	root: {
+		flexGrow: 1,
+	},
+	flex: {
+		flex: 1,
+	},
+	menuButton: {
+		marginLeft: -12,
+		marginRight: 20,
+	},
+};
 
 class MainHeader extends Component {
 	// Writing for Login/Logout
@@ -62,4 +77,4 @@ class MainHeader extends Component {
 	}
 }
 
-export default MainHeader;
+export default withStyles(styles)(MainHeader);

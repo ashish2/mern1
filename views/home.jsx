@@ -34,8 +34,6 @@ class Home extends Component {
 	render() {
 		console.log("this.props: ", this.props);
 
-		let marg = 10;
-
 		let classes = this.props.classes;
 		
 		return (

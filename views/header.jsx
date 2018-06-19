@@ -13,16 +13,29 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
-export default class Header extends Component {
 
-	render() { 
+import { withStyles } from '@material-ui/core/styles';
 
-		let css = {
-			iconB: {
-			    marginLeft: -12,
-			    marginRight: 20,
-			}
-		};
+let styles = {
+	iconB: {
+		marginLeft: -12,
+		marginRight: 20,
+	},
+	flex: {
+		flex: 1
+	}
+};
+
+class Header extends Component {
+
+
+
+	render(props) { 
+
+		console.log("pp ", this.props);
+
+		let classes = this.props.classes;
+
 
 		
 		let f = false;
@@ -58,25 +71,28 @@ export default class Header extends Component {
 						</MenuItem>
 					</Menu>
 
-					
+					            <Typography variant="title" color="inherit" className={classes.flex}>
+			              Title
+			            </Typography>
+
 
 					<Button color="inherit" variant="outlined" component={Link} to="/">
 						Home
 					</Button>
 
-					<Button color="inherit" variant="outlined" component={Link} to="/todoform">
+					<Button color="inherit" component={Link} to="/todoform">
 						TodoForm
 					</Button>
 
-					<Button color="inherit" variant="outlined" component={Link} to="/todos">
+					<Button color="inherit" component={Link} to="/todos">
 						Todos
 					</Button>
 
-					<Button color="inherit" variant="outlined" component={Link} to="/users">
+					<Button color="inherit" component={Link} to="/users">
 						Users
 					</Button>
 
-					<Button color="inherit" variant="outlined" component={Link} to="/users/:id">
+					<Button color="inherit" component={Link} to="/users/:id">
 						User Det
 					</Button>
 
@@ -91,3 +107,6 @@ export default class Header extends Component {
 	}
 
 }
+
+
+export default withStyles(styles)(Header);
