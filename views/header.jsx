@@ -42,29 +42,50 @@ export default class Header extends Component {
 			</header>
 			,
 
-					<AppBar color="secondary" position="static">
-						<Toolbar>
-							<IconButton color="inherit" aria-label="Menu">
-								<AccountCircle />
-							</IconButton>
+			<AppBar color="secondary" position="static">
+				<Toolbar>
+					<IconButton color="inherit" aria-label="Menu">
+						<AccountCircle />
+					</IconButton>
 
-							<Menu open={f}>
-								<MenuIcon />
+					<Menu open={f}>
+						<MenuIcon />
 
-								<MenuItem> Profile </MenuItem>
-								<MenuItem> Account </MenuItem>
-								<MenuItem>
-									<Link to='/login'>Login</Link>
-								</MenuItem>
-							</Menu>
+						<MenuItem> Profile </MenuItem>
+						<MenuItem> Account </MenuItem>
+						<MenuItem>
+							<Link to='/login'>Login</Link>
+						</MenuItem>
+					</Menu>
 
-							
+					
 
-							<Button color="inherit" variant="outlined" component={Link} to="/login">Login
-							</Button>
+					<Button color="inherit" variant="outlined" component={Link} to="/">
+						Home
+					</Button>
 
-						</Toolbar>
-					</AppBar>
+					<Button color="inherit" variant="outlined" component={Link} to="/todoform">
+						TodoForm
+					</Button>
+
+					<Button color="inherit" variant="outlined" component={Link} to="/todos">
+						Todos
+					</Button>
+
+					<Button color="inherit" variant="outlined" component={Link} to="/users">
+						Users
+					</Button>
+
+					<Button color="inherit" variant="outlined" component={Link} to="/users/:id">
+						User Det
+					</Button>
+
+					<Button color="inherit" variant="outlined" component={Link} to="/login">
+						Login
+					</Button>
+
+				</Toolbar>
+			</AppBar>
 
 		);
 	}
