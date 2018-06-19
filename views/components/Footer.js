@@ -4,6 +4,8 @@ import {VisibilityFilters} from '../actions';
 
 const Footer = () => {
 	<p>
+		<b>Footer</b>
+
 		Show: 
 		{' '}
 		<FilterLink filter={VisibilityFilters.SHOW_ALL}>

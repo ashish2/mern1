@@ -16,6 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Header from './header';
 import Main from './main';
+import Footer from './components/Footer';
 
 const styles = {
 	root: {
@@ -67,6 +68,7 @@ class MainHeader extends Component {
 						</div>
 
 						<div id="footer" className="App-footer">
+							<Footer />
 						</div>
 
 					</div>

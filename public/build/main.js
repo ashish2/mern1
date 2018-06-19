@@ -25,7 +25,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 388);
 	
-	var _store = __webpack_require__(/*! ./store */ 420);
+	var _store = __webpack_require__(/*! ./store */ 423);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -24758,6 +24758,10 @@ webpackJsonp([0,1],[
 	
 	var _main2 = _interopRequireDefault(_main);
 	
+	var _Footer = __webpack_require__(/*! ./components/Footer */ 420);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24830,7 +24834,11 @@ webpackJsonp([0,1],[
 								{ id: 'main', className: 'App-main' },
 								_react2.default.createElement(_main2.default, null)
 							),
-							_react2.default.createElement('div', { id: 'footer', className: 'App-footer' })
+							_react2.default.createElement(
+								'div',
+								{ id: 'footer', className: 'App-footer' },
+								_react2.default.createElement(_Footer2.default, null)
+							)
 						)
 					)
 				);
@@ -52011,6 +52019,162 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 420 */
+/*!************************************!*\
+  !*** ./views/components/Footer.js ***!
+  \************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _FilterLink = __webpack_require__(/*! ../containers/FilterLink */ 421);
+	
+	var _FilterLink2 = _interopRequireDefault(_FilterLink);
+	
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Footer = function Footer() {
+		_react2.default.createElement(
+			'p',
+			null,
+			_react2.default.createElement(
+				'b',
+				null,
+				'Footer'
+			),
+			'Show:',
+			' ',
+			_react2.default.createElement(
+				_FilterLink2.default,
+				{ filter: _actions.VisibilityFilters.SHOW_ALL },
+				'All'
+			),
+			', ',
+			_react2.default.createElement(
+				_FilterLink2.default,
+				{ filter: _actions.VisibilityFilters.SHOW_ACTIVE },
+				'ACtive'
+			),
+			', ',
+			_react2.default.createElement(
+				_FilterLink2.default,
+				{ filter: _actions.VisibilityFilters.SHOW_COMPLETED },
+				'Comp.l.eted'
+			)
+		);
+	};
+	
+	exports.default = Footer;
+
+/***/ }),
+/* 421 */
+/*!****************************************!*\
+  !*** ./views/containers/FilterLink.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 388);
+	
+	var _actions = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../actions\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	var _Link = __webpack_require__(/*! ../components/Link */ 422);
+	
+	var _Link2 = _interopRequireDefault(_Link);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+		return {
+			active: ownProps.filter === state.visibilityFilter
+		};
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+		return {
+			onClick: function onClick() {
+				dispatch((0, _actions.setVisibilityFilter)(ownProps.filter));
+			}
+		};
+	};
+	
+	var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Link2.default);
+	
+	exports.default = FilterLink;
+
+/***/ }),
+/* 422 */
+/*!**********************************!*\
+  !*** ./views/components/Link.js ***!
+  \**********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import PropTypes from 'prop-types';
+	
+	var Link = function Link(_ref) {
+		var active = _ref.active,
+		    children = _ref.children,
+		    _onClick = _ref.onClick;
+	
+		if (active) {
+			return _react2.default.createElement(
+				"span",
+				null,
+				children
+			);
+		}
+	
+		return _react2.default.createElement(
+			"a",
+			{
+				href: "",
+				onClick: function onClick(e) {
+					e.preventDefault();
+					_onClick();
+				}
+			},
+			children
+		);
+	};
+	
+	/*
+	Link.propTypes = {
+		active: PropTypes.bool.isRequired,
+		children: PropTypes.node.isRequired,
+		onClick: PropTypes.func.isRequired
+	};
+	*/
+	
+	exports.default = Link;
+
+/***/ }),
+/* 423 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -52026,23 +52190,23 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 421);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 424);
 	
 	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 415);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 422);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 425);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
 	var _redux = __webpack_require__(/*! redux */ 398);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 424);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 427);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 425);
+	var _user = __webpack_require__(/*! ../reducers/user */ 428);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -52093,7 +52257,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 421 */
+/* 424 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -52104,7 +52268,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 422 */
+/* 425 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -52123,7 +52287,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 423);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 426);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -52326,7 +52490,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 423 */
+/* 426 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -52350,7 +52514,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 424 */
+/* 427 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -52409,7 +52573,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 425 */
+/* 428 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/

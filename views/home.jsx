@@ -10,17 +10,17 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
 	  button: {
-		      margin: theme.spacing.unit,
-		    },
+	      margin: theme.spacing.unit,
+	  },
 	  leftIcon: {
-		      marginRight: theme.spacing.unit,
-		    },
+	      marginRight: theme.spacing.unit,
+	  },
 	  rightIcon: {
-		      marginLeft: theme.spacing.unit,
-		    },
+	      marginLeft: theme.spacing.unit,
+	  },
 	  iconSmall: {
-		      fontSize: 20,
-		    },
+	      fontSize: 20,
+	  },
 });
 
 class Home extends Component {
