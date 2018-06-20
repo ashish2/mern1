@@ -11,6 +11,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -33,6 +35,18 @@ const styles = {
 
 class MainHeader extends Component {
 	// Writing for Login/Logout
+	//
+	constructor(props){
+
+		super(props);
+
+		this.state = {
+			drawer: {
+				left: false,
+			}
+		}
+	}
+
 	componentDidUpdate(prevProps) {
 		/*
 		const { dispatch, redirectUrl } = this.props;
@@ -50,6 +64,16 @@ class MainHeader extends Component {
 
 	}
 	// ---
+	//
+	toggleDrawer = ( side, open ) => () => {
+		this.setState({
+			drawer: {
+				[side]: open,
+			}
+		});
+
+		
+	}
 
 
 	render() {
@@ -58,6 +82,35 @@ class MainHeader extends Component {
 			<div className="App">
 				<Router>
 					<div className="container">
+						
+						<div id="drawer">
+							<Button onClick={this.toggleDrawer('left', true)}>
+								Left Drawer
+							</Button>
+							<Drawer open={this.state.drawer.left} onClose={this.toggleDrawer('left', false)} variant="permanent">
+								<div
+								    tabIndex={0}
+								    role="button"
+								    onClick={this.toggleDrawer('left', false)}
+								    onKeyDown={this.toggleDrawer('left', false)}
+								 >
+									<div className={{width: 250}}>
+										<ul>
+											<li>L1</li>
+											<li>L2</li>
+											<li>L3</li>
+										</ul>
+
+								    		<Divider />
+
+										<ul>
+											<li>L4</li>
+											<li>L5</li>
+										</ul>
+								    	</div>
+								</div>
+							</Drawer>
+						</div>
 
 						<div id="header" className="App-header">
 							<Header />
