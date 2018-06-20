@@ -13,6 +13,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Divider from "@material-ui/core/Divider";
 import { withStyles } from '@material-ui/core/styles';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Header from './header';
 import Main from './main';
@@ -56,6 +57,7 @@ class MainHeader extends Component {
 
 		return (
 			<div className="App">
+				<CssBaseline />
 				<Router>
 					<div className="container">
 
