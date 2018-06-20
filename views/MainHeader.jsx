@@ -10,7 +10,7 @@ import MenuIcon from "@material-ui/core/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-
+import Divider from "@material-ui/core/Divider";
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -66,6 +66,7 @@ class MainHeader extends Component {
 						<div id="main" className="App-main">
 							<Main />
 						</div>
+						<Divider />
 
 						<div id="footer" className="App-footer">
 							<Footer />
