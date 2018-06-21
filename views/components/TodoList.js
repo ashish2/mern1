@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Todo from './Todo';
 import {connect} from 'react-redux';
 
@@ -39,6 +39,7 @@ const TodoList = ({todos, onTodoClick}) => {
 	</ul>
 }
 
+/*
 TodoList.propTypes = {
 	todos: PropTypes.arrayOf(
 		PropTypes.shape({
@@ -49,6 +50,7 @@ TodoList.propTypes = {
 		).isRequired,
 	onTodoClick: PropTypes.func.isRequired
 }
+*/
 
 const VisibleTodoList = connect(
 		mapStateToProps,

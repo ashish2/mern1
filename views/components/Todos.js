@@ -6,6 +6,8 @@ import thunk from "redux-thunk";
 
 import { toggleTodo, readTodos } from "../actions/todoActions";
 
+import Button from "@material-ui/core/Button";
+
 const mapStateToProps = (store) => {
 	return {
 		todos: store.todos
@@ -39,7 +41,13 @@ class Todos extends React.Component {
 	render() {
 		if( !this.props.todos )
 			return <button>Nothin</button>
-		return <div>
+		return (
+
+			<div>
+				<button style={{color:'#23b1ec'}}>
+					But2
+				</button>
+
 				Todos of users here:
 				<br />
 				<ul>
@@ -52,6 +60,7 @@ class Todos extends React.Component {
 				</ul>
 
 			</div>
+		);
 	}
 }
 
