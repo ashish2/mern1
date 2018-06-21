@@ -40,6 +40,11 @@ class Home extends Component {
 				<div>
 					<div>
 						<h1>This is HOME!</h1>
+						<div>
+							<p>
+								Just paste your jd here and know what others in the industry are earning for the same Job Description.
+							</p>
+						</div>
 					</div>
 					<div>
 						<form className={classes.container} noValidate autoComplete="off">

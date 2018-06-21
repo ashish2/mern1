@@ -45155,6 +45155,11 @@ webpackJsonp([0,1],[
 							'h1',
 							null,
 							'This is HOME!'
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							'Just paste your jd here and know what others in the industry are earning for the same Job Description.'
 						)
 					),
 					_react2.default.createElement(
