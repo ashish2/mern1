@@ -42,7 +42,10 @@ class Home extends Component {
 						<h1>This is HOME!</h1>
 						<div>
 							<p>
-								Just paste your jd here and know what others in the industry are earning for the same Job Description.
+								Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.
+							</p>
+							<p>
+								Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.
 							</p>
 						</div>
 					</div>

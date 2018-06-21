@@ -95,6 +95,10 @@ class Header extends Component {
 					<Button color="inherit" component={Link} to="/users/:id">
 						User Det
 					</Button>
+					
+					<Button color="inherit" component={Link} to="/earningpotential">
+						Earning Capacity
+					</Button>
 
 					<Button color="inherit" variant="outlined" component={Link} to="/login">
 						Login
