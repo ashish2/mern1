@@ -8,6 +8,7 @@ import {combineReducers} from "redux";
 
 import {applyMiddleware, createStore} from 'redux';
 // Pass reducers to the store here
+import homeReducer from '../reducers/home';
 import todosReducer from '../reducers/todo';
 import usersReducer from '../reducers/user';
 
@@ -20,9 +21,12 @@ const logger = (store) => (next) => (action) => {
 }
 */
 
+// We can check for localStorage here when assigning initialStateOfStore
+// if localStorage then assign that, else empty
 const initialStateOfStore = {};
 const middleware = applyMiddleware(promise(), thunk, createLogger());
 const reducers = combineReducers({ 
+	home: homeReducer,
 	users: usersReducer,
 	todos: todosReducer
 });

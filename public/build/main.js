@@ -42966,17 +42966,24 @@ webpackJsonp([0,1],[
 	
 	var mapStateToProps = function mapStateToProps(store) {
 		return {
-			home: store.home,
-			abc: "ABC"
+			home: store.home
 		};
 	};
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 		return {
 			submit: function submit(ev) {
-				ev.persist();
+				// persist not the right way of doing it bcoz of event-pooling, Maybe
+				//ev.persist();
 				ev.preventDefault();
-				dispatch((0, _homeActions.postHome)(ev));
+				dispatch((0, _homeActions.postHomeAction)(ev));
+			},
+			jdChange: function jdChange(ev) {
+				var t = ev.target;
+				var v = ev.target.value;
+				console.log("jsC ev ", ev, " , t ", t, " val: ", v);
+	
+				//dispatch( jdChangeAction(ev) );
 			}
 		};
 	};
@@ -43006,8 +43013,8 @@ webpackJsonp([0,1],[
 				console.log("onCh");
 			}
 		}, {
-			key: "handleSubmit",
-			value: function handleSubmit(e) {
+			key: "submit",
+			value: function submit(e) {
 	
 				e.preventDefault();
 				// Dispatch an action event
@@ -43017,6 +43024,8 @@ webpackJsonp([0,1],[
 				//let data = new FormData(e.target);
 				console.log("e ", e);
 				console.log("e.type ", e.type);
+				console.log("e.target ", e.target);
+				console.log("e.target.value ", e.target.value);
 			}
 		}, {
 			key: "render",
@@ -43025,6 +43034,10 @@ webpackJsonp([0,1],[
 				//console.log("submit ", submit);
 	
 				var classes = this.props.classes;
+	
+				var homeStr = "This is HOME!";
+				var justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+				var beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 	
 				return _react2.default.createElement(
 					"div",
@@ -43035,7 +43048,7 @@ webpackJsonp([0,1],[
 						_react2.default.createElement(
 							"h1",
 							null,
-							"This is HOME!"
+							homeStr
 						),
 						_react2.default.createElement(
 							"div",
@@ -43043,12 +43056,12 @@ webpackJsonp([0,1],[
 							_react2.default.createElement(
 								"p",
 								null,
-								"Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email."
+								justString
 							),
 							_react2.default.createElement(
 								"p",
 								null,
-								"Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD."
+								beforeString
 							)
 						)
 					),
@@ -43057,7 +43070,7 @@ webpackJsonp([0,1],[
 						{ className: "col-lg-12" },
 						_react2.default.createElement(
 							"form",
-							{ className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
+							{ className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.submit },
 							_react2.default.createElement(
 								_FormControl2.default,
 								null,
@@ -43067,9 +43080,11 @@ webpackJsonp([0,1],[
 									label: "Paste JD here",
 									multiline: true,
 									fullWidth: true,
+									required: true,
 									rows: "8",
 									className: classes.textField,
-									margin: "normal"
+									margin: "normal",
+									onChange: this.props.jdChange
 								})
 							),
 							_react2.default.createElement(
@@ -45334,8 +45349,8 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.postHome = postHome;
-	exports.readUsersPromise = readUsersPromise;
+	exports.postHomeAction = postHomeAction;
+	exports.jdChangeAction = jdChangeAction;
 	
 	var _axios = __webpack_require__(/*! axios */ 360);
 	
@@ -45347,23 +45362,17 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function postHome(ev) {
+	function postHomeAction(ev) {
 		// run ajax call here & add data to payload and 
 		// dispatch an event so that reducer can populate store
 		// With promise,
 		// return { type: READ_USERS", payload: axios.get(usersApiUrl) }
-		//
-		// Start the django server in folder
-		// /opt/lampp/htdocs/www/www2/python/venv/venv1_4/pysite_1_4
-		// & get data from here
-		// http://localhost:8000/api/v1/user/?format=json
-		// file:///opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json
-		/*
-	 */
+	
 		return function (dispatch) {
-			console.log("POSTHOME, dis ", dispatch);
-			console.log(" ev ", ev);
 			console.log(" ev.target ", ev.target);
+	
+			var f = new FormData(ev.target);
+			console.log(" form: ", f);
 	
 			dispatch({ type: "CREATE_HOME_START", payload: null });
 	
@@ -45390,10 +45399,14 @@ webpackJsonp([0,1],[
 		//return ({ type: "READ_USERS_START", payload: null});
 	}
 	
-	function readUsersPromise() {
-		return {
-			type: "READ_USERS",
-			payload: _axios2.default.get('/api/users')
+	function jdChangeAction(ev) {
+	
+		return function (dispatch) {
+			console.log("JdACtn: ", ev, " d ", dispatch);
+			return {
+				type: "JD_UPDATE",
+				payload: null
+			};
 		};
 	}
 
@@ -53063,11 +53076,15 @@ webpackJsonp([0,1],[
 	
 	var _redux = __webpack_require__(/*! redux */ 341);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 437);
+	var _home = __webpack_require__(/*! ../reducers/home */ 437);
+	
+	var _home2 = _interopRequireDefault(_home);
+	
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 438);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 438);
+	var _user = __webpack_require__(/*! ../reducers/user */ 439);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -53081,10 +53098,14 @@ webpackJsonp([0,1],[
 	}
 	*/
 	
-	// Pass reducers to the store here
+	// We can check for localStorage here when assigning initialStateOfStore
+	// if localStorage then assign that, else empty
 	var initialStateOfStore = {};
+	// Pass reducers to the store here
+	
 	var middleware = (0, _redux.applyMiddleware)((0, _reduxPromiseMiddleware2.default)(), _reduxThunk2.default, (0, _reduxLogger.createLogger)());
 	var reducers = (0, _redux.combineReducers)({
+		home: _home2.default,
 		users: _user2.default,
 		todos: _todo2.default
 	});
@@ -53377,7 +53398,7 @@ webpackJsonp([0,1],[
 /***/ }),
 /* 437 */
 /*!********************************!*\
-  !*** ./views/reducers/todo.js ***!
+  !*** ./views/reducers/home.js ***!
   \********************************/
 /***/ (function(module, exports) {
 
@@ -53435,6 +53456,65 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 438 */
+/*!********************************!*\
+  !*** ./views/reducers/todo.js ***!
+  \********************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var todosReducer = function todosReducer() {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+		var action = arguments[1];
+	
+		switch (action.type) {
+			case "UPDATE_USER_NAME":
+				{
+					// Take the todo index to be changed & change it
+					// assuming data in `action` var is {payload: {index: Number, name: String}}
+					todos = state.todos;
+					todo = todos[action.payload.index];
+					todo.user.name = action.payload.name;
+					state = _extends({}, state, { todos: todos });
+					break;
+				}
+			case "READ_TODOS_START":
+				{
+					break;
+				}
+			case "READ_TODOS_FULFILLED":
+				{
+					var data = action.payload;
+					//const data = action.payload.data.objects;
+					//state = {...state, users: data};
+					// FTM, adding same data in `todos` key also, FOR TESTING.
+					state = _extends({}, state, { todos: data });
+					break;
+				}
+			case "default":
+				{
+					break;
+				}
+	
+		}
+	
+		return state;
+	};
+	
+	var visibilityFilter = function visibilityFilter(state, action) {
+		return state;
+	};
+	
+	exports.default = todosReducer;
+
+/***/ }),
+/* 439 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/

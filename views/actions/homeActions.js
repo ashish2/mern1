@@ -1,23 +1,17 @@
 import axios from "axios";
 import thunk from "redux-thunk";
 
-export function postHome(ev) {
+export function postHomeAction(ev) {
 	// run ajax call here & add data to payload and 
 	// dispatch an event so that reducer can populate store
 	// With promise,
 	// return { type: READ_USERS", payload: axios.get(usersApiUrl) }
-	//
-	// Start the django server in folder
-	// /opt/lampp/htdocs/www/www2/python/venv/venv1_4/pysite_1_4
-	// & get data from here
-	// http://localhost:8000/api/v1/user/?format=json
-	// file:///opt/lampp/htdocs/www/langs/JS/venv/meteorapps/venv/all_apps/quicksell_in/app/users.json
-	/*
-	*/
+	
 	return function( dispatch ) {
-		console.log( "POSTHOME, dis ", dispatch);
-		console.log(" ev ", ev);
 		console.log(" ev.target ", ev.target);
+
+		let f = new FormData(ev.target);
+		console.log(" form: ", f);
 
 		dispatch({ type: "CREATE_HOME_START", payload: null});
 
@@ -45,9 +39,14 @@ export function postHome(ev) {
 
 }
 
-export function readUsersPromise() {
-	return {
-		type: "READ_USERS",
-		payload: axios.get('/api/users')
+export function jdChangeAction(ev) {
+
+	return function(dispatch) {
+		console.log("JdACtn: ", ev, " d ", dispatch);
+		return {
+			type: "JD_UPDATE",
+			payload: null
+		}
 	}
+
 }
