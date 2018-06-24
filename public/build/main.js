@@ -43035,9 +43035,11 @@ webpackJsonp([0,1],[
 	
 				var classes = this.props.classes;
 	
+				var remuxStr = "Remux!";
 				var homeStr = "This is HOME!";
 				var justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
-				var beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
+				//let beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
+				var beforeString = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
 	
 				return _react2.default.createElement(
 					"div",
@@ -43047,6 +43049,11 @@ webpackJsonp([0,1],[
 						{ className: "col-lg-12" },
 						_react2.default.createElement(
 							"h1",
+							null,
+							remuxStr
+						),
+						_react2.default.createElement(
+							"h3",
 							null,
 							homeStr
 						),
@@ -43070,7 +43077,7 @@ webpackJsonp([0,1],[
 						{ className: "col-lg-12" },
 						_react2.default.createElement(
 							"form",
-							{ className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
+							{ id: "jdfid", className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
 							_react2.default.createElement(
 								_FormControl2.default,
 								null,
