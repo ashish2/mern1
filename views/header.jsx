@@ -55,7 +55,7 @@ class Header extends Component {
 			</header>
 			,
 
-			<AppBar color="secondary" position="static">
+			<AppBar color="default" position="static">
 				<Toolbar>
 					<IconButton color="inherit" aria-label="Menu">
 						<AccountCircle />
@@ -76,7 +76,7 @@ class Header extends Component {
 			            </Typography>
 
 
-					<Button color="inherit" variant="outlined" component={Link} to="/">
+					<Button color="inherit" component={Link} to="/">
 						Home
 					</Button>
 
@@ -100,7 +100,7 @@ class Header extends Component {
 						Earning Capacity
 					</Button>
 
-					<Button color="inherit" variant="outlined" component={Link} to="/login">
+					<Button color="secondary" variant="contained" component={Link} to="/login">
 						Login
 					</Button>
 

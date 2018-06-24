@@ -98,6 +98,7 @@ class Home extends Component {
 
 		let classes = this.props.classes;
 
+		let remuxStr = "Remux!";
 		let homeStr = "This is HOME!";
 		let justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 		let beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
@@ -106,7 +107,8 @@ class Home extends Component {
 			<div className="row">
 
 				<div className="col-lg-12">
-					<h1>{homeStr}</h1>
+					<h1>{remuxStr}</h1>
+					<h3>{homeStr}</h3>
 					<div>
 						<p>{justString}</p>
 						<p>{beforeString}</p>

@@ -42656,7 +42656,7 @@ webpackJsonp([0,1],[
 					)
 				), _react2.default.createElement(
 					_AppBar2.default,
-					{ color: 'secondary', position: 'static' },
+					{ color: 'default', position: 'static' },
 					_react2.default.createElement(
 						_Toolbar2.default,
 						null,
@@ -42696,7 +42696,7 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Button2.default,
-							{ color: 'inherit', variant: 'outlined', component: _reactRouterDom.Link, to: '/' },
+							{ color: 'inherit', component: _reactRouterDom.Link, to: '/' },
 							'Home'
 						),
 						_react2.default.createElement(
@@ -42726,7 +42726,7 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Button2.default,
-							{ color: 'inherit', variant: 'outlined', component: _reactRouterDom.Link, to: '/login' },
+							{ color: 'secondary', variant: 'contained', component: _reactRouterDom.Link, to: '/login' },
 							'Login'
 						)
 					)
@@ -43070,7 +43070,7 @@ webpackJsonp([0,1],[
 						{ className: "col-lg-12" },
 						_react2.default.createElement(
 							"form",
-							{ className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.submit },
+							{ className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
 							_react2.default.createElement(
 								_FormControl2.default,
 								null,
