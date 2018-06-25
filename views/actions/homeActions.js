@@ -10,7 +10,7 @@ export function postHomeAction(ev) {
 	return function( dispatch ) {
 		console.log(" ev.target ", ev.target);
 
-		let f = new FormData(ev.target);
+		let data = new FormData(ev.target);
 		console.log(" form: ", f);
 
 		dispatch({ type: "CREATE_HOME_START", payload: null});
@@ -20,7 +20,7 @@ export function postHomeAction(ev) {
 		axios
 		.post('/api/home', data)
 		.then(result => {
-			console.log("HOME result ", result);
+			console.log("HOME result succ ", result);
 			// Dispatch an event with payload
 			dispatch({	
 				type: "CREATE_HOME_FULFILLED",

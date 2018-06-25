@@ -117,12 +117,26 @@ class Home extends Component {
 				</div>
 
 				<div className="col-lg-12">
-					<form id="jdfid" className={classes.container} noValidate autoComplete="off" onSubmit={this.props.submit}>
+					<form id="jdfid" encType="application/x-www-form-urlencoded" className={classes.container} noValidate autoComplete="off" onSubmit={this.props.submit}>
 						<FormControl>
 							<TextField
 		        					id="multiline-static"
 							  	name="jd"
 		        				  	label="Paste JD here"
+		        				  	multiline
+							  	fullWidth
+							  	required
+		        				  	rows="8"
+								className={classes.textField}
+		        				  	margin="normal"
+								onChange={this.props.jdChange}
+		        				/>
+						</FormControl>
+						<FormControl>
+							<TextField
+		        					id="multiline-static"
+							  	name="jd2"
+		        				  	label="Paste JD2 here"
 		        				  	multiline
 							  	fullWidth
 							  	required

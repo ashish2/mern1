@@ -43077,7 +43077,7 @@ webpackJsonp([0,1],[
 						{ className: "col-lg-12" },
 						_react2.default.createElement(
 							"form",
-							{ id: "jdfid", className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
+							{ id: "jdfid", encType: "application/x-www-form-urlencoded", className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
 							_react2.default.createElement(
 								_FormControl2.default,
 								null,
@@ -43085,6 +43085,22 @@ webpackJsonp([0,1],[
 									id: "multiline-static",
 									name: "jd",
 									label: "Paste JD here",
+									multiline: true,
+									fullWidth: true,
+									required: true,
+									rows: "8",
+									className: classes.textField,
+									margin: "normal",
+									onChange: this.props.jdChange
+								})
+							),
+							_react2.default.createElement(
+								_FormControl2.default,
+								null,
+								_react2.default.createElement(_TextField2.default, {
+									id: "multiline-static",
+									name: "jd2",
+									label: "Paste JD2 here",
 									multiline: true,
 									fullWidth: true,
 									required: true,
@@ -45378,28 +45394,27 @@ webpackJsonp([0,1],[
 		return function (dispatch) {
 			console.log(" ev.target ", ev.target);
 	
-			var f = new FormData(ev.target);
+			var data = new FormData(ev.target);
 			console.log(" form: ", f);
 	
 			dispatch({ type: "CREATE_HOME_START", payload: null });
 	
 			/*
-	  axios
-	  .post('/api/users', data)
-	  .then(result => {
-	  	// Dispatch an event with payload
-	  	dispatch({	
-	  		type: "READ_USERS_FULFILLED",
-	  		payload: result.data.objects
-	  	});
-	  })
-	  .catch(err => {
-	  	dispatch({ 
-	  		type: "READ_USERS_REJECTED",
-	  		payload: err
-	  	});
-	  });
 	  */
+			_axios2.default.post('/api/home', data).then(function (result) {
+				console.log("HOME result succ ", result);
+				// Dispatch an event with payload
+				dispatch({
+					type: "CREATE_HOME_FULFILLED",
+					payload: result.data.objects
+				});
+			}).catch(function (err) {
+				console.log("HOME result ERR ", err);
+				dispatch({
+					type: "CREATE_HOME_REJECTED",
+					payload: err
+				});
+			});
 		};
 	
 		//dispatch({ type: "POST_HOME_START", payload: null});
