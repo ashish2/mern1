@@ -17,7 +17,10 @@ function postTodo(req, res, next) {
 	var todo = req.body;
 	if(!todo.date || !todo.category || !todo.type || !todo.amount ) {
 		res.status(400);
-		res.json({"error": "Invalid data"});
+		res.json({
+			"status": "error",
+			"data": "Invalid data"
+		});
 	} else {
 		db.todos.save( todo, function(err, todo) {
 			if(err)
@@ -73,9 +76,17 @@ function deleteTodoId(req, res, next) {
 
 }
 
-router.route('/todos').get(getTodos).post(postTodo);
+// Function defined For each method on this /todos routeA
+// run `function getTodos` if HTTP Method: get
+// run `function postTodo` if HTTP Method: post
+router.route('/todos')
+	.get(getTodos)
+	.post(postTodo);
 
-router.route('/todo/:id').get(getTodoId).put(putTodoId).delete(deleteTodoId);
+router.route('/todo/:id')
+	.get(getTodoId)
+	.put(putTodoId)
+	.delete(deleteTodoId);
 
 module.exports = router;
 

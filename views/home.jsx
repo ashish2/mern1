@@ -54,7 +54,6 @@ const mapDispatchToProps = dispatch => {
 		jdChange: ev => {
 			let t = ev.target;
 			let v = ev.target.value;
-			console.log("jsC ev ", ev, " , t " , t, " val: ", v);
 
 			//dispatch( jdChangeAction(ev) );
 		}
@@ -85,9 +84,6 @@ class Home extends Component {
 
 		//let data = new FormData(e.target);
 		console.log("e ", e);
-		console.log("e.type ", e.type);
-		console.log("e.target ", e.target);
-		console.log("e.target.value ", e.target.value);
 	}
 
 

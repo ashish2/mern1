@@ -47,12 +47,25 @@ app.use('/reactpractice', reactpracticeRouter);
 
 // Handles all routes so you do not get a not found error
 //app.get('/api/users', routefiles.ur);
-app.get('/api/users', routefiles.ur);
+//app.get('/api/users', routefiles.ur);
 
+// Api routes
+// /users
+app.route('/api/users').get(routefiles.ur.get);
+
+// /home
+app.route('/api/home')
+	.get(routefiles.hr.get)
+	.post(routefiles.hr.post);
+
+// Api routes-
+
+// Any route starting with / or no /
 app.get('*', function (req, res){
 	console.log("in *");
 	res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 })
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

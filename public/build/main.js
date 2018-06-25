@@ -42981,7 +42981,6 @@ webpackJsonp([0,1],[
 			jdChange: function jdChange(ev) {
 				var t = ev.target;
 				var v = ev.target.value;
-				console.log("jsC ev ", ev, " , t ", t, " val: ", v);
 	
 				//dispatch( jdChangeAction(ev) );
 			}
@@ -43023,9 +43022,6 @@ webpackJsonp([0,1],[
 	
 				//let data = new FormData(e.target);
 				console.log("e ", e);
-				console.log("e.type ", e.type);
-				console.log("e.target ", e.target);
-				console.log("e.target.value ", e.target.value);
 			}
 		}, {
 			key: "render",
@@ -45385,6 +45381,57 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function prepareFormHeader() {
+		var headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+		return headers;
+	}
+	
+	// Loop HTML Form to post
+	function loopFormElems(form) {}
+	
+	// Compile HTML Form to post
+	function prepareFormData(form) {
+		var d = {};
+		var _iteratorNormalCompletion = true;
+		var _didIteratorError = false;
+		var _iteratorError = undefined;
+	
+		try {
+			for (var _iterator = form.elements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+				var i = _step.value;
+	
+				if (i.name) d[i.name] = i.value;
+			}
+		} catch (err) {
+			_didIteratorError = true;
+			_iteratorError = err;
+		} finally {
+			try {
+				if (!_iteratorNormalCompletion && _iterator.return) {
+					_iterator.return();
+				}
+			} finally {
+				if (_didIteratorError) {
+					throw _iteratorError;
+				}
+			}
+		}
+	
+		return d;
+	}
+	
+	function runFormPrepare(form) {
+		var d = {};
+		/*
+	 d.headers = prepareFormHeader();
+	 	d.data = {};
+	 //d.data = loopFormElems(form);
+	 	d.data = prepareFormData(form);
+	 */
+		d = prepareFormData(form);
+		return d;
+	}
+	
 	function postHomeAction(ev) {
 		// run ajax call here & add data to payload and 
 		// dispatch an event so that reducer can populate store
@@ -45394,8 +45441,8 @@ webpackJsonp([0,1],[
 		return function (dispatch) {
 			console.log(" ev.target ", ev.target);
 	
-			var data = new FormData(ev.target);
-			console.log(" form: ", f);
+			var data = runFormPrepare(ev.target);
+			console.log(" form: ", data);
 	
 			dispatch({ type: "CREATE_HOME_START", payload: null });
 	

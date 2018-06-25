@@ -1,6 +1,40 @@
 import axios from "axios";
 import thunk from "redux-thunk";
 
+
+function prepareFormHeader(){
+	let headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+	return headers;
+}
+
+// Loop HTML Form to post
+function loopFormElems(form){
+}
+
+// Compile HTML Form to post
+function prepareFormData(form){
+	let d = {};
+	for( let i of form.elements) {
+		if ( i.name )
+			d[i.name] = i.value;
+	}
+	return d;
+}
+
+function runFormPrepare(form) {
+	let d = {};
+	/*
+	d.headers = prepareFormHeader();
+
+	d.data = {};
+	//d.data = loopFormElems(form);
+
+	d.data = prepareFormData(form);
+	*/
+	d = prepareFormData(form);
+	return d;
+}
+
 export function postHomeAction(ev) {
 	// run ajax call here & add data to payload and 
 	// dispatch an event so that reducer can populate store
@@ -10,8 +44,8 @@ export function postHomeAction(ev) {
 	return function( dispatch ) {
 		console.log(" ev.target ", ev.target);
 
-		let data = new FormData(ev.target);
-		console.log(" form: ", f);
+		var data = runFormPrepare(ev.target);
+		console.log(" form: ", data);
 
 		dispatch({ type: "CREATE_HOME_START", payload: null});
 

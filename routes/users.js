@@ -9,10 +9,11 @@ router.get('/', function(req, res, next) {
 */
 
 
-usersFunc = function(req, res, next) {
-  let options = {root: config.root};
-  res.sendFile('/users.json', options);
+get = function(req, res, next) {
+	console.log("usersFunc");
+	let options = {root: config.root};
+	res.sendFile('/users.json', options);
 };
 
 
-module.exports = usersFunc;
+module.exports = {"get": get};
