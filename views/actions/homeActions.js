@@ -16,22 +16,24 @@ export function postHomeAction(ev) {
 		dispatch({ type: "CREATE_HOME_START", payload: null});
 
 		/*
+		*/
 		axios
-		.post('/api/users', data)
+		.post('/api/home', data)
 		.then(result => {
+			console.log("HOME result ", result);
 			// Dispatch an event with payload
 			dispatch({	
-				type: "READ_USERS_FULFILLED",
+				type: "CREATE_HOME_FULFILLED",
 				payload: result.data.objects
 			});
 		})
 		.catch(err => {
+			console.log("HOME result ERR ", err);
 			dispatch({ 
-				type: "READ_USERS_REJECTED",
+				type: "CREATE_HOME_REJECTED",
 				payload: err
 			});
 		});
-		*/
 	}
 
 	//dispatch({ type: "POST_HOME_START", payload: null});
