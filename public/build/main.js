@@ -45387,10 +45387,7 @@ webpackJsonp([0,1],[
 	}
 	
 	// Loop HTML Form to post
-	function loopFormElems(form) {}
-	
-	// Compile HTML Form to post
-	function prepareFormData(form) {
+	function loopFormElems(form) {
 		var d = {};
 		var _iteratorNormalCompletion = true;
 		var _didIteratorError = false;
@@ -45420,6 +45417,9 @@ webpackJsonp([0,1],[
 		return d;
 	}
 	
+	// Compile HTML Form to post
+	function prepareFormData(form) {}
+	
 	function runFormPrepare(form) {
 		var d = {};
 		/*
@@ -45428,7 +45428,8 @@ webpackJsonp([0,1],[
 	 //d.data = loopFormElems(form);
 	 	d.data = prepareFormData(form);
 	 */
-		d = prepareFormData(form);
+		//d = prepareFormData(form);
+		d = loopFormElems(form);
 		return d;
 	}
 	
@@ -45441,7 +45442,8 @@ webpackJsonp([0,1],[
 		return function (dispatch) {
 			console.log(" ev.target ", ev.target);
 	
-			var data = runFormPrepare(ev.target);
+			//var data = runFormPrepare(ev.target);
+			var data = new FormData(ev.target);
 			console.log(" form: ", data);
 	
 			dispatch({ type: "CREATE_HOME_START", payload: null });
