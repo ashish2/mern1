@@ -43031,8 +43031,8 @@ webpackJsonp([0,1],[
 	
 				var classes = this.props.classes;
 	
-				var remuxStr = "Remux!";
-				var homeStr = "This is HOME!";
+				var remuxStr = "remuX!";
+				var homeStr = "This is HOME";
 				var justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 				//let beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 				var beforeString = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
@@ -45442,8 +45442,8 @@ webpackJsonp([0,1],[
 		return function (dispatch) {
 			console.log(" ev.target ", ev.target);
 	
-			//var data = runFormPrepare(ev.target);
-			var data = new FormData(ev.target);
+			var data = runFormPrepare(ev.target);
+			//var data = new FormData(ev.target);
 			console.log(" form: ", data);
 	
 			dispatch({ type: "CREATE_HOME_START", payload: null });

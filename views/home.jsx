@@ -94,8 +94,8 @@ class Home extends Component {
 
 		let classes = this.props.classes;
 
-		let remuxStr = "Remux!";
-		let homeStr = "This is HOME!";
+		let remuxStr = "remuX!";
+		let homeStr = "This is HOME";
 		let justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 		//let beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 		let beforeString = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
