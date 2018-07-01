@@ -33,8 +33,21 @@ function runFormPrepare(form) {
 	d.data = prepareFormData(form);
 	*/
 	//d = prepareFormData(form);
+	
+	// ORI
 	d = loopFormElems(form);
+	// ORI-
 	return d;
+}
+
+export function submitButtonChangeAction(ev) {
+	console.log("ev.target SUBMIT ", ev.target);
+
+	return {
+		type: "SUBMIT_BUTTON_CHANGE",
+		payload: null
+	}
+
 }
 
 export function postHomeAction(ev) {

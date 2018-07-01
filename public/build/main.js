@@ -25,7 +25,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
 	
-	var _store = __webpack_require__(/*! ./store */ 433);
+	var _store = __webpack_require__(/*! ./store */ 436);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -24766,7 +24766,7 @@ webpackJsonp([0,1],[
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _Footer = __webpack_require__(/*! ./components/Footer */ 425);
+	var _Footer = __webpack_require__(/*! ./components/Footer */ 428);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -42773,23 +42773,23 @@ webpackJsonp([0,1],[
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 411);
+	var _Login = __webpack_require__(/*! ./Login */ 414);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 419);
+	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 422);
 	
 	var _TodoForm2 = _interopRequireDefault(_TodoForm);
 	
-	var _Todos = __webpack_require__(/*! ./components/Todos */ 420);
+	var _Todos = __webpack_require__(/*! ./components/Todos */ 423);
 	
 	var _Todos2 = _interopRequireDefault(_Todos);
 	
-	var _Users = __webpack_require__(/*! ./components/Users */ 422);
+	var _Users = __webpack_require__(/*! ./components/Users */ 425);
 	
 	var _Users2 = _interopRequireDefault(_Users);
 	
-	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 424);
+	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 427);
 	
 	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
 	
@@ -42917,6 +42917,14 @@ webpackJsonp([0,1],[
 	
 	var _Send2 = _interopRequireDefault(_Send);
 	
+	var _CircularProgress = __webpack_require__(/*! @material-ui/core/CircularProgress */ 411);
+	
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+	
+	var _green = __webpack_require__(/*! @material-ui/core/colors/green */ 413);
+	
+	var _green2 = _interopRequireDefault(_green);
+	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
 	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 391);
@@ -42958,6 +42966,35 @@ webpackJsonp([0,1],[
 			},
 			iconSmall: {
 				fontSize: 20
+			},
+			root: {
+				display: 'flex',
+				alignItems: 'center'
+			},
+			wrapper: {
+				margin: theme.spacing.unit,
+				position: 'relative'
+			},
+			buttonSuccess: {
+				backgroundColor: _green2.default[500],
+				'&:hover': {
+					backgroundColor: _green2.default[700]
+				}
+			},
+			fabProgress: {
+				color: _green2.default[500],
+				position: 'absolute',
+				top: -6,
+				left: -6,
+				zIndex: 1
+			},
+			buttonProgress: {
+				color: _green2.default[500],
+				position: 'absolute',
+				top: '50%',
+				left: '50%',
+				marginTop: -12,
+				marginLeft: -12
 			}
 		};
 	};
@@ -42966,7 +43003,8 @@ webpackJsonp([0,1],[
 	
 	var mapStateToProps = function mapStateToProps(store) {
 		return {
-			home: store.home
+			home: store.home,
+			ui: store.home.ui
 		};
 	};
 	
@@ -42983,7 +43021,13 @@ webpackJsonp([0,1],[
 				var v = ev.target.value;
 	
 				//dispatch( jdChangeAction(ev) );
+			},
+			submitButtonChange: function submitButtonChange(ev) {
+				// loading change
+				// dispatch an event to change loading state to true
+				dispatch((0, _homeActions.submitButtonChangeAction)(ev));
 			}
+	
 		};
 	};
 	//
@@ -43027,15 +43071,18 @@ webpackJsonp([0,1],[
 			key: "render",
 			value: function render() {
 				console.log("this.props: ", this.props);
+				console.log("this.props.ui: ", this.props.ui);
 				//console.log("submit ", submit);
 	
 				var classes = this.props.classes;
 	
 				var remuxStr = "remuX!";
 				var homeStr = "This is HOME";
-				var justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
-				//let beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
-				var beforeString = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+				var justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+				//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
+				var beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+	
+				//let loading = true;
 	
 				return _react2.default.createElement(
 					"div",
@@ -43059,12 +43106,12 @@ webpackJsonp([0,1],[
 							_react2.default.createElement(
 								"p",
 								null,
-								justString
+								justStr
 							),
 							_react2.default.createElement(
 								"p",
 								null,
-								beforeString
+								beforeStr
 							)
 						)
 					),
@@ -43111,10 +43158,18 @@ webpackJsonp([0,1],[
 								null,
 								_react2.default.createElement(
 									_Button2.default,
-									{ type: "submit", variant: "raised", className: classes.button, color: "secondary" },
+									{
+										disabled: this.props.ui.submitLoading,
+										type: "submit",
+										variant: "raised",
+										className: classes.button,
+										color: "secondary",
+										onClick: this.props.submitButtonChange
+									},
 									"Submit",
 									_react2.default.createElement(_Send2.default, { className: classes.rightIcon })
-								)
+								),
+								this.props.ui.submitLoading && _react2.default.createElement(_CircularProgress2.default, { size: 24, className: classes.buttonProgress })
 							)
 						)
 					)
@@ -45368,6 +45423,7 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.submitButtonChangeAction = submitButtonChangeAction;
 	exports.postHomeAction = postHomeAction;
 	exports.jdChangeAction = jdChangeAction;
 	
@@ -45429,8 +45485,20 @@ webpackJsonp([0,1],[
 	 	d.data = prepareFormData(form);
 	 */
 		//d = prepareFormData(form);
+	
+		// ORI
 		d = loopFormElems(form);
+		// ORI-
 		return d;
+	}
+	
+	function submitButtonChangeAction(ev) {
+		console.log("ev.target SUBMIT ", ev.target);
+	
+		return {
+			type: "SUBMIT_BUTTON_CHANGE",
+			payload: null
+		};
 	}
 	
 	function postHomeAction(ev) {
@@ -50770,6 +50838,290 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 411 */
+/*!*******************************************************!*\
+  !*** ./~/@material-ui/core/CircularProgress/index.js ***!
+  \*******************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	Object.defineProperty(exports, "default", {
+	  enumerable: true,
+	  get: function get() {
+	    return _CircularProgress.default;
+	  }
+	});
+	
+	var _CircularProgress = _interopRequireDefault(__webpack_require__(/*! ./CircularProgress */ 412));
+
+/***/ }),
+/* 412 */
+/*!******************************************************************!*\
+  !*** ./~/@material-ui/core/CircularProgress/CircularProgress.js ***!
+  \******************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.styles = void 0;
+	
+	var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/extends */ 71));
+	
+	var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/objectSpread */ 77));
+	
+	var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/defineProperty */ 72));
+	
+	var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/objectWithoutProperties */ 73));
+	
+	var _react = _interopRequireDefault(__webpack_require__(/*! react */ 1));
+	
+	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
+	
+	var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ 74));
+	
+	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
+	
+	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
+	
+	var SIZE = 50;
+	
+	function getRelativeValue(value, min, max) {
+	  var clampedValue = Math.min(Math.max(min, value), max);
+	  return (clampedValue - min) / (max - min);
+	}
+	
+	function easeOut(t) {
+	  t = getRelativeValue(t, 0, 1); // https://gist.github.com/gre/1650294
+	
+	  t = (t -= 1) * t * t + 1;
+	  return t;
+	}
+	
+	function easeIn(t) {
+	  return t * t;
+	}
+	
+	var styles = function styles(theme) {
+	  return {
+	    root: {
+	      display: 'inline-block',
+	      lineHeight: 1 // Keep the progress centered
+	
+	    },
+	    static: {
+	      transition: theme.transitions.create('transform')
+	    },
+	    indeterminate: {
+	      animation: 'mui-progress-circular-rotate 1.4s linear infinite'
+	    },
+	    colorPrimary: {
+	      color: theme.palette.primary.main
+	    },
+	    colorSecondary: {
+	      color: theme.palette.secondary.main
+	    },
+	    svg: {},
+	    circle: {
+	      stroke: 'currentColor',
+	      strokeLinecap: 'round'
+	    },
+	    circleStatic: {
+	      transition: theme.transitions.create('stroke-dashoffset')
+	    },
+	    circleIndeterminate: {
+	      animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
+	      // Some default value that looks fine waiting for the animation to kicks in.
+	      strokeDasharray: '80px, 200px',
+	      strokeDashoffset: '0px' // Add the unit to fix a Edge 16 and below bug.
+	
+	    },
+	    '@keyframes mui-progress-circular-rotate': {
+	      '100%': {
+	        transform: 'rotate(360deg)'
+	      }
+	    },
+	    '@keyframes mui-progress-circular-dash': {
+	      '0%': {
+	        strokeDasharray: '1px, 200px',
+	        strokeDashoffset: '0px'
+	      },
+	      '50%': {
+	        strokeDasharray: '100px, 200px',
+	        strokeDashoffset: '-15px'
+	      },
+	      '100%': {
+	        strokeDasharray: '100px, 200px',
+	        strokeDashoffset: '-120px'
+	      }
+	    }
+	  };
+	};
+	/**
+	 * ## ARIA
+	 *
+	 * If the progress bar is describing the loading progress of a particular region of a page,
+	 * you should use `aria-describedby` to point to the progress bar, and set the `aria-busy`
+	 * attribute to `true` on that region until it has finished loading.
+	 */
+	
+	
+	exports.styles = styles;
+	
+	function CircularProgress(props) {
+	  var _classNames, _classNames2;
+	
+	  var classes = props.classes,
+	      className = props.className,
+	      color = props.color,
+	      size = props.size,
+	      style = props.style,
+	      thickness = props.thickness,
+	      value = props.value,
+	      variant = props.variant,
+	      other = (0, _objectWithoutProperties2.default)(props, ["classes", "className", "color", "size", "style", "thickness", "value", "variant"]);
+	  var circleStyle = {};
+	  var rootStyle = {};
+	  var rootProps = {};
+	
+	  if (variant === 'determinate' || variant === 'static') {
+	    var circumference = 2 * Math.PI * (SIZE / 2 - 5);
+	    circleStyle.strokeDasharray = circumference.toFixed(3);
+	    rootProps['aria-valuenow'] = Math.round(value);
+	
+	    if (variant === 'static') {
+	      circleStyle.strokeDashoffset = "".concat(((100 - value) / 100 * circumference).toFixed(3), "px");
+	      rootStyle.transform = 'rotate(-90deg)';
+	    } else {
+	      circleStyle.strokeDashoffset = "".concat((easeIn((100 - value) / 100) * circumference).toFixed(3), "px");
+	      rootStyle.transform = "rotate(".concat((easeOut(value / 70) * 270).toFixed(3), "deg)");
+	    }
+	  }
+	
+	  return _react.default.createElement("div", (0, _extends2.default)({
+	    className: (0, _classnames.default)(classes.root, (_classNames = {}, (0, _defineProperty2.default)(_classNames, classes["color".concat((0, _helpers.capitalize)(color))], color !== 'inherit'), (0, _defineProperty2.default)(_classNames, classes.indeterminate, variant === 'indeterminate'), (0, _defineProperty2.default)(_classNames, classes.static, variant === 'static'), _classNames), className),
+	    style: (0, _objectSpread2.default)({
+	      width: size,
+	      height: size
+	    }, rootStyle, style),
+	    role: "progressbar"
+	  }, rootProps, other), _react.default.createElement("svg", {
+	    className: classes.svg,
+	    viewBox: "0 0 ".concat(SIZE, " ").concat(SIZE)
+	  }, _react.default.createElement("circle", {
+	    className: (0, _classnames.default)(classes.circle, (_classNames2 = {}, (0, _defineProperty2.default)(_classNames2, classes.circleIndeterminate, variant === 'indeterminate'), (0, _defineProperty2.default)(_classNames2, classes.circleStatic, variant === 'static'), _classNames2)),
+	    style: circleStyle,
+	    cx: SIZE / 2,
+	    cy: SIZE / 2,
+	    r: SIZE / 2 - 5,
+	    fill: "none",
+	    strokeWidth: thickness
+	  })));
+	}
+	
+	CircularProgress.propTypes = process.env.NODE_ENV !== "production" ? {
+	  /**
+	   * Override or extend the styles applied to the component.
+	   * See [CSS API](#css-api) below for more details.
+	   */
+	  classes: _propTypes.default.object.isRequired,
+	
+	  /**
+	   * @ignore
+	   */
+	  className: _propTypes.default.string,
+	
+	  /**
+	   * The color of the component. It supports those theme colors that make sense for this component.
+	   */
+	  color: _propTypes.default.oneOf(['primary', 'secondary', 'inherit']),
+	
+	  /**
+	   * The size of the circle.
+	   */
+	  size: _propTypes.default.oneOfType([_propTypes.default.number, _propTypes.default.string]),
+	
+	  /**
+	   * @ignore
+	   */
+	  style: _propTypes.default.object,
+	
+	  /**
+	   * The thickness of the circle.
+	   */
+	  thickness: _propTypes.default.number,
+	
+	  /**
+	   * The value of the progress indicator for the determinate and static variants.
+	   * Value between 0 and 100.
+	   */
+	  value: _propTypes.default.number,
+	
+	  /**
+	   * The variant of progress indicator. Use indeterminate
+	   * when there is no progress value.
+	   */
+	  variant: _propTypes.default.oneOf(['determinate', 'indeterminate', 'static'])
+	} : {};
+	CircularProgress.defaultProps = {
+	  color: 'primary',
+	  size: 40,
+	  thickness: 3.6,
+	  value: 0,
+	  variant: 'indeterminate'
+	};
+	
+	var _default = (0, _withStyles.default)(styles, {
+	  name: 'MuiCircularProgress',
+	  flip: false
+	})(CircularProgress);
+	
+	exports.default = _default;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
+
+/***/ }),
+/* 413 */
+/*!*********************************************!*\
+  !*** ./~/@material-ui/core/colors/green.js ***!
+  \*********************************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+	var green = {
+	  50: '#e8f5e9',
+	  100: '#c8e6c9',
+	  200: '#a5d6a7',
+	  300: '#81c784',
+	  400: '#66bb6a',
+	  500: '#4caf50',
+	  600: '#43a047',
+	  700: '#388e3c',
+	  800: '#2e7d32',
+	  900: '#1b5e20',
+	  A100: '#b9f6ca',
+	  A200: '#69f0ae',
+	  A400: '#00e676',
+	  A700: '#00c853'
+	};
+	var _default = green;
+	exports.default = _default;
+
+/***/ }),
+/* 414 */
 /*!*************************!*\
   !*** ./views/Login.jsx ***!
   \*************************/
@@ -50792,7 +51144,7 @@ webpackJsonp([0,1],[
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 412);
+	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 415);
 	
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 	
@@ -50800,11 +51152,11 @@ webpackJsonp([0,1],[
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 	
-	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 414);
+	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 417);
 	
 	var _FormControlLabel2 = _interopRequireDefault(_FormControlLabel);
 	
-	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 416);
+	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 419);
 	
 	var _Switch2 = _interopRequireDefault(_Switch);
 	
@@ -50933,7 +51285,7 @@ webpackJsonp([0,1],[
 	exports.default = Login;
 
 /***/ }),
-/* 412 */
+/* 415 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/index.js ***!
   \************************************************/
@@ -50953,10 +51305,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 413));
+	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 416));
 
 /***/ }),
-/* 413 */
+/* 416 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/FormGroup.js ***!
   \****************************************************/
@@ -51048,7 +51400,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 414 */
+/* 417 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/index.js ***!
   \*******************************************************/
@@ -51068,10 +51420,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 415));
+	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 418));
 
 /***/ }),
-/* 415 */
+/* 418 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/FormControlLabel.js ***!
   \******************************************************************/
@@ -51247,7 +51599,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 416 */
+/* 419 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/Switch/index.js ***!
   \*********************************************/
@@ -51267,10 +51619,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 417));
+	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 420));
 
 /***/ }),
-/* 417 */
+/* 420 */
 /*!**********************************************!*\
   !*** ./~/@material-ui/core/Switch/Switch.js ***!
   \**********************************************/
@@ -51299,7 +51651,7 @@ webpackJsonp([0,1],[
 	
 	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
 	
-	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 418));
+	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 421));
 	
 	var styles = function styles(theme) {
 	  return {
@@ -51502,7 +51854,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 418 */
+/* 421 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/internal/SwitchBase.js ***!
   \****************************************************/
@@ -51812,7 +52164,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 419 */
+/* 422 */
 /*!*********************************!*\
   !*** ./views/todo/TodoForm.jsx ***!
   \*********************************/
@@ -52011,7 +52363,7 @@ webpackJsonp([0,1],[
 	exports.default = TodoForm;
 
 /***/ }),
-/* 420 */
+/* 423 */
 /*!***********************************!*\
   !*** ./views/components/Todos.js ***!
   \***********************************/
@@ -52037,7 +52389,7 @@ webpackJsonp([0,1],[
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 421);
+	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 424);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -52136,7 +52488,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Todos);
 
 /***/ }),
-/* 421 */
+/* 424 */
 /*!**************************************!*\
   !*** ./views/actions/todoActions.js ***!
   \**************************************/
@@ -52242,7 +52594,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 422 */
+/* 425 */
 /*!***********************************!*\
   !*** ./views/components/Users.js ***!
   \***********************************/
@@ -52265,7 +52617,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
 	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 423);
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 426);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -52396,7 +52748,7 @@ webpackJsonp([0,1],[
 	exports.default = Users;
 
 /***/ }),
-/* 423 */
+/* 426 */
 /*!**************************************!*\
   !*** ./views/actions/userActions.js ***!
   \**************************************/
@@ -52456,7 +52808,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 424 */
+/* 427 */
 /*!*******************************************!*\
   !*** ./views/EnsureLoggedInContainer.jsx ***!
   \*******************************************/
@@ -52474,7 +52826,7 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 411);
+	var _Login = __webpack_require__(/*! ./Login */ 414);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -52560,7 +52912,7 @@ webpackJsonp([0,1],[
 	exports.default = EnsureLoggedInContainer;
 
 /***/ }),
-/* 425 */
+/* 428 */
 /*!************************************!*\
   !*** ./views/components/Footer.js ***!
   \************************************/
@@ -52578,11 +52930,11 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 426);
+	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 429);
 	
 	var _BottomNavigation2 = _interopRequireDefault(_BottomNavigation);
 	
-	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 428);
+	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 431);
 	
 	var _BottomNavigationAction2 = _interopRequireDefault(_BottomNavigationAction);
 	
@@ -52592,15 +52944,15 @@ webpackJsonp([0,1],[
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 430);
+	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 433);
 	
 	var _Restore2 = _interopRequireDefault(_Restore);
 	
-	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 431);
+	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 434);
 	
 	var _Favorite2 = _interopRequireDefault(_Favorite);
 	
-	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 432);
+	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 435);
 	
 	var _LocationOn2 = _interopRequireDefault(_LocationOn);
 	
@@ -52668,7 +53020,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _styles.withStyles)(styles)(Footer);
 
 /***/ }),
-/* 426 */
+/* 429 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/index.js ***!
   \*******************************************************/
@@ -52688,10 +53040,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 427));
+	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 430));
 
 /***/ }),
-/* 427 */
+/* 430 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/BottomNavigation.js ***!
   \******************************************************************/
@@ -52808,7 +53160,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 428 */
+/* 431 */
 /*!*************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/index.js ***!
   \*************************************************************/
@@ -52828,10 +53180,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 429));
+	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 432));
 
 /***/ }),
-/* 429 */
+/* 432 */
 /*!******************************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/BottomNavigationAction.js ***!
   \******************************************************************************/
@@ -53041,7 +53393,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 430 */
+/* 433 */
 /*!*****************************************!*\
   !*** ./~/@material-ui/icons/Restore.js ***!
   \*****************************************/
@@ -53067,7 +53419,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 431 */
+/* 434 */
 /*!******************************************!*\
   !*** ./~/@material-ui/icons/Favorite.js ***!
   \******************************************/
@@ -53093,7 +53445,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 432 */
+/* 435 */
 /*!********************************************!*\
   !*** ./~/@material-ui/icons/LocationOn.js ***!
   \********************************************/
@@ -53119,7 +53471,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 433 */
+/* 436 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -53135,27 +53487,27 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 434);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 437);
 	
 	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 435);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 438);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
 	var _redux = __webpack_require__(/*! redux */ 341);
 	
-	var _home = __webpack_require__(/*! ../reducers/home */ 437);
+	var _home = __webpack_require__(/*! ../reducers/home */ 440);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 438);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 441);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 439);
+	var _user = __webpack_require__(/*! ../reducers/user */ 442);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -53210,7 +53562,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 434 */
+/* 437 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -53221,7 +53573,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 435 */
+/* 438 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -53240,7 +53592,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 436);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 439);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -53443,7 +53795,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 436 */
+/* 439 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -53467,7 +53819,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 437 */
+/* 440 */
 /*!********************************!*\
   !*** ./views/reducers/home.js ***!
   \********************************/
@@ -53481,11 +53833,29 @@ webpackJsonp([0,1],[
 	
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
-	var todosReducer = function todosReducer() {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	var defaultState = {
+		ui: {
+			submitLoading: false
+		}
+	
+	};
+	
+	var homeReducer = function homeReducer() {
+		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
 		var action = arguments[1];
 	
 		switch (action.type) {
+			case "SUBMIT_BUTTON_CHANGE":
+				{
+					console.log("homeRed SUBMIT_BUTTON_CHANGE");
+					var data = action.payload;
+					//const data = action.payload.data.objects;
+					//state = {...state, users: data};
+					// FTM, adding same data in `todos` key also, FOR TESTING.
+					state = _extends({}, state, { ui: _extends({}, state.ui, { submitLoading: !state.ui.submitLoading }) });
+					break;
+				}
+	
 			case "UPDATE_USER_NAME":
 				{
 					// Take the todo index to be changed & change it
@@ -53502,11 +53872,11 @@ webpackJsonp([0,1],[
 				}
 			case "READ_TODOS_FULFILLED":
 				{
-					var data = action.payload;
+					var _data = action.payload;
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
-					state = _extends({}, state, { todos: data });
+					state = _extends({}, state, { todos: _data });
 					break;
 				}
 			case "default":
@@ -53523,10 +53893,10 @@ webpackJsonp([0,1],[
 		return state;
 	};
 	
-	exports.default = todosReducer;
+	exports.default = homeReducer;
 
 /***/ }),
-/* 438 */
+/* 441 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -53585,7 +53955,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 439 */
+/* 442 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/

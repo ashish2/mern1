@@ -1,6 +1,23 @@
 
-const todosReducer = (state = {}, action) => {
+let defaultState = {
+	ui: {
+		submitLoading: false,
+	}
+
+}
+
+const homeReducer = (state = defaultState, action) => {
 	switch(action.type) {
+		case "SUBMIT_BUTTON_CHANGE": {
+			console.log( "homeRed SUBMIT_BUTTON_CHANGE");
+			const data = action.payload;
+			//const data = action.payload.data.objects;
+			//state = {...state, users: data};
+			// FTM, adding same data in `todos` key also, FOR TESTING.
+			state = {...state, ui: {...state.ui, submitLoading: !state.ui.submitLoading} };
+			break;
+		}
+
 		case "UPDATE_USER_NAME": {
 			// Take the todo index to be changed & change it
 			// assuming data in `action` var is {payload: {index: Number, name: String}}
@@ -35,5 +52,5 @@ const visibilityFilter = (state, action) => {
 }
 
 
-export default todosReducer;
+export default homeReducer;
 

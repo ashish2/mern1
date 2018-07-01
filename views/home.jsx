@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import thunk from "redux-thunk";
 
-import { postHomeAction, jdChangeAction } from "./actions/homeActions";
+import { postHomeAction, jdChangeAction, submitButtonChangeAction } from "./actions/homeActions";
 
 
 import DocumentTitle from 'react-document-title';
@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 //import classNames from 'classnames';
 import Icon from '@material-ui/core/Icon';
 import Send from '@material-ui/icons/Send';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import green from '@material-ui/core/colors/green';
 import { withStyles } from '@material-ui/core/styles';
 
 import Input from '@material-ui/core/Input';
@@ -33,6 +35,35 @@ const styles = theme => ({
 	  iconSmall: {
 	      fontSize: 20,
 	  },
+	  root: {
+		      display: 'flex',
+		      alignItems: 'center',
+	  },
+	  wrapper: {
+		      margin: theme.spacing.unit,
+		      position: 'relative',
+		    },
+	  buttonSuccess: {
+		      backgroundColor: green[500],
+		      '&:hover': {
+			            backgroundColor: green[700],
+			          },
+	  },
+	  fabProgress: {
+		      color: green[500],
+		      position: 'absolute',
+		      top: -6,
+		      left: -6,
+		      zIndex: 1,
+	  },
+	  buttonProgress: {
+		      color: green[500],
+		      position: 'absolute',
+		      top: '50%',
+		      left: '50%',
+		      marginTop: -12,
+		      marginLeft: -12,
+	  },
 });
 
 //
@@ -40,6 +71,7 @@ const styles = theme => ({
 const mapStateToProps = (store) => {
 	return {
 		home: store.home,
+		ui: store.home.ui,
 	}
 }
 
@@ -56,7 +88,13 @@ const mapDispatchToProps = dispatch => {
 			let v = ev.target.value;
 
 			//dispatch( jdChangeAction(ev) );
+		},
+		submitButtonChange: ev => {
+			// loading change
+			// dispatch an event to change loading state to true
+			dispatch( submitButtonChangeAction(ev) );
 		}
+
 	};
 }
 //
@@ -86,19 +124,20 @@ class Home extends Component {
 		console.log("e ", e);
 	}
 
-
-
 	render() {
 		console.log("this.props: ", this.props);
+		console.log("this.props.ui: ", this.props.ui);
 		//console.log("submit ", submit);
 
 		let classes = this.props.classes;
 
 		let remuxStr = "remuX!";
 		let homeStr = "This is HOME";
-		let justString = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
-		//let beforeString = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
-		let beforeString = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+		let justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+		//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
+		let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+
+		//let loading = true;
 		
 		return (
 			<div className="row">
@@ -107,8 +146,8 @@ class Home extends Component {
 					<h1>{remuxStr}</h1>
 					<h3>{homeStr}</h3>
 					<div>
-						<p>{justString}</p>
-						<p>{beforeString}</p>
+						<p>{justStr}</p>
+						<p>{beforeStr}</p>
 					</div>
 				</div>
 
@@ -141,13 +180,24 @@ class Home extends Component {
 		        				  	margin="normal"
 								onChange={this.props.jdChange}
 		        				/>
+
 						</FormControl>
 						
 						<FormControl>
-							<Button type="submit" variant="raised" className={classes.button} color="secondary">
+							<Button 
+							disabled={this.props.ui.submitLoading} 
+							type="submit" 
+							variant="raised" 
+							className={classes.button} 
+							color="secondary"
+							onClick={this.props.submitButtonChange}
+							>
 								Submit
 								<Send className={classes.rightIcon}></Send>
 							</Button>
+							{this.props.ui.submitLoading && <CircularProgress size={24} className={classes.buttonProgress} />}
+							
+
 						</FormControl>
 
 					</form>
