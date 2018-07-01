@@ -94,11 +94,24 @@ export function postHomeAction(ev) {
 export function jdChangeAction(ev) {
 
 	return function(dispatch) {
-		console.log("JdACtn: ", ev, " d ", dispatch);
-		return {
-			type: "JD_UPDATE",
-			payload: null
+		console.log("JdACtn: ", ev, " val ", ev.target.value, " d ", dispatch);
+		let ret = {};
+		if( ev.target.value == "" ) {
+			// But check, if its already off/disabled then no need to dipatch an event
+			ret = {
+				type: "SUBMIT_BUTTON_OFF",
+				payload: true
+			}
 		}
+		else {
+			// But check, if its already off/disabled then no need to dipatch an event
+			ret = {
+				type: "SUBMIT_BUTTON_OFF",
+				payload: false
+			}
+		}
+
+		return ret;
 	}
 
 }

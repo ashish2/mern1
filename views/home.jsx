@@ -80,6 +80,9 @@ const mapDispatchToProps = dispatch => {
 		submit: ev => {
 			// persist not the right way of doing it bcoz of event-pooling, Maybe
 			//ev.persist();
+
+			// Change submitButton UI
+			dispatch( submitButtonChangeAction(ev) );
 			ev.preventDefault();
 			dispatch(postHomeAction(ev));
 		},
@@ -87,13 +90,18 @@ const mapDispatchToProps = dispatch => {
 			let t = ev.target;
 			let v = ev.target.value;
 
-			//dispatch( jdChangeAction(ev) );
+			dispatch( jdChangeAction(ev) );
 		},
+		/*
 		submitButtonChange: ev => {
 			// loading change
 			// dispatch an event to change loading state to true
 			dispatch( submitButtonChangeAction(ev) );
-		}
+		},
+		*/
+		ctrlEnter: ev => {
+			console.log( ev.keyCode, " ", ev.ctrlKey);
+		},
 
 	};
 }
@@ -169,7 +177,7 @@ class Home extends Component {
 						</FormControl>
 						<FormControl>
 							<TextField
-		        					id="multiline-static"
+		        					id="multiline-static2"
 							  	name="jd2"
 		        				  	label="Paste JD2 here"
 		        				  	multiline
@@ -179,6 +187,7 @@ class Home extends Component {
 								className={classes.textField}
 		        				  	margin="normal"
 								onChange={this.props.jdChange}
+								onKeyDown={this.props.ctrlEnter}
 		        				/>
 
 						</FormControl>
@@ -190,7 +199,7 @@ class Home extends Component {
 							variant="raised" 
 							className={classes.button} 
 							color="secondary"
-							onClick={this.props.submitButtonChange}
+							//onClick={this.props.submitButtonChange}
 							>
 								Submit
 								<Send className={classes.rightIcon}></Send>

@@ -43013,6 +43013,9 @@ webpackJsonp([0,1],[
 			submit: function submit(ev) {
 				// persist not the right way of doing it bcoz of event-pooling, Maybe
 				//ev.persist();
+	
+				// Change submitButton UI
+				dispatch((0, _homeActions.submitButtonChangeAction)(ev));
 				ev.preventDefault();
 				dispatch((0, _homeActions.postHomeAction)(ev));
 			},
@@ -43020,12 +43023,17 @@ webpackJsonp([0,1],[
 				var t = ev.target;
 				var v = ev.target.value;
 	
-				//dispatch( jdChangeAction(ev) );
+				dispatch((0, _homeActions.jdChangeAction)(ev));
 			},
-			submitButtonChange: function submitButtonChange(ev) {
-				// loading change
-				// dispatch an event to change loading state to true
-				dispatch((0, _homeActions.submitButtonChangeAction)(ev));
+			/*
+	  submitButtonChange: ev => {
+	  	// loading change
+	  	// dispatch an event to change loading state to true
+	  	dispatch( submitButtonChangeAction(ev) );
+	  },
+	  */
+			ctrlEnter: function ctrlEnter(ev) {
+				console.log(ev.keyCode, " ", ev.ctrlKey);
 			}
 	
 		};
@@ -43141,7 +43149,7 @@ webpackJsonp([0,1],[
 								_FormControl2.default,
 								null,
 								_react2.default.createElement(_TextField2.default, {
-									id: "multiline-static",
+									id: "multiline-static2",
 									name: "jd2",
 									label: "Paste JD2 here",
 									multiline: true,
@@ -43150,7 +43158,8 @@ webpackJsonp([0,1],[
 									rows: "8",
 									className: classes.textField,
 									margin: "normal",
-									onChange: this.props.jdChange
+									onChange: this.props.jdChange,
+									onKeyDown: this.props.ctrlEnter
 								})
 							),
 							_react2.default.createElement(
@@ -43163,8 +43172,8 @@ webpackJsonp([0,1],[
 										type: "submit",
 										variant: "raised",
 										className: classes.button,
-										color: "secondary",
-										onClick: this.props.submitButtonChange
+										color: "secondary"
+										//onClick={this.props.submitButtonChange}
 									},
 									"Submit",
 									_react2.default.createElement(_Send2.default, { className: classes.rightIcon })
@@ -45541,11 +45550,23 @@ webpackJsonp([0,1],[
 	function jdChangeAction(ev) {
 	
 		return function (dispatch) {
-			console.log("JdACtn: ", ev, " d ", dispatch);
-			return {
-				type: "JD_UPDATE",
-				payload: null
-			};
+			console.log("JdACtn: ", ev, " val ", ev.target.value, " d ", dispatch);
+			var ret = {};
+			if (ev.target.value == "") {
+				// But check, if its already off/disabled then no need to dipatch an event
+				ret = {
+					type: "SUBMIT_BUTTON_OFF",
+					payload: true
+				};
+			} else {
+				// But check, if its already off/disabled then no need to dipatch an event
+				ret = {
+					type: "SUBMIT_BUTTON_OFF",
+					payload: false
+				};
+			}
+	
+			return ret;
 		};
 	}
 
@@ -53845,7 +53866,7 @@ webpackJsonp([0,1],[
 		var action = arguments[1];
 	
 		switch (action.type) {
-			case "SUBMIT_BUTTON_CHANGE":
+			case "SUBMIT_BUTTON_TOGGLE":
 				{
 					console.log("homeRed SUBMIT_BUTTON_CHANGE");
 					var data = action.payload;
@@ -53853,6 +53874,17 @@ webpackJsonp([0,1],[
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
 					state = _extends({}, state, { ui: _extends({}, state.ui, { submitLoading: !state.ui.submitLoading }) });
+					break;
+				}
+	
+			case "SUBMIT_BUTTON_CHANGE":
+				{
+					console.log("homeRed SUBMIT_BUTTON_CHANGE");
+					var _data = action.payload;
+					//const data = action.payload.data.objects;
+					//state = {...state, users: data};
+					// FTM, adding same data in `todos` key also, FOR TESTING.
+					state = _extends({}, state, { ui: _extends({}, state.ui, { submitLoading: payload }) });
 					break;
 				}
 	
@@ -53872,11 +53904,11 @@ webpackJsonp([0,1],[
 				}
 			case "READ_TODOS_FULFILLED":
 				{
-					var _data = action.payload;
+					var _data2 = action.payload;
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
-					state = _extends({}, state, { todos: _data });
+					state = _extends({}, state, { todos: _data2 });
 					break;
 				}
 			case "default":
