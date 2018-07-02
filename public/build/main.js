@@ -42656,7 +42656,7 @@ webpackJsonp([0,1],[
 					)
 				), _react2.default.createElement(
 					_AppBar2.default,
-					{ color: 'default', position: 'static' },
+					{ color: 'default', position: 'sticky' },
 					_react2.default.createElement(
 						_Toolbar2.default,
 						null,

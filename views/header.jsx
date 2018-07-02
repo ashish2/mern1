@@ -55,7 +55,7 @@ class Header extends Component {
 			</header>
 			,
 
-			<AppBar color="default" position="static">
+			<AppBar color="default" position="sticky">
 				<Toolbar>
 					<IconButton color="inherit" aria-label="Menu">
 						<AccountCircle />
