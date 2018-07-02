@@ -42909,6 +42909,10 @@ webpackJsonp([0,1],[
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
+	var _classnames = __webpack_require__(/*! classnames */ 74);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
 	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 408);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
@@ -42945,13 +42949,13 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	//import classNames from 'classnames';
-	
 	
 	var styles = function styles(theme) {
 		return {
@@ -43080,6 +43084,7 @@ webpackJsonp([0,1],[
 		}, {
 			key: "ctrlEnter",
 			value: function ctrlEnter(ev) {
+				// TODO
 				// if keyCode is 13 (Enter) and ctrlKey was true, then submit form
 				if (ev.keyCode == 13 && ev.ctrlKey == true) {
 					console.log("self cE this ", this, " ev ", ev);
@@ -43090,10 +43095,13 @@ webpackJsonp([0,1],[
 			key: "render",
 			value: function render() {
 				console.log("this.props: ", this.props);
-				console.log("this.props.ui: ", this.props.ui);
-				//console.log("submit ", submit);
 	
 				var classes = this.props.classes;
+	
+				// TODO: FTM, success shud be true/false depending on response from API
+				var success = false;
+	
+				var buttonClassname = (0, _classnames2.default)(_defineProperty({}, classes.buttonSuccess, success));
 	
 				var remuxStr = "remuX!";
 				var homeStr = "This is HOME";
@@ -43181,8 +43189,9 @@ webpackJsonp([0,1],[
 									{
 										disabled: this.props.ui.submitLoading,
 										type: "submit",
-										variant: "raised",
-										className: classes.button,
+										variant: "raised"
+										//className={classes.button} 
+										, className: buttonClassname,
 										color: "secondary"
 										//onClick={this.props.submitButtonChange}
 									},

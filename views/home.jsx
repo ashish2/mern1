@@ -10,7 +10,7 @@ import DocumentTitle from 'react-document-title';
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-//import classNames from 'classnames';
+import classNames from 'classnames';
 import Icon from '@material-ui/core/Icon';
 import Send from '@material-ui/icons/Send';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -149,10 +149,17 @@ class Home extends Component {
 
 	render() {
 		console.log("this.props: ", this.props);
-		console.log("this.props.ui: ", this.props.ui);
-		//console.log("submit ", submit);
+
 
 		let classes = this.props.classes;
+
+		// TODO: FTM, success shud be true/false depending on response from API
+		let success = false;
+
+		const buttonClassname = classNames({
+	          //[classes.buttonSuccess]: success,
+	          [classes.buttonSuccess]: success,
+	        });
 
 		let remuxStr = "remuX!";
 		let homeStr = "This is HOME";
@@ -209,12 +216,13 @@ class Home extends Component {
 						
 						<FormControl>
 							<Button 
-							disabled={this.props.ui.submitLoading} 
-							type="submit" 
-							variant="raised" 
-							className={classes.button} 
-							color="secondary"
-							//onClick={this.props.submitButtonChange}
+								disabled={this.props.ui.submitLoading} 
+								type="submit" 
+								variant="raised" 
+								//className={classes.button} 
+								className={buttonClassname} 
+								color="secondary"
+								//onClick={this.props.submitButtonChange}
 							>
 								Submit
 								<Send className={classes.rightIcon}></Send>
