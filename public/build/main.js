@@ -43014,9 +43014,9 @@ webpackJsonp([0,1],[
 				// persist not the right way of doing it bcoz of event-pooling, Maybe
 				//ev.persist();
 	
-				// Change submitButton UI
-				dispatch((0, _homeActions.submitButtonChangeAction)(ev));
 				ev.preventDefault();
+				// Change submitButton UI
+				dispatch((0, _homeActions.submitButtonOffAction)(ev));
 				dispatch((0, _homeActions.postHomeAction)(ev));
 			},
 			jdChange: function jdChange(ev) {
@@ -43033,7 +43033,12 @@ webpackJsonp([0,1],[
 	  },
 	  */
 			ctrlEnter: function ctrlEnter(ev) {
-				console.log(ev.keyCode, " ", ev.ctrlKey);
+				// TODO
+				// if keyCode is 13 (Enter) and ctrlKey was true, then submit form
+				if (ev.keyCode == 13 && ev.ctrlKey == true) {
+					console.log("cE this ", " ev ", ev);
+					//this.props.submit(ev);
+				}
 			}
 	
 		};
@@ -43043,23 +43048,20 @@ webpackJsonp([0,1],[
 	var Home = function (_Component) {
 		_inherits(Home, _Component);
 	
-		function Home() {
+		/*
+	 */
+		function Home(props) {
 			_classCallCheck(this, Home);
 	
-			return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+	
+			console.log("props ", _this.props);
+			_this.ctrlEnter = _this.ctrlEnter.bind(_this);
+			return _this;
 		}
 	
 		_createClass(Home, [{
 			key: "onChange",
-	
-	
-			/*
-	  constructor(props) {
-	  	super(props);
-	  		console.log("props ", this.props);
-	  }
-	  */
-	
 			value: function onChange(e) {
 				console.log("onCh");
 			}
@@ -43074,6 +43076,15 @@ webpackJsonp([0,1],[
 	
 				//let data = new FormData(e.target);
 				console.log("e ", e);
+			}
+		}, {
+			key: "ctrlEnter",
+			value: function ctrlEnter(ev) {
+				// if keyCode is 13 (Enter) and ctrlKey was true, then submit form
+				if (ev.keyCode == 13 && ev.ctrlKey == true) {
+					console.log("self cE this ", this, " ev ", ev);
+					this.props.submit(ev);
+				}
 			}
 		}, {
 			key: "render",
@@ -43159,7 +43170,7 @@ webpackJsonp([0,1],[
 									className: classes.textField,
 									margin: "normal",
 									onChange: this.props.jdChange,
-									onKeyDown: this.props.ctrlEnter
+									onKeyDown: this.ctrlEnter
 								})
 							),
 							_react2.default.createElement(
@@ -45433,6 +45444,7 @@ webpackJsonp([0,1],[
 		value: true
 	});
 	exports.submitButtonChangeAction = submitButtonChangeAction;
+	exports.submitButtonOffAction = submitButtonOffAction;
 	exports.postHomeAction = postHomeAction;
 	exports.jdChangeAction = jdChangeAction;
 	
@@ -45506,7 +45518,14 @@ webpackJsonp([0,1],[
 	
 		return {
 			type: "SUBMIT_BUTTON_CHANGE",
-			payload: null
+			payload: true
+		};
+	}
+	
+	function submitButtonOffAction(ev) {
+		return {
+			type: "SUBMIT_BUTTON_OFF",
+			payload: true
 		};
 	}
 	
@@ -53877,14 +53896,14 @@ webpackJsonp([0,1],[
 					break;
 				}
 	
-			case "SUBMIT_BUTTON_CHANGE":
+			case "SUBMIT_BUTTON_OFF":
 				{
-					console.log("homeRed SUBMIT_BUTTON_CHANGE");
+					console.log("homeRed SUBMIT_BUTTON_OFF");
 					var _data = action.payload;
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
-					state = _extends({}, state, { ui: _extends({}, state.ui, { submitLoading: payload }) });
+					state = _extends({}, state, { ui: _extends({}, state.ui, { submitLoading: action.payload }) });
 					break;
 				}
 	

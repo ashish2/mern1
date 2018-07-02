@@ -45,9 +45,16 @@ export function submitButtonChangeAction(ev) {
 
 	return {
 		type: "SUBMIT_BUTTON_CHANGE",
-		payload: null
+		payload: true
 	}
 
+}
+
+export function submitButtonOffAction(ev) {
+	return {
+		type: "SUBMIT_BUTTON_OFF",
+		payload: true
+	}
 }
 
 export function postHomeAction(ev) {

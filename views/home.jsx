@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 
 import thunk from "redux-thunk";
 
-import { postHomeAction, jdChangeAction, submitButtonChangeAction } from "./actions/homeActions";
+import { postHomeAction, jdChangeAction, submitButtonChangeAction, submitButtonOffAction } from "./actions/homeActions";
 
 
 import DocumentTitle from 'react-document-title';
@@ -81,9 +81,9 @@ const mapDispatchToProps = dispatch => {
 			// persist not the right way of doing it bcoz of event-pooling, Maybe
 			//ev.persist();
 
-			// Change submitButton UI
-			dispatch( submitButtonChangeAction(ev) );
 			ev.preventDefault();
+			// Change submitButton UI
+			dispatch( submitButtonOffAction(ev) );
 			dispatch(postHomeAction(ev));
 		},
 		jdChange: ev => {
@@ -100,7 +100,12 @@ const mapDispatchToProps = dispatch => {
 		},
 		*/
 		ctrlEnter: ev => {
-			console.log( ev.keyCode, " ", ev.ctrlKey);
+			// TODO
+			// if keyCode is 13 (Enter) and ctrlKey was true, then submit form
+			if( ev.keyCode == 13 && ev.ctrlKey == true ) {
+				console.log("cE this ", " ev ", ev);
+				//this.props.submit(ev);
+			}
 		},
 
 	};
@@ -110,12 +115,13 @@ const mapDispatchToProps = dispatch => {
 class Home extends Component {
 
 	/*
+	*/
 	constructor(props) {
 		super(props);
 
 		console.log("props ", this.props);
+		this.ctrlEnter = this.ctrlEnter.bind(this);
 	}
-	*/
 
 	onChange(e) {
 		console.log("onCh");
@@ -130,6 +136,15 @@ class Home extends Component {
 
 		//let data = new FormData(e.target);
 		console.log("e ", e);
+	}
+
+	ctrlEnter(ev) {
+		// TODO
+		// if keyCode is 13 (Enter) and ctrlKey was true, then submit form
+		if( ev.keyCode == 13 && ev.ctrlKey == true ) {
+			console.log("self cE this ", this, " ev ", ev);
+			this.props.submit(ev);
+		}
 	}
 
 	render() {
@@ -187,7 +202,7 @@ class Home extends Component {
 								className={classes.textField}
 		        				  	margin="normal"
 								onChange={this.props.jdChange}
-								onKeyDown={this.props.ctrlEnter}
+								onKeyDown={this.ctrlEnter}
 		        				/>
 
 						</FormControl>

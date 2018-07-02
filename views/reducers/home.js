@@ -18,13 +18,13 @@ const homeReducer = (state = defaultState, action) => {
 			break;
 		}
 		
-		case "SUBMIT_BUTTON_CHANGE": {
-			console.log( "homeRed SUBMIT_BUTTON_CHANGE");
+		case "SUBMIT_BUTTON_OFF": {
+			console.log( "homeRed SUBMIT_BUTTON_OFF");
 			const data = action.payload;
 			//const data = action.payload.data.objects;
 			//state = {...state, users: data};
 			// FTM, adding same data in `todos` key also, FOR TESTING.
-			state = {...state, ui: {...state.ui, submitLoading: payload} };
+			state = {...state, ui: {...state.ui, submitLoading: action.payload} };
 			break;
 		}
 
