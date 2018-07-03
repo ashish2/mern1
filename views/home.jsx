@@ -42,12 +42,13 @@ const styles = theme => ({
 	  wrapper: {
 		      margin: theme.spacing.unit,
 		      position: 'relative',
-		    },
+	  },
 	  buttonSuccess: {
 		      backgroundColor: green[500],
+
 		      '&:hover': {
-			            backgroundColor: green[700],
-			          },
+		            backgroundColor: green[700],
+		      },
 	  },
 	  fabProgress: {
 		      color: green[500],
@@ -158,7 +159,7 @@ class Home extends Component {
 
 		const buttonClassname = classNames({
 	          //[classes.buttonSuccess]: success,
-	          [classes.buttonSuccess]: success,
+	          [classes.buttonSuccess]: this.props.ui.dataSuccess,
 	        });
 
 		let remuxStr = "remuX!";

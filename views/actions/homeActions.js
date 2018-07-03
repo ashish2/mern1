@@ -44,7 +44,7 @@ export function submitButtonChangeAction(ev) {
 	console.log("ev.target SUBMIT ", ev.target);
 
 	return {
-		type: "SUBMIT_BUTTON_CHANGE",
+		type: "SUBMITLOADING_BUTTON_CHANGE",
 		payload: true
 	}
 
@@ -52,7 +52,7 @@ export function submitButtonChangeAction(ev) {
 
 export function submitButtonOffAction(ev) {
 	return {
-		type: "SUBMIT_BUTTON_OFF",
+		type: "SUBMITLOADING_BUTTON_OFF",
 		payload: true
 	}
 }
@@ -81,7 +81,11 @@ export function postHomeAction(ev) {
 			// Dispatch an event with payload
 			dispatch({	
 				type: "CREATE_HOME_FULFILLED",
-				payload: result.data.objects
+				payload: result.data.data
+			});
+			dispatch({	
+				type: "SUBMITLOADING_BUTTON_OFF",
+				payload: false
 			});
 		})
 		.catch(err => {
@@ -106,14 +110,14 @@ export function jdChangeAction(ev) {
 		if( ev.target.value == "" ) {
 			// But check, if its already off/disabled then no need to dipatch an event
 			ret = {
-				type: "SUBMIT_BUTTON_OFF",
+				type: "SUBMITLOADING_BUTTON_OFF",
 				payload: true
 			}
 		}
 		else {
 			// But check, if its already off/disabled then no need to dipatch an event
 			ret = {
-				type: "SUBMIT_BUTTON_OFF",
+				type: "SUBMITLOADING_BUTTON_OFF",
 				payload: false
 			}
 		}

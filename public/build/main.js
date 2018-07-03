@@ -42981,6 +42981,7 @@ webpackJsonp([0,1],[
 			},
 			buttonSuccess: {
 				backgroundColor: _green2.default[500],
+	
 				'&:hover': {
 					backgroundColor: _green2.default[700]
 				}
@@ -43101,7 +43102,7 @@ webpackJsonp([0,1],[
 				// TODO: FTM, success shud be true/false depending on response from API
 				var success = false;
 	
-				var buttonClassname = (0, _classnames2.default)(_defineProperty({}, classes.buttonSuccess, success));
+				var buttonClassname = (0, _classnames2.default)(_defineProperty({}, classes.buttonSuccess, this.props.ui.dataSuccess));
 	
 				var remuxStr = "remuX!";
 				var homeStr = "This is HOME";
@@ -45526,14 +45527,14 @@ webpackJsonp([0,1],[
 		console.log("ev.target SUBMIT ", ev.target);
 	
 		return {
-			type: "SUBMIT_BUTTON_CHANGE",
+			type: "SUBMITLOADING_BUTTON_CHANGE",
 			payload: true
 		};
 	}
 	
 	function submitButtonOffAction(ev) {
 		return {
-			type: "SUBMIT_BUTTON_OFF",
+			type: "SUBMITLOADING_BUTTON_OFF",
 			payload: true
 		};
 	}
@@ -45560,7 +45561,11 @@ webpackJsonp([0,1],[
 				// Dispatch an event with payload
 				dispatch({
 					type: "CREATE_HOME_FULFILLED",
-					payload: result.data.objects
+					payload: result.data.data
+				});
+				dispatch({
+					type: "SUBMITLOADING_BUTTON_OFF",
+					payload: false
 				});
 			}).catch(function (err) {
 				console.log("HOME result ERR ", err);
@@ -45583,13 +45588,13 @@ webpackJsonp([0,1],[
 			if (ev.target.value == "") {
 				// But check, if its already off/disabled then no need to dipatch an event
 				ret = {
-					type: "SUBMIT_BUTTON_OFF",
+					type: "SUBMITLOADING_BUTTON_OFF",
 					payload: true
 				};
 			} else {
 				// But check, if its already off/disabled then no need to dipatch an event
 				ret = {
-					type: "SUBMIT_BUTTON_OFF",
+					type: "SUBMITLOADING_BUTTON_OFF",
 					payload: false
 				};
 			}
@@ -53884,7 +53889,8 @@ webpackJsonp([0,1],[
 	
 	var defaultState = {
 		ui: {
-			submitLoading: false
+			submitLoading: false,
+			dataSuccess: false
 		}
 	
 	};
@@ -53894,7 +53900,7 @@ webpackJsonp([0,1],[
 		var action = arguments[1];
 	
 		switch (action.type) {
-			case "SUBMIT_BUTTON_TOGGLE":
+			case "SUBMITLOADING_BUTTON_OFF":
 				{
 					console.log("homeRed SUBMIT_BUTTON_CHANGE");
 					var data = action.payload;
@@ -53905,10 +53911,21 @@ webpackJsonp([0,1],[
 					break;
 				}
 	
-			case "SUBMIT_BUTTON_OFF":
+			case "SUBMITLOADING_BUTTON_OFF":
 				{
 					console.log("homeRed SUBMIT_BUTTON_OFF");
 					var _data = action.payload;
+					//const data = action.payload.data.objects;
+					//state = {...state, users: data};
+					// FTM, adding same data in `todos` key also, FOR TESTING.
+					state = _extends({}, state, { ui: _extends({}, state.ui, { submitLoading: action.payload }) });
+					break;
+				}
+	
+			case "SUBMITLOADING_BUTTON_OFF":
+				{
+					console.log("homeRed SUBMIT_BUTTON_ON");
+					var _data2 = action.payload;
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
@@ -53926,19 +53943,28 @@ webpackJsonp([0,1],[
 					state = _extends({}, state, { todos: todos });
 					break;
 				}
+	
+			case "CREATE_HOME_FULFILLED":
+				{
+					state = _extends({}, state, { data: action.payload, ui: _extends({}, state.ui, { dataSuccess: true }) });
+					break;
+				}
+	
 			case "READ_TODOS_START":
 				{
 					break;
 				}
+	
 			case "READ_TODOS_FULFILLED":
 				{
-					var _data2 = action.payload;
+					var _data3 = action.payload;
 					//const data = action.payload.data.objects;
 					//state = {...state, users: data};
 					// FTM, adding same data in `todos` key also, FOR TESTING.
-					state = _extends({}, state, { todos: _data2 });
+					state = _extends({}, state, { todos: _data3 });
 					break;
 				}
+	
 			case "default":
 				{
 					break;
