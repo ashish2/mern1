@@ -42692,7 +42692,7 @@ webpackJsonp([0,1],[
 						_react2.default.createElement(
 							_Typography2.default,
 							{ variant: 'title', color: 'inherit', className: classes.flex },
-							'Title'
+							'remuX!'
 						),
 						_react2.default.createElement(
 							_Button2.default,
@@ -43104,8 +43104,7 @@ webpackJsonp([0,1],[
 	
 				var buttonClassname = (0, _classnames2.default)(_defineProperty({}, classes.buttonSuccess, this.props.ui.dataSuccess));
 	
-				var remuxStr = "remuX!";
-				var homeStr = "This is HOME";
+				var homeStr = "HOME";
 				var justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 				//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 				var beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
@@ -43118,11 +43117,6 @@ webpackJsonp([0,1],[
 					_react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(
-							"h1",
-							null,
-							remuxStr
-						),
 						_react2.default.createElement(
 							"h3",
 							null,

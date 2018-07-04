@@ -162,8 +162,7 @@ class Home extends Component {
 	          [classes.buttonSuccess]: this.props.ui.dataSuccess,
 	        });
 
-		let remuxStr = "remuX!";
-		let homeStr = "This is HOME";
+		let homeStr = "HOME";
 		let justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 		//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 		let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
@@ -174,7 +173,6 @@ class Home extends Component {
 			<div className="row">
 
 				<div className="col-lg-12">
-					<h1>{remuxStr}</h1>
 					<h3>{homeStr}</h3>
 					<div>
 						<p>{justStr}</p>

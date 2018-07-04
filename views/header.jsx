@@ -72,7 +72,7 @@ class Header extends Component {
 					</Menu>
 
 					            <Typography variant="title" color="inherit" className={classes.flex}>
-			              Title
+			              remuX!
 			            </Typography>
 
 

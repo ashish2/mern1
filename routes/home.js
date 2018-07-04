@@ -42,9 +42,21 @@ function postHome(req, res, next) {
 	// TODO: FTM, remove this setTimeout later
 	let t = setTimeout( function() {
 		console.log( "timeout ", res);
+		// TODO: Fetch `data` from DB
+		// SAMPLE Data
+		// For Fresher or 1 year experience
+		let data = {
+			technologies: [
+				{name: "react", cost: 5000},
+				{name: "python", cost: 4000},
+				{name: "php", cost: 3000},
+				{name: "ruby", cost: 4000},
+				{name: "aws", cost: 3000},
+		]};
+
 		res.json({
 			"status": "success",
-			"data": req.body
+			"data": data
 		});
 	}, 3000);
 	//clearTimeout(t);
@@ -56,10 +68,6 @@ function postHome(req, res, next) {
 		"data": req.body
 	});
 	*/
-
-	
-	//let options = {root: config.root};
-	//res.sendFile('/users.json', options);
 }
 
 
