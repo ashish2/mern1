@@ -40,7 +40,7 @@ function postHome(req, res, next) {
 	
 
 	// TODO: FTM, remove this setTimeout later
-	let t = setTimeout( function() {
+	function late() {
 		console.log( "timeout ", res);
 		// TODO: Fetch `data` from DB
 		// SAMPLE Data
@@ -58,7 +58,10 @@ function postHome(req, res, next) {
 			"status": "success",
 			"data": data
 		});
-	}, 3000);
+	};
+
+	//let t = setTimeout(late, 3000);
+	let t = setTimeout(late, 0);
 	//clearTimeout(t);
 	// TODO-
 
