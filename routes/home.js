@@ -48,10 +48,11 @@ function postHome(req, res, next) {
 		let data = {
 			technologies: [
 				{name: "react", cost: 5000},
-				{name: "python", cost: 4000},
-				{name: "php", cost: 3000},
+				{name: "python", cost: 5000},
 				{name: "ruby", cost: 4000},
+				{name: "php", cost: 3000},
 				{name: "aws", cost: 3000},
+				{name: "Total", cost: 20000},
 		]};
 
 		res.json({

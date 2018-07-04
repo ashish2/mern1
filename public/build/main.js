@@ -43204,11 +43204,7 @@ webpackJsonp([0,1],[
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(
-							"div",
-							null,
-							_react2.default.createElement(_CustomTable2.default, { t: this.props.home.data.technologies })
-						)
+						_react2.default.createElement(_CustomTable2.default, { t: this.props.home.data.technologies })
 					)
 				);
 			}
@@ -47237,10 +47233,15 @@ webpackJsonp([0,1],[
 		return {
 			head: {
 				backgroundColor: theme.palette.common.black,
-				color: theme.palette.white
+				//color: theme.palette.white
+				color: "#fff"
 			},
 			body: {
 				fontSize: 14
+			},
+			footer: {
+				fontSize: 14,
+				color: "red"
 			}
 		};
 	})(_TableCell2.default);
@@ -47287,21 +47288,68 @@ webpackJsonp([0,1],[
 		_createClass(CustomTable, [{
 			key: 'render',
 			value: function render() {
-				//const { classes } = this.props;
+				var classes = this.props.classes;
 				//console.log( "calsses ", classes);
 				//console.log( "this.props ", this.props);
+				var tLen = this.props.t.length;
 	
 				var id = 0;
-				return this.props.t.map(function (n) {
-					return _react2.default.createElement(
-						_Paper2.default,
-						{ key: id++ },
-						'Name: ',
-						n.name,
-						' , Cost: ',
-						n.cost
-					);
-				});
+				return _react2.default.createElement(
+					_Paper2.default,
+					{ key: id++, className: classes.root },
+					_react2.default.createElement(
+						_Table2.default,
+						{ className: classes.table },
+						_react2.default.createElement(
+							_TableHead2.default,
+							null,
+							_react2.default.createElement(
+								_TableRow2.default,
+								null,
+								_react2.default.createElement(
+									CustomTableCell,
+									{ className: classes.footer },
+									'Tech'
+								),
+								_react2.default.createElement(
+									CustomTableCell,
+									{ numeric: true, className: classes.head },
+									'Cost* (Approx.)'
+								)
+							)
+						),
+						_react2.default.createElement(
+							_TableBody2.default,
+							null,
+							this.props.t.map(function (n) {
+								console.log(" id: ", id, " length ", tLen);
+	
+								var tableRowClassName = classes.row;
+	
+								console.log("OUT ", tableRowClassName);
+								if (id == tLen) {
+									tableRowClassName = classes.footer;
+									console.log("IF ", tableRowClassName);
+								}
+	
+								return _react2.default.createElement(
+									_TableRow2.default,
+									{ className: tableRowClassName, key: id++ },
+									_react2.default.createElement(
+										CustomTableCell,
+										{ component: 'th', scope: 'row' },
+										n.name
+									),
+									_react2.default.createElement(
+										CustomTableCell,
+										{ numeric: true },
+										n.cost
+									)
+								);
+							})
+						)
+					)
+				);
 			}
 		}]);
 	

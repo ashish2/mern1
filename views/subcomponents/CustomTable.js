@@ -15,10 +15,15 @@ import Paper from '@material-ui/core/Paper';
 const CustomTableCell = withStyles(theme => ({
 	head: {
 		backgroundColor: theme.palette.common.black,
-		color: theme.palette.white
+		//color: theme.palette.white
+		color: "#fff"
 	},
 	body: {
 		fontSize: 14,
+	},
+	footer: {
+		fontSize: 14,
+		color: "red",
 	},
 }))(TableCell);
 
@@ -58,20 +63,57 @@ class CustomTable extends React.Component {
 	}
 
 	render() {
-		//const { classes } = this.props;
+		const  classes = this.props.classes;
 		//console.log( "calsses ", classes);
 		//console.log( "this.props ", this.props);
+		const tLen = this.props.t.length;
 		
 		let id = 0;
-		return (
-			this.props.t.map(n => {
-				return ( 
-					<Paper key={id++}>
-						Name: {n.name } , Cost: {n.cost}
-					</Paper>
-				)
-			})
-		);
+		return ( 
+			<Paper key={id++} className={classes.root}>
+				<Table className={classes.table}>
+					<TableHead>
+						<TableRow>
+							<CustomTableCell className={classes.footer}>
+								Tech
+							</CustomTableCell>
+							<CustomTableCell numeric className={classes.head}>
+								Cost* (Approx.)
+							</CustomTableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+					{
+					this.props.t.map(n => {
+						console.log(" id: ", id, " length ", tLen);
+
+						var tableRowClassName = classes.row;
+
+						console.log("OUT ", tableRowClassName);
+						if(id == tLen) {
+							tableRowClassName = classes.footer;
+							console.log("IF ", tableRowClassName);
+						}
+
+
+						return (
+							<TableRow className={tableRowClassName} key={id++}>
+								<CustomTableCell component="th" scope="row">
+									{n.name}
+								</CustomTableCell>
+								<CustomTableCell numeric>
+									{n.cost}
+								</CustomTableCell>
+							</TableRow>
+						);
+
+					})
+					}
+					</TableBody>
+				</Table>
+			</Paper>
+		
+		);	
 	}
 
 }
