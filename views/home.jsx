@@ -240,6 +240,15 @@ class Home extends Component {
 						<CustomTable t={this.props.home.data.technologies} />
 					</div>
 				}
+			 	
+				Suggestions on each Technologies, these are the Tech:
+				{this.props.home && this.props.home.data
+					&&
+					<div className="col-lg-12">
+						<CustomTable t={this.props.home.data.technologies} />
+					</div>
+				}
+
 
 			</div>
 				
