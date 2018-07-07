@@ -42726,6 +42726,11 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Button2.default,
+							{ color: 'inherit', component: _reactRouterDom.Link, to: '/earningpotential' },
+							'Best Projects getting done on Tech'
+						),
+						_react2.default.createElement(
+							_Button2.default,
 							{ color: 'secondary', variant: 'contained', component: _reactRouterDom.Link, to: '/login' },
 							'Login'
 						)
@@ -43201,6 +43206,12 @@ webpackJsonp([0,1],[
 							)
 						)
 					),
+					this.props.home && this.props.home.data && _react2.default.createElement(
+						"div",
+						{ className: "col-lg-12" },
+						_react2.default.createElement(_CustomTable2.default, { t: this.props.home.data.technologies })
+					),
+					"Suggestions on each Technologies, these are the Tech:",
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },

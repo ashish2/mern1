@@ -100,6 +100,10 @@ class Header extends Component {
 						Earning Capacity
 					</Button>
 
+					<Button color="inherit" component={Link} to="/earningpotential">
+						Best Projects getting done on Tech
+					</Button>
+
 					<Button color="secondary" variant="contained" component={Link} to="/login">
 						Login
 					</Button>
