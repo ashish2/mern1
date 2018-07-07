@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import thunk from "redux-thunk";
 
 import { postHomeAction, jdChangeAction, submitButtonChangeAction, submitButtonOffAction } from "./actions/homeActions";
-import CustomTable from './subcomponents/CustomTable';
+import CustomTableTech from './subcomponents/CustomTableTech';
 
 import DocumentTitle from 'react-document-title';
 
@@ -237,7 +237,7 @@ class Home extends Component {
 			 	{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
-						<CustomTable t={this.props.home.data.technologies} />
+						<CustomTableTech t={this.props.home.data.technologies} />
 					</div>
 				}
 			 	
@@ -245,7 +245,7 @@ class Home extends Component {
 				{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
-						<CustomTable t={this.props.home.data.technologies} />
+						<CustomTableJob t={this.props.home.data.technologies} />
 					</div>
 				}
 

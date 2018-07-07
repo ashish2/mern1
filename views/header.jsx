@@ -71,9 +71,9 @@ class Header extends Component {
 						</MenuItem>
 					</Menu>
 
-					            <Typography variant="title" color="inherit" className={classes.flex}>
-			              remuX!
-			            </Typography>
+					<Typography variant="title" color="inherit" className={classes.flex}>
+			              		remuX!
+					</Typography>
 
 
 					<Button color="inherit" component={Link} to="/">

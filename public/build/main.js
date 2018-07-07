@@ -43215,7 +43215,7 @@ webpackJsonp([0,1],[
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(_CustomTable2.default, { t: this.props.home.data.technologies })
+						_react2.default.createElement(CustomTableJob, { t: this.props.home.data.technologies })
 					)
 				);
 			}

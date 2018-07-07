@@ -47,12 +47,14 @@ function postHome(req, res, next) {
 		// For Fresher or 1 year experience
 		let data = {
 			technologies: [
-				{name: "react", cost: 5000},
-				{name: "python", cost: 5000},
+				{name: "react", cost: 4000},
+				{name: "python", cost: 4000},
 				{name: "ruby", cost: 4000},
 				{name: "php", cost: 3000},
 				{name: "aws", cost: 3000},
-				{name: "Total", cost: 20000},
+				{name: "c++", cost: 5000},
+				{name: "java", cost: 5000},
+				{name: "Total", cost: 28000},
 		]};
 
 		res.json({
