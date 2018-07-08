@@ -43213,12 +43213,31 @@ webpackJsonp([0,1],[
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
+						_react2.default.createElement(
+							"h3",
+							null,
+							"Cost approximation"
+						),
 						_react2.default.createElement(_CustomTableTech2.default, { t: this.props.home.data.technologies })
 					),
-					"Job suggestions on each Technologies, these are the Jobs in these Tech:",
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
+						_react2.default.createElement(
+							"h3",
+							null,
+							"Job suggestions on these Technologies, these are some top Jobs in these Tech (Apply):"
+						),
+						_react2.default.createElement(_CustomTableJob2.default, { t: this.props.home.data.technologies })
+					),
+					this.props.home && this.props.home.data && _react2.default.createElement(
+						"div",
+						{ className: "col-lg-12" },
+						_react2.default.createElement(
+							"h3",
+							null,
+							"Some top class projects getting done on these Technologies and your probable team mates!"
+						),
 						_react2.default.createElement(_CustomTableJob2.default, { t: this.props.home.data.technologies })
 					)
 				);

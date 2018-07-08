@@ -63,8 +63,8 @@ function postHome(req, res, next) {
 		});
 	};
 
-	//let t = setTimeout(late, 3000);
-	let t = setTimeout(late, 0);
+	let t = setTimeout(late, 3000);
+	//let t = setTimeout(late, 0);
 	//clearTimeout(t);
 	// TODO-
 

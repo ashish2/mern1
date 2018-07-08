@@ -238,18 +238,32 @@ class Home extends Component {
 			 	{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
+						<h3>
+							Cost approximation
+						</h3>
 						<CustomTableTech t={this.props.home.data.technologies} />
 					</div>
 				}
 			 	
-				Job suggestions on each Technologies, these are the Jobs in these Tech:
 				{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
+						<h3>
+							Job suggestions on these Technologies, these are some top Jobs in these Tech (Apply):
+						</h3>
 						<CustomTableJob t={this.props.home.data.technologies} />
 					</div>
 				}
 
+				{this.props.home && this.props.home.data
+					&&
+					<div className="col-lg-12">
+						<h3>
+							Some top class projects getting done on these Technologies and your probable team mates!
+						</h3>
+						<CustomTableJob t={this.props.home.data.technologies} />
+					</div>
+				}
 
 			</div>
 				
