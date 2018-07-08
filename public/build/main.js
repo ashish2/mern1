@@ -25,7 +25,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
 	
-	var _store = __webpack_require__(/*! ./store */ 447);
+	var _store = __webpack_require__(/*! ./store */ 448);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -24766,7 +24766,7 @@ webpackJsonp([0,1],[
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _Footer = __webpack_require__(/*! ./components/Footer */ 439);
+	var _Footer = __webpack_require__(/*! ./components/Footer */ 440);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -42661,11 +42661,6 @@ webpackJsonp([0,1],[
 						_Toolbar2.default,
 						null,
 						_react2.default.createElement(
-							_IconButton2.default,
-							{ color: 'inherit', 'aria-label': 'Menu' },
-							_react2.default.createElement(_AccountCircle2.default, null)
-						),
-						_react2.default.createElement(
 							_Menu2.default,
 							{ open: f },
 							_react2.default.createElement(_Menu2.default, null),
@@ -42696,7 +42691,7 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Button2.default,
-							{ color: 'inherit', component: _reactRouterDom.Link, to: '/' },
+							{ color: 'inherit', variant: 'outlined', component: _reactRouterDom.Link, to: '/' },
 							'Home'
 						),
 						_react2.default.createElement(
@@ -42778,23 +42773,23 @@ webpackJsonp([0,1],[
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 425);
+	var _Login = __webpack_require__(/*! ./Login */ 426);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 433);
+	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 434);
 	
 	var _TodoForm2 = _interopRequireDefault(_TodoForm);
 	
-	var _Todos = __webpack_require__(/*! ./components/Todos */ 434);
+	var _Todos = __webpack_require__(/*! ./components/Todos */ 435);
 	
 	var _Todos2 = _interopRequireDefault(_Todos);
 	
-	var _Users = __webpack_require__(/*! ./components/Users */ 436);
+	var _Users = __webpack_require__(/*! ./components/Users */ 437);
 	
 	var _Users2 = _interopRequireDefault(_Users);
 	
-	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 438);
+	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 439);
 	
 	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
 	
@@ -42902,19 +42897,19 @@ webpackJsonp([0,1],[
 	
 	var _homeActions = __webpack_require__(/*! ./actions/homeActions */ 359);
 	
-	var _CustomTableTech = __webpack_require__(/*! ./subcomponents/CustomTableTech */ 454);
+	var _CustomTableTech = __webpack_require__(/*! ./subcomponents/CustomTableTech */ 385);
 	
 	var _CustomTableTech2 = _interopRequireDefault(_CustomTableTech);
 	
-	var _CustomTableJob = __webpack_require__(/*! ./subcomponents/CustomTableJob */ 455);
+	var _CustomTableJob = __webpack_require__(/*! ./subcomponents/CustomTableJob */ 396);
 	
 	var _CustomTableJob2 = _interopRequireDefault(_CustomTableJob);
 	
-	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 396);
+	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 397);
 	
 	var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
 	
-	var _TextField = __webpack_require__(/*! @material-ui/core/TextField */ 400);
+	var _TextField = __webpack_require__(/*! @material-ui/core/TextField */ 401);
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
@@ -42926,37 +42921,37 @@ webpackJsonp([0,1],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 419);
+	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 420);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Send = __webpack_require__(/*! @material-ui/icons/Send */ 421);
+	var _Send = __webpack_require__(/*! @material-ui/icons/Send */ 422);
 	
 	var _Send2 = _interopRequireDefault(_Send);
 	
-	var _CircularProgress = __webpack_require__(/*! @material-ui/core/CircularProgress */ 422);
+	var _CircularProgress = __webpack_require__(/*! @material-ui/core/CircularProgress */ 423);
 	
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 	
-	var _green = __webpack_require__(/*! @material-ui/core/colors/green */ 424);
+	var _green = __webpack_require__(/*! @material-ui/core/colors/green */ 425);
 	
 	var _green2 = _interopRequireDefault(_green);
 	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
-	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 402);
+	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 403);
 	
 	var _Input2 = _interopRequireDefault(_Input);
 	
-	var _InputLabel = __webpack_require__(/*! @material-ui/core/InputLabel */ 405);
+	var _InputLabel = __webpack_require__(/*! @material-ui/core/InputLabel */ 406);
 	
 	var _InputLabel2 = _interopRequireDefault(_InputLabel);
 	
-	var _FormHelperText = __webpack_require__(/*! @material-ui/core/FormHelperText */ 411);
+	var _FormHelperText = __webpack_require__(/*! @material-ui/core/FormHelperText */ 412);
 	
 	var _FormHelperText2 = _interopRequireDefault(_FormHelperText);
 	
-	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 409);
+	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 410);
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 	
@@ -47205,7 +47200,195 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 385 */,
+/* 385 */
+/*!************************************************!*\
+  !*** ./views/subcomponents/CustomTableTech.js ***!
+  \************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 28);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
+	
+	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
+	
+	var _Table2 = _interopRequireDefault(_Table);
+	
+	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
+	
+	var _TableBody2 = _interopRequireDefault(_TableBody);
+	
+	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
+	
+	var _TableCell2 = _interopRequireDefault(_TableCell);
+	
+	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
+	
+	var _TableHead2 = _interopRequireDefault(_TableHead);
+	
+	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
+	
+	var _TableRow2 = _interopRequireDefault(_TableRow);
+	
+	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
+		return {
+			head: {
+				backgroundColor: theme.palette.common.black,
+				//color: theme.palette.white
+				color: "#fff"
+			},
+			body: {
+				fontSize: 14
+			},
+			footer: {
+				fontSize: 14,
+				color: "red"
+			}
+		};
+	})(_TableCell2.default);
+	
+	var styles = function styles(theme) {
+		return {
+			root: {
+				width: '100%',
+				marginTop: theme.spacing.unit * 3,
+				overflowX: "auto"
+			},
+			table: {
+				minWidth: 700
+			},
+			row: {
+				'&:nth-of-type(odd)': {
+					backgroundColor: theme.palette.background.default
+				}
+			}
+		};
+	};
+	
+	/*
+	const mapStateToProps = (store) => {
+	}
+	
+	const mapDispatchToProps = (dispatch) => {
+	}
+	*/
+	
+	var CustomTableTech = function (_React$Component) {
+		_inherits(CustomTableTech, _React$Component);
+	
+		function CustomTableTech(props) {
+			_classCallCheck(this, CustomTableTech);
+	
+			var _this = _possibleConstructorReturn(this, (CustomTableTech.__proto__ || Object.getPrototypeOf(CustomTableTech)).call(this, props));
+	
+			console.log("Custom ", _this.props);
+			console.log("t ", _this.props.t);
+			return _this;
+		}
+	
+		_createClass(CustomTableTech, [{
+			key: 'render',
+			value: function render() {
+				var classes = this.props.classes;
+				//console.log( "calsses ", classes);
+				//console.log( "this.props ", this.props);
+				var tLen = this.props.t.length;
+	
+				var id = 0;
+				return _react2.default.createElement(
+					_Paper2.default,
+					{ key: id++, className: classes.root },
+					_react2.default.createElement(
+						_Table2.default,
+						{ className: classes.table },
+						_react2.default.createElement(
+							_TableHead2.default,
+							null,
+							_react2.default.createElement(
+								_TableRow2.default,
+								null,
+								_react2.default.createElement(
+									CustomTableCell,
+									{ className: classes.footer },
+									'Tech'
+								),
+								_react2.default.createElement(
+									CustomTableCell,
+									{ numeric: true, className: classes.head },
+									'Cost* (Approx.)'
+								)
+							)
+						),
+						_react2.default.createElement(
+							_TableBody2.default,
+							null,
+							this.props.t.map(function (n) {
+								console.log(" id: ", id, " length ", tLen);
+	
+								var tableRowClassName = classes.row;
+	
+								console.log("OUT ", tableRowClassName);
+								if (id == tLen) {
+									tableRowClassName = classes.footer;
+									console.log("IF ", tableRowClassName);
+								}
+	
+								return _react2.default.createElement(
+									_TableRow2.default,
+									{ className: tableRowClassName, key: id++ },
+									_react2.default.createElement(
+										CustomTableCell,
+										{ component: 'th', scope: 'row' },
+										n.name
+									),
+									_react2.default.createElement(
+										CustomTableCell,
+										{ numeric: true },
+										n.cost
+									)
+								);
+							})
+						)
+					)
+				);
+			}
+		}]);
+	
+		return CustomTableTech;
+	}(_react2.default.Component);
+	
+	exports.default = (0, _styles.withStyles)(styles)(CustomTableTech);
+	//export default (CustomTable);
+
+/***/ }),
 /* 386 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Table/index.js ***!
@@ -47998,6 +48181,195 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 396 */
+/*!***********************************************!*\
+  !*** ./views/subcomponents/CustomTableJob.js ***!
+  \***********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 28);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
+	
+	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
+	
+	var _Table2 = _interopRequireDefault(_Table);
+	
+	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
+	
+	var _TableBody2 = _interopRequireDefault(_TableBody);
+	
+	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
+	
+	var _TableCell2 = _interopRequireDefault(_TableCell);
+	
+	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
+	
+	var _TableHead2 = _interopRequireDefault(_TableHead);
+	
+	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
+	
+	var _TableRow2 = _interopRequireDefault(_TableRow);
+	
+	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
+		return {
+			head: {
+				backgroundColor: theme.palette.common.black,
+				//color: theme.palette.white
+				color: "#fff"
+			},
+			body: {
+				fontSize: 14
+			},
+			footer: {
+				fontSize: 14,
+				color: "red"
+			}
+		};
+	})(_TableCell2.default);
+	
+	var styles = function styles(theme) {
+		return {
+			root: {
+				width: '100%',
+				marginTop: theme.spacing.unit * 3,
+				overflowX: "auto"
+			},
+			table: {
+				minWidth: 700
+			},
+			row: {
+				'&:nth-of-type(odd)': {
+					backgroundColor: theme.palette.background.default
+				}
+			}
+		};
+	};
+	
+	/*
+	const mapStateToProps = (store) => {
+	}
+	
+	const mapDispatchToProps = (dispatch) => {
+	}
+	*/
+	
+	var CustomTableJob = function (_React$Component) {
+		_inherits(CustomTableJob, _React$Component);
+	
+		function CustomTableJob(props) {
+			_classCallCheck(this, CustomTableJob);
+	
+			var _this = _possibleConstructorReturn(this, (CustomTableJob.__proto__ || Object.getPrototypeOf(CustomTableJob)).call(this, props));
+	
+			console.log("Custom ", _this.props);
+			console.log("t ", _this.props.t);
+			return _this;
+		}
+	
+		_createClass(CustomTableJob, [{
+			key: 'render',
+			value: function render() {
+				var classes = this.props.classes;
+				//console.log( "calsses ", classes);
+				//console.log( "this.props ", this.props);
+				var tLen = this.props.t.length;
+	
+				var id = 0;
+				return _react2.default.createElement(
+					_Paper2.default,
+					{ key: id++, className: classes.root },
+					_react2.default.createElement(
+						_Table2.default,
+						{ className: classes.table },
+						_react2.default.createElement(
+							_TableHead2.default,
+							null,
+							_react2.default.createElement(
+								_TableRow2.default,
+								null,
+								_react2.default.createElement(
+									CustomTableCell,
+									{ className: classes.footer },
+									'Tech'
+								),
+								_react2.default.createElement(
+									CustomTableCell,
+									{ numeric: true, className: classes.head },
+									'Cost* (Approx.)'
+								)
+							)
+						),
+						_react2.default.createElement(
+							_TableBody2.default,
+							null,
+							this.props.t.map(function (n) {
+								console.log(" id: ", id, " length ", tLen);
+	
+								var tableRowClassName = classes.row;
+	
+								console.log("OUT ", tableRowClassName);
+								if (id == tLen) {
+									tableRowClassName = classes.footer;
+									console.log("IF ", tableRowClassName);
+								}
+	
+								return _react2.default.createElement(
+									_TableRow2.default,
+									{ className: tableRowClassName, key: id++ },
+									_react2.default.createElement(
+										CustomTableCell,
+										{ component: 'th', scope: 'row' },
+										n.name
+									),
+									_react2.default.createElement(
+										CustomTableCell,
+										{ numeric: true },
+										n.cost
+									)
+								);
+							})
+						)
+					)
+				);
+			}
+		}]);
+	
+		return CustomTableJob;
+	}(_react2.default.Component);
+	
+	exports.default = (0, _styles.withStyles)(styles)(CustomTableJob);
+	//export default (CustomTable);
+
+/***/ }),
+/* 397 */
 /*!*****************************************!*\
   !*** ./~/react-document-title/index.js ***!
   \*****************************************/
@@ -48007,7 +48379,7 @@ webpackJsonp([0,1],[
 	
 	var React = __webpack_require__(/*! react */ 1),
 	    PropTypes = __webpack_require__(/*! prop-types */ 28),
-	    withSideEffect = __webpack_require__(/*! react-side-effect */ 397);
+	    withSideEffect = __webpack_require__(/*! react-side-effect */ 398);
 	
 	function reducePropsToState(propsList) {
 	  var innermostProps = propsList[propsList.length - 1];
@@ -48046,7 +48418,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 397 */
+/* 398 */
 /*!******************************************!*\
   !*** ./~/react-side-effect/lib/index.js ***!
   \******************************************/
@@ -48058,8 +48430,8 @@ webpackJsonp([0,1],[
 	
 	var React = __webpack_require__(/*! react */ 1);
 	var React__default = _interopDefault(React);
-	var ExecutionEnvironment = _interopDefault(__webpack_require__(/*! exenv */ 398));
-	var shallowEqual = _interopDefault(__webpack_require__(/*! shallowequal */ 399));
+	var ExecutionEnvironment = _interopDefault(__webpack_require__(/*! exenv */ 399));
+	var shallowEqual = _interopDefault(__webpack_require__(/*! shallowequal */ 400));
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -48168,7 +48540,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 398 */
+/* 399 */
 /*!**************************!*\
   !*** ./~/exenv/index.js ***!
   \**************************/
@@ -48217,7 +48589,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 399 */
+/* 400 */
 /*!*********************************!*\
   !*** ./~/shallowequal/index.js ***!
   \*********************************/
@@ -48276,7 +48648,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 400 */
+/* 401 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/TextField/index.js ***!
   \************************************************/
@@ -48296,10 +48668,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _TextField = _interopRequireDefault(__webpack_require__(/*! ./TextField */ 401));
+	var _TextField = _interopRequireDefault(__webpack_require__(/*! ./TextField */ 402));
 
 /***/ }),
-/* 401 */
+/* 402 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/TextField/TextField.js ***!
   \****************************************************/
@@ -48324,15 +48696,15 @@ webpackJsonp([0,1],[
 	
 	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 402));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 403));
 	
-	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ../InputLabel */ 405));
+	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ../InputLabel */ 406));
 	
-	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ../FormControl */ 409));
+	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ../FormControl */ 410));
 	
-	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ../FormHelperText */ 411));
+	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ../FormHelperText */ 412));
 	
-	var _Select = _interopRequireDefault(__webpack_require__(/*! ../Select */ 413));
+	var _Select = _interopRequireDefault(__webpack_require__(/*! ../Select */ 414));
 	
 	// @inheritedComponent FormControl
 	
@@ -48603,7 +48975,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 402 */
+/* 403 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Input/index.js ***!
   \********************************************/
@@ -48623,10 +48995,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ 403));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ 404));
 
 /***/ }),
-/* 403 */
+/* 404 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Input/Input.js ***!
   \********************************************/
@@ -48668,7 +49040,7 @@ webpackJsonp([0,1],[
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _Textarea = _interopRequireDefault(__webpack_require__(/*! ./Textarea */ 404));
+	var _Textarea = _interopRequireDefault(__webpack_require__(/*! ./Textarea */ 405));
 	
 	// Supports determination of isControlled().
 	// Controlled input accepts its current value as a prop.
@@ -49365,7 +49737,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 404 */
+/* 405 */
 /*!***********************************************!*\
   !*** ./~/@material-ui/core/Input/Textarea.js ***!
   \***********************************************/
@@ -49667,7 +50039,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 405 */
+/* 406 */
 /*!*************************************************!*\
   !*** ./~/@material-ui/core/InputLabel/index.js ***!
   \*************************************************/
@@ -49687,10 +50059,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ./InputLabel */ 406));
+	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ./InputLabel */ 407));
 
 /***/ }),
-/* 406 */
+/* 407 */
 /*!******************************************************!*\
   !*** ./~/@material-ui/core/InputLabel/InputLabel.js ***!
   \******************************************************/
@@ -49719,7 +50091,7 @@ webpackJsonp([0,1],[
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ../FormLabel */ 407));
+	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ../FormLabel */ 408));
 	
 	// @inheritedComponent FormLabel
 	var styles = function styles(theme) {
@@ -49858,7 +50230,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 407 */
+/* 408 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/FormLabel/index.js ***!
   \************************************************/
@@ -49878,10 +50250,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ./FormLabel */ 408));
+	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ./FormLabel */ 409));
 
 /***/ }),
-/* 408 */
+/* 409 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/FormLabel/FormLabel.js ***!
   \****************************************************/
@@ -50043,7 +50415,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 409 */
+/* 410 */
 /*!**************************************************!*\
   !*** ./~/@material-ui/core/FormControl/index.js ***!
   \**************************************************/
@@ -50063,10 +50435,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ./FormControl */ 410));
+	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ./FormControl */ 411));
 
 /***/ }),
-/* 410 */
+/* 411 */
 /*!********************************************************!*\
   !*** ./~/@material-ui/core/FormControl/FormControl.js ***!
   \********************************************************/
@@ -50103,7 +50475,7 @@ webpackJsonp([0,1],[
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _Input = __webpack_require__(/*! ../Input/Input */ 403);
+	var _Input = __webpack_require__(/*! ../Input/Input */ 404);
 	
 	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
 	
@@ -50340,7 +50712,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 411 */
+/* 412 */
 /*!*****************************************************!*\
   !*** ./~/@material-ui/core/FormHelperText/index.js ***!
   \*****************************************************/
@@ -50360,10 +50732,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ./FormHelperText */ 412));
+	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ./FormHelperText */ 413));
 
 /***/ }),
-/* 412 */
+/* 413 */
 /*!**************************************************************!*\
   !*** ./~/@material-ui/core/FormHelperText/FormHelperText.js ***!
   \**************************************************************/
@@ -50509,7 +50881,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 413 */
+/* 414 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/Select/index.js ***!
   \*********************************************/
@@ -50529,10 +50901,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Select = _interopRequireDefault(__webpack_require__(/*! ./Select */ 414));
+	var _Select = _interopRequireDefault(__webpack_require__(/*! ./Select */ 415));
 
 /***/ }),
-/* 414 */
+/* 415 */
 /*!**********************************************!*\
   !*** ./~/@material-ui/core/Select/Select.js ***!
   \**********************************************/
@@ -50555,17 +50927,17 @@ webpackJsonp([0,1],[
 	
 	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
 	
-	var _SelectInput = _interopRequireDefault(__webpack_require__(/*! ./SelectInput */ 415));
+	var _SelectInput = _interopRequireDefault(__webpack_require__(/*! ./SelectInput */ 416));
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 416));
+	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 417));
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 402));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 403));
 	
-	var _NativeSelect = __webpack_require__(/*! ../NativeSelect/NativeSelect */ 417);
+	var _NativeSelect = __webpack_require__(/*! ../NativeSelect/NativeSelect */ 418);
 	
-	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ../NativeSelect/NativeSelectInput */ 418));
+	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ../NativeSelect/NativeSelectInput */ 419));
 	
 	// @inheritedComponent Input
 	var styles = _NativeSelect.styles;
@@ -50742,7 +51114,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 415 */
+/* 416 */
 /*!***************************************************!*\
   !*** ./~/@material-ui/core/Select/SelectInput.js ***!
   \***************************************************/
@@ -50785,7 +51157,7 @@ webpackJsonp([0,1],[
 	
 	var _Menu = _interopRequireDefault(__webpack_require__(/*! ../Menu/Menu */ 190));
 	
-	var _Input = __webpack_require__(/*! ../Input/Input */ 403);
+	var _Input = __webpack_require__(/*! ../Input/Input */ 404);
 	
 	/**
 	 * @ignore - internal component.
@@ -51237,7 +51609,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 416 */
+/* 417 */
 /*!*****************************************************************!*\
   !*** ./~/@material-ui/core/internal/svg-icons/ArrowDropDown.js ***!
   \*****************************************************************/
@@ -51275,7 +51647,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 417 */
+/* 418 */
 /*!**********************************************************!*\
   !*** ./~/@material-ui/core/NativeSelect/NativeSelect.js ***!
   \**********************************************************/
@@ -51298,13 +51670,13 @@ webpackJsonp([0,1],[
 	
 	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
 	
-	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ./NativeSelectInput */ 418));
+	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ./NativeSelectInput */ 419));
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 416));
+	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 417));
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 402));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 403));
 	
 	// @inheritedComponent Input
 	var styles = function styles(theme) {
@@ -51450,7 +51822,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 418 */
+/* 419 */
 /*!***************************************************************!*\
   !*** ./~/@material-ui/core/NativeSelect/NativeSelectInput.js ***!
   \***************************************************************/
@@ -51561,7 +51933,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 419 */
+/* 420 */
 /*!*******************************************!*\
   !*** ./~/@material-ui/core/Icon/index.js ***!
   \*******************************************/
@@ -51581,10 +51953,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Icon = _interopRequireDefault(__webpack_require__(/*! ./Icon */ 420));
+	var _Icon = _interopRequireDefault(__webpack_require__(/*! ./Icon */ 421));
 
 /***/ }),
-/* 420 */
+/* 421 */
 /*!******************************************!*\
   !*** ./~/@material-ui/core/Icon/Icon.js ***!
   \******************************************/
@@ -51694,7 +52066,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 421 */
+/* 422 */
 /*!**************************************!*\
   !*** ./~/@material-ui/icons/Send.js ***!
   \**************************************/
@@ -51720,7 +52092,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 422 */
+/* 423 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/CircularProgress/index.js ***!
   \*******************************************************/
@@ -51740,10 +52112,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _CircularProgress = _interopRequireDefault(__webpack_require__(/*! ./CircularProgress */ 423));
+	var _CircularProgress = _interopRequireDefault(__webpack_require__(/*! ./CircularProgress */ 424));
 
 /***/ }),
-/* 423 */
+/* 424 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/CircularProgress/CircularProgress.js ***!
   \******************************************************************/
@@ -51972,7 +52344,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 424 */
+/* 425 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/colors/green.js ***!
   \*********************************************/
@@ -52004,7 +52376,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 425 */
+/* 426 */
 /*!*************************!*\
   !*** ./views/Login.jsx ***!
   \*************************/
@@ -52027,19 +52399,19 @@ webpackJsonp([0,1],[
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 426);
+	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 427);
 	
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 	
-	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 409);
+	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 410);
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 	
-	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 428);
+	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 429);
 	
 	var _FormControlLabel2 = _interopRequireDefault(_FormControlLabel);
 	
-	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 430);
+	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 431);
 	
 	var _Switch2 = _interopRequireDefault(_Switch);
 	
@@ -52168,7 +52540,7 @@ webpackJsonp([0,1],[
 	exports.default = Login;
 
 /***/ }),
-/* 426 */
+/* 427 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/index.js ***!
   \************************************************/
@@ -52188,10 +52560,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 427));
+	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 428));
 
 /***/ }),
-/* 427 */
+/* 428 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/FormGroup.js ***!
   \****************************************************/
@@ -52283,7 +52655,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 428 */
+/* 429 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/index.js ***!
   \*******************************************************/
@@ -52303,10 +52675,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 429));
+	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 430));
 
 /***/ }),
-/* 429 */
+/* 430 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/FormControlLabel.js ***!
   \******************************************************************/
@@ -52482,7 +52854,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 430 */
+/* 431 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/Switch/index.js ***!
   \*********************************************/
@@ -52502,10 +52874,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 431));
+	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 432));
 
 /***/ }),
-/* 431 */
+/* 432 */
 /*!**********************************************!*\
   !*** ./~/@material-ui/core/Switch/Switch.js ***!
   \**********************************************/
@@ -52534,7 +52906,7 @@ webpackJsonp([0,1],[
 	
 	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
 	
-	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 432));
+	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 433));
 	
 	var styles = function styles(theme) {
 	  return {
@@ -52737,7 +53109,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 432 */
+/* 433 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/internal/SwitchBase.js ***!
   \****************************************************/
@@ -53047,7 +53419,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 433 */
+/* 434 */
 /*!*********************************!*\
   !*** ./views/todo/TodoForm.jsx ***!
   \*********************************/
@@ -53066,7 +53438,7 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 396);
+	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 397);
 	
 	var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
 	
@@ -53246,7 +53618,7 @@ webpackJsonp([0,1],[
 	exports.default = TodoForm;
 
 /***/ }),
-/* 434 */
+/* 435 */
 /*!***********************************!*\
   !*** ./views/components/Todos.js ***!
   \***********************************/
@@ -53272,7 +53644,7 @@ webpackJsonp([0,1],[
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 435);
+	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 436);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -53371,7 +53743,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Todos);
 
 /***/ }),
-/* 435 */
+/* 436 */
 /*!**************************************!*\
   !*** ./views/actions/todoActions.js ***!
   \**************************************/
@@ -53477,7 +53849,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 436 */
+/* 437 */
 /*!***********************************!*\
   !*** ./views/components/Users.js ***!
   \***********************************/
@@ -53500,7 +53872,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
 	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 437);
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 438);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -53631,7 +54003,7 @@ webpackJsonp([0,1],[
 	exports.default = Users;
 
 /***/ }),
-/* 437 */
+/* 438 */
 /*!**************************************!*\
   !*** ./views/actions/userActions.js ***!
   \**************************************/
@@ -53691,7 +54063,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 438 */
+/* 439 */
 /*!*******************************************!*\
   !*** ./views/EnsureLoggedInContainer.jsx ***!
   \*******************************************/
@@ -53709,7 +54081,7 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 425);
+	var _Login = __webpack_require__(/*! ./Login */ 426);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -53795,7 +54167,7 @@ webpackJsonp([0,1],[
 	exports.default = EnsureLoggedInContainer;
 
 /***/ }),
-/* 439 */
+/* 440 */
 /*!************************************!*\
   !*** ./views/components/Footer.js ***!
   \************************************/
@@ -53813,29 +54185,29 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 440);
+	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 441);
 	
 	var _BottomNavigation2 = _interopRequireDefault(_BottomNavigation);
 	
-	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 442);
+	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 443);
 	
 	var _BottomNavigationAction2 = _interopRequireDefault(_BottomNavigationAction);
 	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
-	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 419);
+	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 420);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 444);
+	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 445);
 	
 	var _Restore2 = _interopRequireDefault(_Restore);
 	
-	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 445);
+	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 446);
 	
 	var _Favorite2 = _interopRequireDefault(_Favorite);
 	
-	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 446);
+	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 447);
 	
 	var _LocationOn2 = _interopRequireDefault(_LocationOn);
 	
@@ -53903,7 +54275,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _styles.withStyles)(styles)(Footer);
 
 /***/ }),
-/* 440 */
+/* 441 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/index.js ***!
   \*******************************************************/
@@ -53923,10 +54295,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 441));
+	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 442));
 
 /***/ }),
-/* 441 */
+/* 442 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/BottomNavigation.js ***!
   \******************************************************************/
@@ -54043,7 +54415,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 442 */
+/* 443 */
 /*!*************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/index.js ***!
   \*************************************************************/
@@ -54063,10 +54435,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 443));
+	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 444));
 
 /***/ }),
-/* 443 */
+/* 444 */
 /*!******************************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/BottomNavigationAction.js ***!
   \******************************************************************************/
@@ -54276,7 +54648,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 444 */
+/* 445 */
 /*!*****************************************!*\
   !*** ./~/@material-ui/icons/Restore.js ***!
   \*****************************************/
@@ -54302,7 +54674,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 445 */
+/* 446 */
 /*!******************************************!*\
   !*** ./~/@material-ui/icons/Favorite.js ***!
   \******************************************/
@@ -54328,7 +54700,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 446 */
+/* 447 */
 /*!********************************************!*\
   !*** ./~/@material-ui/icons/LocationOn.js ***!
   \********************************************/
@@ -54354,7 +54726,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 447 */
+/* 448 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -54370,27 +54742,27 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 448);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 449);
 	
 	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 449);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 450);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
 	var _redux = __webpack_require__(/*! redux */ 341);
 	
-	var _home = __webpack_require__(/*! ../reducers/home */ 451);
+	var _home = __webpack_require__(/*! ../reducers/home */ 452);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 452);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 453);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 453);
+	var _user = __webpack_require__(/*! ../reducers/user */ 454);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -54445,7 +54817,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 448 */
+/* 449 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -54456,7 +54828,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 449 */
+/* 450 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -54475,7 +54847,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 450);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 451);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -54678,7 +55050,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 450 */
+/* 451 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -54702,7 +55074,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 451 */
+/* 452 */
 /*!********************************!*\
   !*** ./views/reducers/home.js ***!
   \********************************/
@@ -54811,7 +55183,7 @@ webpackJsonp([0,1],[
 	exports.default = homeReducer;
 
 /***/ }),
-/* 452 */
+/* 453 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -54870,7 +55242,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 453 */
+/* 454 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/
@@ -54916,384 +55288,6 @@ webpackJsonp([0,1],[
 	};
 	
 	exports.default = usersReducer;
-
-/***/ }),
-/* 454 */
-/*!************************************************!*\
-  !*** ./views/subcomponents/CustomTableTech.js ***!
-  \************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
-	
-	var _propTypes = __webpack_require__(/*! prop-types */ 28);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-	
-	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
-	
-	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
-	
-	var _Table2 = _interopRequireDefault(_Table);
-	
-	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
-	
-	var _TableBody2 = _interopRequireDefault(_TableBody);
-	
-	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
-	
-	var _TableCell2 = _interopRequireDefault(_TableCell);
-	
-	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
-	
-	var _TableHead2 = _interopRequireDefault(_TableHead);
-	
-	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
-	
-	var _TableRow2 = _interopRequireDefault(_TableRow);
-	
-	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
-	
-	var _Paper2 = _interopRequireDefault(_Paper);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
-		return {
-			head: {
-				backgroundColor: theme.palette.common.black,
-				//color: theme.palette.white
-				color: "#fff"
-			},
-			body: {
-				fontSize: 14
-			},
-			footer: {
-				fontSize: 14,
-				color: "red"
-			}
-		};
-	})(_TableCell2.default);
-	
-	var styles = function styles(theme) {
-		return {
-			root: {
-				width: '100%',
-				marginTop: theme.spacing.unit * 3,
-				overflowX: "auto"
-			},
-			table: {
-				minWidth: 700
-			},
-			row: {
-				'&:nth-of-type(odd)': {
-					backgroundColor: theme.palette.background.default
-				}
-			}
-		};
-	};
-	
-	/*
-	const mapStateToProps = (store) => {
-	}
-	
-	const mapDispatchToProps = (dispatch) => {
-	}
-	*/
-	
-	var CustomTableTech = function (_React$Component) {
-		_inherits(CustomTableTech, _React$Component);
-	
-		function CustomTableTech(props) {
-			_classCallCheck(this, CustomTableTech);
-	
-			var _this = _possibleConstructorReturn(this, (CustomTableTech.__proto__ || Object.getPrototypeOf(CustomTableTech)).call(this, props));
-	
-			console.log("Custom ", _this.props);
-			console.log("t ", _this.props.t);
-			return _this;
-		}
-	
-		_createClass(CustomTableTech, [{
-			key: 'render',
-			value: function render() {
-				var classes = this.props.classes;
-				//console.log( "calsses ", classes);
-				//console.log( "this.props ", this.props);
-				var tLen = this.props.t.length;
-	
-				var id = 0;
-				return _react2.default.createElement(
-					_Paper2.default,
-					{ key: id++, className: classes.root },
-					_react2.default.createElement(
-						_Table2.default,
-						{ className: classes.table },
-						_react2.default.createElement(
-							_TableHead2.default,
-							null,
-							_react2.default.createElement(
-								_TableRow2.default,
-								null,
-								_react2.default.createElement(
-									CustomTableCell,
-									{ className: classes.footer },
-									'Tech'
-								),
-								_react2.default.createElement(
-									CustomTableCell,
-									{ numeric: true, className: classes.head },
-									'Cost* (Approx.)'
-								)
-							)
-						),
-						_react2.default.createElement(
-							_TableBody2.default,
-							null,
-							this.props.t.map(function (n) {
-								console.log(" id: ", id, " length ", tLen);
-	
-								var tableRowClassName = classes.row;
-	
-								console.log("OUT ", tableRowClassName);
-								if (id == tLen) {
-									tableRowClassName = classes.footer;
-									console.log("IF ", tableRowClassName);
-								}
-	
-								return _react2.default.createElement(
-									_TableRow2.default,
-									{ className: tableRowClassName, key: id++ },
-									_react2.default.createElement(
-										CustomTableCell,
-										{ component: 'th', scope: 'row' },
-										n.name
-									),
-									_react2.default.createElement(
-										CustomTableCell,
-										{ numeric: true },
-										n.cost
-									)
-								);
-							})
-						)
-					)
-				);
-			}
-		}]);
-	
-		return CustomTableTech;
-	}(_react2.default.Component);
-	
-	exports.default = (0, _styles.withStyles)(styles)(CustomTableTech);
-	//export default (CustomTable);
-
-/***/ }),
-/* 455 */
-/*!***********************************************!*\
-  !*** ./views/subcomponents/CustomTableJob.js ***!
-  \***********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
-	
-	var _propTypes = __webpack_require__(/*! prop-types */ 28);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-	
-	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
-	
-	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
-	
-	var _Table2 = _interopRequireDefault(_Table);
-	
-	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
-	
-	var _TableBody2 = _interopRequireDefault(_TableBody);
-	
-	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
-	
-	var _TableCell2 = _interopRequireDefault(_TableCell);
-	
-	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
-	
-	var _TableHead2 = _interopRequireDefault(_TableHead);
-	
-	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
-	
-	var _TableRow2 = _interopRequireDefault(_TableRow);
-	
-	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
-	
-	var _Paper2 = _interopRequireDefault(_Paper);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
-		return {
-			head: {
-				backgroundColor: theme.palette.common.black,
-				//color: theme.palette.white
-				color: "#fff"
-			},
-			body: {
-				fontSize: 14
-			},
-			footer: {
-				fontSize: 14,
-				color: "red"
-			}
-		};
-	})(_TableCell2.default);
-	
-	var styles = function styles(theme) {
-		return {
-			root: {
-				width: '100%',
-				marginTop: theme.spacing.unit * 3,
-				overflowX: "auto"
-			},
-			table: {
-				minWidth: 700
-			},
-			row: {
-				'&:nth-of-type(odd)': {
-					backgroundColor: theme.palette.background.default
-				}
-			}
-		};
-	};
-	
-	/*
-	const mapStateToProps = (store) => {
-	}
-	
-	const mapDispatchToProps = (dispatch) => {
-	}
-	*/
-	
-	var CustomTableJob = function (_React$Component) {
-		_inherits(CustomTableJob, _React$Component);
-	
-		function CustomTableJob(props) {
-			_classCallCheck(this, CustomTableJob);
-	
-			var _this = _possibleConstructorReturn(this, (CustomTableJob.__proto__ || Object.getPrototypeOf(CustomTableJob)).call(this, props));
-	
-			console.log("Custom ", _this.props);
-			console.log("t ", _this.props.t);
-			return _this;
-		}
-	
-		_createClass(CustomTableJob, [{
-			key: 'render',
-			value: function render() {
-				var classes = this.props.classes;
-				//console.log( "calsses ", classes);
-				//console.log( "this.props ", this.props);
-				var tLen = this.props.t.length;
-	
-				var id = 0;
-				return _react2.default.createElement(
-					_Paper2.default,
-					{ key: id++, className: classes.root },
-					_react2.default.createElement(
-						_Table2.default,
-						{ className: classes.table },
-						_react2.default.createElement(
-							_TableHead2.default,
-							null,
-							_react2.default.createElement(
-								_TableRow2.default,
-								null,
-								_react2.default.createElement(
-									CustomTableCell,
-									{ className: classes.footer },
-									'Tech'
-								),
-								_react2.default.createElement(
-									CustomTableCell,
-									{ numeric: true, className: classes.head },
-									'Cost* (Approx.)'
-								)
-							)
-						),
-						_react2.default.createElement(
-							_TableBody2.default,
-							null,
-							this.props.t.map(function (n) {
-								console.log(" id: ", id, " length ", tLen);
-	
-								var tableRowClassName = classes.row;
-	
-								console.log("OUT ", tableRowClassName);
-								if (id == tLen) {
-									tableRowClassName = classes.footer;
-									console.log("IF ", tableRowClassName);
-								}
-	
-								return _react2.default.createElement(
-									_TableRow2.default,
-									{ className: tableRowClassName, key: id++ },
-									_react2.default.createElement(
-										CustomTableCell,
-										{ component: 'th', scope: 'row' },
-										n.name
-									),
-									_react2.default.createElement(
-										CustomTableCell,
-										{ numeric: true },
-										n.cost
-									)
-								);
-							})
-						)
-					)
-				);
-			}
-		}]);
-	
-		return CustomTableJob;
-	}(_react2.default.Component);
-	
-	exports.default = (0, _styles.withStyles)(styles)(CustomTableJob);
-	//export default (CustomTable);
 
 /***/ })
 ]);

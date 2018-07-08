@@ -57,9 +57,6 @@ class Header extends Component {
 
 			<AppBar color="default" position="sticky">
 				<Toolbar>
-					<IconButton color="inherit" aria-label="Menu">
-						<AccountCircle />
-					</IconButton>
 
 					<Menu open={f}>
 						<MenuIcon />
@@ -76,7 +73,7 @@ class Header extends Component {
 					</Typography>
 
 
-					<Button color="inherit" component={Link} to="/">
+					<Button color="inherit" variant="outlined" component={Link} to="/">
 						Home
 					</Button>
 
