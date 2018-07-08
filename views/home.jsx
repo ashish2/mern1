@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 
 import { postHomeAction, jdChangeAction, submitButtonChangeAction, submitButtonOffAction } from "./actions/homeActions";
 import CustomTableTech from './subcomponents/CustomTableTech';
+import CustomTableJob from './subcomponents/CustomTableJob';
 
 import DocumentTitle from 'react-document-title';
 

@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 */
 
 
-class CustomTableTech extends React.Component {
+class CustomTableJob extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -118,6 +118,6 @@ class CustomTableTech extends React.Component {
 
 }
 
-export default withStyles(styles)(CustomTableTech);
+export default withStyles(styles)(CustomTableJob);
 //export default (CustomTable);
 
