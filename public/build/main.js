@@ -42902,9 +42902,9 @@ webpackJsonp([0,1],[
 	
 	var _homeActions = __webpack_require__(/*! ./actions/homeActions */ 359);
 	
-	var _CustomTable = __webpack_require__(/*! ./subcomponents/CustomTable */ 385);
+	var _CustomTableTech = __webpack_require__(/*! ./subcomponents/CustomTableTech */ 454);
 	
-	var _CustomTable2 = _interopRequireDefault(_CustomTable);
+	var _CustomTableTech2 = _interopRequireDefault(_CustomTableTech);
 	
 	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 396);
 	
@@ -43209,9 +43209,9 @@ webpackJsonp([0,1],[
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(_CustomTable2.default, { t: this.props.home.data.technologies })
+						_react2.default.createElement(_CustomTableTech2.default, { t: this.props.home.data.technologies })
 					),
-					"Suggestions on each Technologies, these are the Tech:",
+					"Job suggestions on each Technologies, these are the Jobs in these Tech:",
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
@@ -47182,195 +47182,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 385 */
-/*!********************************************!*\
-  !*** ./views/subcomponents/CustomTable.js ***!
-  \********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
-	
-	var _propTypes = __webpack_require__(/*! prop-types */ 28);
-	
-	var _propTypes2 = _interopRequireDefault(_propTypes);
-	
-	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
-	
-	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
-	
-	var _Table2 = _interopRequireDefault(_Table);
-	
-	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
-	
-	var _TableBody2 = _interopRequireDefault(_TableBody);
-	
-	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
-	
-	var _TableCell2 = _interopRequireDefault(_TableCell);
-	
-	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
-	
-	var _TableHead2 = _interopRequireDefault(_TableHead);
-	
-	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
-	
-	var _TableRow2 = _interopRequireDefault(_TableRow);
-	
-	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
-	
-	var _Paper2 = _interopRequireDefault(_Paper);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
-		return {
-			head: {
-				backgroundColor: theme.palette.common.black,
-				//color: theme.palette.white
-				color: "#fff"
-			},
-			body: {
-				fontSize: 14
-			},
-			footer: {
-				fontSize: 14,
-				color: "red"
-			}
-		};
-	})(_TableCell2.default);
-	
-	var styles = function styles(theme) {
-		return {
-			root: {
-				width: '100%',
-				marginTop: theme.spacing.unit * 3,
-				overflowX: "auto"
-			},
-			table: {
-				minWidth: 700
-			},
-			row: {
-				'&:nth-of-type(odd)': {
-					backgroundColor: theme.palette.background.default
-				}
-			}
-		};
-	};
-	
-	/*
-	const mapStateToProps = (store) => {
-	}
-	
-	const mapDispatchToProps = (dispatch) => {
-	}
-	*/
-	
-	var CustomTable = function (_React$Component) {
-		_inherits(CustomTable, _React$Component);
-	
-		function CustomTable(props) {
-			_classCallCheck(this, CustomTable);
-	
-			var _this = _possibleConstructorReturn(this, (CustomTable.__proto__ || Object.getPrototypeOf(CustomTable)).call(this, props));
-	
-			console.log("Custom ", _this.props);
-			console.log("t ", _this.props.t);
-			return _this;
-		}
-	
-		_createClass(CustomTable, [{
-			key: 'render',
-			value: function render() {
-				var classes = this.props.classes;
-				//console.log( "calsses ", classes);
-				//console.log( "this.props ", this.props);
-				var tLen = this.props.t.length;
-	
-				var id = 0;
-				return _react2.default.createElement(
-					_Paper2.default,
-					{ key: id++, className: classes.root },
-					_react2.default.createElement(
-						_Table2.default,
-						{ className: classes.table },
-						_react2.default.createElement(
-							_TableHead2.default,
-							null,
-							_react2.default.createElement(
-								_TableRow2.default,
-								null,
-								_react2.default.createElement(
-									CustomTableCell,
-									{ className: classes.footer },
-									'Tech'
-								),
-								_react2.default.createElement(
-									CustomTableCell,
-									{ numeric: true, className: classes.head },
-									'Cost* (Approx.)'
-								)
-							)
-						),
-						_react2.default.createElement(
-							_TableBody2.default,
-							null,
-							this.props.t.map(function (n) {
-								console.log(" id: ", id, " length ", tLen);
-	
-								var tableRowClassName = classes.row;
-	
-								console.log("OUT ", tableRowClassName);
-								if (id == tLen) {
-									tableRowClassName = classes.footer;
-									console.log("IF ", tableRowClassName);
-								}
-	
-								return _react2.default.createElement(
-									_TableRow2.default,
-									{ className: tableRowClassName, key: id++ },
-									_react2.default.createElement(
-										CustomTableCell,
-										{ component: 'th', scope: 'row' },
-										n.name
-									),
-									_react2.default.createElement(
-										CustomTableCell,
-										{ numeric: true },
-										n.cost
-									)
-								);
-							})
-						)
-					)
-				);
-			}
-		}]);
-	
-		return CustomTable;
-	}(_react2.default.Component);
-	
-	exports.default = (0, _styles.withStyles)(styles)(CustomTable);
-	//export default (CustomTable);
-
-/***/ }),
+/* 385 */,
 /* 386 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Table/index.js ***!
@@ -55081,6 +54893,195 @@ webpackJsonp([0,1],[
 	};
 	
 	exports.default = usersReducer;
+
+/***/ }),
+/* 454 */
+/*!************************************************!*\
+  !*** ./views/subcomponents/CustomTableTech.js ***!
+  \************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 28);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
+	
+	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
+	
+	var _Table2 = _interopRequireDefault(_Table);
+	
+	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
+	
+	var _TableBody2 = _interopRequireDefault(_TableBody);
+	
+	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
+	
+	var _TableCell2 = _interopRequireDefault(_TableCell);
+	
+	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
+	
+	var _TableHead2 = _interopRequireDefault(_TableHead);
+	
+	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
+	
+	var _TableRow2 = _interopRequireDefault(_TableRow);
+	
+	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
+		return {
+			head: {
+				backgroundColor: theme.palette.common.black,
+				//color: theme.palette.white
+				color: "#fff"
+			},
+			body: {
+				fontSize: 14
+			},
+			footer: {
+				fontSize: 14,
+				color: "red"
+			}
+		};
+	})(_TableCell2.default);
+	
+	var styles = function styles(theme) {
+		return {
+			root: {
+				width: '100%',
+				marginTop: theme.spacing.unit * 3,
+				overflowX: "auto"
+			},
+			table: {
+				minWidth: 700
+			},
+			row: {
+				'&:nth-of-type(odd)': {
+					backgroundColor: theme.palette.background.default
+				}
+			}
+		};
+	};
+	
+	/*
+	const mapStateToProps = (store) => {
+	}
+	
+	const mapDispatchToProps = (dispatch) => {
+	}
+	*/
+	
+	var CustomTable = function (_React$Component) {
+		_inherits(CustomTable, _React$Component);
+	
+		function CustomTable(props) {
+			_classCallCheck(this, CustomTable);
+	
+			var _this = _possibleConstructorReturn(this, (CustomTable.__proto__ || Object.getPrototypeOf(CustomTable)).call(this, props));
+	
+			console.log("Custom ", _this.props);
+			console.log("t ", _this.props.t);
+			return _this;
+		}
+	
+		_createClass(CustomTable, [{
+			key: 'render',
+			value: function render() {
+				var classes = this.props.classes;
+				//console.log( "calsses ", classes);
+				//console.log( "this.props ", this.props);
+				var tLen = this.props.t.length;
+	
+				var id = 0;
+				return _react2.default.createElement(
+					_Paper2.default,
+					{ key: id++, className: classes.root },
+					_react2.default.createElement(
+						_Table2.default,
+						{ className: classes.table },
+						_react2.default.createElement(
+							_TableHead2.default,
+							null,
+							_react2.default.createElement(
+								_TableRow2.default,
+								null,
+								_react2.default.createElement(
+									CustomTableCell,
+									{ className: classes.footer },
+									'Tech'
+								),
+								_react2.default.createElement(
+									CustomTableCell,
+									{ numeric: true, className: classes.head },
+									'Cost* (Approx.)'
+								)
+							)
+						),
+						_react2.default.createElement(
+							_TableBody2.default,
+							null,
+							this.props.t.map(function (n) {
+								console.log(" id: ", id, " length ", tLen);
+	
+								var tableRowClassName = classes.row;
+	
+								console.log("OUT ", tableRowClassName);
+								if (id == tLen) {
+									tableRowClassName = classes.footer;
+									console.log("IF ", tableRowClassName);
+								}
+	
+								return _react2.default.createElement(
+									_TableRow2.default,
+									{ className: tableRowClassName, key: id++ },
+									_react2.default.createElement(
+										CustomTableCell,
+										{ component: 'th', scope: 'row' },
+										n.name
+									),
+									_react2.default.createElement(
+										CustomTableCell,
+										{ numeric: true },
+										n.cost
+									)
+								);
+							})
+						)
+					)
+				);
+			}
+		}]);
+	
+		return CustomTable;
+	}(_react2.default.Component);
+	
+	exports.default = (0, _styles.withStyles)(styles)(CustomTable);
+	//export default (CustomTable);
 
 /***/ })
 ]);

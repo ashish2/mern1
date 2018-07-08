@@ -241,7 +241,7 @@ class Home extends Component {
 					</div>
 				}
 			 	
-				Suggestions on each Technologies, these are the Tech:
+				Job suggestions on each Technologies, these are the Jobs in these Tech:
 				{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
