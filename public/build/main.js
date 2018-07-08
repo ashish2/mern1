@@ -42789,6 +42789,10 @@ webpackJsonp([0,1],[
 	
 	var _Users2 = _interopRequireDefault(_Users);
 	
+	var _EarningCapacity = __webpack_require__(/*! ./components/EarningCapacity */ 455);
+	
+	var _EarningCapacity2 = _interopRequireDefault(_EarningCapacity);
+	
 	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 439);
 	
 	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
@@ -42860,7 +42864,8 @@ webpackJsonp([0,1],[
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todos', component: _Todos2.default }),
-					_react2.default.createElement(PrivateRoute, { exact: true, path: '/users', component: _Users2.default })
+					_react2.default.createElement(PrivateRoute, { exact: true, path: '/users', component: _Users2.default }),
+					_react2.default.createElement(PrivateRoute, { exact: true, path: '/earningcapacity', component: _Users2.default })
 				);
 			}
 		}]);
@@ -55288,6 +55293,160 @@ webpackJsonp([0,1],[
 	};
 	
 	exports.default = usersReducer;
+
+/***/ }),
+/* 455 */
+/*!*********************************************!*\
+  !*** ./views/components/EarningCapacity.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _class;
+	//import thunk from "redux-thunk";
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 438);
+	
+	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
+	
+	var _Button2 = _interopRequireDefault(_Button);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var mapStateToProps = function mapStateToProps(store) {
+		console.log("connect store ", store);
+		return {
+			users: store.users
+		};
+	};
+	
+	// NOT USED ATM
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			toggleTodo: function (_toggleTodo) {
+				function toggleTodo(_x) {
+					return _toggleTodo.apply(this, arguments);
+				}
+	
+				toggleTodo.toString = function () {
+					return _toggleTodo.toString();
+				};
+	
+				return toggleTodo;
+			}(function (id) {
+				return dispatch(toggleTodo(id));
+			}),
+			readUsers: _userActions.readUsers
+		};
+	};
+	// NOT USED ATM-
+	
+	
+	//@connect(mapStateToProps, mapDispatchToProps)
+	
+	
+	/*
+	const mapStateToProps = state => {
+		return {
+			todos: state.todos
+		}
+	}
+	
+	const mapDispatchToProps = dispatch => {
+		return {
+			toggleTodo: id => dispatch(toggleTodo(id))
+		}
+	}
+	*/
+	
+	var EarningCapacity = (_dec = (0, _reactRedux.connect)(mapStateToProps), _dec(_class = function (_React$Component) {
+		_inherits(EarningCapacity, _React$Component);
+	
+		function EarningCapacity(props) {
+			_classCallCheck(this, EarningCapacity);
+	
+			return _possibleConstructorReturn(this, (EarningCapacity.__proto__ || Object.getPrototypeOf(EarningCapacity)).call(this, props));
+			//console.log("Users store: ", store);
+		}
+	
+		_createClass(EarningCapacity, [{
+			key: "componentWillMount",
+			value: function componentWillMount() {
+				console.log("users.js compMOunted");
+				//this.props.dispatch( readUsers(this.props.dispatch) );
+				this.props.dispatch(_userActions.readUsers);
+	
+				//this.props.dispatch( readUsersPromise() );
+				//readUsers(this.props.dispatch);
+				//readUsers();
+			}
+	
+			//shouldComponentUpdate (){}
+	
+		}, {
+			key: "render",
+			value: function render() {
+				//const u = this.props.users;
+				console.log("Users HERE", this.props);
+	
+				if (!this.props.users) return _react2.default.createElement(
+					"button",
+					null,
+					"Nothin"
+				);
+				return _react2.default.createElement(
+					"div",
+					null,
+					"UserList u here:",
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						_Button2.default,
+						{ variant: "raised", color: "primary" },
+						"Hello, World!"
+					),
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						"ul",
+						null,
+						this.props.users.users && this.props.users.users.map(function (u, i) {
+							return _react2.default.createElement(
+								"li",
+								{ key: i },
+								u.email
+							);
+						})
+					)
+				);
+			}
+		}]);
+	
+		return EarningCapacity;
+	}(_react2.default.Component)) || _class);
+	
+	// Working, With mapStateToProps and mapDispatchToProps
+	//export default connect(mapStateToProps, mapDispatchToProps)(Users);
+	// Working with @connect also
+	
+	exports.default = EarningCapacity;
 
 /***/ })
 ]);

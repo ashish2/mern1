@@ -8,6 +8,7 @@ import TodoForm from './todo/TodoForm';
 //import TodoList from './todo/TodoList';
 import Todos from './components/Todos';
 import Users from './components/Users';
+import EarningCapacity from './components/EarningCapacity';
 
 import EnsureLoggedInContainer from './EnsureLoggedInContainer';
 
@@ -56,6 +57,7 @@ export default class Main extends Component {
 					<PrivateRoute exact path="/todoform" component={TodoForm} />
 					<PrivateRoute exact path="/todos" component={Todos} />
 					<PrivateRoute exact path="/users" component={Users} />
+					<PrivateRoute exact path="/earningcapacity" component={Users} />
 				</Switch>
 		);
 	}
