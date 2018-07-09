@@ -23,9 +23,9 @@ webpackJsonp([0,1],[
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _store = __webpack_require__(/*! ./store */ 448);
+	var _store = __webpack_require__(/*! ./store */ 457);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -24762,11 +24762,11 @@ webpackJsonp([0,1],[
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _main = __webpack_require__(/*! ./main */ 329);
+	var _main = __webpack_require__(/*! ./main */ 333);
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _Footer = __webpack_require__(/*! ./components/Footer */ 440);
+	var _Footer = __webpack_require__(/*! ./components/Footer */ 449);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -42542,6 +42542,10 @@ webpackJsonp([0,1],[
 	
 	var _AccountCircle2 = _interopRequireDefault(_AccountCircle);
 	
+	var _Tooltip = __webpack_require__(/*! @material-ui/core/Tooltip */ 329);
+	
+	var _Tooltip2 = _interopRequireDefault(_Tooltip);
+	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -42685,9 +42689,13 @@ webpackJsonp([0,1],[
 							)
 						),
 						_react2.default.createElement(
-							_Typography2.default,
-							{ variant: 'title', color: 'inherit', className: classes.flex },
-							'remuX!'
+							_Tooltip2.default,
+							{ id: 'tooltip-top', placement: 'bottom', title: 'Remux!' },
+							_react2.default.createElement(
+								_Typography2.default,
+								{ variant: 'title', color: 'inherit', className: classes.flex },
+								'Remux!'
+							)
 						),
 						_react2.default.createElement(
 							_Button2.default,
@@ -42722,7 +42730,7 @@ webpackJsonp([0,1],[
 						_react2.default.createElement(
 							_Button2.default,
 							{ color: 'inherit', component: _reactRouterDom.Link, to: '/earningpotential' },
-							'Best Projects getting done on Tech'
+							'Best Projects getting done on this Tech'
 						),
 						_react2.default.createElement(
 							_Button2.default,
@@ -42741,6 +42749,3576 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 329 */
+/*!**********************************************!*\
+  !*** ./~/@material-ui/core/Tooltip/index.js ***!
+  \**********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	Object.defineProperty(exports, "default", {
+	  enumerable: true,
+	  get: function get() {
+	    return _Tooltip.default;
+	  }
+	});
+	
+	var _Tooltip = _interopRequireDefault(__webpack_require__(/*! ./Tooltip */ 330));
+
+/***/ }),
+/* 330 */
+/*!************************************************!*\
+  !*** ./~/@material-ui/core/Tooltip/Tooltip.js ***!
+  \************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.styles = void 0;
+	
+	var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/extends */ 71));
+	
+	var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/objectSpread */ 77));
+	
+	var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/objectWithoutProperties */ 73));
+	
+	var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/classCallCheck */ 78));
+	
+	var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/createClass */ 79));
+	
+	var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/possibleConstructorReturn */ 80));
+	
+	var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/inherits */ 83));
+	
+	var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/defineProperty */ 72));
+	
+	var _react = _interopRequireDefault(__webpack_require__(/*! react */ 1));
+	
+	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
+	
+	var _reactEventListener = _interopRequireDefault(__webpack_require__(/*! react-event-listener */ 195));
+	
+	var _debounce = _interopRequireDefault(__webpack_require__(/*! debounce */ 194));
+	
+	var _warning = _interopRequireDefault(__webpack_require__(/*! warning */ 85));
+	
+	var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ 74));
+	
+	var _reactPopper = __webpack_require__(/*! react-popper */ 331);
+	
+	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
+	
+	var _RootRef = _interopRequireDefault(__webpack_require__(/*! ../RootRef */ 199));
+	
+	var _Portal = _interopRequireDefault(__webpack_require__(/*! ../Portal */ 202));
+	
+	var _common = _interopRequireDefault(__webpack_require__(/*! ../colors/common */ 148));
+	
+	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
+	
+	/* eslint-disable react/no-multi-comp, no-underscore-dangle */
+	var styles = function styles(theme) {
+	  return {
+	    popper: {
+	      zIndex: theme.zIndex.tooltip,
+	      pointerEvents: 'none',
+	      '&$open': {
+	        pointerEvents: 'auto'
+	      }
+	    },
+	    open: {},
+	    tooltip: {
+	      backgroundColor: theme.palette.grey[700],
+	      borderRadius: 2,
+	      color: _common.default.white,
+	      fontFamily: theme.typography.fontFamily,
+	      opacity: 0,
+	      transform: 'scale(0)',
+	      transition: theme.transitions.create(['opacity', 'transform'], {
+	        duration: theme.transitions.duration.shortest,
+	        easing: theme.transitions.easing.easeIn
+	      }),
+	      minHeight: 0,
+	      padding: "".concat(theme.spacing.unit / 2, "px ").concat(theme.spacing.unit, "px"),
+	      fontSize: theme.typography.pxToRem(10),
+	      lineHeight: "".concat(theme.typography.round(14 / 10), "em"),
+	      '&$open': {
+	        opacity: 0.9,
+	        transform: 'scale(1)',
+	        transition: theme.transitions.create(['opacity', 'transform'], {
+	          duration: theme.transitions.duration.shortest,
+	          easing: theme.transitions.easing.easeOut
+	        })
+	      }
+	    },
+	    touch: {
+	      padding: "".concat(theme.spacing.unit, "px ").concat(theme.spacing.unit * 2, "px"),
+	      fontSize: theme.typography.pxToRem(14),
+	      lineHeight: "".concat(theme.typography.round(16 / 14), "em")
+	    },
+	    tooltipPlacementLeft: (0, _defineProperty2.default)({
+	      transformOrigin: 'right center',
+	      margin: "0 ".concat(theme.spacing.unit * 3, "px")
+	    }, theme.breakpoints.up('sm'), {
+	      margin: '0 14px'
+	    }),
+	    tooltipPlacementRight: (0, _defineProperty2.default)({
+	      transformOrigin: 'left center',
+	      margin: "0 ".concat(theme.spacing.unit * 3, "px")
+	    }, theme.breakpoints.up('sm'), {
+	      margin: '0 14px'
+	    }),
+	    tooltipPlacementTop: (0, _defineProperty2.default)({
+	      transformOrigin: 'center bottom',
+	      margin: "".concat(theme.spacing.unit * 3, "px 0")
+	    }, theme.breakpoints.up('sm'), {
+	      margin: '14px 0'
+	    }),
+	    tooltipPlacementBottom: (0, _defineProperty2.default)({
+	      transformOrigin: 'center top',
+	      margin: "".concat(theme.spacing.unit * 3, "px 0")
+	    }, theme.breakpoints.up('sm'), {
+	      margin: '14px 0'
+	    })
+	  };
+	};
+	
+	exports.styles = styles;
+	
+	function flipPlacement(placement) {
+	  switch (placement) {
+	    case 'bottom-end':
+	      return 'bottom-start';
+	
+	    case 'bottom-start':
+	      return 'bottom-end';
+	
+	    case 'top-end':
+	      return 'top-start';
+	
+	    case 'top-start':
+	      return 'top-end';
+	
+	    default:
+	      return placement;
+	  }
+	}
+	
+	var Tooltip =
+	/*#__PURE__*/
+	function (_React$Component) {
+	  (0, _inherits2.default)(Tooltip, _React$Component);
+	
+	  function Tooltip(props) {
+	    var _this;
+	
+	    (0, _classCallCheck2.default)(this, Tooltip);
+	    _this = (0, _possibleConstructorReturn2.default)(this, (Tooltip.__proto__ || Object.getPrototypeOf(Tooltip)).call(this, props));
+	    _this.state = {};
+	    _this.enterTimer = null;
+	    _this.leaveTimer = null;
+	    _this.touchTimer = null;
+	    _this.closeTimer = null;
+	    _this.isControlled = null;
+	    _this.popper = null;
+	    _this.children = null;
+	    _this.ignoreNonTouchEvents = false;
+	    _this.handleResize = (0, _debounce.default)(function () {
+	      if (_this.popper) {
+	        _this.popper._popper.scheduleUpdate();
+	      }
+	    }, 166);
+	
+	    _this.handleEnter = function (event) {
+	      var _this$props = _this.props,
+	          children = _this$props.children,
+	          enterDelay = _this$props.enterDelay;
+	      var childrenProps = children.props;
+	
+	      if (event.type === 'focus' && childrenProps.onFocus) {
+	        childrenProps.onFocus(event);
+	      }
+	
+	      if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+	        childrenProps.onMouseOver(event);
+	      }
+	
+	      if (_this.ignoreNonTouchEvents && event.type !== 'touchstart') {
+	        return;
+	      }
+	
+	      clearTimeout(_this.enterTimer);
+	      clearTimeout(_this.leaveTimer);
+	
+	      if (enterDelay) {
+	        event.persist();
+	        _this.enterTimer = setTimeout(function () {
+	          _this.handleOpen(event);
+	        }, enterDelay);
+	      } else {
+	        _this.handleOpen(event);
+	      }
+	    };
+	
+	    _this.handleOpen = function (event) {
+	      if (!_this.isControlled) {
+	        _this.setState({
+	          open: true
+	        });
+	      }
+	
+	      if (_this.props.onOpen) {
+	        _this.props.onOpen(event, true);
+	      }
+	    };
+	
+	    _this.handleLeave = function (event) {
+	      var _this$props2 = _this.props,
+	          children = _this$props2.children,
+	          leaveDelay = _this$props2.leaveDelay;
+	      var childrenProps = children.props;
+	
+	      if (event.type === 'blur' && childrenProps.onBlur) {
+	        childrenProps.onBlur(event);
+	      }
+	
+	      if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+	        childrenProps.onMouseLeave(event);
+	      }
+	
+	      clearTimeout(_this.enterTimer);
+	      clearTimeout(_this.leaveTimer);
+	
+	      if (leaveDelay) {
+	        event.persist();
+	        _this.leaveTimer = setTimeout(function () {
+	          _this.handleClose(event);
+	        }, leaveDelay);
+	      } else {
+	        _this.handleClose(event);
+	      }
+	    };
+	
+	    _this.handleClose = function (event) {
+	      if (!_this.isControlled) {
+	        _this.setState({
+	          open: false
+	        });
+	      }
+	
+	      if (_this.props.onClose) {
+	        _this.props.onClose(event, false);
+	      }
+	
+	      clearTimeout(_this.closeTimer);
+	      _this.closeTimer = setTimeout(function () {
+	        _this.ignoreNonTouchEvents = false;
+	      }, _this.props.theme.transitions.duration.shortest);
+	    };
+	
+	    _this.handleTouchStart = function (event) {
+	      _this.ignoreNonTouchEvents = true;
+	      var _this$props3 = _this.props,
+	          children = _this$props3.children,
+	          enterTouchDelay = _this$props3.enterTouchDelay;
+	      var childrenProps = children.props;
+	
+	      if (childrenProps.onTouchStart) {
+	        childrenProps.onTouchStart(event);
+	      }
+	
+	      clearTimeout(_this.leaveTimer);
+	      clearTimeout(_this.closeTimer);
+	      clearTimeout(_this.touchTimer);
+	      event.persist();
+	      _this.touchTimer = setTimeout(function () {
+	        _this.handleEnter(event);
+	      }, enterTouchDelay);
+	    };
+	
+	    _this.handleTouchEnd = function (event) {
+	      var _this$props4 = _this.props,
+	          children = _this$props4.children,
+	          leaveTouchDelay = _this$props4.leaveTouchDelay;
+	      var childrenProps = children.props;
+	
+	      if (childrenProps.onTouchEnd) {
+	        childrenProps.onTouchEnd(event);
+	      }
+	
+	      clearTimeout(_this.touchTimer);
+	      clearTimeout(_this.leaveTimer);
+	      event.persist();
+	      _this.leaveTimer = setTimeout(function () {
+	        _this.handleClose(event);
+	      }, leaveTouchDelay);
+	    };
+	
+	    _this.isControlled = props.open != null;
+	
+	    if (!_this.isControlled) {
+	      // not controlled, use internal state
+	      _this.state.open = false;
+	    }
+	
+	    return _this;
+	  }
+	
+	  (0, _createClass2.default)(Tooltip, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      process.env.NODE_ENV !== "production" ? (0, _warning.default)(!this.children || !this.children.disabled || !this.children.tagName.toLowerCase() === 'button', ['Material-UI: you are providing a disabled `button` child to the Tooltip component.', 'A disabled element does not fire events.', "Tooltip needs to listen to the child element's events to display the title.", '', 'Place a `div` container on top of the element.'].join('\n')) : void 0;
+	    }
+	  }, {
+	    key: "componentWillUnmount",
+	    value: function componentWillUnmount() {
+	      clearTimeout(this.enterTimer);
+	      clearTimeout(this.leaveTimer);
+	      clearTimeout(this.touchTimer);
+	      clearTimeout(this.closeTimer);
+	      this.handleResize.clear();
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var _props = this.props,
+	          children = _props.children,
+	          classes = _props.classes,
+	          className = _props.className,
+	          disableFocusListener = _props.disableFocusListener,
+	          disableHoverListener = _props.disableHoverListener,
+	          disableTouchListener = _props.disableTouchListener,
+	          enterDelay = _props.enterDelay,
+	          enterTouchDelay = _props.enterTouchDelay,
+	          id = _props.id,
+	          leaveDelay = _props.leaveDelay,
+	          leaveTouchDelay = _props.leaveTouchDelay,
+	          onClose = _props.onClose,
+	          onOpen = _props.onOpen,
+	          openProp = _props.open,
+	          placementProp = _props.placement,
+	          _props$PopperProps = _props.PopperProps;
+	      _props$PopperProps = _props$PopperProps === void 0 ? {} : _props$PopperProps;
+	      var PopperClassName = _props$PopperProps.className,
+	          PopperProps = (0, _objectWithoutProperties2.default)(_props$PopperProps, ["className"]),
+	          theme = _props.theme,
+	          title = _props.title,
+	          other = (0, _objectWithoutProperties2.default)(_props, ["children", "classes", "className", "disableFocusListener", "disableHoverListener", "disableTouchListener", "enterDelay", "enterTouchDelay", "id", "leaveDelay", "leaveTouchDelay", "onClose", "onOpen", "open", "placement", "PopperProps", "theme", "title"]);
+	      var placement = theme.direction === 'rtl' ? flipPlacement(placementProp) : placementProp;
+	      var open = this.isControlled ? openProp : this.state.open;
+	      var childrenProps = {
+	        'aria-describedby': id
+	      }; // There is no point at displaying an empty tooltip.
+	
+	      if (title === '') {
+	        open = false;
+	      }
+	
+	      if (!disableTouchListener) {
+	        childrenProps.onTouchStart = this.handleTouchStart;
+	        childrenProps.onTouchEnd = this.handleTouchEnd;
+	      }
+	
+	      if (!disableHoverListener) {
+	        childrenProps.onMouseOver = this.handleEnter;
+	        childrenProps.onMouseLeave = this.handleLeave;
+	      }
+	
+	      if (!disableFocusListener) {
+	        childrenProps.onFocus = this.handleEnter;
+	        childrenProps.onBlur = this.handleLeave;
+	      }
+	
+	      process.env.NODE_ENV !== "production" ? (0, _warning.default)(!children.props.title, ['Material-UI: you have been providing a `title` property to the child of <Tooltip />.', "Remove this title property `".concat(children.props.title, "` or the Tooltip component.")].join('\n')) : void 0;
+	      return _react.default.createElement(_reactPopper.Manager, (0, _extends2.default)({
+	        tag: false
+	      }, other), _react.default.createElement(_reactEventListener.default, {
+	        target: "window",
+	        onResize: this.handleResize
+	      }), _react.default.createElement(_reactPopper.Target, null, function (_ref) {
+	        var targetProps = _ref.targetProps;
+	        return _react.default.createElement(_RootRef.default, {
+	          rootRef: function rootRef(node) {
+	            _this2.children = node;
+	            targetProps.ref(_this2.children);
+	          }
+	        }, _react.default.cloneElement(children, childrenProps));
+	      }), _react.default.createElement(_Portal.default, null, _react.default.createElement(_reactPopper.Popper, (0, _extends2.default)({
+	        placement: placement,
+	        eventsEnabled: open,
+	        className: (0, _classnames.default)(classes.popper, (0, _defineProperty2.default)({}, classes.open, open), PopperClassName),
+	        ref: function ref(node) {
+	          _this2.popper = node;
+	        }
+	      }, PopperProps), function (_ref2) {
+	        var popperProps = _ref2.popperProps,
+	            restProps = _ref2.restProps;
+	        var actualPlacement = (popperProps['data-placement'] || placement).split('-')[0];
+	        return _react.default.createElement("div", (0, _extends2.default)({}, popperProps, restProps, {
+	          style: (0, _objectSpread2.default)({}, popperProps.style, {
+	            top: popperProps.style.top || 0,
+	            left: popperProps.style.left || 0
+	          }, restProps.style)
+	        }), _react.default.createElement("div", {
+	          id: id,
+	          role: "tooltip",
+	          "aria-hidden": !open,
+	          className: (0, _classnames.default)(classes.tooltip, (0, _defineProperty2.default)({}, classes.open, open), (0, _defineProperty2.default)({}, classes.touch, _this2.ignoreNonTouchEvents), classes["tooltipPlacement".concat((0, _helpers.capitalize)(actualPlacement))])
+	        }, title));
+	      })));
+	    }
+	  }]);
+	  return Tooltip;
+	}(_react.default.Component);
+	
+	Tooltip.propTypes = process.env.NODE_ENV !== "production" ? {
+	  /**
+	   * Tooltip reference element.
+	   */
+	  children: _propTypes.default.element.isRequired,
+	
+	  /**
+	   * Override or extend the styles applied to the component.
+	   * See [CSS API](#css-api) below for more details.
+	   */
+	  classes: _propTypes.default.object.isRequired,
+	
+	  /**
+	   * @ignore
+	   */
+	  className: _propTypes.default.string,
+	
+	  /**
+	   * Do not respond to focus events.
+	   */
+	  disableFocusListener: _propTypes.default.bool,
+	
+	  /**
+	   * Do not respond to hover events.
+	   */
+	  disableHoverListener: _propTypes.default.bool,
+	
+	  /**
+	   * Do not respond to long press touch events.
+	   */
+	  disableTouchListener: _propTypes.default.bool,
+	
+	  /**
+	   * The number of milliseconds to wait before showing the tooltip.
+	   * This property won't impact the enter touch delay (`enterTouchDelay`).
+	   */
+	  enterDelay: _propTypes.default.number,
+	
+	  /**
+	   * The number of milliseconds a user must touch the element before showing the tooltip.
+	   */
+	  enterTouchDelay: _propTypes.default.number,
+	
+	  /**
+	   * The relationship between the tooltip and the wrapper component is not clear from the DOM.
+	   * By providing this property, we can use aria-describedby to solve the accessibility issue.
+	   */
+	  id: _propTypes.default.string,
+	
+	  /**
+	   * The number of milliseconds to wait before hiding the tooltip.
+	   * This property won't impact the leave touch delay (`leaveTouchDelay`).
+	   */
+	  leaveDelay: _propTypes.default.number,
+	
+	  /**
+	   * The number of milliseconds after the user stops touching an element before hiding the tooltip.
+	   */
+	  leaveTouchDelay: _propTypes.default.number,
+	
+	  /**
+	   * Callback fired when the tooltip requests to be closed.
+	   *
+	   * @param {object} event The event source of the callback
+	   */
+	  onClose: _propTypes.default.func,
+	
+	  /**
+	   * Callback fired when the tooltip requests to be open.
+	   *
+	   * @param {object} event The event source of the callback
+	   */
+	  onOpen: _propTypes.default.func,
+	
+	  /**
+	   * If `true`, the tooltip is shown.
+	   */
+	  open: _propTypes.default.bool,
+	
+	  /**
+	   * Tooltip placement
+	   */
+	  placement: _propTypes.default.oneOf(['bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top']),
+	
+	  /**
+	   * Properties applied to the `Popper` element.
+	   */
+	  PopperProps: _propTypes.default.object,
+	
+	  /**
+	   * @ignore
+	   */
+	  theme: _propTypes.default.object.isRequired,
+	
+	  /**
+	   * Tooltip title. Zero-length titles string are never displayed.
+	   */
+	  title: _propTypes.default.node.isRequired
+	} : {};
+	Tooltip.defaultProps = {
+	  disableFocusListener: false,
+	  disableHoverListener: false,
+	  disableTouchListener: false,
+	  enterDelay: 0,
+	  enterTouchDelay: 1000,
+	  leaveDelay: 0,
+	  leaveTouchDelay: 1500,
+	  placement: 'bottom'
+	};
+	
+	var _default = (0, _withStyles.default)(styles, {
+	  name: 'MuiTooltip',
+	  withTheme: true
+	})(Tooltip);
+	
+	exports.default = _default;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
+
+/***/ }),
+/* 331 */
+/*!*************************************************!*\
+  !*** ./~/react-popper/dist/cjs/react-popper.js ***!
+  \*************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', { value: true });
+	
+	function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+	
+	var react = __webpack_require__(/*! react */ 1);
+	var PropTypes = _interopDefault(__webpack_require__(/*! prop-types */ 28));
+	var PopperJS = _interopDefault(__webpack_require__(/*! popper.js */ 332));
+	
+	var classCallCheck = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+	
+	var createClass = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      Object.defineProperty(target, descriptor.key, descriptor);
+	    }
+	  }
+	
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+	
+	var _extends = Object.assign || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];
+	
+	    for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }
+	
+	  return target;
+	};
+	
+	var inherits = function (subClass, superClass) {
+	  if (typeof superClass !== "function" && superClass !== null) {
+	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	  }
+	
+	  subClass.prototype = Object.create(superClass && superClass.prototype, {
+	    constructor: {
+	      value: subClass,
+	      enumerable: false,
+	      writable: true,
+	      configurable: true
+	    }
+	  });
+	  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	};
+	
+	var objectWithoutProperties = function (obj, keys) {
+	  var target = {};
+	
+	  for (var i in obj) {
+	    if (keys.indexOf(i) >= 0) continue;
+	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+	    target[i] = obj[i];
+	  }
+	
+	  return target;
+	};
+	
+	var possibleConstructorReturn = function (self, call) {
+	  if (!self) {
+	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	  }
+	
+	  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	};
+	
+	var Manager = function (_Component) {
+	  inherits(Manager, _Component);
+	
+	  function Manager() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    classCallCheck(this, Manager);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Manager.__proto__ || Object.getPrototypeOf(Manager)).call.apply(_ref, [this].concat(args))), _this), _this._setTargetNode = function (node) {
+	      _this._targetNode = node;
+	    }, _this._getTargetNode = function () {
+	      return _this._targetNode;
+	    }, _temp), possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  createClass(Manager, [{
+	    key: 'getChildContext',
+	    value: function getChildContext() {
+	      return {
+	        popperManager: {
+	          setTargetNode: this._setTargetNode,
+	          getTargetNode: this._getTargetNode
+	        }
+	      };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props,
+	          tag = _props.tag,
+	          children = _props.children,
+	          restProps = objectWithoutProperties(_props, ['tag', 'children']);
+	
+	      if (tag !== false) {
+	        return react.createElement(tag, restProps, children);
+	      } else {
+	        return children;
+	      }
+	    }
+	  }]);
+	  return Manager;
+	}(react.Component);
+	
+	Manager.childContextTypes = {
+	  popperManager: PropTypes.object.isRequired
+	};
+	Manager.propTypes = {
+	  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+	  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+	};
+	Manager.defaultProps = {
+	  tag: 'div'
+	};
+	
+	var Target = function Target(props, context) {
+	  var _props$component = props.component,
+	      component = _props$component === undefined ? 'div' : _props$component,
+	      innerRef = props.innerRef,
+	      children = props.children,
+	      restProps = objectWithoutProperties(props, ['component', 'innerRef', 'children']);
+	  var popperManager = context.popperManager;
+	
+	  var targetRef = function targetRef(node) {
+	    popperManager.setTargetNode(node);
+	    if (typeof innerRef === 'function') {
+	      innerRef(node);
+	    }
+	  };
+	
+	  if (typeof children === 'function') {
+	    var targetProps = { ref: targetRef };
+	    return children({ targetProps: targetProps, restProps: restProps });
+	  }
+	
+	  var componentProps = _extends({}, restProps);
+	
+	  if (typeof component === 'string') {
+	    componentProps.ref = targetRef;
+	  } else {
+	    componentProps.innerRef = targetRef;
+	  }
+	
+	  return react.createElement(component, componentProps, children);
+	};
+	
+	Target.contextTypes = {
+	  popperManager: PropTypes.object.isRequired
+	};
+	
+	Target.propTypes = {
+	  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+	  innerRef: PropTypes.func,
+	  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+	};
+	
+	var placements = PopperJS.placements;
+	
+	var Popper = function (_Component) {
+	  inherits(Popper, _Component);
+	
+	  function Popper() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    classCallCheck(this, Popper);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Popper.__proto__ || Object.getPrototypeOf(Popper)).call.apply(_ref, [this].concat(args))), _this), _this.state = {}, _this._setArrowNode = function (node) {
+	      _this._arrowNode = node;
+	    }, _this._getTargetNode = function () {
+	      if (_this.props.target) {
+	        return _this.props.target;
+	      } else if (!_this.context.popperManager || !_this.context.popperManager.getTargetNode()) {
+	        throw new Error('Target missing. Popper must be given a target from the Popper Manager, or as a prop.');
+	      }
+	      return _this.context.popperManager.getTargetNode();
+	    }, _this._getOffsets = function (data) {
+	      return Object.keys(data.offsets).map(function (key) {
+	        return data.offsets[key];
+	      });
+	    }, _this._isDataDirty = function (data) {
+	      if (_this.state.data) {
+	        return JSON.stringify(_this._getOffsets(_this.state.data)) !== JSON.stringify(_this._getOffsets(data));
+	      } else {
+	        return true;
+	      }
+	    }, _this._updateStateModifier = {
+	      enabled: true,
+	      order: 900,
+	      fn: function fn(data) {
+	        if (_this._isDataDirty(data)) {
+	          _this.setState({ data: data });
+	        }
+	        return data;
+	      }
+	    }, _this._getPopperStyle = function () {
+	      var data = _this.state.data;
+	
+	
+	      if (!_this._popper || !data) {
+	        return {
+	          position: 'absolute',
+	          pointerEvents: 'none',
+	          opacity: 0
+	        };
+	      }
+	
+	      return _extends({
+	        position: data.offsets.popper.position
+	      }, data.styles);
+	    }, _this._getPopperPlacement = function () {
+	      return _this.state.data ? _this.state.data.placement : undefined;
+	    }, _this._getPopperHide = function () {
+	      return !!_this.state.data && _this.state.data.hide ? '' : undefined;
+	    }, _this._getArrowStyle = function () {
+	      if (!_this.state.data || !_this.state.data.offsets.arrow) {
+	        return {};
+	      } else {
+	        var _this$state$data$offs = _this.state.data.offsets.arrow,
+	            top = _this$state$data$offs.top,
+	            left = _this$state$data$offs.left;
+	
+	        return { top: top, left: left };
+	      }
+	    }, _this._handlePopperRef = function (node) {
+	      _this._popperNode = node;
+	      if (node) {
+	        _this._createPopper();
+	      } else {
+	        _this._destroyPopper();
+	      }
+	      if (_this.props.innerRef) {
+	        _this.props.innerRef(node);
+	      }
+	    }, _this._scheduleUpdate = function () {
+	      _this._popper && _this._popper.scheduleUpdate();
+	    }, _temp), possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  createClass(Popper, [{
+	    key: 'getChildContext',
+	    value: function getChildContext() {
+	      return {
+	        popper: {
+	          setArrowNode: this._setArrowNode,
+	          getArrowStyle: this._getArrowStyle
+	        }
+	      };
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate(lastProps) {
+	      if (lastProps.placement !== this.props.placement || lastProps.eventsEnabled !== this.props.eventsEnabled || lastProps.target !== this.props.target) {
+	        this._destroyPopper();
+	        this._createPopper();
+	      }
+	      if (lastProps.children !== this.props.children) {
+	        this._scheduleUpdate();
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this._destroyPopper();
+	    }
+	  }, {
+	    key: '_createPopper',
+	    value: function _createPopper() {
+	      var _this2 = this;
+	
+	      var _props = this.props,
+	          placement = _props.placement,
+	          eventsEnabled = _props.eventsEnabled,
+	          positionFixed = _props.positionFixed;
+	
+	      var modifiers = _extends({}, this.props.modifiers, {
+	        applyStyle: { enabled: false },
+	        updateState: this._updateStateModifier
+	      });
+	      if (this._arrowNode) {
+	        modifiers.arrow = _extends({}, this.props.modifiers.arrow || {}, {
+	          element: this._arrowNode
+	        });
+	      }
+	      this._popper = new PopperJS(this._getTargetNode(), this._popperNode, {
+	        placement: placement,
+	        positionFixed: positionFixed,
+	        eventsEnabled: eventsEnabled,
+	        modifiers: modifiers
+	      });
+	
+	      // TODO: look into setTimeout scheduleUpdate call, without it, the popper will not position properly on creation
+	      setTimeout(function () {
+	        return _this2._scheduleUpdate();
+	      });
+	    }
+	  }, {
+	    key: '_destroyPopper',
+	    value: function _destroyPopper() {
+	      if (this._popper) {
+	        this._popper.destroy();
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props,
+	          component = _props2.component,
+	          innerRef = _props2.innerRef,
+	          placement = _props2.placement,
+	          eventsEnabled = _props2.eventsEnabled,
+	          positionFixed = _props2.positionFixed,
+	          modifiers = _props2.modifiers,
+	          children = _props2.children,
+	          restProps = objectWithoutProperties(_props2, ['component', 'innerRef', 'placement', 'eventsEnabled', 'positionFixed', 'modifiers', 'children']);
+	
+	      var popperStyle = this._getPopperStyle();
+	      var popperPlacement = this._getPopperPlacement();
+	      var popperHide = this._getPopperHide();
+	
+	      if (typeof children === 'function') {
+	        var popperProps = {
+	          ref: this._handlePopperRef,
+	          style: popperStyle,
+	          'data-placement': popperPlacement,
+	          'data-x-out-of-boundaries': popperHide
+	        };
+	        return children({
+	          popperProps: popperProps,
+	          restProps: restProps,
+	          scheduleUpdate: this._scheduleUpdate
+	        });
+	      }
+	
+	      var componentProps = _extends({}, restProps, {
+	        style: _extends({}, restProps.style, popperStyle),
+	        'data-placement': popperPlacement,
+	        'data-x-out-of-boundaries': popperHide
+	      });
+	
+	      if (typeof component === 'string') {
+	        componentProps.ref = this._handlePopperRef;
+	      } else {
+	        componentProps.innerRef = this._handlePopperRef;
+	      }
+	
+	      return react.createElement(component, componentProps, children);
+	    }
+	  }]);
+	  return Popper;
+	}(react.Component);
+	
+	Popper.contextTypes = {
+	  popperManager: PropTypes.object
+	};
+	Popper.childContextTypes = {
+	  popper: PropTypes.object.isRequired
+	};
+	Popper.propTypes = {
+	  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+	  innerRef: PropTypes.func,
+	  placement: PropTypes.oneOf(placements),
+	  eventsEnabled: PropTypes.bool,
+	  positionFixed: PropTypes.bool,
+	  modifiers: PropTypes.object,
+	  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+	  target: PropTypes.oneOfType([
+	  // the following check is needed for SSR
+	  PropTypes.instanceOf(typeof Element !== 'undefined' ? Element : Object), PropTypes.shape({
+	    getBoundingClientRect: PropTypes.func.isRequired,
+	    clientWidth: PropTypes.number.isRequired,
+	    clientHeight: PropTypes.number.isRequired
+	  })])
+	};
+	Popper.defaultProps = {
+	  component: 'div',
+	  placement: 'bottom',
+	  eventsEnabled: true,
+	  positionFixed: false,
+	  modifiers: {}
+	};
+	
+	var Arrow = function Arrow(props, context) {
+	  var _props$component = props.component,
+	      component = _props$component === undefined ? 'span' : _props$component,
+	      innerRef = props.innerRef,
+	      children = props.children,
+	      restProps = objectWithoutProperties(props, ['component', 'innerRef', 'children']);
+	  var popper = context.popper;
+	
+	  var arrowRef = function arrowRef(node) {
+	    popper.setArrowNode(node);
+	    if (typeof innerRef === 'function') {
+	      innerRef(node);
+	    }
+	  };
+	  var arrowStyle = popper.getArrowStyle();
+	
+	  if (typeof children === 'function') {
+	    var arrowProps = {
+	      ref: arrowRef,
+	      style: arrowStyle
+	    };
+	    return children({ arrowProps: arrowProps, restProps: restProps });
+	  }
+	
+	  var componentProps = _extends({}, restProps, {
+	    style: _extends({}, arrowStyle, restProps.style)
+	  });
+	
+	  if (typeof component === 'string') {
+	    componentProps.ref = arrowRef;
+	  } else {
+	    componentProps.innerRef = arrowRef;
+	  }
+	
+	  return react.createElement(component, componentProps, children);
+	};
+	
+	Arrow.contextTypes = {
+	  popper: PropTypes.object.isRequired
+	};
+	
+	Arrow.propTypes = {
+	  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+	  innerRef: PropTypes.func,
+	  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+	};
+	
+	exports.Manager = Manager;
+	exports.Target = Target;
+	exports.Popper = Popper;
+	exports.placements = placements;
+	exports.Arrow = Arrow;
+	//# sourceMappingURL=react-popper.js.map
+
+
+/***/ }),
+/* 332 */
+/*!****************************************!*\
+  !*** ./~/popper.js/dist/umd/popper.js ***!
+  \****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**!
+	 * @fileOverview Kickass library to create and place poppers near their reference elements.
+	 * @version 1.14.3
+	 * @license
+	 * Copyright (c) 2016 Federico Zivolo and contributors
+	 *
+	 * Permission is hereby granted, free of charge, to any person obtaining a copy
+	 * of this software and associated documentation files (the "Software"), to deal
+	 * in the Software without restriction, including without limitation the rights
+	 * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	 * copies of the Software, and to permit persons to whom the Software is
+	 * furnished to do so, subject to the following conditions:
+	 *
+	 * The above copyright notice and this permission notice shall be included in all
+	 * copies or substantial portions of the Software.
+	 *
+	 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	 * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	 * SOFTWARE.
+	 */
+	(function (global, factory) {
+		 true ? module.exports = factory() :
+		typeof define === 'function' && define.amd ? define(factory) :
+		(global.Popper = factory());
+	}(this, (function () { 'use strict';
+	
+	var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+	
+	var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+	var timeoutDuration = 0;
+	for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+	  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+	    timeoutDuration = 1;
+	    break;
+	  }
+	}
+	
+	function microtaskDebounce(fn) {
+	  var called = false;
+	  return function () {
+	    if (called) {
+	      return;
+	    }
+	    called = true;
+	    window.Promise.resolve().then(function () {
+	      called = false;
+	      fn();
+	    });
+	  };
+	}
+	
+	function taskDebounce(fn) {
+	  var scheduled = false;
+	  return function () {
+	    if (!scheduled) {
+	      scheduled = true;
+	      setTimeout(function () {
+	        scheduled = false;
+	        fn();
+	      }, timeoutDuration);
+	    }
+	  };
+	}
+	
+	var supportsMicroTasks = isBrowser && window.Promise;
+	
+	/**
+	* Create a debounced version of a method, that's asynchronously deferred
+	* but called in the minimum time possible.
+	*
+	* @method
+	* @memberof Popper.Utils
+	* @argument {Function} fn
+	* @returns {Function}
+	*/
+	var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+	
+	/**
+	 * Check if the given variable is a function
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Any} functionToCheck - variable to check
+	 * @returns {Boolean} answer to: is a function?
+	 */
+	function isFunction(functionToCheck) {
+	  var getType = {};
+	  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+	}
+	
+	/**
+	 * Get CSS computed property of the given element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Eement} element
+	 * @argument {String} property
+	 */
+	function getStyleComputedProperty(element, property) {
+	  if (element.nodeType !== 1) {
+	    return [];
+	  }
+	  // NOTE: 1 DOM access here
+	  var css = getComputedStyle(element, null);
+	  return property ? css[property] : css;
+	}
+	
+	/**
+	 * Returns the parentNode or the host of the element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @returns {Element} parent
+	 */
+	function getParentNode(element) {
+	  if (element.nodeName === 'HTML') {
+	    return element;
+	  }
+	  return element.parentNode || element.host;
+	}
+	
+	/**
+	 * Returns the scrolling parent of the given element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @returns {Element} scroll parent
+	 */
+	function getScrollParent(element) {
+	  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+	  if (!element) {
+	    return document.body;
+	  }
+	
+	  switch (element.nodeName) {
+	    case 'HTML':
+	    case 'BODY':
+	      return element.ownerDocument.body;
+	    case '#document':
+	      return element.body;
+	  }
+	
+	  // Firefox want us to check `-x` and `-y` variations as well
+	
+	  var _getStyleComputedProp = getStyleComputedProperty(element),
+	      overflow = _getStyleComputedProp.overflow,
+	      overflowX = _getStyleComputedProp.overflowX,
+	      overflowY = _getStyleComputedProp.overflowY;
+	
+	  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+	    return element;
+	  }
+	
+	  return getScrollParent(getParentNode(element));
+	}
+	
+	var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
+	var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+	
+	/**
+	 * Determines if the browser is Internet Explorer
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {Number} version to check
+	 * @returns {Boolean} isIE
+	 */
+	function isIE(version) {
+	  if (version === 11) {
+	    return isIE11;
+	  }
+	  if (version === 10) {
+	    return isIE10;
+	  }
+	  return isIE11 || isIE10;
+	}
+	
+	/**
+	 * Returns the offset parent of the given element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @returns {Element} offset parent
+	 */
+	function getOffsetParent(element) {
+	  if (!element) {
+	    return document.documentElement;
+	  }
+	
+	  var noOffsetParent = isIE(10) ? document.body : null;
+	
+	  // NOTE: 1 DOM access here
+	  var offsetParent = element.offsetParent;
+	  // Skip hidden elements which don't have an offsetParent
+	  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+	    offsetParent = (element = element.nextElementSibling).offsetParent;
+	  }
+	
+	  var nodeName = offsetParent && offsetParent.nodeName;
+	
+	  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+	    return element ? element.ownerDocument.documentElement : document.documentElement;
+	  }
+	
+	  // .offsetParent will return the closest TD or TABLE in case
+	  // no offsetParent is present, I hate this job...
+	  if (['TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+	    return getOffsetParent(offsetParent);
+	  }
+	
+	  return offsetParent;
+	}
+	
+	function isOffsetContainer(element) {
+	  var nodeName = element.nodeName;
+	
+	  if (nodeName === 'BODY') {
+	    return false;
+	  }
+	  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+	}
+	
+	/**
+	 * Finds the root node (document, shadowDOM root) of the given element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} node
+	 * @returns {Element} root node
+	 */
+	function getRoot(node) {
+	  if (node.parentNode !== null) {
+	    return getRoot(node.parentNode);
+	  }
+	
+	  return node;
+	}
+	
+	/**
+	 * Finds the offset parent common to the two provided nodes
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element1
+	 * @argument {Element} element2
+	 * @returns {Element} common offset parent
+	 */
+	function findCommonOffsetParent(element1, element2) {
+	  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+	  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
+	    return document.documentElement;
+	  }
+	
+	  // Here we make sure to give as "start" the element that comes first in the DOM
+	  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+	  var start = order ? element1 : element2;
+	  var end = order ? element2 : element1;
+	
+	  // Get common ancestor container
+	  var range = document.createRange();
+	  range.setStart(start, 0);
+	  range.setEnd(end, 0);
+	  var commonAncestorContainer = range.commonAncestorContainer;
+	
+	  // Both nodes are inside #document
+	
+	  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
+	    if (isOffsetContainer(commonAncestorContainer)) {
+	      return commonAncestorContainer;
+	    }
+	
+	    return getOffsetParent(commonAncestorContainer);
+	  }
+	
+	  // one of the nodes is inside shadowDOM, find which one
+	  var element1root = getRoot(element1);
+	  if (element1root.host) {
+	    return findCommonOffsetParent(element1root.host, element2);
+	  } else {
+	    return findCommonOffsetParent(element1, getRoot(element2).host);
+	  }
+	}
+	
+	/**
+	 * Gets the scroll value of the given element in the given side (top and left)
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @argument {String} side `top` or `left`
+	 * @returns {number} amount of scrolled pixels
+	 */
+	function getScroll(element) {
+	  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+	
+	  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+	  var nodeName = element.nodeName;
+	
+	  if (nodeName === 'BODY' || nodeName === 'HTML') {
+	    var html = element.ownerDocument.documentElement;
+	    var scrollingElement = element.ownerDocument.scrollingElement || html;
+	    return scrollingElement[upperSide];
+	  }
+	
+	  return element[upperSide];
+	}
+	
+	/*
+	 * Sum or subtract the element scroll values (left and top) from a given rect object
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {Object} rect - Rect object you want to change
+	 * @param {HTMLElement} element - The element from the function reads the scroll values
+	 * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+	 * @return {Object} rect - The modifier rect object
+	 */
+	function includeScroll(rect, element) {
+	  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	
+	  var scrollTop = getScroll(element, 'top');
+	  var scrollLeft = getScroll(element, 'left');
+	  var modifier = subtract ? -1 : 1;
+	  rect.top += scrollTop * modifier;
+	  rect.bottom += scrollTop * modifier;
+	  rect.left += scrollLeft * modifier;
+	  rect.right += scrollLeft * modifier;
+	  return rect;
+	}
+	
+	/*
+	 * Helper to detect borders of a given element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {CSSStyleDeclaration} styles
+	 * Result of `getStyleComputedProperty` on the given element
+	 * @param {String} axis - `x` or `y`
+	 * @return {number} borders - The borders size of the given axis
+	 */
+	
+	function getBordersSize(styles, axis) {
+	  var sideA = axis === 'x' ? 'Left' : 'Top';
+	  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+	
+	  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+	}
+	
+	function getSize(axis, body, html, computedStyle) {
+	  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? html['offset' + axis] + computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')] + computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')] : 0);
+	}
+	
+	function getWindowSizes() {
+	  var body = document.body;
+	  var html = document.documentElement;
+	  var computedStyle = isIE(10) && getComputedStyle(html);
+	
+	  return {
+	    height: getSize('Height', body, html, computedStyle),
+	    width: getSize('Width', body, html, computedStyle)
+	  };
+	}
+	
+	var classCallCheck = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+	
+	var createClass = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      Object.defineProperty(target, descriptor.key, descriptor);
+	    }
+	  }
+	
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+	
+	
+	
+	
+	
+	var defineProperty = function (obj, key, value) {
+	  if (key in obj) {
+	    Object.defineProperty(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+	
+	  return obj;
+	};
+	
+	var _extends = Object.assign || function (target) {
+	  for (var i = 1; i < arguments.length; i++) {
+	    var source = arguments[i];
+	
+	    for (var key in source) {
+	      if (Object.prototype.hasOwnProperty.call(source, key)) {
+	        target[key] = source[key];
+	      }
+	    }
+	  }
+	
+	  return target;
+	};
+	
+	/**
+	 * Given element offsets, generate an output similar to getBoundingClientRect
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Object} offsets
+	 * @returns {Object} ClientRect like output
+	 */
+	function getClientRect(offsets) {
+	  return _extends({}, offsets, {
+	    right: offsets.left + offsets.width,
+	    bottom: offsets.top + offsets.height
+	  });
+	}
+	
+	/**
+	 * Get bounding client rect of given element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {HTMLElement} element
+	 * @return {Object} client rect
+	 */
+	function getBoundingClientRect(element) {
+	  var rect = {};
+	
+	  // IE10 10 FIX: Please, don't ask, the element isn't
+	  // considered in DOM in some circumstances...
+	  // This isn't reproducible in IE10 compatibility mode of IE11
+	  try {
+	    if (isIE(10)) {
+	      rect = element.getBoundingClientRect();
+	      var scrollTop = getScroll(element, 'top');
+	      var scrollLeft = getScroll(element, 'left');
+	      rect.top += scrollTop;
+	      rect.left += scrollLeft;
+	      rect.bottom += scrollTop;
+	      rect.right += scrollLeft;
+	    } else {
+	      rect = element.getBoundingClientRect();
+	    }
+	  } catch (e) {}
+	
+	  var result = {
+	    left: rect.left,
+	    top: rect.top,
+	    width: rect.right - rect.left,
+	    height: rect.bottom - rect.top
+	  };
+	
+	  // subtract scrollbar size from sizes
+	  var sizes = element.nodeName === 'HTML' ? getWindowSizes() : {};
+	  var width = sizes.width || element.clientWidth || result.right - result.left;
+	  var height = sizes.height || element.clientHeight || result.bottom - result.top;
+	
+	  var horizScrollbar = element.offsetWidth - width;
+	  var vertScrollbar = element.offsetHeight - height;
+	
+	  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+	  // we make this check conditional for performance reasons
+	  if (horizScrollbar || vertScrollbar) {
+	    var styles = getStyleComputedProperty(element);
+	    horizScrollbar -= getBordersSize(styles, 'x');
+	    vertScrollbar -= getBordersSize(styles, 'y');
+	
+	    result.width -= horizScrollbar;
+	    result.height -= vertScrollbar;
+	  }
+	
+	  return getClientRect(result);
+	}
+	
+	function getOffsetRectRelativeToArbitraryNode(children, parent) {
+	  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	
+	  var isIE10 = isIE(10);
+	  var isHTML = parent.nodeName === 'HTML';
+	  var childrenRect = getBoundingClientRect(children);
+	  var parentRect = getBoundingClientRect(parent);
+	  var scrollParent = getScrollParent(children);
+	
+	  var styles = getStyleComputedProperty(parent);
+	  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
+	  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+	
+	  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+	  if (fixedPosition && parent.nodeName === 'HTML') {
+	    parentRect.top = Math.max(parentRect.top, 0);
+	    parentRect.left = Math.max(parentRect.left, 0);
+	  }
+	  var offsets = getClientRect({
+	    top: childrenRect.top - parentRect.top - borderTopWidth,
+	    left: childrenRect.left - parentRect.left - borderLeftWidth,
+	    width: childrenRect.width,
+	    height: childrenRect.height
+	  });
+	  offsets.marginTop = 0;
+	  offsets.marginLeft = 0;
+	
+	  // Subtract margins of documentElement in case it's being used as parent
+	  // we do this only on HTML because it's the only element that behaves
+	  // differently when margins are applied to it. The margins are included in
+	  // the box of the documentElement, in the other cases not.
+	  if (!isIE10 && isHTML) {
+	    var marginTop = parseFloat(styles.marginTop, 10);
+	    var marginLeft = parseFloat(styles.marginLeft, 10);
+	
+	    offsets.top -= borderTopWidth - marginTop;
+	    offsets.bottom -= borderTopWidth - marginTop;
+	    offsets.left -= borderLeftWidth - marginLeft;
+	    offsets.right -= borderLeftWidth - marginLeft;
+	
+	    // Attach marginTop and marginLeft because in some circumstances we may need them
+	    offsets.marginTop = marginTop;
+	    offsets.marginLeft = marginLeft;
+	  }
+	
+	  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+	    offsets = includeScroll(offsets, parent);
+	  }
+	
+	  return offsets;
+	}
+	
+	function getViewportOffsetRectRelativeToArtbitraryNode(element) {
+	  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+	
+	  var html = element.ownerDocument.documentElement;
+	  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
+	  var width = Math.max(html.clientWidth, window.innerWidth || 0);
+	  var height = Math.max(html.clientHeight, window.innerHeight || 0);
+	
+	  var scrollTop = !excludeScroll ? getScroll(html) : 0;
+	  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+	
+	  var offset = {
+	    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
+	    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+	    width: width,
+	    height: height
+	  };
+	
+	  return getClientRect(offset);
+	}
+	
+	/**
+	 * Check if the given element is fixed or is inside a fixed parent
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @argument {Element} customContainer
+	 * @returns {Boolean} answer to "isFixed?"
+	 */
+	function isFixed(element) {
+	  var nodeName = element.nodeName;
+	  if (nodeName === 'BODY' || nodeName === 'HTML') {
+	    return false;
+	  }
+	  if (getStyleComputedProperty(element, 'position') === 'fixed') {
+	    return true;
+	  }
+	  return isFixed(getParentNode(element));
+	}
+	
+	/**
+	 * Finds the first parent of an element that has a transformed property defined
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @returns {Element} first transformed parent or documentElement
+	 */
+	
+	function getFixedPositionOffsetParent(element) {
+	  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+	  if (!element || !element.parentElement || isIE()) {
+	    return document.documentElement;
+	  }
+	  var el = element.parentElement;
+	  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+	    el = el.parentElement;
+	  }
+	  return el || document.documentElement;
+	}
+	
+	/**
+	 * Computed the boundaries limits and return them
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {HTMLElement} popper
+	 * @param {HTMLElement} reference
+	 * @param {number} padding
+	 * @param {HTMLElement} boundariesElement - Element used to define the boundaries
+	 * @param {Boolean} fixedPosition - Is in fixed position mode
+	 * @returns {Object} Coordinates of the boundaries
+	 */
+	function getBoundaries(popper, reference, padding, boundariesElement) {
+	  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+	
+	  // NOTE: 1 DOM access here
+	
+	  var boundaries = { top: 0, left: 0 };
+	  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+	
+	  // Handle viewport case
+	  if (boundariesElement === 'viewport') {
+	    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
+	  } else {
+	    // Handle other cases based on DOM element used as boundaries
+	    var boundariesNode = void 0;
+	    if (boundariesElement === 'scrollParent') {
+	      boundariesNode = getScrollParent(getParentNode(reference));
+	      if (boundariesNode.nodeName === 'BODY') {
+	        boundariesNode = popper.ownerDocument.documentElement;
+	      }
+	    } else if (boundariesElement === 'window') {
+	      boundariesNode = popper.ownerDocument.documentElement;
+	    } else {
+	      boundariesNode = boundariesElement;
+	    }
+	
+	    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
+	
+	    // In case of HTML, we need a different computation
+	    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+	      var _getWindowSizes = getWindowSizes(),
+	          height = _getWindowSizes.height,
+	          width = _getWindowSizes.width;
+	
+	      boundaries.top += offsets.top - offsets.marginTop;
+	      boundaries.bottom = height + offsets.top;
+	      boundaries.left += offsets.left - offsets.marginLeft;
+	      boundaries.right = width + offsets.left;
+	    } else {
+	      // for all the other DOM elements, this one is good
+	      boundaries = offsets;
+	    }
+	  }
+	
+	  // Add paddings
+	  boundaries.left += padding;
+	  boundaries.top += padding;
+	  boundaries.right -= padding;
+	  boundaries.bottom -= padding;
+	
+	  return boundaries;
+	}
+	
+	function getArea(_ref) {
+	  var width = _ref.width,
+	      height = _ref.height;
+	
+	  return width * height;
+	}
+	
+	/**
+	 * Utility used to transform the `auto` placement to the placement with more
+	 * available space.
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Object} data - The data object generated by update method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
+	  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+	
+	  if (placement.indexOf('auto') === -1) {
+	    return placement;
+	  }
+	
+	  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+	
+	  var rects = {
+	    top: {
+	      width: boundaries.width,
+	      height: refRect.top - boundaries.top
+	    },
+	    right: {
+	      width: boundaries.right - refRect.right,
+	      height: boundaries.height
+	    },
+	    bottom: {
+	      width: boundaries.width,
+	      height: boundaries.bottom - refRect.bottom
+	    },
+	    left: {
+	      width: refRect.left - boundaries.left,
+	      height: boundaries.height
+	    }
+	  };
+	
+	  var sortedAreas = Object.keys(rects).map(function (key) {
+	    return _extends({
+	      key: key
+	    }, rects[key], {
+	      area: getArea(rects[key])
+	    });
+	  }).sort(function (a, b) {
+	    return b.area - a.area;
+	  });
+	
+	  var filteredAreas = sortedAreas.filter(function (_ref2) {
+	    var width = _ref2.width,
+	        height = _ref2.height;
+	    return width >= popper.clientWidth && height >= popper.clientHeight;
+	  });
+	
+	  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
+	
+	  var variation = placement.split('-')[1];
+	
+	  return computedPlacement + (variation ? '-' + variation : '');
+	}
+	
+	/**
+	 * Get offsets to the reference element
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {Object} state
+	 * @param {Element} popper - the popper element
+	 * @param {Element} reference - the reference element (the popper will be relative to this)
+	 * @param {Element} fixedPosition - is in fixed position mode
+	 * @returns {Object} An object containing the offsets which will be applied to the popper
+	 */
+	function getReferenceOffsets(state, popper, reference) {
+	  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+	
+	  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+	  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+	}
+	
+	/**
+	 * Get the outer sizes of the given element (offset size + margins)
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element
+	 * @returns {Object} object containing width and height properties
+	 */
+	function getOuterSizes(element) {
+	  var styles = getComputedStyle(element);
+	  var x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
+	  var y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
+	  var result = {
+	    width: element.offsetWidth + y,
+	    height: element.offsetHeight + x
+	  };
+	  return result;
+	}
+	
+	/**
+	 * Get the opposite placement of the given one
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {String} placement
+	 * @returns {String} flipped placement
+	 */
+	function getOppositePlacement(placement) {
+	  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+	  return placement.replace(/left|right|bottom|top/g, function (matched) {
+	    return hash[matched];
+	  });
+	}
+	
+	/**
+	 * Get offsets to the popper
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {Object} position - CSS position the Popper will get applied
+	 * @param {HTMLElement} popper - the popper element
+	 * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
+	 * @param {String} placement - one of the valid placement options
+	 * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
+	 */
+	function getPopperOffsets(popper, referenceOffsets, placement) {
+	  placement = placement.split('-')[0];
+	
+	  // Get popper node sizes
+	  var popperRect = getOuterSizes(popper);
+	
+	  // Add position, width and height to our offsets object
+	  var popperOffsets = {
+	    width: popperRect.width,
+	    height: popperRect.height
+	  };
+	
+	  // depending by the popper placement we have to compute its offsets slightly differently
+	  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
+	  var mainSide = isHoriz ? 'top' : 'left';
+	  var secondarySide = isHoriz ? 'left' : 'top';
+	  var measurement = isHoriz ? 'height' : 'width';
+	  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+	
+	  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+	  if (placement === secondarySide) {
+	    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+	  } else {
+	    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+	  }
+	
+	  return popperOffsets;
+	}
+	
+	/**
+	 * Mimics the `find` method of Array
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Array} arr
+	 * @argument prop
+	 * @argument value
+	 * @returns index or -1
+	 */
+	function find(arr, check) {
+	  // use native find if supported
+	  if (Array.prototype.find) {
+	    return arr.find(check);
+	  }
+	
+	  // use `filter` to obtain the same behavior of `find`
+	  return arr.filter(check)[0];
+	}
+	
+	/**
+	 * Return the index of the matching object
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Array} arr
+	 * @argument prop
+	 * @argument value
+	 * @returns index or -1
+	 */
+	function findIndex(arr, prop, value) {
+	  // use native findIndex if supported
+	  if (Array.prototype.findIndex) {
+	    return arr.findIndex(function (cur) {
+	      return cur[prop] === value;
+	    });
+	  }
+	
+	  // use `find` + `indexOf` if `findIndex` isn't supported
+	  var match = find(arr, function (obj) {
+	    return obj[prop] === value;
+	  });
+	  return arr.indexOf(match);
+	}
+	
+	/**
+	 * Loop trough the list of modifiers and run them in order,
+	 * each of them will then edit the data object.
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {dataObject} data
+	 * @param {Array} modifiers
+	 * @param {String} ends - Optional modifier name used as stopper
+	 * @returns {dataObject}
+	 */
+	function runModifiers(modifiers, data, ends) {
+	  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+	
+	  modifiersToRun.forEach(function (modifier) {
+	    if (modifier['function']) {
+	      // eslint-disable-line dot-notation
+	      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+	    }
+	    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+	    if (modifier.enabled && isFunction(fn)) {
+	      // Add properties to offsets to make them a complete clientRect object
+	      // we do this before each modifier to make sure the previous one doesn't
+	      // mess with these values
+	      data.offsets.popper = getClientRect(data.offsets.popper);
+	      data.offsets.reference = getClientRect(data.offsets.reference);
+	
+	      data = fn(data, modifier);
+	    }
+	  });
+	
+	  return data;
+	}
+	
+	/**
+	 * Updates the position of the popper, computing the new offsets and applying
+	 * the new style.<br />
+	 * Prefer `scheduleUpdate` over `update` because of performance reasons.
+	 * @method
+	 * @memberof Popper
+	 */
+	function update() {
+	  // if popper is destroyed, don't perform any further update
+	  if (this.state.isDestroyed) {
+	    return;
+	  }
+	
+	  var data = {
+	    instance: this,
+	    styles: {},
+	    arrowStyles: {},
+	    attributes: {},
+	    flipped: false,
+	    offsets: {}
+	  };
+	
+	  // compute reference element offsets
+	  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
+	
+	  // compute auto placement, store placement inside the data object,
+	  // modifiers will be able to edit `placement` if needed
+	  // and refer to originalPlacement to know the original value
+	  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+	
+	  // store the computed placement inside `originalPlacement`
+	  data.originalPlacement = data.placement;
+	
+	  data.positionFixed = this.options.positionFixed;
+	
+	  // compute the popper offsets
+	  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
+	
+	  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+	
+	  // run the modifiers
+	  data = runModifiers(this.modifiers, data);
+	
+	  // the first `update` will call `onCreate` callback
+	  // the other ones will call `onUpdate` callback
+	  if (!this.state.isCreated) {
+	    this.state.isCreated = true;
+	    this.options.onCreate(data);
+	  } else {
+	    this.options.onUpdate(data);
+	  }
+	}
+	
+	/**
+	 * Helper used to know if the given modifier is enabled.
+	 * @method
+	 * @memberof Popper.Utils
+	 * @returns {Boolean}
+	 */
+	function isModifierEnabled(modifiers, modifierName) {
+	  return modifiers.some(function (_ref) {
+	    var name = _ref.name,
+	        enabled = _ref.enabled;
+	    return enabled && name === modifierName;
+	  });
+	}
+	
+	/**
+	 * Get the prefixed supported property name
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {String} property (camelCase)
+	 * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+	 */
+	function getSupportedPropertyName(property) {
+	  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+	  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+	
+	  for (var i = 0; i < prefixes.length; i++) {
+	    var prefix = prefixes[i];
+	    var toCheck = prefix ? '' + prefix + upperProp : property;
+	    if (typeof document.body.style[toCheck] !== 'undefined') {
+	      return toCheck;
+	    }
+	  }
+	  return null;
+	}
+	
+	/**
+	 * Destroy the popper
+	 * @method
+	 * @memberof Popper
+	 */
+	function destroy() {
+	  this.state.isDestroyed = true;
+	
+	  // touch DOM only if `applyStyle` modifier is enabled
+	  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
+	    this.popper.removeAttribute('x-placement');
+	    this.popper.style.position = '';
+	    this.popper.style.top = '';
+	    this.popper.style.left = '';
+	    this.popper.style.right = '';
+	    this.popper.style.bottom = '';
+	    this.popper.style.willChange = '';
+	    this.popper.style[getSupportedPropertyName('transform')] = '';
+	  }
+	
+	  this.disableEventListeners();
+	
+	  // remove the popper if user explicity asked for the deletion on destroy
+	  // do not use `remove` because IE11 doesn't support it
+	  if (this.options.removeOnDestroy) {
+	    this.popper.parentNode.removeChild(this.popper);
+	  }
+	  return this;
+	}
+	
+	/**
+	 * Get the window associated with the element
+	 * @argument {Element} element
+	 * @returns {Window}
+	 */
+	function getWindow(element) {
+	  var ownerDocument = element.ownerDocument;
+	  return ownerDocument ? ownerDocument.defaultView : window;
+	}
+	
+	function attachToScrollParents(scrollParent, event, callback, scrollParents) {
+	  var isBody = scrollParent.nodeName === 'BODY';
+	  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+	  target.addEventListener(event, callback, { passive: true });
+	
+	  if (!isBody) {
+	    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+	  }
+	  scrollParents.push(target);
+	}
+	
+	/**
+	 * Setup needed event listeners used to update the popper position
+	 * @method
+	 * @memberof Popper.Utils
+	 * @private
+	 */
+	function setupEventListeners(reference, options, state, updateBound) {
+	  // Resize event listener on window
+	  state.updateBound = updateBound;
+	  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+	
+	  // Scroll event listener on scroll parents
+	  var scrollElement = getScrollParent(reference);
+	  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+	  state.scrollElement = scrollElement;
+	  state.eventsEnabled = true;
+	
+	  return state;
+	}
+	
+	/**
+	 * It will add resize/scroll events and start recalculating
+	 * position of the popper element when they are triggered.
+	 * @method
+	 * @memberof Popper
+	 */
+	function enableEventListeners() {
+	  if (!this.state.eventsEnabled) {
+	    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+	  }
+	}
+	
+	/**
+	 * Remove event listeners used to update the popper position
+	 * @method
+	 * @memberof Popper.Utils
+	 * @private
+	 */
+	function removeEventListeners(reference, state) {
+	  // Remove resize event listener on window
+	  getWindow(reference).removeEventListener('resize', state.updateBound);
+	
+	  // Remove scroll event listener on scroll parents
+	  state.scrollParents.forEach(function (target) {
+	    target.removeEventListener('scroll', state.updateBound);
+	  });
+	
+	  // Reset state
+	  state.updateBound = null;
+	  state.scrollParents = [];
+	  state.scrollElement = null;
+	  state.eventsEnabled = false;
+	  return state;
+	}
+	
+	/**
+	 * It will remove resize/scroll events and won't recalculate popper position
+	 * when they are triggered. It also won't trigger onUpdate callback anymore,
+	 * unless you call `update` method manually.
+	 * @method
+	 * @memberof Popper
+	 */
+	function disableEventListeners() {
+	  if (this.state.eventsEnabled) {
+	    cancelAnimationFrame(this.scheduleUpdate);
+	    this.state = removeEventListeners(this.reference, this.state);
+	  }
+	}
+	
+	/**
+	 * Tells if a given input is a number
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {*} input to check
+	 * @return {Boolean}
+	 */
+	function isNumeric(n) {
+	  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+	}
+	
+	/**
+	 * Set the style to the given popper
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element - Element to apply the style to
+	 * @argument {Object} styles
+	 * Object with a list of properties and values which will be applied to the element
+	 */
+	function setStyles(element, styles) {
+	  Object.keys(styles).forEach(function (prop) {
+	    var unit = '';
+	    // add unit if the value is numeric and is one of the following
+	    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+	      unit = 'px';
+	    }
+	    element.style[prop] = styles[prop] + unit;
+	  });
+	}
+	
+	/**
+	 * Set the attributes to the given popper
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {Element} element - Element to apply the attributes to
+	 * @argument {Object} styles
+	 * Object with a list of properties and values which will be applied to the element
+	 */
+	function setAttributes(element, attributes) {
+	  Object.keys(attributes).forEach(function (prop) {
+	    var value = attributes[prop];
+	    if (value !== false) {
+	      element.setAttribute(prop, attributes[prop]);
+	    } else {
+	      element.removeAttribute(prop);
+	    }
+	  });
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by `update` method
+	 * @argument {Object} data.styles - List of style properties - values to apply to popper element
+	 * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The same data object
+	 */
+	function applyStyle(data) {
+	  // any property present in `data.styles` will be applied to the popper,
+	  // in this way we can make the 3rd party modifiers add custom styles to it
+	  // Be aware, modifiers could override the properties defined in the previous
+	  // lines of this modifier!
+	  setStyles(data.instance.popper, data.styles);
+	
+	  // any property present in `data.attributes` will be applied to the popper,
+	  // they will be set as HTML attributes of the element
+	  setAttributes(data.instance.popper, data.attributes);
+	
+	  // if arrowElement is defined and arrowStyles has some properties
+	  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+	    setStyles(data.arrowElement, data.arrowStyles);
+	  }
+	
+	  return data;
+	}
+	
+	/**
+	 * Set the x-placement attribute before everything else because it could be used
+	 * to add margins to the popper margins needs to be calculated to get the
+	 * correct popper offsets.
+	 * @method
+	 * @memberof Popper.modifiers
+	 * @param {HTMLElement} reference - The reference element used to position the popper
+	 * @param {HTMLElement} popper - The HTML element used as popper
+	 * @param {Object} options - Popper.js options
+	 */
+	function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
+	  // compute reference element offsets
+	  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+	
+	  // compute auto placement, store placement inside the data object,
+	  // modifiers will be able to edit `placement` if needed
+	  // and refer to originalPlacement to know the original value
+	  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
+	
+	  popper.setAttribute('x-placement', placement);
+	
+	  // Apply `position` to popper before anything else because
+	  // without the position applied we can't guarantee correct computations
+	  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+	
+	  return options;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by `update` method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function computeStyle(data, options) {
+	  var x = options.x,
+	      y = options.y;
+	  var popper = data.offsets.popper;
+	
+	  // Remove this legacy support in Popper.js v2
+	
+	  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
+	    return modifier.name === 'applyStyle';
+	  }).gpuAcceleration;
+	  if (legacyGpuAccelerationOption !== undefined) {
+	    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+	  }
+	  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
+	
+	  var offsetParent = getOffsetParent(data.instance.popper);
+	  var offsetParentRect = getBoundingClientRect(offsetParent);
+	
+	  // Styles
+	  var styles = {
+	    position: popper.position
+	  };
+	
+	  // Avoid blurry text by using full pixel integers.
+	  // For pixel-perfect positioning, top/bottom prefers rounded
+	  // values, while left/right prefers floored values.
+	  var offsets = {
+	    left: Math.floor(popper.left),
+	    top: Math.round(popper.top),
+	    bottom: Math.round(popper.bottom),
+	    right: Math.floor(popper.right)
+	  };
+	
+	  var sideA = x === 'bottom' ? 'top' : 'bottom';
+	  var sideB = y === 'right' ? 'left' : 'right';
+	
+	  // if gpuAcceleration is set to `true` and transform is supported,
+	  //  we use `translate3d` to apply the position to the popper we
+	  // automatically use the supported prefixed version if needed
+	  var prefixedProperty = getSupportedPropertyName('transform');
+	
+	  // now, let's make a step back and look at this code closely (wtf?)
+	  // If the content of the popper grows once it's been positioned, it
+	  // may happen that the popper gets misplaced because of the new content
+	  // overflowing its reference element
+	  // To avoid this problem, we provide two options (x and y), which allow
+	  // the consumer to define the offset origin.
+	  // If we position a popper on top of a reference element, we can set
+	  // `x` to `top` to make the popper grow towards its top instead of
+	  // its bottom.
+	  var left = void 0,
+	      top = void 0;
+	  if (sideA === 'bottom') {
+	    top = -offsetParentRect.height + offsets.bottom;
+	  } else {
+	    top = offsets.top;
+	  }
+	  if (sideB === 'right') {
+	    left = -offsetParentRect.width + offsets.right;
+	  } else {
+	    left = offsets.left;
+	  }
+	  if (gpuAcceleration && prefixedProperty) {
+	    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+	    styles[sideA] = 0;
+	    styles[sideB] = 0;
+	    styles.willChange = 'transform';
+	  } else {
+	    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+	    var invertTop = sideA === 'bottom' ? -1 : 1;
+	    var invertLeft = sideB === 'right' ? -1 : 1;
+	    styles[sideA] = top * invertTop;
+	    styles[sideB] = left * invertLeft;
+	    styles.willChange = sideA + ', ' + sideB;
+	  }
+	
+	  // Attributes
+	  var attributes = {
+	    'x-placement': data.placement
+	  };
+	
+	  // Update `data` attributes, styles and arrowStyles
+	  data.attributes = _extends({}, attributes, data.attributes);
+	  data.styles = _extends({}, styles, data.styles);
+	  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+	
+	  return data;
+	}
+	
+	/**
+	 * Helper used to know if the given modifier depends from another one.<br />
+	 * It checks if the needed modifier is listed and enabled.
+	 * @method
+	 * @memberof Popper.Utils
+	 * @param {Array} modifiers - list of modifiers
+	 * @param {String} requestingName - name of requesting modifier
+	 * @param {String} requestedName - name of requested modifier
+	 * @returns {Boolean}
+	 */
+	function isModifierRequired(modifiers, requestingName, requestedName) {
+	  var requesting = find(modifiers, function (_ref) {
+	    var name = _ref.name;
+	    return name === requestingName;
+	  });
+	
+	  var isRequired = !!requesting && modifiers.some(function (modifier) {
+	    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+	  });
+	
+	  if (!isRequired) {
+	    var _requesting = '`' + requestingName + '`';
+	    var requested = '`' + requestedName + '`';
+	    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+	  }
+	  return isRequired;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by update method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function arrow(data, options) {
+	  var _data$offsets$arrow;
+	
+	  // arrow depends on keepTogether in order to work
+	  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+	    return data;
+	  }
+	
+	  var arrowElement = options.element;
+	
+	  // if arrowElement is a string, suppose it's a CSS selector
+	  if (typeof arrowElement === 'string') {
+	    arrowElement = data.instance.popper.querySelector(arrowElement);
+	
+	    // if arrowElement is not found, don't run the modifier
+	    if (!arrowElement) {
+	      return data;
+	    }
+	  } else {
+	    // if the arrowElement isn't a query selector we must check that the
+	    // provided DOM node is child of its popper node
+	    if (!data.instance.popper.contains(arrowElement)) {
+	      console.warn('WARNING: `arrow.element` must be child of its popper element!');
+	      return data;
+	    }
+	  }
+	
+	  var placement = data.placement.split('-')[0];
+	  var _data$offsets = data.offsets,
+	      popper = _data$offsets.popper,
+	      reference = _data$offsets.reference;
+	
+	  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+	
+	  var len = isVertical ? 'height' : 'width';
+	  var sideCapitalized = isVertical ? 'Top' : 'Left';
+	  var side = sideCapitalized.toLowerCase();
+	  var altSide = isVertical ? 'left' : 'top';
+	  var opSide = isVertical ? 'bottom' : 'right';
+	  var arrowElementSize = getOuterSizes(arrowElement)[len];
+	
+	  //
+	  // extends keepTogether behavior making sure the popper and its
+	  // reference have enough pixels in conjuction
+	  //
+	
+	  // top/left side
+	  if (reference[opSide] - arrowElementSize < popper[side]) {
+	    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+	  }
+	  // bottom/right side
+	  if (reference[side] + arrowElementSize > popper[opSide]) {
+	    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+	  }
+	  data.offsets.popper = getClientRect(data.offsets.popper);
+	
+	  // compute center of the popper
+	  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+	
+	  // Compute the sideValue using the updated popper offsets
+	  // take popper margin in account because we don't have this info available
+	  var css = getStyleComputedProperty(data.instance.popper);
+	  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
+	  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+	  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+	
+	  // prevent arrowElement from being placed not contiguously to its popper
+	  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+	
+	  data.arrowElement = arrowElement;
+	  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+	
+	  return data;
+	}
+	
+	/**
+	 * Get the opposite placement variation of the given one
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {String} placement variation
+	 * @returns {String} flipped placement variation
+	 */
+	function getOppositeVariation(variation) {
+	  if (variation === 'end') {
+	    return 'start';
+	  } else if (variation === 'start') {
+	    return 'end';
+	  }
+	  return variation;
+	}
+	
+	/**
+	 * List of accepted placements to use as values of the `placement` option.<br />
+	 * Valid placements are:
+	 * - `auto`
+	 * - `top`
+	 * - `right`
+	 * - `bottom`
+	 * - `left`
+	 *
+	 * Each placement can have a variation from this list:
+	 * - `-start`
+	 * - `-end`
+	 *
+	 * Variations are interpreted easily if you think of them as the left to right
+	 * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
+	 * is right.<br />
+	 * Vertically (`left` and `right`), `start` is top and `end` is bottom.
+	 *
+	 * Some valid examples are:
+	 * - `top-end` (on top of reference, right aligned)
+	 * - `right-start` (on right of reference, top aligned)
+	 * - `bottom` (on bottom, centered)
+	 * - `auto-right` (on the side with more space available, alignment depends by placement)
+	 *
+	 * @static
+	 * @type {Array}
+	 * @enum {String}
+	 * @readonly
+	 * @method placements
+	 * @memberof Popper
+	 */
+	var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+	
+	// Get rid of `auto` `auto-start` and `auto-end`
+	var validPlacements = placements.slice(3);
+	
+	/**
+	 * Given an initial placement, returns all the subsequent placements
+	 * clockwise (or counter-clockwise).
+	 *
+	 * @method
+	 * @memberof Popper.Utils
+	 * @argument {String} placement - A valid placement (it accepts variations)
+	 * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+	 * @returns {Array} placements including their variations
+	 */
+	function clockwise(placement) {
+	  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+	
+	  var index = validPlacements.indexOf(placement);
+	  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+	  return counter ? arr.reverse() : arr;
+	}
+	
+	var BEHAVIORS = {
+	  FLIP: 'flip',
+	  CLOCKWISE: 'clockwise',
+	  COUNTERCLOCKWISE: 'counterclockwise'
+	};
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by update method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function flip(data, options) {
+	  // if `inner` modifier is enabled, we can't use the `flip` modifier
+	  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+	    return data;
+	  }
+	
+	  if (data.flipped && data.placement === data.originalPlacement) {
+	    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+	    return data;
+	  }
+	
+	  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
+	
+	  var placement = data.placement.split('-')[0];
+	  var placementOpposite = getOppositePlacement(placement);
+	  var variation = data.placement.split('-')[1] || '';
+	
+	  var flipOrder = [];
+	
+	  switch (options.behavior) {
+	    case BEHAVIORS.FLIP:
+	      flipOrder = [placement, placementOpposite];
+	      break;
+	    case BEHAVIORS.CLOCKWISE:
+	      flipOrder = clockwise(placement);
+	      break;
+	    case BEHAVIORS.COUNTERCLOCKWISE:
+	      flipOrder = clockwise(placement, true);
+	      break;
+	    default:
+	      flipOrder = options.behavior;
+	  }
+	
+	  flipOrder.forEach(function (step, index) {
+	    if (placement !== step || flipOrder.length === index + 1) {
+	      return data;
+	    }
+	
+	    placement = data.placement.split('-')[0];
+	    placementOpposite = getOppositePlacement(placement);
+	
+	    var popperOffsets = data.offsets.popper;
+	    var refOffsets = data.offsets.reference;
+	
+	    // using floor because the reference offsets may contain decimals we are not going to consider here
+	    var floor = Math.floor;
+	    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+	
+	    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+	    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+	    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+	    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
+	
+	    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+	
+	    // flip the variation if required
+	    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+	    var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+	
+	    if (overlapsRef || overflowsBoundaries || flippedVariation) {
+	      // this boolean to detect any flip loop
+	      data.flipped = true;
+	
+	      if (overlapsRef || overflowsBoundaries) {
+	        placement = flipOrder[index + 1];
+	      }
+	
+	      if (flippedVariation) {
+	        variation = getOppositeVariation(variation);
+	      }
+	
+	      data.placement = placement + (variation ? '-' + variation : '');
+	
+	      // this object contains `position`, we want to preserve it along with
+	      // any additional property we may add in the future
+	      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+	
+	      data = runModifiers(data.instance.modifiers, data, 'flip');
+	    }
+	  });
+	  return data;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by update method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function keepTogether(data) {
+	  var _data$offsets = data.offsets,
+	      popper = _data$offsets.popper,
+	      reference = _data$offsets.reference;
+	
+	  var placement = data.placement.split('-')[0];
+	  var floor = Math.floor;
+	  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+	  var side = isVertical ? 'right' : 'bottom';
+	  var opSide = isVertical ? 'left' : 'top';
+	  var measurement = isVertical ? 'width' : 'height';
+	
+	  if (popper[side] < floor(reference[opSide])) {
+	    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+	  }
+	  if (popper[opSide] > floor(reference[side])) {
+	    data.offsets.popper[opSide] = floor(reference[side]);
+	  }
+	
+	  return data;
+	}
+	
+	/**
+	 * Converts a string containing value + unit into a px value number
+	 * @function
+	 * @memberof {modifiers~offset}
+	 * @private
+	 * @argument {String} str - Value + unit string
+	 * @argument {String} measurement - `height` or `width`
+	 * @argument {Object} popperOffsets
+	 * @argument {Object} referenceOffsets
+	 * @returns {Number|String}
+	 * Value in pixels, or original string if no values were extracted
+	 */
+	function toValue(str, measurement, popperOffsets, referenceOffsets) {
+	  // separate value from unit
+	  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+	  var value = +split[1];
+	  var unit = split[2];
+	
+	  // If it's not a number it's an operator, I guess
+	  if (!value) {
+	    return str;
+	  }
+	
+	  if (unit.indexOf('%') === 0) {
+	    var element = void 0;
+	    switch (unit) {
+	      case '%p':
+	        element = popperOffsets;
+	        break;
+	      case '%':
+	      case '%r':
+	      default:
+	        element = referenceOffsets;
+	    }
+	
+	    var rect = getClientRect(element);
+	    return rect[measurement] / 100 * value;
+	  } else if (unit === 'vh' || unit === 'vw') {
+	    // if is a vh or vw, we calculate the size based on the viewport
+	    var size = void 0;
+	    if (unit === 'vh') {
+	      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+	    } else {
+	      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	    }
+	    return size / 100 * value;
+	  } else {
+	    // if is an explicit pixel unit, we get rid of the unit and keep the value
+	    // if is an implicit unit, it's px, and we return just the value
+	    return value;
+	  }
+	}
+	
+	/**
+	 * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
+	 * @function
+	 * @memberof {modifiers~offset}
+	 * @private
+	 * @argument {String} offset
+	 * @argument {Object} popperOffsets
+	 * @argument {Object} referenceOffsets
+	 * @argument {String} basePlacement
+	 * @returns {Array} a two cells array with x and y offsets in numbers
+	 */
+	function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
+	  var offsets = [0, 0];
+	
+	  // Use height if placement is left or right and index is 0 otherwise use width
+	  // in this way the first offset will use an axis and the second one
+	  // will use the other one
+	  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+	
+	  // Split the offset string to obtain a list of values and operands
+	  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+	  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+	    return frag.trim();
+	  });
+	
+	  // Detect if the offset string contains a pair of values or a single one
+	  // they could be separated by comma or space
+	  var divider = fragments.indexOf(find(fragments, function (frag) {
+	    return frag.search(/,|\s/) !== -1;
+	  }));
+	
+	  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+	    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+	  }
+	
+	  // If divider is found, we divide the list of values and operands to divide
+	  // them by ofset X and Y.
+	  var splitRegex = /\s*,\s*|\s+/;
+	  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+	
+	  // Convert the values with units to absolute pixels to allow our computations
+	  ops = ops.map(function (op, index) {
+	    // Most of the units rely on the orientation of the popper
+	    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+	    var mergeWithPrevious = false;
+	    return op
+	    // This aggregates any `+` or `-` sign that aren't considered operators
+	    // e.g.: 10 + +5 => [10, +, +5]
+	    .reduce(function (a, b) {
+	      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+	        a[a.length - 1] = b;
+	        mergeWithPrevious = true;
+	        return a;
+	      } else if (mergeWithPrevious) {
+	        a[a.length - 1] += b;
+	        mergeWithPrevious = false;
+	        return a;
+	      } else {
+	        return a.concat(b);
+	      }
+	    }, [])
+	    // Here we convert the string values into number values (in px)
+	    .map(function (str) {
+	      return toValue(str, measurement, popperOffsets, referenceOffsets);
+	    });
+	  });
+	
+	  // Loop trough the offsets arrays and execute the operations
+	  ops.forEach(function (op, index) {
+	    op.forEach(function (frag, index2) {
+	      if (isNumeric(frag)) {
+	        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+	      }
+	    });
+	  });
+	  return offsets;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by update method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @argument {Number|String} options.offset=0
+	 * The offset value as described in the modifier description
+	 * @returns {Object} The data object, properly modified
+	 */
+	function offset(data, _ref) {
+	  var offset = _ref.offset;
+	  var placement = data.placement,
+	      _data$offsets = data.offsets,
+	      popper = _data$offsets.popper,
+	      reference = _data$offsets.reference;
+	
+	  var basePlacement = placement.split('-')[0];
+	
+	  var offsets = void 0;
+	  if (isNumeric(+offset)) {
+	    offsets = [+offset, 0];
+	  } else {
+	    offsets = parseOffset(offset, popper, reference, basePlacement);
+	  }
+	
+	  if (basePlacement === 'left') {
+	    popper.top += offsets[0];
+	    popper.left -= offsets[1];
+	  } else if (basePlacement === 'right') {
+	    popper.top += offsets[0];
+	    popper.left += offsets[1];
+	  } else if (basePlacement === 'top') {
+	    popper.left += offsets[0];
+	    popper.top -= offsets[1];
+	  } else if (basePlacement === 'bottom') {
+	    popper.left += offsets[0];
+	    popper.top += offsets[1];
+	  }
+	
+	  data.popper = popper;
+	  return data;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by `update` method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function preventOverflow(data, options) {
+	  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+	
+	  // If offsetParent is the reference element, we really want to
+	  // go one step up and use the next offsetParent as reference to
+	  // avoid to make this modifier completely useless and look like broken
+	  if (data.instance.reference === boundariesElement) {
+	    boundariesElement = getOffsetParent(boundariesElement);
+	  }
+	
+	  // NOTE: DOM access here
+	  // resets the popper's position so that the document size can be calculated excluding
+	  // the size of the popper element itself
+	  var transformProp = getSupportedPropertyName('transform');
+	  var popperStyles = data.instance.popper.style; // assignment to help minification
+	  var top = popperStyles.top,
+	      left = popperStyles.left,
+	      transform = popperStyles[transformProp];
+	
+	  popperStyles.top = '';
+	  popperStyles.left = '';
+	  popperStyles[transformProp] = '';
+	
+	  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
+	
+	  // NOTE: DOM access here
+	  // restores the original style properties after the offsets have been computed
+	  popperStyles.top = top;
+	  popperStyles.left = left;
+	  popperStyles[transformProp] = transform;
+	
+	  options.boundaries = boundaries;
+	
+	  var order = options.priority;
+	  var popper = data.offsets.popper;
+	
+	  var check = {
+	    primary: function primary(placement) {
+	      var value = popper[placement];
+	      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
+	        value = Math.max(popper[placement], boundaries[placement]);
+	      }
+	      return defineProperty({}, placement, value);
+	    },
+	    secondary: function secondary(placement) {
+	      var mainSide = placement === 'right' ? 'left' : 'top';
+	      var value = popper[mainSide];
+	      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
+	        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+	      }
+	      return defineProperty({}, mainSide, value);
+	    }
+	  };
+	
+	  order.forEach(function (placement) {
+	    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+	    popper = _extends({}, popper, check[side](placement));
+	  });
+	
+	  data.offsets.popper = popper;
+	
+	  return data;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by `update` method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function shift(data) {
+	  var placement = data.placement;
+	  var basePlacement = placement.split('-')[0];
+	  var shiftvariation = placement.split('-')[1];
+	
+	  // if shift shiftvariation is specified, run the modifier
+	  if (shiftvariation) {
+	    var _data$offsets = data.offsets,
+	        reference = _data$offsets.reference,
+	        popper = _data$offsets.popper;
+	
+	    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+	    var side = isVertical ? 'left' : 'top';
+	    var measurement = isVertical ? 'width' : 'height';
+	
+	    var shiftOffsets = {
+	      start: defineProperty({}, side, reference[side]),
+	      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+	    };
+	
+	    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+	  }
+	
+	  return data;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by update method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function hide(data) {
+	  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+	    return data;
+	  }
+	
+	  var refRect = data.offsets.reference;
+	  var bound = find(data.instance.modifiers, function (modifier) {
+	    return modifier.name === 'preventOverflow';
+	  }).boundaries;
+	
+	  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
+	    // Avoid unnecessary DOM access if visibility hasn't changed
+	    if (data.hide === true) {
+	      return data;
+	    }
+	
+	    data.hide = true;
+	    data.attributes['x-out-of-boundaries'] = '';
+	  } else {
+	    // Avoid unnecessary DOM access if visibility hasn't changed
+	    if (data.hide === false) {
+	      return data;
+	    }
+	
+	    data.hide = false;
+	    data.attributes['x-out-of-boundaries'] = false;
+	  }
+	
+	  return data;
+	}
+	
+	/**
+	 * @function
+	 * @memberof Modifiers
+	 * @argument {Object} data - The data object generated by `update` method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {Object} The data object, properly modified
+	 */
+	function inner(data) {
+	  var placement = data.placement;
+	  var basePlacement = placement.split('-')[0];
+	  var _data$offsets = data.offsets,
+	      popper = _data$offsets.popper,
+	      reference = _data$offsets.reference;
+	
+	  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+	
+	  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+	
+	  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+	
+	  data.placement = getOppositePlacement(placement);
+	  data.offsets.popper = getClientRect(popper);
+	
+	  return data;
+	}
+	
+	/**
+	 * Modifier function, each modifier can have a function of this type assigned
+	 * to its `fn` property.<br />
+	 * These functions will be called on each update, this means that you must
+	 * make sure they are performant enough to avoid performance bottlenecks.
+	 *
+	 * @function ModifierFn
+	 * @argument {dataObject} data - The data object generated by `update` method
+	 * @argument {Object} options - Modifiers configuration and options
+	 * @returns {dataObject} The data object, properly modified
+	 */
+	
+	/**
+	 * Modifiers are plugins used to alter the behavior of your poppers.<br />
+	 * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+	 * needed by the library.
+	 *
+	 * Usually you don't want to override the `order`, `fn` and `onLoad` props.
+	 * All the other properties are configurations that could be tweaked.
+	 * @namespace modifiers
+	 */
+	var modifiers = {
+	  /**
+	   * Modifier used to shift the popper on the start or end of its reference
+	   * element.<br />
+	   * It will read the variation of the `placement` property.<br />
+	   * It can be one either `-end` or `-start`.
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  shift: {
+	    /** @prop {number} order=100 - Index used to define the order of execution */
+	    order: 100,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: shift
+	  },
+	
+	  /**
+	   * The `offset` modifier can shift your popper on both its axis.
+	   *
+	   * It accepts the following units:
+	   * - `px` or unitless, interpreted as pixels
+	   * - `%` or `%r`, percentage relative to the length of the reference element
+	   * - `%p`, percentage relative to the length of the popper element
+	   * - `vw`, CSS viewport width unit
+	   * - `vh`, CSS viewport height unit
+	   *
+	   * For length is intended the main axis relative to the placement of the popper.<br />
+	   * This means that if the placement is `top` or `bottom`, the length will be the
+	   * `width`. In case of `left` or `right`, it will be the height.
+	   *
+	   * You can provide a single value (as `Number` or `String`), or a pair of values
+	   * as `String` divided by a comma or one (or more) white spaces.<br />
+	   * The latter is a deprecated method because it leads to confusion and will be
+	   * removed in v2.<br />
+	   * Additionally, it accepts additions and subtractions between different units.
+	   * Note that multiplications and divisions aren't supported.
+	   *
+	   * Valid examples are:
+	   * ```
+	   * 10
+	   * '10%'
+	   * '10, 10'
+	   * '10%, 10'
+	   * '10 + 10%'
+	   * '10 - 5vh + 3%'
+	   * '-10px + 5vh, 5px - 6%'
+	   * ```
+	   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+	   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+	   * > More on this [reading this issue](https://github.com/FezVrasta/popper.js/issues/373)
+	   *
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  offset: {
+	    /** @prop {number} order=200 - Index used to define the order of execution */
+	    order: 200,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: offset,
+	    /** @prop {Number|String} offset=0
+	     * The offset value as described in the modifier description
+	     */
+	    offset: 0
+	  },
+	
+	  /**
+	   * Modifier used to prevent the popper from being positioned outside the boundary.
+	   *
+	   * An scenario exists where the reference itself is not within the boundaries.<br />
+	   * We can say it has "escaped the boundaries" — or just "escaped".<br />
+	   * In this case we need to decide whether the popper should either:
+	   *
+	   * - detach from the reference and remain "trapped" in the boundaries, or
+	   * - if it should ignore the boundary and "escape with its reference"
+	   *
+	   * When `escapeWithReference` is set to`true` and reference is completely
+	   * outside its boundaries, the popper will overflow (or completely leave)
+	   * the boundaries in order to remain attached to the edge of the reference.
+	   *
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  preventOverflow: {
+	    /** @prop {number} order=300 - Index used to define the order of execution */
+	    order: 300,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: preventOverflow,
+	    /**
+	     * @prop {Array} [priority=['left','right','top','bottom']]
+	     * Popper will try to prevent overflow following these priorities by default,
+	     * then, it could overflow on the left and on top of the `boundariesElement`
+	     */
+	    priority: ['left', 'right', 'top', 'bottom'],
+	    /**
+	     * @prop {number} padding=5
+	     * Amount of pixel used to define a minimum distance between the boundaries
+	     * and the popper this makes sure the popper has always a little padding
+	     * between the edges of its container
+	     */
+	    padding: 5,
+	    /**
+	     * @prop {String|HTMLElement} boundariesElement='scrollParent'
+	     * Boundaries used by the modifier, can be `scrollParent`, `window`,
+	     * `viewport` or any DOM element.
+	     */
+	    boundariesElement: 'scrollParent'
+	  },
+	
+	  /**
+	   * Modifier used to make sure the reference and its popper stay near eachothers
+	   * without leaving any gap between the two. Expecially useful when the arrow is
+	   * enabled and you want to assure it to point to its reference element.
+	   * It cares only about the first axis, you can still have poppers with margin
+	   * between the popper and its reference element.
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  keepTogether: {
+	    /** @prop {number} order=400 - Index used to define the order of execution */
+	    order: 400,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: keepTogether
+	  },
+	
+	  /**
+	   * This modifier is used to move the `arrowElement` of the popper to make
+	   * sure it is positioned between the reference element and its popper element.
+	   * It will read the outer size of the `arrowElement` node to detect how many
+	   * pixels of conjuction are needed.
+	   *
+	   * It has no effect if no `arrowElement` is provided.
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  arrow: {
+	    /** @prop {number} order=500 - Index used to define the order of execution */
+	    order: 500,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: arrow,
+	    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+	    element: '[x-arrow]'
+	  },
+	
+	  /**
+	   * Modifier used to flip the popper's placement when it starts to overlap its
+	   * reference element.
+	   *
+	   * Requires the `preventOverflow` modifier before it in order to work.
+	   *
+	   * **NOTE:** this modifier will interrupt the current update cycle and will
+	   * restart it if it detects the need to flip the placement.
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  flip: {
+	    /** @prop {number} order=600 - Index used to define the order of execution */
+	    order: 600,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: flip,
+	    /**
+	     * @prop {String|Array} behavior='flip'
+	     * The behavior used to change the popper's placement. It can be one of
+	     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+	     * placements (with optional variations).
+	     */
+	    behavior: 'flip',
+	    /**
+	     * @prop {number} padding=5
+	     * The popper will flip if it hits the edges of the `boundariesElement`
+	     */
+	    padding: 5,
+	    /**
+	     * @prop {String|HTMLElement} boundariesElement='viewport'
+	     * The element which will define the boundaries of the popper position,
+	     * the popper will never be placed outside of the defined boundaries
+	     * (except if keepTogether is enabled)
+	     */
+	    boundariesElement: 'viewport'
+	  },
+	
+	  /**
+	   * Modifier used to make the popper flow toward the inner of the reference element.
+	   * By default, when this modifier is disabled, the popper will be placed outside
+	   * the reference element.
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  inner: {
+	    /** @prop {number} order=700 - Index used to define the order of execution */
+	    order: 700,
+	    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+	    enabled: false,
+	    /** @prop {ModifierFn} */
+	    fn: inner
+	  },
+	
+	  /**
+	   * Modifier used to hide the popper when its reference element is outside of the
+	   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+	   * be used to hide with a CSS selector the popper when its reference is
+	   * out of boundaries.
+	   *
+	   * Requires the `preventOverflow` modifier before it in order to work.
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  hide: {
+	    /** @prop {number} order=800 - Index used to define the order of execution */
+	    order: 800,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: hide
+	  },
+	
+	  /**
+	   * Computes the style that will be applied to the popper element to gets
+	   * properly positioned.
+	   *
+	   * Note that this modifier will not touch the DOM, it just prepares the styles
+	   * so that `applyStyle` modifier can apply it. This separation is useful
+	   * in case you need to replace `applyStyle` with a custom implementation.
+	   *
+	   * This modifier has `850` as `order` value to maintain backward compatibility
+	   * with previous versions of Popper.js. Expect the modifiers ordering method
+	   * to change in future major versions of the library.
+	   *
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  computeStyle: {
+	    /** @prop {number} order=850 - Index used to define the order of execution */
+	    order: 850,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: computeStyle,
+	    /**
+	     * @prop {Boolean} gpuAcceleration=true
+	     * If true, it uses the CSS 3d transformation to position the popper.
+	     * Otherwise, it will use the `top` and `left` properties.
+	     */
+	    gpuAcceleration: true,
+	    /**
+	     * @prop {string} [x='bottom']
+	     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
+	     * Change this if your popper should grow in a direction different from `bottom`
+	     */
+	    x: 'bottom',
+	    /**
+	     * @prop {string} [x='left']
+	     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
+	     * Change this if your popper should grow in a direction different from `right`
+	     */
+	    y: 'right'
+	  },
+	
+	  /**
+	   * Applies the computed styles to the popper element.
+	   *
+	   * All the DOM manipulations are limited to this modifier. This is useful in case
+	   * you want to integrate Popper.js inside a framework or view library and you
+	   * want to delegate all the DOM manipulations to it.
+	   *
+	   * Note that if you disable this modifier, you must make sure the popper element
+	   * has its position set to `absolute` before Popper.js can do its work!
+	   *
+	   * Just disable this modifier and define you own to achieve the desired effect.
+	   *
+	   * @memberof modifiers
+	   * @inner
+	   */
+	  applyStyle: {
+	    /** @prop {number} order=900 - Index used to define the order of execution */
+	    order: 900,
+	    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+	    enabled: true,
+	    /** @prop {ModifierFn} */
+	    fn: applyStyle,
+	    /** @prop {Function} */
+	    onLoad: applyStyleOnLoad,
+	    /**
+	     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
+	     * @prop {Boolean} gpuAcceleration=true
+	     * If true, it uses the CSS 3d transformation to position the popper.
+	     * Otherwise, it will use the `top` and `left` properties.
+	     */
+	    gpuAcceleration: undefined
+	  }
+	};
+	
+	/**
+	 * The `dataObject` is an object containing all the informations used by Popper.js
+	 * this object get passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+	 * @name dataObject
+	 * @property {Object} data.instance The Popper.js instance
+	 * @property {String} data.placement Placement applied to popper
+	 * @property {String} data.originalPlacement Placement originally defined on init
+	 * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
+	 * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper.
+	 * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
+	 * @property {Object} data.styles Any CSS property defined here will be applied to the popper, it expects the JavaScript nomenclature (eg. `marginBottom`)
+	 * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow, it expects the JavaScript nomenclature (eg. `marginBottom`)
+	 * @property {Object} data.boundaries Offsets of the popper boundaries
+	 * @property {Object} data.offsets The measurements of popper, reference and arrow elements.
+	 * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
+	 * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+	 * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
+	 */
+	
+	/**
+	 * Default options provided to Popper.js constructor.<br />
+	 * These can be overriden using the `options` argument of Popper.js.<br />
+	 * To override an option, simply pass as 3rd argument an object with the same
+	 * structure of this object, example:
+	 * ```
+	 * new Popper(ref, pop, {
+	 *   modifiers: {
+	 *     preventOverflow: { enabled: false }
+	 *   }
+	 * })
+	 * ```
+	 * @type {Object}
+	 * @static
+	 * @memberof Popper
+	 */
+	var Defaults = {
+	  /**
+	   * Popper's placement
+	   * @prop {Popper.placements} placement='bottom'
+	   */
+	  placement: 'bottom',
+	
+	  /**
+	   * Set this to true if you want popper to position it self in 'fixed' mode
+	   * @prop {Boolean} positionFixed=false
+	   */
+	  positionFixed: false,
+	
+	  /**
+	   * Whether events (resize, scroll) are initially enabled
+	   * @prop {Boolean} eventsEnabled=true
+	   */
+	  eventsEnabled: true,
+	
+	  /**
+	   * Set to true if you want to automatically remove the popper when
+	   * you call the `destroy` method.
+	   * @prop {Boolean} removeOnDestroy=false
+	   */
+	  removeOnDestroy: false,
+	
+	  /**
+	   * Callback called when the popper is created.<br />
+	   * By default, is set to no-op.<br />
+	   * Access Popper.js instance with `data.instance`.
+	   * @prop {onCreate}
+	   */
+	  onCreate: function onCreate() {},
+	
+	  /**
+	   * Callback called when the popper is updated, this callback is not called
+	   * on the initialization/creation of the popper, but only on subsequent
+	   * updates.<br />
+	   * By default, is set to no-op.<br />
+	   * Access Popper.js instance with `data.instance`.
+	   * @prop {onUpdate}
+	   */
+	  onUpdate: function onUpdate() {},
+	
+	  /**
+	   * List of modifiers used to modify the offsets before they are applied to the popper.
+	   * They provide most of the functionalities of Popper.js
+	   * @prop {modifiers}
+	   */
+	  modifiers: modifiers
+	};
+	
+	/**
+	 * @callback onCreate
+	 * @param {dataObject} data
+	 */
+	
+	/**
+	 * @callback onUpdate
+	 * @param {dataObject} data
+	 */
+	
+	// Utils
+	// Methods
+	var Popper = function () {
+	  /**
+	   * Create a new Popper.js instance
+	   * @class Popper
+	   * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
+	   * @param {HTMLElement} popper - The HTML element used as popper.
+	   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
+	   * @return {Object} instance - The generated Popper.js instance
+	   */
+	  function Popper(reference, popper) {
+	    var _this = this;
+	
+	    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+	    classCallCheck(this, Popper);
+	
+	    this.scheduleUpdate = function () {
+	      return requestAnimationFrame(_this.update);
+	    };
+	
+	    // make update() debounced, so that it only runs at most once-per-tick
+	    this.update = debounce(this.update.bind(this));
+	
+	    // with {} we create a new object with the options inside it
+	    this.options = _extends({}, Popper.Defaults, options);
+	
+	    // init state
+	    this.state = {
+	      isDestroyed: false,
+	      isCreated: false,
+	      scrollParents: []
+	    };
+	
+	    // get reference and popper elements (allow jQuery wrappers)
+	    this.reference = reference && reference.jquery ? reference[0] : reference;
+	    this.popper = popper && popper.jquery ? popper[0] : popper;
+	
+	    // Deep merge modifiers options
+	    this.options.modifiers = {};
+	    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+	      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+	    });
+	
+	    // Refactoring modifiers' list (Object => Array)
+	    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
+	      return _extends({
+	        name: name
+	      }, _this.options.modifiers[name]);
+	    })
+	    // sort the modifiers by order
+	    .sort(function (a, b) {
+	      return a.order - b.order;
+	    });
+	
+	    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+	    // such code is executed in the same order of its modifier
+	    // they could add new properties to their options configuration
+	    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
+	    this.modifiers.forEach(function (modifierOptions) {
+	      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+	        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
+	      }
+	    });
+	
+	    // fire the first update to position the popper in the right place
+	    this.update();
+	
+	    var eventsEnabled = this.options.eventsEnabled;
+	    if (eventsEnabled) {
+	      // setup event listeners, they will take care of update the position in specific situations
+	      this.enableEventListeners();
+	    }
+	
+	    this.state.eventsEnabled = eventsEnabled;
+	  }
+	
+	  // We can't use class properties because they don't get listed in the
+	  // class prototype and break stuff like Sinon stubs
+	
+	
+	  createClass(Popper, [{
+	    key: 'update',
+	    value: function update$$1() {
+	      return update.call(this);
+	    }
+	  }, {
+	    key: 'destroy',
+	    value: function destroy$$1() {
+	      return destroy.call(this);
+	    }
+	  }, {
+	    key: 'enableEventListeners',
+	    value: function enableEventListeners$$1() {
+	      return enableEventListeners.call(this);
+	    }
+	  }, {
+	    key: 'disableEventListeners',
+	    value: function disableEventListeners$$1() {
+	      return disableEventListeners.call(this);
+	    }
+	
+	    /**
+	     * Schedule an update, it will run on the next UI update available
+	     * @method scheduleUpdate
+	     * @memberof Popper
+	     */
+	
+	
+	    /**
+	     * Collection of utilities useful when writing custom modifiers.
+	     * Starting from version 1.7, this method is available only if you
+	     * include `popper-utils.js` before `popper.js`.
+	     *
+	     * **DEPRECATION**: This way to access PopperUtils is deprecated
+	     * and will be removed in v2! Use the PopperUtils module directly instead.
+	     * Due to the high instability of the methods contained in Utils, we can't
+	     * guarantee them to follow semver. Use them at your own risk!
+	     * @static
+	     * @private
+	     * @type {Object}
+	     * @deprecated since version 1.8
+	     * @member Utils
+	     * @memberof Popper
+	     */
+	
+	  }]);
+	  return Popper;
+	}();
+	
+	/**
+	 * The `referenceObject` is an object that provides an interface compatible with Popper.js
+	 * and lets you use it as replacement of a real DOM node.<br />
+	 * You can use this method to position a popper relatively to a set of coordinates
+	 * in case you don't have a DOM node to use as reference.
+	 *
+	 * ```
+	 * new Popper(referenceObject, popperNode);
+	 * ```
+	 *
+	 * NB: This feature isn't supported in Internet Explorer 10
+	 * @name referenceObject
+	 * @property {Function} data.getBoundingClientRect
+	 * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
+	 * @property {number} data.clientWidth
+	 * An ES6 getter that will return the width of the virtual reference element.
+	 * @property {number} data.clientHeight
+	 * An ES6 getter that will return the height of the virtual reference element.
+	 */
+	
+	
+	Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+	Popper.placements = placements;
+	Popper.Defaults = Defaults;
+	
+	return Popper;
+	
+	})));
+	//# sourceMappingURL=popper.js.map
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ }),
+/* 333 */
 /*!************************!*\
   !*** ./views/main.jsx ***!
   \************************/
@@ -42765,7 +46343,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 25);
 	
-	var _home = __webpack_require__(/*! ./home */ 330);
+	var _home = __webpack_require__(/*! ./home */ 334);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
@@ -42773,27 +46351,27 @@ webpackJsonp([0,1],[
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 426);
+	var _Login = __webpack_require__(/*! ./Login */ 434);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 434);
+	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 442);
 	
 	var _TodoForm2 = _interopRequireDefault(_TodoForm);
 	
-	var _Todos = __webpack_require__(/*! ./components/Todos */ 435);
+	var _Todos = __webpack_require__(/*! ./components/Todos */ 443);
 	
 	var _Todos2 = _interopRequireDefault(_Todos);
 	
-	var _Users = __webpack_require__(/*! ./components/Users */ 437);
+	var _Users = __webpack_require__(/*! ./components/Users */ 445);
 	
 	var _Users2 = _interopRequireDefault(_Users);
 	
-	var _EarningCapacity = __webpack_require__(/*! ./components/EarningCapacity */ 455);
+	var _EarningCapacity = __webpack_require__(/*! ./components/EarningCapacity */ 447);
 	
 	var _EarningCapacity2 = _interopRequireDefault(_EarningCapacity);
 	
-	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 439);
+	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 448);
 	
 	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
 	
@@ -42876,7 +46454,7 @@ webpackJsonp([0,1],[
 	exports.default = Main;
 
 /***/ }),
-/* 330 */
+/* 334 */
 /*!************************!*\
   !*** ./views/home.jsx ***!
   \************************/
@@ -42894,27 +46472,31 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _homeActions = __webpack_require__(/*! ./actions/homeActions */ 359);
+	var _homeActions = __webpack_require__(/*! ./actions/homeActions */ 363);
 	
-	var _CustomTableTech = __webpack_require__(/*! ./subcomponents/CustomTableTech */ 385);
+	var _CustomTableTechCost = __webpack_require__(/*! ./subcomponents/CustomTableTechCost */ 389);
 	
-	var _CustomTableTech2 = _interopRequireDefault(_CustomTableTech);
+	var _CustomTableTechCost2 = _interopRequireDefault(_CustomTableTechCost);
 	
-	var _CustomTableJob = __webpack_require__(/*! ./subcomponents/CustomTableJob */ 396);
+	var _CustomTableJob = __webpack_require__(/*! ./subcomponents/CustomTableJob */ 400);
 	
 	var _CustomTableJob2 = _interopRequireDefault(_CustomTableJob);
 	
-	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 397);
+	var _CustomTableProject = __webpack_require__(/*! ./subcomponents/CustomTableProject */ 401);
+	
+	var _CustomTableProject2 = _interopRequireDefault(_CustomTableProject);
+	
+	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 402);
 	
 	var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
 	
-	var _TextField = __webpack_require__(/*! @material-ui/core/TextField */ 401);
+	var _TextField = __webpack_require__(/*! @material-ui/core/TextField */ 406);
 	
 	var _TextField2 = _interopRequireDefault(_TextField);
 	
@@ -42926,37 +46508,45 @@ webpackJsonp([0,1],[
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 420);
+	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 425);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Send = __webpack_require__(/*! @material-ui/icons/Send */ 422);
+	var _Send = __webpack_require__(/*! @material-ui/icons/Send */ 427);
 	
 	var _Send2 = _interopRequireDefault(_Send);
 	
-	var _CircularProgress = __webpack_require__(/*! @material-ui/core/CircularProgress */ 423);
+	var _CircularProgress = __webpack_require__(/*! @material-ui/core/CircularProgress */ 428);
 	
 	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 	
-	var _green = __webpack_require__(/*! @material-ui/core/colors/green */ 425);
+	var _green = __webpack_require__(/*! @material-ui/core/colors/green */ 430);
 	
 	var _green2 = _interopRequireDefault(_green);
 	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
-	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 403);
+	var _Tooltip = __webpack_require__(/*! @material-ui/core/Tooltip */ 329);
+	
+	var _Tooltip2 = _interopRequireDefault(_Tooltip);
+	
+	var _Grid = __webpack_require__(/*! @material-ui/core/Grid */ 431);
+	
+	var _Grid2 = _interopRequireDefault(_Grid);
+	
+	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 408);
 	
 	var _Input2 = _interopRequireDefault(_Input);
 	
-	var _InputLabel = __webpack_require__(/*! @material-ui/core/InputLabel */ 406);
+	var _InputLabel = __webpack_require__(/*! @material-ui/core/InputLabel */ 411);
 	
 	var _InputLabel2 = _interopRequireDefault(_InputLabel);
 	
-	var _FormHelperText = __webpack_require__(/*! @material-ui/core/FormHelperText */ 412);
+	var _FormHelperText = __webpack_require__(/*! @material-ui/core/FormHelperText */ 417);
 	
 	var _FormHelperText2 = _interopRequireDefault(_FormHelperText);
 	
-	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 410);
+	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 415);
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 	
@@ -42972,6 +46562,10 @@ webpackJsonp([0,1],[
 	
 	var styles = function styles(theme) {
 		return {
+			container: {
+				display: 'flex',
+				flexWrap: 'wrap'
+			},
 			button: {
 				margin: theme.spacing.unit
 			},
@@ -43014,6 +46608,7 @@ webpackJsonp([0,1],[
 				marginTop: -12,
 				marginLeft: -12
 			}
+	
 		};
 	};
 	
@@ -43120,69 +46715,111 @@ webpackJsonp([0,1],[
 				var homeStr = "HOME";
 				var justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 				//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
-				var beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+				//let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+				var beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
 	
 				//let loading = true;
 	
 				return _react2.default.createElement(
 					"div",
-					{ className: "row" },
+					{ className: classes.button },
 					_react2.default.createElement(
 						"div",
-						{ className: "col-lg-12" },
+						{ className: (classes.container, classes.button) },
 						_react2.default.createElement(
-							"h3",
-							null,
-							homeStr
-						),
-						_react2.default.createElement(
-							"div",
-							null,
+							_Grid2.default,
+							{ container: true, spacing: 8, alignItems: "flex-end" },
 							_react2.default.createElement(
-								"p",
-								null,
-								justStr
+								_Grid2.default,
+								{ item: true },
+								_react2.default.createElement(
+									"h3",
+									null,
+									homeStr
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "jumbotron" },
+									_react2.default.createElement(
+										"p",
+										null,
+										justStr
+									),
+									_react2.default.createElement(
+										"p",
+										null,
+										beforeStr
+									)
+								)
 							),
 							_react2.default.createElement(
-								"p",
-								null,
-								beforeStr
+								_Grid2.default,
+								{ item: true },
+								_react2.default.createElement(
+									"h3",
+									null,
+									"Sample JD"
+								),
+								_react2.default.createElement(
+									"div",
+									null,
+									_react2.default.createElement(
+										"div",
+										null,
+										"6 months experience in React"
+									),
+									_react2.default.createElement(
+										"div",
+										null,
+										"1 yr experience in Python"
+									),
+									_react2.default.createElement(
+										"div",
+										null,
+										"6 months experience in Ruby"
+									),
+									_react2.default.createElement(
+										"div",
+										null,
+										"1 yr experience in PHP"
+									),
+									_react2.default.createElement(
+										"div",
+										null,
+										"1 yr experience in AWS"
+									),
+									_react2.default.createElement(
+										"div",
+										null,
+										"6 months experience in C++"
+									),
+									_react2.default.createElement(
+										"div",
+										null,
+										"6 months experience in Java"
+									)
+								)
 							)
 						)
 					),
 					_react2.default.createElement(
 						"div",
-						{ className: "col-lg-12" },
+						{ className: (classes.container, classes.button) },
 						_react2.default.createElement(
 							"form",
 							{ id: "jdfid", encType: "application/x-www-form-urlencoded", className: classes.container, noValidate: true, autoComplete: "off", onSubmit: this.props.submit },
 							_react2.default.createElement(
 								_FormControl2.default,
-								null,
+								{ fullWidth: true, margin: "dense" },
 								_react2.default.createElement(_TextField2.default, {
 									id: "multiline-static",
 									name: "jd",
-									label: "Paste JD here",
+									label: "Paste Job Description here",
 									multiline: true,
 									fullWidth: true,
 									required: true,
-									rows: "8",
-									className: classes.textField,
-									margin: "normal",
-									onChange: this.props.jdChange
-								})
-							),
-							_react2.default.createElement(
-								_FormControl2.default,
-								null,
-								_react2.default.createElement(_TextField2.default, {
-									id: "multiline-static2",
-									name: "jd2",
-									label: "Paste JD2 here",
-									multiline: true,
-									fullWidth: true,
-									required: true,
-									rows: "8",
+									rows: "10",
+									cols: "60",
 									className: classes.textField,
 									margin: "normal",
 									onChange: this.props.jdChange,
@@ -43193,18 +46830,22 @@ webpackJsonp([0,1],[
 								_FormControl2.default,
 								null,
 								_react2.default.createElement(
-									_Button2.default,
-									{
-										disabled: this.props.ui.submitLoading,
-										type: "submit",
-										variant: "raised"
-										//className={classes.button} 
-										, className: buttonClassname,
-										color: "secondary"
-										//onClick={this.props.submitButtonChange}
-									},
-									"Submit",
-									_react2.default.createElement(_Send2.default, { className: classes.rightIcon })
+									_Tooltip2.default,
+									{ id: "tooltip-top", placement: "bottom", title: "Submit" },
+									_react2.default.createElement(
+										_Button2.default,
+										{
+											disabled: this.props.ui.submitLoading,
+											type: "submit",
+											variant: "raised"
+											//className={classes.button} 
+											, className: buttonClassname,
+											color: "secondary"
+											//onClick={this.props.submitButtonChange}
+										},
+										"Submit",
+										_react2.default.createElement(_Send2.default, { className: classes.rightIcon })
+									)
 								),
 								this.props.ui.submitLoading && _react2.default.createElement(_CircularProgress2.default, { size: 24, className: classes.buttonProgress })
 							)
@@ -43213,32 +46854,17 @@ webpackJsonp([0,1],[
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(
-							"h3",
-							null,
-							"Cost approximation"
-						),
-						_react2.default.createElement(_CustomTableTech2.default, { t: this.props.home.data.technologies })
+						_react2.default.createElement(_CustomTableTechCost2.default, { t: this.props.home.data.technologies })
 					),
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(
-							"h3",
-							null,
-							"Job suggestions on these Technologies, these are some top Jobs in these Tech (Apply):"
-						),
 						_react2.default.createElement(_CustomTableJob2.default, { t: this.props.home.data.technologies })
 					),
 					this.props.home && this.props.home.data && _react2.default.createElement(
 						"div",
 						{ className: "col-lg-12" },
-						_react2.default.createElement(
-							"h3",
-							null,
-							"Some top class projects getting done on these Technologies and your probable team mates!"
-						),
-						_react2.default.createElement(_CustomTableJob2.default, { t: this.props.home.data.technologies })
+						_react2.default.createElement(_CustomTableProject2.default, { t: this.props.home.data.technologies })
 					)
 				);
 			}
@@ -43252,7 +46878,7 @@ webpackJsonp([0,1],[
 	//export default withStyles(styles)(Home);
 
 /***/ }),
-/* 331 */
+/* 335 */
 /*!************************************!*\
   !*** ./~/react-redux/lib/index.js ***!
   \************************************/
@@ -43263,15 +46889,15 @@ webpackJsonp([0,1],[
 	exports.__esModule = true;
 	exports.connect = exports.connectAdvanced = exports.createProvider = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(/*! ./components/Provider */ 332);
+	var _Provider = __webpack_require__(/*! ./components/Provider */ 336);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connectAdvanced = __webpack_require__(/*! ./components/connectAdvanced */ 335);
+	var _connectAdvanced = __webpack_require__(/*! ./components/connectAdvanced */ 339);
 	
 	var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
 	
-	var _connect = __webpack_require__(/*! ./connect/connect */ 338);
+	var _connect = __webpack_require__(/*! ./connect/connect */ 342);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -43283,7 +46909,7 @@ webpackJsonp([0,1],[
 	exports.connect = _connect2.default;
 
 /***/ }),
-/* 332 */
+/* 336 */
 /*!**************************************************!*\
   !*** ./~/react-redux/lib/components/Provider.js ***!
   \**************************************************/
@@ -43300,9 +46926,9 @@ webpackJsonp([0,1],[
 	
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 	
-	var _PropTypes = __webpack_require__(/*! ../utils/PropTypes */ 333);
+	var _PropTypes = __webpack_require__(/*! ../utils/PropTypes */ 337);
 	
-	var _warning = __webpack_require__(/*! ../utils/warning */ 334);
+	var _warning = __webpack_require__(/*! ../utils/warning */ 338);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -43378,7 +47004,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 333 */
+/* 337 */
 /*!**********************************************!*\
   !*** ./~/react-redux/lib/utils/PropTypes.js ***!
   \**********************************************/
@@ -43409,7 +47035,7 @@ webpackJsonp([0,1],[
 	});
 
 /***/ }),
-/* 334 */
+/* 338 */
 /*!********************************************!*\
   !*** ./~/react-redux/lib/utils/warning.js ***!
   \********************************************/
@@ -43442,7 +47068,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 335 */
+/* 339 */
 /*!*********************************************************!*\
   !*** ./~/react-redux/lib/components/connectAdvanced.js ***!
   \*********************************************************/
@@ -43456,7 +47082,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = connectAdvanced;
 	
-	var _hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ 336);
+	var _hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ 340);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
@@ -43466,11 +47092,11 @@ webpackJsonp([0,1],[
 	
 	var _react = __webpack_require__(/*! react */ 1);
 	
-	var _Subscription = __webpack_require__(/*! ../utils/Subscription */ 337);
+	var _Subscription = __webpack_require__(/*! ../utils/Subscription */ 341);
 	
 	var _Subscription2 = _interopRequireDefault(_Subscription);
 	
-	var _PropTypes = __webpack_require__(/*! ../utils/PropTypes */ 333);
+	var _PropTypes = __webpack_require__(/*! ../utils/PropTypes */ 337);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -43757,7 +47383,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 336 */
+/* 340 */
 /*!**********************************************************!*\
   !*** ./~/react-redux/~/hoist-non-react-statics/index.js ***!
   \**********************************************************/
@@ -43838,7 +47464,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 337 */
+/* 341 */
 /*!*************************************************!*\
   !*** ./~/react-redux/lib/utils/Subscription.js ***!
   \*************************************************/
@@ -43942,7 +47568,7 @@ webpackJsonp([0,1],[
 	exports.default = Subscription;
 
 /***/ }),
-/* 338 */
+/* 342 */
 /*!**********************************************!*\
   !*** ./~/react-redux/lib/connect/connect.js ***!
   \**********************************************/
@@ -43956,27 +47582,27 @@ webpackJsonp([0,1],[
 	
 	exports.createConnect = createConnect;
 	
-	var _connectAdvanced = __webpack_require__(/*! ../components/connectAdvanced */ 335);
+	var _connectAdvanced = __webpack_require__(/*! ../components/connectAdvanced */ 339);
 	
 	var _connectAdvanced2 = _interopRequireDefault(_connectAdvanced);
 	
-	var _shallowEqual = __webpack_require__(/*! ../utils/shallowEqual */ 339);
+	var _shallowEqual = __webpack_require__(/*! ../utils/shallowEqual */ 343);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _mapDispatchToProps = __webpack_require__(/*! ./mapDispatchToProps */ 340);
+	var _mapDispatchToProps = __webpack_require__(/*! ./mapDispatchToProps */ 344);
 	
 	var _mapDispatchToProps2 = _interopRequireDefault(_mapDispatchToProps);
 	
-	var _mapStateToProps = __webpack_require__(/*! ./mapStateToProps */ 354);
+	var _mapStateToProps = __webpack_require__(/*! ./mapStateToProps */ 358);
 	
 	var _mapStateToProps2 = _interopRequireDefault(_mapStateToProps);
 	
-	var _mergeProps = __webpack_require__(/*! ./mergeProps */ 355);
+	var _mergeProps = __webpack_require__(/*! ./mergeProps */ 359);
 	
 	var _mergeProps2 = _interopRequireDefault(_mergeProps);
 	
-	var _selectorFactory = __webpack_require__(/*! ./selectorFactory */ 356);
+	var _selectorFactory = __webpack_require__(/*! ./selectorFactory */ 360);
 	
 	var _selectorFactory2 = _interopRequireDefault(_selectorFactory);
 	
@@ -44078,7 +47704,7 @@ webpackJsonp([0,1],[
 	exports.default = createConnect();
 
 /***/ }),
-/* 339 */
+/* 343 */
 /*!*************************************************!*\
   !*** ./~/react-redux/lib/utils/shallowEqual.js ***!
   \*************************************************/
@@ -44120,7 +47746,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 340 */
+/* 344 */
 /*!*********************************************************!*\
   !*** ./~/react-redux/lib/connect/mapDispatchToProps.js ***!
   \*********************************************************/
@@ -44133,9 +47759,9 @@ webpackJsonp([0,1],[
 	exports.whenMapDispatchToPropsIsMissing = whenMapDispatchToPropsIsMissing;
 	exports.whenMapDispatchToPropsIsObject = whenMapDispatchToPropsIsObject;
 	
-	var _redux = __webpack_require__(/*! redux */ 341);
+	var _redux = __webpack_require__(/*! redux */ 345);
 	
-	var _wrapMapToProps = __webpack_require__(/*! ./wrapMapToProps */ 342);
+	var _wrapMapToProps = __webpack_require__(/*! ./wrapMapToProps */ 346);
 	
 	function whenMapDispatchToPropsIsFunction(mapDispatchToProps) {
 	  return typeof mapDispatchToProps === 'function' ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapDispatchToProps, 'mapDispatchToProps') : undefined;
@@ -44156,7 +47782,7 @@ webpackJsonp([0,1],[
 	exports.default = [whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject];
 
 /***/ }),
-/* 341 */
+/* 345 */
 /*!******************************!*\
   !*** ./~/redux/lib/redux.js ***!
   \******************************/
@@ -44765,7 +48391,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 2)))
 
 /***/ }),
-/* 342 */
+/* 346 */
 /*!*****************************************************!*\
   !*** ./~/react-redux/lib/connect/wrapMapToProps.js ***!
   \*****************************************************/
@@ -44778,7 +48404,7 @@ webpackJsonp([0,1],[
 	exports.getDependsOnOwnProps = getDependsOnOwnProps;
 	exports.wrapMapToPropsFunc = wrapMapToPropsFunc;
 	
-	var _verifyPlainObject = __webpack_require__(/*! ../utils/verifyPlainObject */ 343);
+	var _verifyPlainObject = __webpack_require__(/*! ../utils/verifyPlainObject */ 347);
 	
 	var _verifyPlainObject2 = _interopRequireDefault(_verifyPlainObject);
 	
@@ -44852,7 +48478,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 343 */
+/* 347 */
 /*!******************************************************!*\
   !*** ./~/react-redux/lib/utils/verifyPlainObject.js ***!
   \******************************************************/
@@ -44863,11 +48489,11 @@ webpackJsonp([0,1],[
 	exports.__esModule = true;
 	exports.default = verifyPlainObject;
 	
-	var _isPlainObject = __webpack_require__(/*! lodash/isPlainObject */ 344);
+	var _isPlainObject = __webpack_require__(/*! lodash/isPlainObject */ 348);
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _warning = __webpack_require__(/*! ./warning */ 334);
+	var _warning = __webpack_require__(/*! ./warning */ 338);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -44880,15 +48506,15 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 344 */
+/* 348 */
 /*!***********************************!*\
   !*** ./~/lodash/isPlainObject.js ***!
   \***********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ 345),
-	    getPrototype = __webpack_require__(/*! ./_getPrototype */ 351),
-	    isObjectLike = __webpack_require__(/*! ./isObjectLike */ 353);
+	var baseGetTag = __webpack_require__(/*! ./_baseGetTag */ 349),
+	    getPrototype = __webpack_require__(/*! ./_getPrototype */ 355),
+	    isObjectLike = __webpack_require__(/*! ./isObjectLike */ 357);
 	
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -44951,15 +48577,15 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 345 */
+/* 349 */
 /*!*********************************!*\
   !*** ./~/lodash/_baseGetTag.js ***!
   \*********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(/*! ./_Symbol */ 346),
-	    getRawTag = __webpack_require__(/*! ./_getRawTag */ 349),
-	    objectToString = __webpack_require__(/*! ./_objectToString */ 350);
+	var Symbol = __webpack_require__(/*! ./_Symbol */ 350),
+	    getRawTag = __webpack_require__(/*! ./_getRawTag */ 353),
+	    objectToString = __webpack_require__(/*! ./_objectToString */ 354);
 	
 	/** `Object#toString` result references. */
 	var nullTag = '[object Null]',
@@ -44988,13 +48614,13 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 346 */
+/* 350 */
 /*!*****************************!*\
   !*** ./~/lodash/_Symbol.js ***!
   \*****************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(/*! ./_root */ 347);
+	var root = __webpack_require__(/*! ./_root */ 351);
 	
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -45003,13 +48629,13 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 347 */
+/* 351 */
 /*!***************************!*\
   !*** ./~/lodash/_root.js ***!
   \***************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ 348);
+	var freeGlobal = __webpack_require__(/*! ./_freeGlobal */ 352);
 	
 	/** Detect free variable `self`. */
 	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -45021,7 +48647,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 348 */
+/* 352 */
 /*!*********************************!*\
   !*** ./~/lodash/_freeGlobal.js ***!
   \*********************************/
@@ -45035,13 +48661,13 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 349 */
+/* 353 */
 /*!********************************!*\
   !*** ./~/lodash/_getRawTag.js ***!
   \********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(/*! ./_Symbol */ 346);
+	var Symbol = __webpack_require__(/*! ./_Symbol */ 350);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -45090,7 +48716,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 350 */
+/* 354 */
 /*!*************************************!*\
   !*** ./~/lodash/_objectToString.js ***!
   \*************************************/
@@ -45121,13 +48747,13 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 351 */
+/* 355 */
 /*!***********************************!*\
   !*** ./~/lodash/_getPrototype.js ***!
   \***********************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	var overArg = __webpack_require__(/*! ./_overArg */ 352);
+	var overArg = __webpack_require__(/*! ./_overArg */ 356);
 	
 	/** Built-in value references. */
 	var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -45136,7 +48762,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 352 */
+/* 356 */
 /*!******************************!*\
   !*** ./~/lodash/_overArg.js ***!
   \******************************/
@@ -45160,7 +48786,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 353 */
+/* 357 */
 /*!**********************************!*\
   !*** ./~/lodash/isObjectLike.js ***!
   \**********************************/
@@ -45198,7 +48824,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 354 */
+/* 358 */
 /*!******************************************************!*\
   !*** ./~/react-redux/lib/connect/mapStateToProps.js ***!
   \******************************************************/
@@ -45210,7 +48836,7 @@ webpackJsonp([0,1],[
 	exports.whenMapStateToPropsIsFunction = whenMapStateToPropsIsFunction;
 	exports.whenMapStateToPropsIsMissing = whenMapStateToPropsIsMissing;
 	
-	var _wrapMapToProps = __webpack_require__(/*! ./wrapMapToProps */ 342);
+	var _wrapMapToProps = __webpack_require__(/*! ./wrapMapToProps */ 346);
 	
 	function whenMapStateToPropsIsFunction(mapStateToProps) {
 	  return typeof mapStateToProps === 'function' ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapStateToProps, 'mapStateToProps') : undefined;
@@ -45225,7 +48851,7 @@ webpackJsonp([0,1],[
 	exports.default = [whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing];
 
 /***/ }),
-/* 355 */
+/* 359 */
 /*!*************************************************!*\
   !*** ./~/react-redux/lib/connect/mergeProps.js ***!
   \*************************************************/
@@ -45242,7 +48868,7 @@ webpackJsonp([0,1],[
 	exports.whenMergePropsIsFunction = whenMergePropsIsFunction;
 	exports.whenMergePropsIsOmitted = whenMergePropsIsOmitted;
 	
-	var _verifyPlainObject = __webpack_require__(/*! ../utils/verifyPlainObject */ 343);
+	var _verifyPlainObject = __webpack_require__(/*! ../utils/verifyPlainObject */ 347);
 	
 	var _verifyPlainObject2 = _interopRequireDefault(_verifyPlainObject);
 	
@@ -45292,7 +48918,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 356 */
+/* 360 */
 /*!******************************************************!*\
   !*** ./~/react-redux/lib/connect/selectorFactory.js ***!
   \******************************************************/
@@ -45305,7 +48931,7 @@ webpackJsonp([0,1],[
 	exports.pureFinalPropsSelectorFactory = pureFinalPropsSelectorFactory;
 	exports.default = finalPropsSelectorFactory;
 	
-	var _verifySubselectors = __webpack_require__(/*! ./verifySubselectors */ 357);
+	var _verifySubselectors = __webpack_require__(/*! ./verifySubselectors */ 361);
 	
 	var _verifySubselectors2 = _interopRequireDefault(_verifySubselectors);
 	
@@ -45414,7 +49040,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 357 */
+/* 361 */
 /*!*********************************************************!*\
   !*** ./~/react-redux/lib/connect/verifySubselectors.js ***!
   \*********************************************************/
@@ -45425,7 +49051,7 @@ webpackJsonp([0,1],[
 	exports.__esModule = true;
 	exports.default = verifySubselectors;
 	
-	var _warning = __webpack_require__(/*! ../utils/warning */ 334);
+	var _warning = __webpack_require__(/*! ../utils/warning */ 338);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -45448,7 +49074,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 358 */
+/* 362 */
 /*!************************************!*\
   !*** ./~/redux-thunk/lib/index.js ***!
   \************************************/
@@ -45479,7 +49105,7 @@ webpackJsonp([0,1],[
 	exports['default'] = thunk;
 
 /***/ }),
-/* 359 */
+/* 363 */
 /*!**************************************!*\
   !*** ./views/actions/homeActions.js ***!
   \**************************************/
@@ -45495,11 +49121,11 @@ webpackJsonp([0,1],[
 	exports.postHomeAction = postHomeAction;
 	exports.jdChangeAction = jdChangeAction;
 	
-	var _axios = __webpack_require__(/*! axios */ 360);
+	var _axios = __webpack_require__(/*! axios */ 364);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -45641,16 +49267,16 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 360 */
+/* 364 */
 /*!**************************!*\
   !*** ./~/axios/index.js ***!
   \**************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(/*! ./lib/axios */ 361);
+	module.exports = __webpack_require__(/*! ./lib/axios */ 365);
 
 /***/ }),
-/* 361 */
+/* 365 */
 /*!******************************!*\
   !*** ./~/axios/lib/axios.js ***!
   \******************************/
@@ -45658,10 +49284,10 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./utils */ 362);
-	var bind = __webpack_require__(/*! ./helpers/bind */ 363);
-	var Axios = __webpack_require__(/*! ./core/Axios */ 364);
-	var defaults = __webpack_require__(/*! ./defaults */ 365);
+	var utils = __webpack_require__(/*! ./utils */ 366);
+	var bind = __webpack_require__(/*! ./helpers/bind */ 367);
+	var Axios = __webpack_require__(/*! ./core/Axios */ 368);
+	var defaults = __webpack_require__(/*! ./defaults */ 369);
 	
 	/**
 	 * Create an instance of Axios
@@ -45694,15 +49320,15 @@ webpackJsonp([0,1],[
 	};
 	
 	// Expose Cancel & CancelToken
-	axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ 382);
-	axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ 383);
-	axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ 379);
+	axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ 386);
+	axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ 387);
+	axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ 383);
 	
 	// Expose all/spread
 	axios.all = function all(promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(/*! ./helpers/spread */ 384);
+	axios.spread = __webpack_require__(/*! ./helpers/spread */ 388);
 	
 	module.exports = axios;
 	
@@ -45711,7 +49337,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 362 */
+/* 366 */
 /*!******************************!*\
   !*** ./~/axios/lib/utils.js ***!
   \******************************/
@@ -45719,7 +49345,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var bind = __webpack_require__(/*! ./helpers/bind */ 363);
+	var bind = __webpack_require__(/*! ./helpers/bind */ 367);
 	
 	/*global toString:true*/
 	
@@ -46019,7 +49645,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 363 */
+/* 367 */
 /*!*************************************!*\
   !*** ./~/axios/lib/helpers/bind.js ***!
   \*************************************/
@@ -46039,7 +49665,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 364 */
+/* 368 */
 /*!***********************************!*\
   !*** ./~/axios/lib/core/Axios.js ***!
   \***********************************/
@@ -46047,12 +49673,12 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var defaults = __webpack_require__(/*! ./../defaults */ 365);
-	var utils = __webpack_require__(/*! ./../utils */ 362);
-	var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 376);
-	var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 377);
-	var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ 380);
-	var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ 381);
+	var defaults = __webpack_require__(/*! ./../defaults */ 369);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
+	var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ 380);
+	var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ 381);
+	var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ 384);
+	var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ 385);
 	
 	/**
 	 * Create a new instance of Axios
@@ -46133,7 +49759,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 365 */
+/* 369 */
 /*!*********************************!*\
   !*** ./~/axios/lib/defaults.js ***!
   \*********************************/
@@ -46141,8 +49767,8 @@ webpackJsonp([0,1],[
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(/*! ./utils */ 362);
-	var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ 366);
+	var utils = __webpack_require__(/*! ./utils */ 366);
+	var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ 370);
 	
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -46159,10 +49785,10 @@ webpackJsonp([0,1],[
 	  var adapter;
 	  if (typeof XMLHttpRequest !== 'undefined') {
 	    // For browsers use XHR adapter
-	    adapter = __webpack_require__(/*! ./adapters/xhr */ 367);
+	    adapter = __webpack_require__(/*! ./adapters/xhr */ 371);
 	  } else if (typeof process !== 'undefined') {
 	    // For node use HTTP adapter
-	    adapter = __webpack_require__(/*! ./adapters/http */ 367);
+	    adapter = __webpack_require__(/*! ./adapters/http */ 371);
 	  }
 	  return adapter;
 	}
@@ -46236,7 +49862,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 2)))
 
 /***/ }),
-/* 366 */
+/* 370 */
 /*!****************************************************!*\
   !*** ./~/axios/lib/helpers/normalizeHeaderName.js ***!
   \****************************************************/
@@ -46244,7 +49870,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ../utils */ 362);
+	var utils = __webpack_require__(/*! ../utils */ 366);
 	
 	module.exports = function normalizeHeaderName(headers, normalizedName) {
 	  utils.forEach(headers, function processHeader(value, name) {
@@ -46257,7 +49883,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 367 */
+/* 371 */
 /*!*************************************!*\
   !*** ./~/axios/lib/adapters/xhr.js ***!
   \*************************************/
@@ -46265,13 +49891,13 @@ webpackJsonp([0,1],[
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
-	var settle = __webpack_require__(/*! ./../core/settle */ 368);
-	var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ 371);
-	var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ 372);
-	var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ 373);
-	var createError = __webpack_require__(/*! ../core/createError */ 369);
-	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ 374);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
+	var settle = __webpack_require__(/*! ./../core/settle */ 372);
+	var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ 375);
+	var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ 376);
+	var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ 377);
+	var createError = __webpack_require__(/*! ../core/createError */ 373);
+	var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ 378);
 	
 	module.exports = function xhrAdapter(config) {
 	  return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -46367,7 +49993,7 @@ webpackJsonp([0,1],[
 	    // This is only done if running in a standard browser environment.
 	    // Specifically not if we're in a web worker, or react-native.
 	    if (utils.isStandardBrowserEnv()) {
-	      var cookies = __webpack_require__(/*! ./../helpers/cookies */ 375);
+	      var cookies = __webpack_require__(/*! ./../helpers/cookies */ 379);
 	
 	      // Add xsrf header
 	      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -46444,7 +50070,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 368 */
+/* 372 */
 /*!************************************!*\
   !*** ./~/axios/lib/core/settle.js ***!
   \************************************/
@@ -46452,7 +50078,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var createError = __webpack_require__(/*! ./createError */ 369);
+	var createError = __webpack_require__(/*! ./createError */ 373);
 	
 	/**
 	 * Resolve or reject a Promise based on response status.
@@ -46478,7 +50104,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 369 */
+/* 373 */
 /*!*****************************************!*\
   !*** ./~/axios/lib/core/createError.js ***!
   \*****************************************/
@@ -46486,7 +50112,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var enhanceError = __webpack_require__(/*! ./enhanceError */ 370);
+	var enhanceError = __webpack_require__(/*! ./enhanceError */ 374);
 	
 	/**
 	 * Create an Error with the specified message, config, error code, and response.
@@ -46504,7 +50130,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 370 */
+/* 374 */
 /*!******************************************!*\
   !*** ./~/axios/lib/core/enhanceError.js ***!
   \******************************************/
@@ -46532,7 +50158,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 371 */
+/* 375 */
 /*!*****************************************!*\
   !*** ./~/axios/lib/helpers/buildURL.js ***!
   \*****************************************/
@@ -46540,7 +50166,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
 	
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -46609,7 +50235,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 372 */
+/* 376 */
 /*!*********************************************!*\
   !*** ./~/axios/lib/helpers/parseHeaders.js ***!
   \*********************************************/
@@ -46617,7 +50243,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
 	
 	/**
 	 * Parse headers into an object
@@ -46655,7 +50281,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 373 */
+/* 377 */
 /*!************************************************!*\
   !*** ./~/axios/lib/helpers/isURLSameOrigin.js ***!
   \************************************************/
@@ -46663,7 +50289,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -46732,7 +50358,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 374 */
+/* 378 */
 /*!*************************************!*\
   !*** ./~/axios/lib/helpers/btoa.js ***!
   \*************************************/
@@ -46777,7 +50403,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 375 */
+/* 379 */
 /*!****************************************!*\
   !*** ./~/axios/lib/helpers/cookies.js ***!
   \****************************************/
@@ -46785,7 +50411,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
 	
 	module.exports = (
 	  utils.isStandardBrowserEnv() ?
@@ -46839,7 +50465,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 376 */
+/* 380 */
 /*!************************************************!*\
   !*** ./~/axios/lib/core/InterceptorManager.js ***!
   \************************************************/
@@ -46847,7 +50473,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
 	
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -46900,7 +50526,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 377 */
+/* 381 */
 /*!*********************************************!*\
   !*** ./~/axios/lib/core/dispatchRequest.js ***!
   \*********************************************/
@@ -46908,10 +50534,10 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
-	var transformData = __webpack_require__(/*! ./transformData */ 378);
-	var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 379);
-	var defaults = __webpack_require__(/*! ../defaults */ 365);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
+	var transformData = __webpack_require__(/*! ./transformData */ 382);
+	var isCancel = __webpack_require__(/*! ../cancel/isCancel */ 383);
+	var defaults = __webpack_require__(/*! ../defaults */ 369);
 	
 	/**
 	 * Throws a `Cancel` if cancellation has been requested.
@@ -46988,7 +50614,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 378 */
+/* 382 */
 /*!*******************************************!*\
   !*** ./~/axios/lib/core/transformData.js ***!
   \*******************************************/
@@ -46996,7 +50622,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var utils = __webpack_require__(/*! ./../utils */ 362);
+	var utils = __webpack_require__(/*! ./../utils */ 366);
 	
 	/**
 	 * Transform the data for a request or a response
@@ -47017,7 +50643,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 379 */
+/* 383 */
 /*!****************************************!*\
   !*** ./~/axios/lib/cancel/isCancel.js ***!
   \****************************************/
@@ -47031,7 +50657,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 380 */
+/* 384 */
 /*!**********************************************!*\
   !*** ./~/axios/lib/helpers/isAbsoluteURL.js ***!
   \**********************************************/
@@ -47054,7 +50680,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 381 */
+/* 385 */
 /*!********************************************!*\
   !*** ./~/axios/lib/helpers/combineURLs.js ***!
   \********************************************/
@@ -47075,7 +50701,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 382 */
+/* 386 */
 /*!**************************************!*\
   !*** ./~/axios/lib/cancel/Cancel.js ***!
   \**************************************/
@@ -47103,7 +50729,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 383 */
+/* 387 */
 /*!*******************************************!*\
   !*** ./~/axios/lib/cancel/CancelToken.js ***!
   \*******************************************/
@@ -47111,7 +50737,7 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
-	var Cancel = __webpack_require__(/*! ./Cancel */ 382);
+	var Cancel = __webpack_require__(/*! ./Cancel */ 386);
 	
 	/**
 	 * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -47169,7 +50795,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 384 */
+/* 388 */
 /*!***************************************!*\
   !*** ./~/axios/lib/helpers/spread.js ***!
   \***************************************/
@@ -47205,10 +50831,10 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 385 */
-/*!************************************************!*\
-  !*** ./views/subcomponents/CustomTableTech.js ***!
-  \************************************************/
+/* 389 */
+/*!****************************************************!*\
+  !*** ./views/subcomponents/CustomTableTechCost.js ***!
+  \****************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47223,7 +50849,7 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
 	var _propTypes = __webpack_require__(/*! prop-types */ 28);
 	
@@ -47231,23 +50857,23 @@ webpackJsonp([0,1],[
 	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
-	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
+	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 390);
 	
 	var _Table2 = _interopRequireDefault(_Table);
 	
-	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
+	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 392);
 	
 	var _TableBody2 = _interopRequireDefault(_TableBody);
 	
-	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
+	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 394);
 	
 	var _TableCell2 = _interopRequireDefault(_TableCell);
 	
-	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
+	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 396);
 	
 	var _TableHead2 = _interopRequireDefault(_TableHead);
 	
-	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
+	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 398);
 	
 	var _TableRow2 = _interopRequireDefault(_TableRow);
 	
@@ -47306,20 +50932,20 @@ webpackJsonp([0,1],[
 	}
 	*/
 	
-	var CustomTableTech = function (_React$Component) {
-		_inherits(CustomTableTech, _React$Component);
+	var CustomTableTechCost = function (_React$Component) {
+		_inherits(CustomTableTechCost, _React$Component);
 	
-		function CustomTableTech(props) {
-			_classCallCheck(this, CustomTableTech);
+		function CustomTableTechCost(props) {
+			_classCallCheck(this, CustomTableTechCost);
 	
-			var _this = _possibleConstructorReturn(this, (CustomTableTech.__proto__ || Object.getPrototypeOf(CustomTableTech)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (CustomTableTechCost.__proto__ || Object.getPrototypeOf(CustomTableTechCost)).call(this, props));
 	
 			console.log("Custom ", _this.props);
 			console.log("t ", _this.props.t);
 			return _this;
 		}
 	
-		_createClass(CustomTableTech, [{
+		_createClass(CustomTableTechCost, [{
 			key: 'render',
 			value: function render() {
 				var classes = this.props.classes;
@@ -47329,72 +50955,95 @@ webpackJsonp([0,1],[
 	
 				var id = 0;
 				return _react2.default.createElement(
-					_Paper2.default,
-					{ key: id++, className: classes.root },
+					'div',
+					null,
 					_react2.default.createElement(
-						_Table2.default,
-						{ className: classes.table },
+						'h3',
+						null,
+						'Cost approximation'
+					),
+					_react2.default.createElement(
+						_Paper2.default,
+						{ key: id++, className: classes.root },
 						_react2.default.createElement(
-							_TableHead2.default,
-							null,
+							_Table2.default,
+							{ className: classes.table },
 							_react2.default.createElement(
-								_TableRow2.default,
+								_TableHead2.default,
 								null,
 								_react2.default.createElement(
-									CustomTableCell,
-									{ className: classes.footer },
-									'Tech'
-								),
-								_react2.default.createElement(
-									CustomTableCell,
-									{ numeric: true, className: classes.head },
-									'Cost* (Approx.)'
-								)
-							)
-						),
-						_react2.default.createElement(
-							_TableBody2.default,
-							null,
-							this.props.t.map(function (n) {
-								console.log(" id: ", id, " length ", tLen);
-	
-								var tableRowClassName = classes.row;
-	
-								console.log("OUT ", tableRowClassName);
-								if (id == tLen) {
-									tableRowClassName = classes.footer;
-									console.log("IF ", tableRowClassName);
-								}
-	
-								return _react2.default.createElement(
 									_TableRow2.default,
-									{ className: tableRowClassName, key: id++ },
+									null,
+									_react2.default.createElement(
+										CustomTableCell,
+										{ className: classes.footer },
+										'Tech'
+									),
+									_react2.default.createElement(
+										CustomTableCell,
+										{ numeric: true, className: classes.head },
+										'Cost* (Approx.)'
+									)
+								)
+							),
+							_react2.default.createElement(
+								_TableBody2.default,
+								null,
+								this.props.t.map(function (n) {
+									console.log(" id: ", id, " length ", tLen);
+	
+									var tableRowClassName = classes.row;
+	
+									console.log("OUT ", tableRowClassName);
+									if (id == tLen) {
+										tableRowClassName = classes.footer;
+										console.log("IF ", tableRowClassName);
+									}
+	
+									return _react2.default.createElement(
+										_TableRow2.default,
+										{ className: tableRowClassName, key: id++ },
+										_react2.default.createElement(
+											CustomTableCell,
+											{ component: 'th', scope: 'row' },
+											n.name
+										),
+										_react2.default.createElement(
+											CustomTableCell,
+											{ numeric: true },
+											n.cost
+										)
+									);
+								}),
+								_react2.default.createElement(
+									_TableRow2.default,
+									{ className: classes.row, key: id++ },
 									_react2.default.createElement(
 										CustomTableCell,
 										{ component: 'th', scope: 'row' },
-										n.name
+										'Total'
 									),
 									_react2.default.createElement(
 										CustomTableCell,
 										{ numeric: true },
-										n.cost
+										'28000'
 									)
-								);
-							})
+								)
+							)
 						)
 					)
 				);
 			}
 		}]);
 	
-		return CustomTableTech;
+		return CustomTableTechCost;
 	}(_react2.default.Component);
 	
-	exports.default = (0, _styles.withStyles)(styles)(CustomTableTech);
+	exports.default = (0, _styles.withStyles)(styles)(CustomTableTechCost);
 	//export default (CustomTable);
 
 /***/ }),
-/* 386 */
+/* 390 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Table/index.js ***!
   \********************************************/
@@ -47414,10 +51063,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Table = _interopRequireDefault(__webpack_require__(/*! ./Table */ 387));
+	var _Table = _interopRequireDefault(__webpack_require__(/*! ./Table */ 391));
 
 /***/ }),
-/* 387 */
+/* 391 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Table/Table.js ***!
   \********************************************/
@@ -47538,7 +51187,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 388 */
+/* 392 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/TableBody/index.js ***!
   \************************************************/
@@ -47558,10 +51207,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _TableBody = _interopRequireDefault(__webpack_require__(/*! ./TableBody */ 389));
+	var _TableBody = _interopRequireDefault(__webpack_require__(/*! ./TableBody */ 393));
 
 /***/ }),
-/* 389 */
+/* 393 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/TableBody/TableBody.js ***!
   \****************************************************/
@@ -47676,7 +51325,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 390 */
+/* 394 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/TableCell/index.js ***!
   \************************************************/
@@ -47696,10 +51345,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _TableCell = _interopRequireDefault(__webpack_require__(/*! ./TableCell */ 391));
+	var _TableCell = _interopRequireDefault(__webpack_require__(/*! ./TableCell */ 395));
 
 /***/ }),
-/* 391 */
+/* 395 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/TableCell/TableCell.js ***!
   \****************************************************/
@@ -47893,7 +51542,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 392 */
+/* 396 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/TableHead/index.js ***!
   \************************************************/
@@ -47913,10 +51562,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _TableHead = _interopRequireDefault(__webpack_require__(/*! ./TableHead */ 393));
+	var _TableHead = _interopRequireDefault(__webpack_require__(/*! ./TableHead */ 397));
 
 /***/ }),
-/* 393 */
+/* 397 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/TableHead/TableHead.js ***!
   \****************************************************/
@@ -48031,7 +51680,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 394 */
+/* 398 */
 /*!***********************************************!*\
   !*** ./~/@material-ui/core/TableRow/index.js ***!
   \***********************************************/
@@ -48051,10 +51700,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _TableRow = _interopRequireDefault(__webpack_require__(/*! ./TableRow */ 395));
+	var _TableRow = _interopRequireDefault(__webpack_require__(/*! ./TableRow */ 399));
 
 /***/ }),
-/* 395 */
+/* 399 */
 /*!**************************************************!*\
   !*** ./~/@material-ui/core/TableRow/TableRow.js ***!
   \**************************************************/
@@ -48185,7 +51834,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 396 */
+/* 400 */
 /*!***********************************************!*\
   !*** ./views/subcomponents/CustomTableJob.js ***!
   \***********************************************/
@@ -48203,7 +51852,9 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 25);
 	
 	var _propTypes = __webpack_require__(/*! prop-types */ 28);
 	
@@ -48211,23 +51862,23 @@ webpackJsonp([0,1],[
 	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
-	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 386);
+	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 390);
 	
 	var _Table2 = _interopRequireDefault(_Table);
 	
-	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 388);
+	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 392);
 	
 	var _TableBody2 = _interopRequireDefault(_TableBody);
 	
-	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 390);
+	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 394);
 	
 	var _TableCell2 = _interopRequireDefault(_TableCell);
 	
-	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 392);
+	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 396);
 	
 	var _TableHead2 = _interopRequireDefault(_TableHead);
 	
-	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 394);
+	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 398);
 	
 	var _TableRow2 = _interopRequireDefault(_TableRow);
 	
@@ -48309,58 +51960,63 @@ webpackJsonp([0,1],[
 	
 				var id = 0;
 				return _react2.default.createElement(
-					_Paper2.default,
-					{ key: id++, className: classes.root },
+					'div',
+					null,
 					_react2.default.createElement(
-						_Table2.default,
-						{ className: classes.table },
+						'h3',
+						null,
+						'Job suggestions on these Technologies, these are some top Jobs in these Tech (Apply):'
+					),
+					_react2.default.createElement(
+						_Paper2.default,
+						{ key: id++, className: classes.root },
 						_react2.default.createElement(
-							_TableHead2.default,
-							null,
+							_Table2.default,
+							{ className: classes.table },
 							_react2.default.createElement(
-								_TableRow2.default,
+								_TableHead2.default,
 								null,
 								_react2.default.createElement(
-									CustomTableCell,
-									{ className: classes.footer },
-									'Tech'
-								),
-								_react2.default.createElement(
-									CustomTableCell,
-									{ numeric: true, className: classes.head },
-									'Cost* (Approx.)'
-								)
-							)
-						),
-						_react2.default.createElement(
-							_TableBody2.default,
-							null,
-							this.props.t.map(function (n) {
-								console.log(" id: ", id, " length ", tLen);
-	
-								var tableRowClassName = classes.row;
-	
-								console.log("OUT ", tableRowClassName);
-								if (id == tLen) {
-									tableRowClassName = classes.footer;
-									console.log("IF ", tableRowClassName);
-								}
-	
-								return _react2.default.createElement(
 									_TableRow2.default,
-									{ className: tableRowClassName, key: id++ },
+									null,
 									_react2.default.createElement(
 										CustomTableCell,
-										{ component: 'th', scope: 'row' },
-										n.name
-									),
-									_react2.default.createElement(
-										CustomTableCell,
-										{ numeric: true },
-										n.cost
+										{ className: classes.footer },
+										'Jobs'
 									)
-								);
-							})
+								)
+							),
+							_react2.default.createElement(
+								_TableBody2.default,
+								null,
+								this.props.t.map(function (n) {
+									console.log(" id: ", id, " length ", tLen);
+	
+									var tableRowClassName = classes.row;
+									var jobsLink = "/jobs/" + n.name;
+	
+									console.log("OUT ", tableRowClassName);
+									if (id == tLen) {
+										tableRowClassName = classes.footer;
+										console.log("IF ", tableRowClassName);
+									}
+	
+									return _react2.default.createElement(
+										_TableRow2.default,
+										{ className: tableRowClassName, key: id++ },
+										_react2.default.createElement(
+											CustomTableCell,
+											{ component: 'th', scope: 'row' },
+											'Jobs in ',
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: jobsLink },
+												n.name
+											)
+										)
+									);
+								})
+							)
 						)
 					)
 				);
@@ -48374,7 +52030,214 @@ webpackJsonp([0,1],[
 	//export default (CustomTable);
 
 /***/ }),
-/* 397 */
+/* 401 */
+/*!***************************************************!*\
+  !*** ./views/subcomponents/CustomTableProject.js ***!
+  \***************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
+	
+	var _reactRouterDom = __webpack_require__(/*! react-router-dom */ 25);
+	
+	var _propTypes = __webpack_require__(/*! prop-types */ 28);
+	
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+	
+	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
+	
+	var _Table = __webpack_require__(/*! @material-ui/core/Table */ 390);
+	
+	var _Table2 = _interopRequireDefault(_Table);
+	
+	var _TableBody = __webpack_require__(/*! @material-ui/core/TableBody */ 392);
+	
+	var _TableBody2 = _interopRequireDefault(_TableBody);
+	
+	var _TableCell = __webpack_require__(/*! @material-ui/core/TableCell */ 394);
+	
+	var _TableCell2 = _interopRequireDefault(_TableCell);
+	
+	var _TableHead = __webpack_require__(/*! @material-ui/core/TableHead */ 396);
+	
+	var _TableHead2 = _interopRequireDefault(_TableHead);
+	
+	var _TableRow = __webpack_require__(/*! @material-ui/core/TableRow */ 398);
+	
+	var _TableRow2 = _interopRequireDefault(_TableRow);
+	
+	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CustomTableCell = (0, _styles.withStyles)(function (theme) {
+		return {
+			head: {
+				backgroundColor: theme.palette.common.black,
+				//color: theme.palette.white
+				color: "#fff"
+			},
+			body: {
+				fontSize: 14
+			},
+			footer: {
+				fontSize: 14,
+				color: "red"
+			}
+		};
+	})(_TableCell2.default);
+	
+	var styles = function styles(theme) {
+		return {
+			root: {
+				width: '100%',
+				marginTop: theme.spacing.unit * 3,
+				overflowX: "auto"
+			},
+			table: {
+				minWidth: 700
+			},
+			row: {
+				'&:nth-of-type(odd)': {
+					backgroundColor: theme.palette.background.default
+				}
+			}
+		};
+	};
+	
+	/*
+	const mapStateToProps = (store) => {
+	}
+	
+	const mapDispatchToProps = (dispatch) => {
+	}
+	*/
+	
+	var CustomTableProjects = function (_React$Component) {
+		_inherits(CustomTableProjects, _React$Component);
+	
+		function CustomTableProjects(props) {
+			_classCallCheck(this, CustomTableProjects);
+	
+			var _this = _possibleConstructorReturn(this, (CustomTableProjects.__proto__ || Object.getPrototypeOf(CustomTableProjects)).call(this, props));
+	
+			console.log("Custom ", _this.props);
+			console.log("t ", _this.props.t);
+			return _this;
+		}
+	
+		_createClass(CustomTableProjects, [{
+			key: 'render',
+			value: function render() {
+				var classes = this.props.classes;
+				//console.log( "calsses ", classes);
+				//console.log( "this.props ", this.props);
+				var tLen = this.props.t.length;
+	
+				var id = 0;
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(
+						'h3',
+						null,
+						'Some top class projects getting done on these Technologies and your probable team mates!'
+					),
+					_react2.default.createElement(
+						_Paper2.default,
+						{ key: id++, className: classes.root },
+						_react2.default.createElement(
+							_Table2.default,
+							{ className: classes.table },
+							_react2.default.createElement(
+								_TableHead2.default,
+								null,
+								_react2.default.createElement(
+									_TableRow2.default,
+									null,
+									_react2.default.createElement(
+										CustomTableCell,
+										{ className: classes.footer },
+										'Projects'
+									),
+									_react2.default.createElement(
+										CustomTableCell,
+										{ className: classes.footer },
+										'Team Size*'
+									)
+								)
+							),
+							_react2.default.createElement(
+								_TableBody2.default,
+								null,
+								this.props.t.map(function (n) {
+									console.log(" id: ", id, " length ", tLen);
+	
+									var tableRowClassName = classes.row;
+									var projectsLink = "/projects/" + n.name;
+	
+									console.log("OUT ", tableRowClassName);
+									if (id == tLen) {
+										tableRowClassName = classes.footer;
+										console.log("IF ", tableRowClassName);
+									}
+	
+									return _react2.default.createElement(
+										_TableRow2.default,
+										{ className: tableRowClassName, key: id++ },
+										_react2.default.createElement(
+											CustomTableCell,
+											{ component: 'th', scope: 'row' },
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: projectsLink },
+												'Projects'
+											),
+											' in ',
+											n.name
+										),
+										_react2.default.createElement(
+											CustomTableCell,
+											{ numeric: true },
+											n.cost / 1000
+										)
+									);
+								})
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return CustomTableProjects;
+	}(_react2.default.Component);
+	
+	exports.default = (0, _styles.withStyles)(styles)(CustomTableProjects);
+	//export default (CustomTable);
+
+/***/ }),
+/* 402 */
 /*!*****************************************!*\
   !*** ./~/react-document-title/index.js ***!
   \*****************************************/
@@ -48384,7 +52247,7 @@ webpackJsonp([0,1],[
 	
 	var React = __webpack_require__(/*! react */ 1),
 	    PropTypes = __webpack_require__(/*! prop-types */ 28),
-	    withSideEffect = __webpack_require__(/*! react-side-effect */ 398);
+	    withSideEffect = __webpack_require__(/*! react-side-effect */ 403);
 	
 	function reducePropsToState(propsList) {
 	  var innermostProps = propsList[propsList.length - 1];
@@ -48423,7 +52286,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 398 */
+/* 403 */
 /*!******************************************!*\
   !*** ./~/react-side-effect/lib/index.js ***!
   \******************************************/
@@ -48435,8 +52298,8 @@ webpackJsonp([0,1],[
 	
 	var React = __webpack_require__(/*! react */ 1);
 	var React__default = _interopDefault(React);
-	var ExecutionEnvironment = _interopDefault(__webpack_require__(/*! exenv */ 399));
-	var shallowEqual = _interopDefault(__webpack_require__(/*! shallowequal */ 400));
+	var ExecutionEnvironment = _interopDefault(__webpack_require__(/*! exenv */ 404));
+	var shallowEqual = _interopDefault(__webpack_require__(/*! shallowequal */ 405));
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -48545,7 +52408,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 399 */
+/* 404 */
 /*!**************************!*\
   !*** ./~/exenv/index.js ***!
   \**************************/
@@ -48594,7 +52457,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 400 */
+/* 405 */
 /*!*********************************!*\
   !*** ./~/shallowequal/index.js ***!
   \*********************************/
@@ -48653,7 +52516,7 @@ webpackJsonp([0,1],[
 
 
 /***/ }),
-/* 401 */
+/* 406 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/TextField/index.js ***!
   \************************************************/
@@ -48673,10 +52536,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _TextField = _interopRequireDefault(__webpack_require__(/*! ./TextField */ 402));
+	var _TextField = _interopRequireDefault(__webpack_require__(/*! ./TextField */ 407));
 
 /***/ }),
-/* 402 */
+/* 407 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/TextField/TextField.js ***!
   \****************************************************/
@@ -48701,15 +52564,15 @@ webpackJsonp([0,1],[
 	
 	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 403));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 408));
 	
-	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ../InputLabel */ 406));
+	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ../InputLabel */ 411));
 	
-	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ../FormControl */ 410));
+	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ../FormControl */ 415));
 	
-	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ../FormHelperText */ 412));
+	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ../FormHelperText */ 417));
 	
-	var _Select = _interopRequireDefault(__webpack_require__(/*! ../Select */ 414));
+	var _Select = _interopRequireDefault(__webpack_require__(/*! ../Select */ 419));
 	
 	// @inheritedComponent FormControl
 	
@@ -48980,7 +52843,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 403 */
+/* 408 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Input/index.js ***!
   \********************************************/
@@ -49000,10 +52863,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ 404));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ 409));
 
 /***/ }),
-/* 404 */
+/* 409 */
 /*!********************************************!*\
   !*** ./~/@material-ui/core/Input/Input.js ***!
   \********************************************/
@@ -49045,7 +52908,7 @@ webpackJsonp([0,1],[
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _Textarea = _interopRequireDefault(__webpack_require__(/*! ./Textarea */ 405));
+	var _Textarea = _interopRequireDefault(__webpack_require__(/*! ./Textarea */ 410));
 	
 	// Supports determination of isControlled().
 	// Controlled input accepts its current value as a prop.
@@ -49742,7 +53605,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 405 */
+/* 410 */
 /*!***********************************************!*\
   !*** ./~/@material-ui/core/Input/Textarea.js ***!
   \***********************************************/
@@ -50044,7 +53907,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 406 */
+/* 411 */
 /*!*************************************************!*\
   !*** ./~/@material-ui/core/InputLabel/index.js ***!
   \*************************************************/
@@ -50064,10 +53927,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ./InputLabel */ 407));
+	var _InputLabel = _interopRequireDefault(__webpack_require__(/*! ./InputLabel */ 412));
 
 /***/ }),
-/* 407 */
+/* 412 */
 /*!******************************************************!*\
   !*** ./~/@material-ui/core/InputLabel/InputLabel.js ***!
   \******************************************************/
@@ -50096,7 +53959,7 @@ webpackJsonp([0,1],[
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ../FormLabel */ 408));
+	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ../FormLabel */ 413));
 	
 	// @inheritedComponent FormLabel
 	var styles = function styles(theme) {
@@ -50235,7 +54098,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 408 */
+/* 413 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/FormLabel/index.js ***!
   \************************************************/
@@ -50255,10 +54118,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ./FormLabel */ 409));
+	var _FormLabel = _interopRequireDefault(__webpack_require__(/*! ./FormLabel */ 414));
 
 /***/ }),
-/* 409 */
+/* 414 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/FormLabel/FormLabel.js ***!
   \****************************************************/
@@ -50420,7 +54283,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 410 */
+/* 415 */
 /*!**************************************************!*\
   !*** ./~/@material-ui/core/FormControl/index.js ***!
   \**************************************************/
@@ -50440,10 +54303,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ./FormControl */ 411));
+	var _FormControl = _interopRequireDefault(__webpack_require__(/*! ./FormControl */ 416));
 
 /***/ }),
-/* 411 */
+/* 416 */
 /*!********************************************************!*\
   !*** ./~/@material-ui/core/FormControl/FormControl.js ***!
   \********************************************************/
@@ -50480,7 +54343,7 @@ webpackJsonp([0,1],[
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _Input = __webpack_require__(/*! ../Input/Input */ 404);
+	var _Input = __webpack_require__(/*! ../Input/Input */ 409);
 	
 	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
 	
@@ -50717,7 +54580,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 412 */
+/* 417 */
 /*!*****************************************************!*\
   !*** ./~/@material-ui/core/FormHelperText/index.js ***!
   \*****************************************************/
@@ -50737,10 +54600,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ./FormHelperText */ 413));
+	var _FormHelperText = _interopRequireDefault(__webpack_require__(/*! ./FormHelperText */ 418));
 
 /***/ }),
-/* 413 */
+/* 418 */
 /*!**************************************************************!*\
   !*** ./~/@material-ui/core/FormHelperText/FormHelperText.js ***!
   \**************************************************************/
@@ -50886,7 +54749,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 414 */
+/* 419 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/Select/index.js ***!
   \*********************************************/
@@ -50906,10 +54769,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Select = _interopRequireDefault(__webpack_require__(/*! ./Select */ 415));
+	var _Select = _interopRequireDefault(__webpack_require__(/*! ./Select */ 420));
 
 /***/ }),
-/* 415 */
+/* 420 */
 /*!**********************************************!*\
   !*** ./~/@material-ui/core/Select/Select.js ***!
   \**********************************************/
@@ -50932,17 +54795,17 @@ webpackJsonp([0,1],[
 	
 	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
 	
-	var _SelectInput = _interopRequireDefault(__webpack_require__(/*! ./SelectInput */ 416));
+	var _SelectInput = _interopRequireDefault(__webpack_require__(/*! ./SelectInput */ 421));
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 417));
+	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 422));
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 403));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 408));
 	
-	var _NativeSelect = __webpack_require__(/*! ../NativeSelect/NativeSelect */ 418);
+	var _NativeSelect = __webpack_require__(/*! ../NativeSelect/NativeSelect */ 423);
 	
-	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ../NativeSelect/NativeSelectInput */ 419));
+	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ../NativeSelect/NativeSelectInput */ 424));
 	
 	// @inheritedComponent Input
 	var styles = _NativeSelect.styles;
@@ -51119,7 +54982,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 416 */
+/* 421 */
 /*!***************************************************!*\
   !*** ./~/@material-ui/core/Select/SelectInput.js ***!
   \***************************************************/
@@ -51162,7 +55025,7 @@ webpackJsonp([0,1],[
 	
 	var _Menu = _interopRequireDefault(__webpack_require__(/*! ../Menu/Menu */ 190));
 	
-	var _Input = __webpack_require__(/*! ../Input/Input */ 404);
+	var _Input = __webpack_require__(/*! ../Input/Input */ 409);
 	
 	/**
 	 * @ignore - internal component.
@@ -51614,7 +55477,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 417 */
+/* 422 */
 /*!*****************************************************************!*\
   !*** ./~/@material-ui/core/internal/svg-icons/ArrowDropDown.js ***!
   \*****************************************************************/
@@ -51652,7 +55515,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 418 */
+/* 423 */
 /*!**********************************************************!*\
   !*** ./~/@material-ui/core/NativeSelect/NativeSelect.js ***!
   \**********************************************************/
@@ -51675,13 +55538,13 @@ webpackJsonp([0,1],[
 	
 	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
 	
-	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ./NativeSelectInput */ 419));
+	var _NativeSelectInput = _interopRequireDefault(__webpack_require__(/*! ./NativeSelectInput */ 424));
 	
 	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
 	
-	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 417));
+	var _ArrowDropDown = _interopRequireDefault(__webpack_require__(/*! ../internal/svg-icons/ArrowDropDown */ 422));
 	
-	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 403));
+	var _Input = _interopRequireDefault(__webpack_require__(/*! ../Input */ 408));
 	
 	// @inheritedComponent Input
 	var styles = function styles(theme) {
@@ -51827,7 +55690,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 419 */
+/* 424 */
 /*!***************************************************************!*\
   !*** ./~/@material-ui/core/NativeSelect/NativeSelectInput.js ***!
   \***************************************************************/
@@ -51938,7 +55801,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 420 */
+/* 425 */
 /*!*******************************************!*\
   !*** ./~/@material-ui/core/Icon/index.js ***!
   \*******************************************/
@@ -51958,10 +55821,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Icon = _interopRequireDefault(__webpack_require__(/*! ./Icon */ 421));
+	var _Icon = _interopRequireDefault(__webpack_require__(/*! ./Icon */ 426));
 
 /***/ }),
-/* 421 */
+/* 426 */
 /*!******************************************!*\
   !*** ./~/@material-ui/core/Icon/Icon.js ***!
   \******************************************/
@@ -52071,7 +55934,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 422 */
+/* 427 */
 /*!**************************************!*\
   !*** ./~/@material-ui/icons/Send.js ***!
   \**************************************/
@@ -52097,7 +55960,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 423 */
+/* 428 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/CircularProgress/index.js ***!
   \*******************************************************/
@@ -52117,10 +55980,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _CircularProgress = _interopRequireDefault(__webpack_require__(/*! ./CircularProgress */ 424));
+	var _CircularProgress = _interopRequireDefault(__webpack_require__(/*! ./CircularProgress */ 429));
 
 /***/ }),
-/* 424 */
+/* 429 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/CircularProgress/CircularProgress.js ***!
   \******************************************************************/
@@ -52349,7 +56212,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 425 */
+/* 430 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/colors/green.js ***!
   \*********************************************/
@@ -52381,7 +56244,427 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 426 */
+/* 431 */
+/*!*******************************************!*\
+  !*** ./~/@material-ui/core/Grid/index.js ***!
+  \*******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	Object.defineProperty(exports, "default", {
+	  enumerable: true,
+	  get: function get() {
+	    return _Grid.default;
+	  }
+	});
+	
+	var _Grid = _interopRequireDefault(__webpack_require__(/*! ./Grid */ 432));
+
+/***/ }),
+/* 432 */
+/*!******************************************!*\
+  !*** ./~/@material-ui/core/Grid/Grid.js ***!
+  \******************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.styles = void 0;
+	
+	var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/objectWithoutProperties */ 73));
+	
+	var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/objectSpread */ 77));
+	
+	var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/extends */ 71));
+	
+	var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/builtin/defineProperty */ 72));
+	
+	var _react = _interopRequireDefault(__webpack_require__(/*! react */ 1));
+	
+	var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ 28));
+	
+	var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ 74));
+	
+	var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ 75));
+	
+	var _createBreakpoints = __webpack_require__(/*! ../styles/createBreakpoints */ 142);
+	
+	var _requirePropFactory = _interopRequireDefault(__webpack_require__(/*! ../utils/requirePropFactory */ 433));
+	
+	// A grid component using the following libs as inspiration.
+	//
+	// For the implementation:
+	// - http://v4-alpha.getbootstrap.com/layout/flexbox-grid/
+	// - https://github.com/kristoferjoseph/flexboxgrid/blob/master/src/css/flexboxgrid.css
+	// - https://github.com/roylee0704/react-flexbox-grid
+	// - https://material.angularjs.org/latest/layout/introduction
+	//
+	// Follow this flexbox Guide to better understand the underlying model:
+	// - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+	var GUTTERS = [0, 8, 16, 24, 32, 40];
+	var GRID_SIZES = [true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+	
+	function generateGrid(globalStyles, theme, breakpoint) {
+	  // For the auto layouting
+	  var styles = (0, _defineProperty2.default)({}, "grid-".concat(breakpoint), {
+	    flexBasis: 0,
+	    flexGrow: 1,
+	    maxWidth: '100%'
+	  });
+	  GRID_SIZES.forEach(function (size) {
+	    if (typeof size === 'boolean') {
+	      // Skip the first one as handle above.
+	      return;
+	    } // Only keep 6 significant numbers.
+	
+	
+	    var width = "".concat(Math.round(size / 12 * 10e6) / 10e4, "%");
+	    /* eslint-disable max-len */
+	    // Close to the bootstrap implementation:
+	    // https://github.com/twbs/bootstrap/blob/8fccaa2439e97ec72a4b7dc42ccc1f649790adb0/scss/mixins/_grid.scss#L41
+	
+	    /* eslint-enable max-len */
+	
+	    styles["grid-".concat(breakpoint, "-").concat(size)] = {
+	      flexBasis: width,
+	      maxWidth: width
+	    };
+	  }); // No need for a media query for the first size.
+	
+	  if (breakpoint === 'xs') {
+	    (0, _extends2.default)(globalStyles, styles);
+	  } else {
+	    globalStyles[theme.breakpoints.up(breakpoint)] = styles;
+	  }
+	}
+	
+	function generateGutter(theme, breakpoint) {
+	  var styles = {};
+	  GUTTERS.forEach(function (spacing, index) {
+	    if (index === 0) {
+	      // Skip the default style.
+	      return;
+	    }
+	
+	    styles["spacing-".concat(breakpoint, "-").concat(spacing)] = {
+	      margin: -spacing / 2,
+	      width: "calc(100% + ".concat(spacing, "px)"),
+	      '& > $item': {
+	        padding: spacing / 2
+	      }
+	    };
+	  });
+	  return styles;
+	} // Default CSS values
+	// flex: '0 1 auto',
+	// flexDirection: 'row',
+	// alignItems: 'flex-start',
+	// flexWrap: 'nowrap',
+	// justifyContent: 'flex-start',
+	
+	
+	var styles = function styles(theme) {
+	  return (0, _objectSpread2.default)({
+	    container: {
+	      boxSizing: 'border-box',
+	      display: 'flex',
+	      flexWrap: 'wrap',
+	      width: '100%'
+	    },
+	    item: {
+	      boxSizing: 'border-box',
+	      margin: '0' // For instance, it's useful when used with a `figure` element.
+	
+	    },
+	    zeroMinWidth: {
+	      minWidth: 0
+	    },
+	    'direction-xs-column': {
+	      flexDirection: 'column'
+	    },
+	    'direction-xs-column-reverse': {
+	      flexDirection: 'column-reverse'
+	    },
+	    'direction-xs-row-reverse': {
+	      flexDirection: 'row-reverse'
+	    },
+	    'wrap-xs-nowrap': {
+	      flexWrap: 'nowrap'
+	    },
+	    'wrap-xs-wrap-reverse': {
+	      flexWrap: 'wrap-reverse'
+	    },
+	    'align-items-xs-center': {
+	      alignItems: 'center'
+	    },
+	    'align-items-xs-flex-start': {
+	      alignItems: 'flex-start'
+	    },
+	    'align-items-xs-flex-end': {
+	      alignItems: 'flex-end'
+	    },
+	    'align-items-xs-baseline': {
+	      alignItems: 'baseline'
+	    },
+	    'align-content-xs-center': {
+	      alignContent: 'center'
+	    },
+	    'align-content-xs-flex-start': {
+	      alignContent: 'flex-start'
+	    },
+	    'align-content-xs-flex-end': {
+	      alignContent: 'flex-end'
+	    },
+	    'align-content-xs-space-between': {
+	      alignContent: 'space-between'
+	    },
+	    'align-content-xs-space-around': {
+	      alignContent: 'space-around'
+	    },
+	    'justify-xs-center': {
+	      justifyContent: 'center'
+	    },
+	    'justify-xs-flex-end': {
+	      justifyContent: 'flex-end'
+	    },
+	    'justify-xs-space-between': {
+	      justifyContent: 'space-between'
+	    },
+	    'justify-xs-space-around': {
+	      justifyContent: 'space-around'
+	    }
+	  }, generateGutter(theme, 'xs'), _createBreakpoints.keys.reduce(function (accumulator, key) {
+	    // Use side effect over immutability for better performance.
+	    generateGrid(accumulator, theme, key);
+	    return accumulator;
+	  }, {}));
+	};
+	
+	exports.styles = styles;
+	
+	function Grid(props) {
+	  var _classNames;
+	
+	  var alignContent = props.alignContent,
+	      alignItems = props.alignItems,
+	      classes = props.classes,
+	      classNameProp = props.className,
+	      Component = props.component,
+	      container = props.container,
+	      direction = props.direction,
+	      item = props.item,
+	      justify = props.justify,
+	      lg = props.lg,
+	      md = props.md,
+	      sm = props.sm,
+	      spacing = props.spacing,
+	      wrap = props.wrap,
+	      xl = props.xl,
+	      xs = props.xs,
+	      zeroMinWidth = props.zeroMinWidth,
+	      other = (0, _objectWithoutProperties2.default)(props, ["alignContent", "alignItems", "classes", "className", "component", "container", "direction", "item", "justify", "lg", "md", "sm", "spacing", "wrap", "xl", "xs", "zeroMinWidth"]);
+	  var className = (0, _classnames.default)((_classNames = {}, (0, _defineProperty2.default)(_classNames, classes.container, container), (0, _defineProperty2.default)(_classNames, classes.item, item), (0, _defineProperty2.default)(_classNames, classes.zeroMinWidth, zeroMinWidth), (0, _defineProperty2.default)(_classNames, classes["spacing-xs-".concat(String(spacing))], container && spacing !== 0), (0, _defineProperty2.default)(_classNames, classes["direction-xs-".concat(String(direction))], direction !== Grid.defaultProps.direction), (0, _defineProperty2.default)(_classNames, classes["wrap-xs-".concat(String(wrap))], wrap !== Grid.defaultProps.wrap), (0, _defineProperty2.default)(_classNames, classes["align-items-xs-".concat(String(alignItems))], alignItems !== Grid.defaultProps.alignItems), (0, _defineProperty2.default)(_classNames, classes["align-content-xs-".concat(String(alignContent))], alignContent !== Grid.defaultProps.alignContent), (0, _defineProperty2.default)(_classNames, classes["justify-xs-".concat(String(justify))], justify !== Grid.defaultProps.justify), (0, _defineProperty2.default)(_classNames, classes['grid-xs'], xs === true), (0, _defineProperty2.default)(_classNames, classes["grid-xs-".concat(String(xs))], xs && xs !== true), (0, _defineProperty2.default)(_classNames, classes['grid-sm'], sm === true), (0, _defineProperty2.default)(_classNames, classes["grid-sm-".concat(String(sm))], sm && sm !== true), (0, _defineProperty2.default)(_classNames, classes['grid-md'], md === true), (0, _defineProperty2.default)(_classNames, classes["grid-md-".concat(String(md))], md && md !== true), (0, _defineProperty2.default)(_classNames, classes['grid-lg'], lg === true), (0, _defineProperty2.default)(_classNames, classes["grid-lg-".concat(String(lg))], lg && lg !== true), (0, _defineProperty2.default)(_classNames, classes['grid-xl'], xl === true), (0, _defineProperty2.default)(_classNames, classes["grid-xl-".concat(String(xl))], xl && xl !== true), _classNames), classNameProp);
+	  return _react.default.createElement(Component, (0, _extends2.default)({
+	    className: className
+	  }, other));
+	}
+	
+	Grid.propTypes = process.env.NODE_ENV !== "production" ? {
+	  /**
+	   * Defines the `align-content` style property.
+	   * It's applied for all screen sizes.
+	   */
+	  alignContent: _propTypes.default.oneOf(['stretch', 'center', 'flex-start', 'flex-end', 'space-between', 'space-around']),
+	
+	  /**
+	   * Defines the `align-items` style property.
+	   * It's applied for all screen sizes.
+	   */
+	  alignItems: _propTypes.default.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'baseline']),
+	
+	  /**
+	   * The content of the component.
+	   */
+	  children: _propTypes.default.node,
+	
+	  /**
+	   * Override or extend the styles applied to the component.
+	   * See [CSS API](#css-api) below for more details.
+	   */
+	  classes: _propTypes.default.object.isRequired,
+	
+	  /**
+	   * @ignore
+	   */
+	  className: _propTypes.default.string,
+	
+	  /**
+	   * The component used for the root node.
+	   * Either a string to use a DOM element or a component.
+	   */
+	  component: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func]),
+	
+	  /**
+	   * If `true`, the component will have the flex *container* behavior.
+	   * You should be wrapping *items* with a *container*.
+	   */
+	  container: _propTypes.default.bool,
+	
+	  /**
+	   * Defines the `flex-direction` style property.
+	   * It is applied for all screen sizes.
+	   */
+	  direction: _propTypes.default.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
+	
+	  /**
+	   * If `true`, the component will have the flex *item* behavior.
+	   * You should be wrapping *items* with a *container*.
+	   */
+	  item: _propTypes.default.bool,
+	
+	  /**
+	   * Defines the `justify-content` style property.
+	   * It is applied for all screen sizes.
+	   */
+	  justify: _propTypes.default.oneOf(['flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
+	
+	  /**
+	   * Defines the number of grids the component is going to use.
+	   * It's applied for the `lg` breakpoint and wider screens if not overridden.
+	   */
+	  lg: _propTypes.default.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	
+	  /**
+	   * Defines the number of grids the component is going to use.
+	   * It's applied for the `md` breakpoint and wider screens if not overridden.
+	   */
+	  md: _propTypes.default.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	
+	  /**
+	   * Defines the number of grids the component is going to use.
+	   * It's applied for the `sm` breakpoint and wider screens if not overridden.
+	   */
+	  sm: _propTypes.default.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	
+	  /**
+	   * Defines the space between the type `item` component.
+	   * It can only be used on a type `container` component.
+	   */
+	  spacing: _propTypes.default.oneOf(GUTTERS),
+	
+	  /**
+	   * Defines the `flex-wrap` style property.
+	   * It's applied for all screen sizes.
+	   */
+	  wrap: _propTypes.default.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
+	
+	  /**
+	   * Defines the number of grids the component is going to use.
+	   * It's applied for the `xl` breakpoint and wider screens.
+	   */
+	  xl: _propTypes.default.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	
+	  /**
+	   * Defines the number of grids the component is going to use.
+	   * It's applied for all the screen sizes with the lowest priority.
+	   */
+	  xs: _propTypes.default.oneOf([false, true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+	
+	  /**
+	   * If `true`, it sets `min-width: 0` on the item.
+	   * Refer to the limitations section of the documentation to better understand the use case.
+	   */
+	  zeroMinWidth: _propTypes.default.bool
+	} : {};
+	Grid.defaultProps = {
+	  alignContent: 'stretch',
+	  alignItems: 'stretch',
+	  component: 'div',
+	  container: false,
+	  direction: 'row',
+	  item: false,
+	  justify: 'flex-start',
+	  lg: false,
+	  md: false,
+	  sm: false,
+	  spacing: 0,
+	  wrap: 'wrap',
+	  xl: false,
+	  xs: false,
+	  zeroMinWidth: false
+	};
+	var StyledGrid = (0, _withStyles.default)(styles, {
+	  name: 'MuiGrid'
+	})(Grid);
+	
+	if (process.env.NODE_ENV !== 'production') {
+	  var requireProp = (0, _requirePropFactory.default)('Grid');
+	  StyledGrid.propTypes = (0, _objectSpread2.default)({}, StyledGrid.propTypes, {
+	    alignContent: requireProp('container'),
+	    alignItems: requireProp('container'),
+	    direction: requireProp('container'),
+	    justify: requireProp('container'),
+	    lg: requireProp('item'),
+	    md: requireProp('item'),
+	    sm: requireProp('item'),
+	    spacing: requireProp('container'),
+	    wrap: requireProp('container'),
+	    xs: requireProp('item'),
+	    zeroMinWidth: requireProp('zeroMinWidth')
+	  });
+	}
+	
+	var _default = StyledGrid;
+	exports.default = _default;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
+
+/***/ }),
+/* 433 */
+/*!*********************************************************!*\
+  !*** ./~/@material-ui/core/utils/requirePropFactory.js ***!
+  \*********************************************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+	
+	//  weak
+	var requirePropFactory = function requirePropFactory(componentNameInError) {
+	  var requireProp = function requireProp(requiredProp) {
+	    return function (props, propName, componentName, location, propFullName) {
+	      var propFullNameSafe = propFullName || propName;
+	
+	      if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
+	        return new Error("The property `".concat(propFullNameSafe, "` of ") + "`".concat(componentNameInError, "` must be used on `").concat(requiredProp, "`."));
+	      }
+	
+	      return null;
+	    };
+	  };
+	
+	  return requireProp;
+	};
+	
+	var _default = requirePropFactory;
+	exports.default = _default;
+
+/***/ }),
+/* 434 */
 /*!*************************!*\
   !*** ./views/Login.jsx ***!
   \*************************/
@@ -52404,19 +56687,19 @@ webpackJsonp([0,1],[
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 427);
+	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 435);
 	
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 	
-	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 410);
+	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 415);
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 	
-	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 429);
+	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 437);
 	
 	var _FormControlLabel2 = _interopRequireDefault(_FormControlLabel);
 	
-	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 431);
+	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 439);
 	
 	var _Switch2 = _interopRequireDefault(_Switch);
 	
@@ -52545,7 +56828,7 @@ webpackJsonp([0,1],[
 	exports.default = Login;
 
 /***/ }),
-/* 427 */
+/* 435 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/index.js ***!
   \************************************************/
@@ -52565,10 +56848,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 428));
+	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 436));
 
 /***/ }),
-/* 428 */
+/* 436 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/FormGroup.js ***!
   \****************************************************/
@@ -52660,7 +56943,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 429 */
+/* 437 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/index.js ***!
   \*******************************************************/
@@ -52680,10 +56963,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 430));
+	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 438));
 
 /***/ }),
-/* 430 */
+/* 438 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/FormControlLabel.js ***!
   \******************************************************************/
@@ -52859,7 +57142,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 431 */
+/* 439 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/Switch/index.js ***!
   \*********************************************/
@@ -52879,10 +57162,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 432));
+	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 440));
 
 /***/ }),
-/* 432 */
+/* 440 */
 /*!**********************************************!*\
   !*** ./~/@material-ui/core/Switch/Switch.js ***!
   \**********************************************/
@@ -52911,7 +57194,7 @@ webpackJsonp([0,1],[
 	
 	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
 	
-	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 433));
+	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 441));
 	
 	var styles = function styles(theme) {
 	  return {
@@ -53114,7 +57397,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 433 */
+/* 441 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/internal/SwitchBase.js ***!
   \****************************************************/
@@ -53424,7 +57707,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 434 */
+/* 442 */
 /*!*********************************!*\
   !*** ./views/todo/TodoForm.jsx ***!
   \*********************************/
@@ -53443,11 +57726,11 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 397);
+	var _reactDocumentTitle = __webpack_require__(/*! react-document-title */ 402);
 	
 	var _reactDocumentTitle2 = _interopRequireDefault(_reactDocumentTitle);
 	
-	var _axios = __webpack_require__(/*! axios */ 360);
+	var _axios = __webpack_require__(/*! axios */ 364);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
@@ -53623,7 +57906,7 @@ webpackJsonp([0,1],[
 	exports.default = TodoForm;
 
 /***/ }),
-/* 435 */
+/* 443 */
 /*!***********************************!*\
   !*** ./views/components/Todos.js ***!
   \***********************************/
@@ -53641,15 +57924,15 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _redux = __webpack_require__(/*! redux */ 341);
+	var _redux = __webpack_require__(/*! redux */ 345);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 436);
+	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 444);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -53748,7 +58031,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Todos);
 
 /***/ }),
-/* 436 */
+/* 444 */
 /*!**************************************!*\
   !*** ./views/actions/todoActions.js ***!
   \**************************************/
@@ -53763,11 +58046,11 @@ webpackJsonp([0,1],[
 	exports.readTodos = readTodos;
 	exports.readUsers = readUsers;
 	
-	var _axios = __webpack_require__(/*! axios */ 360);
+	var _axios = __webpack_require__(/*! axios */ 364);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -53854,7 +58137,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 437 */
+/* 445 */
 /*!***********************************!*\
   !*** ./views/components/Users.js ***!
   \***********************************/
@@ -53875,9 +58158,9 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 438);
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 446);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -54008,7 +58291,7 @@ webpackJsonp([0,1],[
 	exports.default = Users;
 
 /***/ }),
-/* 438 */
+/* 446 */
 /*!**************************************!*\
   !*** ./views/actions/userActions.js ***!
   \**************************************/
@@ -54022,11 +58305,11 @@ webpackJsonp([0,1],[
 	exports.readUsers = readUsers;
 	exports.readUsersPromise = readUsersPromise;
 	
-	var _axios = __webpack_require__(/*! axios */ 360);
+	var _axios = __webpack_require__(/*! axios */ 364);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -54068,7 +58351,161 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 439 */
+/* 447 */
+/*!*********************************************!*\
+  !*** ./views/components/EarningCapacity.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _dec, _class;
+	//import thunk from "redux-thunk";
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
+	
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 446);
+	
+	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
+	
+	var _Button2 = _interopRequireDefault(_Button);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var mapStateToProps = function mapStateToProps(store) {
+		console.log("connect store ", store);
+		return {
+			users: store.users
+		};
+	};
+	
+	// NOT USED ATM
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			toggleTodo: function (_toggleTodo) {
+				function toggleTodo(_x) {
+					return _toggleTodo.apply(this, arguments);
+				}
+	
+				toggleTodo.toString = function () {
+					return _toggleTodo.toString();
+				};
+	
+				return toggleTodo;
+			}(function (id) {
+				return dispatch(toggleTodo(id));
+			}),
+			readUsers: _userActions.readUsers
+		};
+	};
+	// NOT USED ATM-
+	
+	
+	//@connect(mapStateToProps, mapDispatchToProps)
+	
+	
+	/*
+	const mapStateToProps = state => {
+		return {
+			todos: state.todos
+		}
+	}
+	
+	const mapDispatchToProps = dispatch => {
+		return {
+			toggleTodo: id => dispatch(toggleTodo(id))
+		}
+	}
+	*/
+	
+	var EarningCapacity = (_dec = (0, _reactRedux.connect)(mapStateToProps), _dec(_class = function (_React$Component) {
+		_inherits(EarningCapacity, _React$Component);
+	
+		function EarningCapacity(props) {
+			_classCallCheck(this, EarningCapacity);
+	
+			return _possibleConstructorReturn(this, (EarningCapacity.__proto__ || Object.getPrototypeOf(EarningCapacity)).call(this, props));
+			//console.log("Users store: ", store);
+		}
+	
+		_createClass(EarningCapacity, [{
+			key: "componentWillMount",
+			value: function componentWillMount() {
+				console.log("users.js compMOunted");
+				//this.props.dispatch( readUsers(this.props.dispatch) );
+				this.props.dispatch(_userActions.readUsers);
+	
+				//this.props.dispatch( readUsersPromise() );
+				//readUsers(this.props.dispatch);
+				//readUsers();
+			}
+	
+			//shouldComponentUpdate (){}
+	
+		}, {
+			key: "render",
+			value: function render() {
+				//const u = this.props.users;
+				console.log("Users HERE", this.props);
+	
+				if (!this.props.users) return _react2.default.createElement(
+					"button",
+					null,
+					"Nothin"
+				);
+				return _react2.default.createElement(
+					"div",
+					null,
+					"UserList u here:",
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						_Button2.default,
+						{ variant: "raised", color: "primary" },
+						"Hello, World!"
+					),
+					_react2.default.createElement("br", null),
+					_react2.default.createElement(
+						"ul",
+						null,
+						this.props.users.users && this.props.users.users.map(function (u, i) {
+							return _react2.default.createElement(
+								"li",
+								{ key: i },
+								u.email
+							);
+						})
+					)
+				);
+			}
+		}]);
+	
+		return EarningCapacity;
+	}(_react2.default.Component)) || _class);
+	
+	// Working, With mapStateToProps and mapDispatchToProps
+	//export default connect(mapStateToProps, mapDispatchToProps)(Users);
+	// Working with @connect also
+	
+	exports.default = EarningCapacity;
+
+/***/ }),
+/* 448 */
 /*!*******************************************!*\
   !*** ./views/EnsureLoggedInContainer.jsx ***!
   \*******************************************/
@@ -54086,7 +58523,7 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 426);
+	var _Login = __webpack_require__(/*! ./Login */ 434);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -54172,7 +58609,7 @@ webpackJsonp([0,1],[
 	exports.default = EnsureLoggedInContainer;
 
 /***/ }),
-/* 440 */
+/* 449 */
 /*!************************************!*\
   !*** ./views/components/Footer.js ***!
   \************************************/
@@ -54190,29 +58627,29 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 441);
+	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 450);
 	
 	var _BottomNavigation2 = _interopRequireDefault(_BottomNavigation);
 	
-	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 443);
+	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 452);
 	
 	var _BottomNavigationAction2 = _interopRequireDefault(_BottomNavigationAction);
 	
 	var _styles = __webpack_require__(/*! @material-ui/core/styles */ 322);
 	
-	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 420);
+	var _Icon = __webpack_require__(/*! @material-ui/core/Icon */ 425);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 445);
+	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 454);
 	
 	var _Restore2 = _interopRequireDefault(_Restore);
 	
-	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 446);
+	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 455);
 	
 	var _Favorite2 = _interopRequireDefault(_Favorite);
 	
-	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 447);
+	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 456);
 	
 	var _LocationOn2 = _interopRequireDefault(_LocationOn);
 	
@@ -54280,7 +58717,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _styles.withStyles)(styles)(Footer);
 
 /***/ }),
-/* 441 */
+/* 450 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/index.js ***!
   \*******************************************************/
@@ -54300,10 +58737,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 442));
+	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 451));
 
 /***/ }),
-/* 442 */
+/* 451 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/BottomNavigation.js ***!
   \******************************************************************/
@@ -54420,7 +58857,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 443 */
+/* 452 */
 /*!*************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/index.js ***!
   \*************************************************************/
@@ -54440,10 +58877,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 444));
+	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 453));
 
 /***/ }),
-/* 444 */
+/* 453 */
 /*!******************************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/BottomNavigationAction.js ***!
   \******************************************************************************/
@@ -54653,7 +59090,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 445 */
+/* 454 */
 /*!*****************************************!*\
   !*** ./~/@material-ui/icons/Restore.js ***!
   \*****************************************/
@@ -54679,7 +59116,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 446 */
+/* 455 */
 /*!******************************************!*\
   !*** ./~/@material-ui/icons/Favorite.js ***!
   \******************************************/
@@ -54705,7 +59142,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 447 */
+/* 456 */
 /*!********************************************!*\
   !*** ./~/@material-ui/icons/LocationOn.js ***!
   \********************************************/
@@ -54731,7 +59168,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 448 */
+/* 457 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -54743,31 +59180,31 @@ webpackJsonp([0,1],[
 		value: true
 	});
 	
-	var _axios = __webpack_require__(/*! axios */ 360);
+	var _axios = __webpack_require__(/*! axios */ 364);
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 449);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 458);
 	
-	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 358);
+	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 450);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 459);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
-	var _redux = __webpack_require__(/*! redux */ 341);
+	var _redux = __webpack_require__(/*! redux */ 345);
 	
-	var _home = __webpack_require__(/*! ../reducers/home */ 452);
+	var _home = __webpack_require__(/*! ../reducers/home */ 461);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 453);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 462);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 454);
+	var _user = __webpack_require__(/*! ../reducers/user */ 463);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -54822,7 +59259,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 449 */
+/* 458 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -54833,7 +59270,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 450 */
+/* 459 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -54852,7 +59289,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 451);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 460);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -55055,7 +59492,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 451 */
+/* 460 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -55079,7 +59516,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 452 */
+/* 461 */
 /*!********************************!*\
   !*** ./views/reducers/home.js ***!
   \********************************/
@@ -55188,7 +59625,7 @@ webpackJsonp([0,1],[
 	exports.default = homeReducer;
 
 /***/ }),
-/* 453 */
+/* 462 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -55247,7 +59684,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 454 */
+/* 463 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/
@@ -55293,160 +59730,6 @@ webpackJsonp([0,1],[
 	};
 	
 	exports.default = usersReducer;
-
-/***/ }),
-/* 455 */
-/*!*********************************************!*\
-  !*** ./views/components/EarningCapacity.js ***!
-  \*********************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _dec, _class;
-	//import thunk from "redux-thunk";
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 331);
-	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 438);
-	
-	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
-	
-	var _Button2 = _interopRequireDefault(_Button);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var mapStateToProps = function mapStateToProps(store) {
-		console.log("connect store ", store);
-		return {
-			users: store.users
-		};
-	};
-	
-	// NOT USED ATM
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {
-			toggleTodo: function (_toggleTodo) {
-				function toggleTodo(_x) {
-					return _toggleTodo.apply(this, arguments);
-				}
-	
-				toggleTodo.toString = function () {
-					return _toggleTodo.toString();
-				};
-	
-				return toggleTodo;
-			}(function (id) {
-				return dispatch(toggleTodo(id));
-			}),
-			readUsers: _userActions.readUsers
-		};
-	};
-	// NOT USED ATM-
-	
-	
-	//@connect(mapStateToProps, mapDispatchToProps)
-	
-	
-	/*
-	const mapStateToProps = state => {
-		return {
-			todos: state.todos
-		}
-	}
-	
-	const mapDispatchToProps = dispatch => {
-		return {
-			toggleTodo: id => dispatch(toggleTodo(id))
-		}
-	}
-	*/
-	
-	var EarningCapacity = (_dec = (0, _reactRedux.connect)(mapStateToProps), _dec(_class = function (_React$Component) {
-		_inherits(EarningCapacity, _React$Component);
-	
-		function EarningCapacity(props) {
-			_classCallCheck(this, EarningCapacity);
-	
-			return _possibleConstructorReturn(this, (EarningCapacity.__proto__ || Object.getPrototypeOf(EarningCapacity)).call(this, props));
-			//console.log("Users store: ", store);
-		}
-	
-		_createClass(EarningCapacity, [{
-			key: "componentWillMount",
-			value: function componentWillMount() {
-				console.log("users.js compMOunted");
-				//this.props.dispatch( readUsers(this.props.dispatch) );
-				this.props.dispatch(_userActions.readUsers);
-	
-				//this.props.dispatch( readUsersPromise() );
-				//readUsers(this.props.dispatch);
-				//readUsers();
-			}
-	
-			//shouldComponentUpdate (){}
-	
-		}, {
-			key: "render",
-			value: function render() {
-				//const u = this.props.users;
-				console.log("Users HERE", this.props);
-	
-				if (!this.props.users) return _react2.default.createElement(
-					"button",
-					null,
-					"Nothin"
-				);
-				return _react2.default.createElement(
-					"div",
-					null,
-					"UserList u here:",
-					_react2.default.createElement("br", null),
-					_react2.default.createElement(
-						_Button2.default,
-						{ variant: "raised", color: "primary" },
-						"Hello, World!"
-					),
-					_react2.default.createElement("br", null),
-					_react2.default.createElement(
-						"ul",
-						null,
-						this.props.users.users && this.props.users.users.map(function (u, i) {
-							return _react2.default.createElement(
-								"li",
-								{ key: i },
-								u.email
-							);
-						})
-					)
-				);
-			}
-		}]);
-	
-		return EarningCapacity;
-	}(_react2.default.Component)) || _class);
-	
-	// Working, With mapStateToProps and mapDispatchToProps
-	//export default connect(mapStateToProps, mapDispatchToProps)(Users);
-	// Working with @connect also
-	
-	exports.default = EarningCapacity;
 
 /***/ })
 ]);

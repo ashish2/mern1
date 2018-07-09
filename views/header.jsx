@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/core/Menu";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -68,9 +68,11 @@ class Header extends Component {
 						</MenuItem>
 					</Menu>
 
+					<Tooltip id="tooltip-top" placement="bottom" title="Remux!">
 					<Typography variant="title" color="inherit" className={classes.flex}>
-			              		remuX!
+			              		Remux!
 					</Typography>
+			      		</Tooltip>
 
 
 					<Button color="inherit" variant="outlined" component={Link} to="/">
@@ -98,8 +100,16 @@ class Header extends Component {
 					</Button>
 
 					<Button color="inherit" component={Link} to="/earningpotential">
-						Best Projects getting done on Tech
+						Best Projects getting done on this Tech
 					</Button>
+					
+					{
+					/*
+					<Button color="inherit" component={Link} to="/earningpotential">
+						Consolidated/Common Interviews
+					</Button>
+					*/
+					}
 
 					<Button color="secondary" variant="contained" component={Link} to="/login">
 						Login

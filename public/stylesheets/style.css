@@ -1,9 +1,11 @@
 body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*padding: 50px;  
+   * font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+   **/
 }
 
 .container {
+	margin: 0 auto 1em;
 
 }
 

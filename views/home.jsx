@@ -4,8 +4,9 @@ import {connect} from "react-redux";
 import thunk from "redux-thunk";
 
 import { postHomeAction, jdChangeAction, submitButtonChangeAction, submitButtonOffAction } from "./actions/homeActions";
-import CustomTableTech from './subcomponents/CustomTableTech';
+import CustomTableTechCost from './subcomponents/CustomTableTechCost';
 import CustomTableJob from './subcomponents/CustomTableJob';
+import CustomTableProject from './subcomponents/CustomTableProject';
 
 import DocumentTitle from 'react-document-title';
 
@@ -17,6 +18,8 @@ import Send from '@material-ui/icons/Send';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import green from '@material-ui/core/colors/green';
 import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
+import Grid from '@material-ui/core/Grid';
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -24,48 +27,53 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
-	  button: {
-	      margin: theme.spacing.unit,
-	  },
-	  leftIcon: {
-	      marginRight: theme.spacing.unit,
-	  },
-	  rightIcon: {
-	      marginLeft: theme.spacing.unit,
-	  },
-	  iconSmall: {
-	      fontSize: 20,
-	  },
-	  root: {
-		      display: 'flex',
-		      alignItems: 'center',
-	  },
-	  wrapper: {
-		      margin: theme.spacing.unit,
-		      position: 'relative',
-	  },
-	  buttonSuccess: {
-		      backgroundColor: green[500],
+	container: {
+		display: 'flex',
+		flexWrap: 'wrap',
+	},
+	button: {
+	    margin: theme.spacing.unit,
+	},
+	leftIcon: {
+	    marginRight: theme.spacing.unit,
+	},
+	rightIcon: {
+	    marginLeft: theme.spacing.unit,
+	},
+	iconSmall: {
+	    fontSize: 20,
+	},
+	root: {
+	            display: 'flex',
+	            alignItems: 'center',
+	},
+	wrapper: {
+	            margin: theme.spacing.unit,
+	            position: 'relative',
+	},
+	buttonSuccess: {
+	            backgroundColor: green[500],
 
-		      '&:hover': {
-		            backgroundColor: green[700],
-		      },
-	  },
-	  fabProgress: {
-		      color: green[500],
-		      position: 'absolute',
-		      top: -6,
-		      left: -6,
-		      zIndex: 1,
-	  },
-	  buttonProgress: {
-		      color: green[500],
-		      position: 'absolute',
-		      top: '50%',
-		      left: '50%',
-		      marginTop: -12,
-		      marginLeft: -12,
-	  },
+	            '&:hover': {
+	                  backgroundColor: green[700],
+	            },
+	},
+	fabProgress: {
+	            color: green[500],
+	            position: 'absolute',
+	            top: -6,
+	            left: -6,
+	            zIndex: 1,
+	},
+	buttonProgress: {
+	            color: green[500],
+	            position: 'absolute',
+	            top: '50%',
+	            left: '50%',
+	            marginTop: -12,
+	            marginLeft: -12,
+	},
+
 });
 
 //
@@ -166,55 +174,61 @@ class Home extends Component {
 		let homeStr = "HOME";
 		let justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
 		//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
-		let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+		//let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
+		let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
 
 		//let loading = true;
 		
 		return (
-			<div className="row">
+			<div className={classes.button}>
 
-				<div className="col-lg-12">
+				<div className={classes.container,classes.button}>
+			        <Grid container spacing={8} alignItems="flex-end">
+				<Grid item>
 					<h3>{homeStr}</h3>
-					<div>
+					<div className="jumbotron">
 						<p>{justStr}</p>
 						<p>{beforeStr}</p>
 					</div>
+				</Grid>
+				<Grid item>
+					<h3>Sample JD</h3>
+					<div> 
+						<div>6 months experience in React</div>
+						<div>1 yr experience in Python</div>
+						<div>6 months experience in Ruby</div>
+						<div>1 yr experience in PHP</div>
+						<div>1 yr experience in AWS</div>
+						<div>6 months experience in C++</div>
+						<div>6 months experience in Java</div>
+					</div>
+				</Grid>
+				</Grid>
 				</div>
 
-				<div className="col-lg-12">
+				<div className={classes.container,classes.button}>
+
 					<form id="jdfid" encType="application/x-www-form-urlencoded" className={classes.container} noValidate autoComplete="off" onSubmit={this.props.submit}>
-						<FormControl>
+				
+						<FormControl fullWidth margin="dense">
 							<TextField
 		        					id="multiline-static"
 							  	name="jd"
-		        				  	label="Paste JD here"
+		        				  	label="Paste Job Description here"
 		        				  	multiline
 							  	fullWidth
 							  	required
-		        				  	rows="8"
-								className={classes.textField}
-		        				  	margin="normal"
-								onChange={this.props.jdChange}
-		        				/>
-						</FormControl>
-						<FormControl>
-							<TextField
-		        					id="multiline-static2"
-							  	name="jd2"
-		        				  	label="Paste JD2 here"
-		        				  	multiline
-							  	fullWidth
-							  	required
-		        				  	rows="8"
+		        				  	rows="10"
+		        				  	cols="60"
 								className={classes.textField}
 		        				  	margin="normal"
 								onChange={this.props.jdChange}
 								onKeyDown={this.ctrlEnter}
 		        				/>
-
 						</FormControl>
 						
 						<FormControl>
+							<Tooltip id="tooltip-top" placement="bottom" title="Submit">
 							<Button 
 								disabled={this.props.ui.submitLoading} 
 								type="submit" 
@@ -227,30 +241,24 @@ class Home extends Component {
 								Submit
 								<Send className={classes.rightIcon}></Send>
 							</Button>
+							</Tooltip>
 							{this.props.ui.submitLoading && <CircularProgress size={24} className={classes.buttonProgress} />}
 							
 
 						</FormControl>
-
 					</form>
 				</div>
 
 			 	{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
-						<h3>
-							Cost approximation
-						</h3>
-						<CustomTableTech t={this.props.home.data.technologies} />
+						<CustomTableTechCost t={this.props.home.data.technologies} />
 					</div>
 				}
 			 	
 				{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
-						<h3>
-							Job suggestions on these Technologies, these are some top Jobs in these Tech (Apply):
-						</h3>
 						<CustomTableJob t={this.props.home.data.technologies} />
 					</div>
 				}
@@ -258,10 +266,7 @@ class Home extends Component {
 				{this.props.home && this.props.home.data
 					&&
 					<div className="col-lg-12">
-						<h3>
-							Some top class projects getting done on these Technologies and your probable team mates!
-						</h3>
-						<CustomTableJob t={this.props.home.data.technologies} />
+						<CustomTableProject t={this.props.home.data.technologies} />
 					</div>
 				}
 

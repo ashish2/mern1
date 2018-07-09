@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 */
 
 
-class CustomTableTech extends React.Component {
+class CustomTableTechCost extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -70,6 +70,10 @@ class CustomTableTech extends React.Component {
 		
 		let id = 0;
 		return ( 
+			<div>
+			<h3>
+				Cost approximation
+			</h3>
 			<Paper key={id++} className={classes.root}>
 				<Table className={classes.table}>
 					<TableHead>
@@ -109,15 +113,23 @@ class CustomTableTech extends React.Component {
 
 					})
 					}
+						<TableRow className={classes.row} key={id++}>
+							<CustomTableCell component="th" scope="row">
+								Total
+							</CustomTableCell>
+							<CustomTableCell numeric>
+								28000
+							</CustomTableCell>
+						</TableRow>
 					</TableBody>
 				</Table>
 			</Paper>
-		
+			</div>
 		);	
 	}
 
 }
 
-export default withStyles(styles)(CustomTableTech);
+export default withStyles(styles)(CustomTableTechCost);
 //export default (CustomTable);
 

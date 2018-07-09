@@ -54,7 +54,6 @@ function postHome(req, res, next) {
 				{name: "aws", cost: 3000},
 				{name: "c++", cost: 5000},
 				{name: "java", cost: 5000},
-				{name: "Total", cost: 28000},
 		]};
 
 		res.json({

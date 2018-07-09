@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -53,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
 */
 
 
-class CustomTableJob extends React.Component {
+class CustomTableProjects extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -72,14 +71,17 @@ class CustomTableJob extends React.Component {
 		return ( 
 			<div>
 			<h3>
-				Job suggestions on these Technologies, these are some top Jobs in these Tech (Apply):
+				Some top class projects getting done on these Technologies and your probable team mates!
 			</h3>
 			<Paper key={id++} className={classes.root}>
 				<Table className={classes.table}>
 					<TableHead>
 						<TableRow>
 							<CustomTableCell className={classes.footer}>
-								Jobs
+								Projects
+							</CustomTableCell>
+							<CustomTableCell className={classes.footer}>
+								Team Size*
 							</CustomTableCell>
 						</TableRow>
 					</TableHead>
@@ -89,7 +91,7 @@ class CustomTableJob extends React.Component {
 						console.log(" id: ", id, " length ", tLen);
 
 						var tableRowClassName = classes.row;
-						let jobsLink = "/jobs/" + n.name;
+						let projectsLink = "/projects/" + n.name;
 
 						console.log("OUT ", tableRowClassName);
 						if(id == tLen) {
@@ -101,7 +103,10 @@ class CustomTableJob extends React.Component {
 						return (
 							<TableRow className={tableRowClassName} key={id++}>
 								<CustomTableCell component="th" scope="row">
-									Jobs in <Link to={jobsLink}>{n.name}</Link>
+									<Link to={projectsLink}>Projects</Link> in {n.name}
+								</CustomTableCell>
+								<CustomTableCell numeric>
+									{n.cost/1000}
 								</CustomTableCell>
 							</TableRow>
 						);
@@ -117,6 +122,6 @@ class CustomTableJob extends React.Component {
 
 }
 
-export default withStyles(styles)(CustomTableJob);
+export default withStyles(styles)(CustomTableProjects);
 //export default (CustomTable);
 
