@@ -74,7 +74,10 @@ class CustomTableTechCost extends React.Component {
 			<h3>
 				Cost approximation
 			</h3>
+			{
+			/*
 			<Paper>
+				<h3> TODO: FEATURE </h3>
 				<h3>Salary Ranges here & List of various Designations working on the same tech</h3>
 				<div>
 					Range: 16000 - 38000
@@ -89,6 +92,8 @@ class CustomTableTechCost extends React.Component {
 				</ul>
 				</div>
 			</Paper>
+			*/
+			}
 
 			<Paper key={id++} className={classes.root}>
 				<Table className={classes.table}>

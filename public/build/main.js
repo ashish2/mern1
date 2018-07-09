@@ -50964,49 +50964,6 @@ webpackJsonp([0,1],[
 					),
 					_react2.default.createElement(
 						_Paper2.default,
-						null,
-						_react2.default.createElement(
-							'h3',
-							null,
-							'Salary Ranges here & List of various Designations working on the same tech'
-						),
-						_react2.default.createElement(
-							'div',
-							null,
-							'Range: 16000 - 38000'
-						),
-						_react2.default.createElement(
-							'div',
-							null,
-							'Designations:',
-							_react2.default.createElement(
-								'ul',
-								null,
-								_react2.default.createElement(
-									'li',
-									null,
-									'Software Engineer'
-								),
-								_react2.default.createElement(
-									'li',
-									null,
-									'Junior Engineer'
-								),
-								_react2.default.createElement(
-									'li',
-									null,
-									'Junior Software Engineer'
-								),
-								_react2.default.createElement(
-									'li',
-									null,
-									'Software Development Engineer-1 (SDE-1)'
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						_Paper2.default,
 						{ key: id++, className: classes.root },
 						_react2.default.createElement(
 							_Table2.default,
