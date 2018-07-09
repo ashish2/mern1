@@ -74,6 +74,22 @@ class CustomTableTechCost extends React.Component {
 			<h3>
 				Cost approximation
 			</h3>
+			<Paper>
+				<h3>Salary Ranges here & List of various Designations working on the same tech</h3>
+				<div>
+					Range: 16000 - 38000
+				</div>
+				<div>
+					Designations: 
+				<ul>
+					<li>Software Engineer</li>
+					<li>Junior Engineer</li>
+					<li>Junior Software Engineer</li>
+					<li>Software Development Engineer-1 (SDE-1)</li>
+				</ul>
+				</div>
+			</Paper>
+
 			<Paper key={id++} className={classes.root}>
 				<Table className={classes.table}>
 					<TableHead>
