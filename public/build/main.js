@@ -46534,6 +46534,10 @@ webpackJsonp([0,1],[
 	
 	var _Grid2 = _interopRequireDefault(_Grid);
 	
+	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
 	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 408);
 	
 	var _Input2 = _interopRequireDefault(_Input);
@@ -46607,6 +46611,11 @@ webpackJsonp([0,1],[
 				left: '50%',
 				marginTop: -12,
 				marginLeft: -12
+			},
+			paper: {
+				padding: theme.spacing.unit * 2,
+				textAlign: 'center'
+				//color: theme.palette.text.secondary,
 			}
 	
 		};
@@ -46731,72 +46740,80 @@ webpackJsonp([0,1],[
 							{ container: true, spacing: 8, alignItems: "flex-end" },
 							_react2.default.createElement(
 								_Grid2.default,
-								{ item: true },
+								{ item: true, xs: 6 },
 								_react2.default.createElement(
-									"h3",
-									null,
-									homeStr
-								),
-								_react2.default.createElement(
-									"div",
-									{ className: "jumbotron" },
+									_Paper2.default,
+									{ className: classes.paper },
 									_react2.default.createElement(
-										"p",
+										"h3",
 										null,
-										justStr
+										homeStr
 									),
 									_react2.default.createElement(
-										"p",
+										"div",
 										null,
-										beforeStr
+										_react2.default.createElement(
+											"p",
+											null,
+											justStr
+										),
+										_react2.default.createElement(
+											"p",
+											null,
+											beforeStr
+										)
 									)
 								)
 							),
 							_react2.default.createElement(
 								_Grid2.default,
-								{ item: true },
+								{ item: true, xs: 6 },
 								_react2.default.createElement(
-									"h3",
-									null,
-									"Sample JD"
-								),
-								_react2.default.createElement(
-									"div",
-									null,
+									_Paper2.default,
+									{ className: classes.paper },
 									_react2.default.createElement(
-										"div",
+										"h3",
 										null,
-										"6 months experience in React"
+										"Sample JD"
 									),
 									_react2.default.createElement(
 										"div",
 										null,
-										"1 yr experience in Python"
-									),
-									_react2.default.createElement(
-										"div",
-										null,
-										"6 months experience in Ruby"
-									),
-									_react2.default.createElement(
-										"div",
-										null,
-										"1 yr experience in PHP"
-									),
-									_react2.default.createElement(
-										"div",
-										null,
-										"1 yr experience in AWS"
-									),
-									_react2.default.createElement(
-										"div",
-										null,
-										"6 months experience in C++"
-									),
-									_react2.default.createElement(
-										"div",
-										null,
-										"6 months experience in Java"
+										_react2.default.createElement(
+											"div",
+											null,
+											"6 months experience in React"
+										),
+										_react2.default.createElement(
+											"div",
+											null,
+											"1 yr experience in Python"
+										),
+										_react2.default.createElement(
+											"div",
+											null,
+											"6 months experience in Ruby"
+										),
+										_react2.default.createElement(
+											"div",
+											null,
+											"1 yr experience in PHP"
+										),
+										_react2.default.createElement(
+											"div",
+											null,
+											"1 yr experience in AWS"
+										),
+										_react2.default.createElement(
+											"div",
+											null,
+											"6 months experience in C++"
+										),
+										_react2.default.createElement(
+											"div",
+											null,
+											"6 months experience in Java"
+										)
 									)
 								)
 							)

@@ -20,6 +20,7 @@ import green from '@material-ui/core/colors/green';
 import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -73,6 +74,12 @@ const styles = theme => ({
 	            marginTop: -12,
 	            marginLeft: -12,
 	},
+	paper: {
+		padding: theme.spacing.unit * 2,
+		textAlign: 'center',
+		//color: theme.palette.text.secondary,
+	},
+
 
 });
 
@@ -185,13 +192,16 @@ class Home extends Component {
 				<div className={classes.container,classes.button}>
 			        <Grid container spacing={8} alignItems="flex-end">
 				<Grid item xs={6}>
+				<Paper className={classes.paper}>
 					<h3>{homeStr}</h3>
-					<div className="jumbotron">
+					<div>
 						<p>{justStr}</p>
 						<p>{beforeStr}</p>
 					</div>
+				</Paper>
 				</Grid>
 				<Grid item xs={6}>
+				<Paper className={classes.paper}>
 					<h3>Sample JD</h3>
 					<div> 
 						<div>6 months experience in React</div>
@@ -202,6 +212,7 @@ class Home extends Component {
 						<div>6 months experience in C++</div>
 						<div>6 months experience in Java</div>
 					</div>
+				</Paper>
 				</Grid>
 				</Grid>
 				</div>
