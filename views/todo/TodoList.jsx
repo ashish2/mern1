@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DocumentTitle from 'react-document-title';
 
 class TodoList extends Component {
 	constructor(props) {
@@ -29,10 +30,12 @@ class TodoList extends Component {
 		// This.state not working!!!
 		let todoNodes = this.state.data.map( todo => {
 			return (
+				<DocumentTitle title="Todo List">
 				<h1>Todo List</h2>
 				<div className="panel panel-primary">
 					Date: {todo.date}
 				</div>
+				</DocumentTitle>
 			);
 		});
 	}
