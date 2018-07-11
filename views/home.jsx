@@ -184,14 +184,14 @@ class Home extends Component {
 
 				<div className={classes.container,classes.button}>
 			        <Grid container spacing={8} alignItems="flex-end">
-				<Grid item>
+				<Grid item xs={6}>
 					<h3>{homeStr}</h3>
 					<div className="jumbotron">
 						<p>{justStr}</p>
 						<p>{beforeStr}</p>
 					</div>
 				</Grid>
-				<Grid item>
+				<Grid item xs={6}>
 					<h3>Sample JD</h3>
 					<div> 
 						<div>6 months experience in React</div>
