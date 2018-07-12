@@ -104,7 +104,7 @@ class Header extends Component {
 					</Button>
 
 					<Button color="inherit" component={Link} to="/earningpotential">
-						Best Projects getting done on this Tech
+						Check for the best Projects on your Tech
 					</Button>
 					
 					{

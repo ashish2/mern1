@@ -42704,33 +42704,13 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Button2.default,
-							{ color: 'inherit', component: _reactRouterDom.Link, to: '/todoform' },
-							'TodoForm'
-						),
-						_react2.default.createElement(
-							_Button2.default,
-							{ color: 'inherit', component: _reactRouterDom.Link, to: '/todos' },
-							'Todos'
-						),
-						_react2.default.createElement(
-							_Button2.default,
-							{ color: 'inherit', component: _reactRouterDom.Link, to: '/users' },
-							'Users'
-						),
-						_react2.default.createElement(
-							_Button2.default,
-							{ color: 'inherit', component: _reactRouterDom.Link, to: '/users/:id' },
-							'User Det'
-						),
-						_react2.default.createElement(
-							_Button2.default,
 							{ color: 'inherit', component: _reactRouterDom.Link, to: '/earningpotential' },
 							'Earning Capacity'
 						),
 						_react2.default.createElement(
 							_Button2.default,
 							{ color: 'inherit', component: _reactRouterDom.Link, to: '/earningpotential' },
-							'Best Projects getting done on this Tech'
+							'Check for the best Projects on your Tech'
 						),
 						_react2.default.createElement(
 							_Button2.default,
