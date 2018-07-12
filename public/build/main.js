@@ -42690,7 +42690,7 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Tooltip2.default,
-							{ id: 'tooltip-top', placement: 'bottom', title: 'Remux!' },
+							{ id: 'tooltip-top', placement: 'bottom', title: 'Remux!: Remuneration Approximation!' },
 							_react2.default.createElement(
 								_Typography2.default,
 								{ variant: 'title', color: 'inherit', className: classes.flex },
