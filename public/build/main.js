@@ -46518,6 +46518,10 @@ webpackJsonp([0,1],[
 	
 	var _Paper2 = _interopRequireDefault(_Paper);
 	
+	var _Typography = __webpack_require__(/*! @material-ui/core/Typography */ 187);
+	
+	var _Typography2 = _interopRequireDefault(_Typography);
+	
 	var _Input = __webpack_require__(/*! @material-ui/core/Input */ 408);
 	
 	var _Input2 = _interopRequireDefault(_Input);
@@ -46725,8 +46729,8 @@ webpackJsonp([0,1],[
 									_Paper2.default,
 									{ className: classes.paper },
 									_react2.default.createElement(
-										"h3",
-										null,
+										_Typography2.default,
+										{ variant: "title", gutterBottom: true },
 										homeStr
 									),
 									_react2.default.createElement(
@@ -46752,8 +46756,8 @@ webpackJsonp([0,1],[
 									_Paper2.default,
 									{ className: classes.paper },
 									_react2.default.createElement(
-										"h3",
-										null,
+										_Typography2.default,
+										{ variant: "title", gutterBottom: true },
 										"Sample JD"
 									),
 									_react2.default.createElement(

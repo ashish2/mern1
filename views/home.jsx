@@ -21,6 +21,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -193,7 +194,9 @@ class Home extends Component {
 			        <Grid container spacing={8} alignItems="flex-end">
 				<Grid item xs={6}>
 				<Paper className={classes.paper}>
-					<h3>{homeStr}</h3>
+					<Typography variant="title" gutterBottom>
+						{homeStr}
+					</Typography>
 					<div>
 						<p>{justStr}</p>
 						<p>{beforeStr}</p>
@@ -202,7 +205,9 @@ class Home extends Component {
 				</Grid>
 				<Grid item xs={6}>
 				<Paper className={classes.paper}>
-					<h3>Sample JD</h3>
+					<Typography variant="title" gutterBottom>
+						Sample JD
+					</Typography>
 					<div> 
 						<div>6 months experience in React</div>
 						<div>1 yr experience in Python</div>
