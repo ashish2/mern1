@@ -79,6 +79,8 @@ class Header extends Component {
 						Home
 					</Button>
 
+					{
+					/*
 					<Button color="inherit" component={Link} to="/todoform">
 						TodoForm
 					</Button>
@@ -94,6 +96,8 @@ class Header extends Component {
 					<Button color="inherit" component={Link} to="/users/:id">
 						User Det
 					</Button>
+					*/
+					}
 					
 					<Button color="inherit" component={Link} to="/earningpotential">
 						Earning Capacity
