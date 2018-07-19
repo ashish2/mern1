@@ -68,9 +68,9 @@ class Header extends Component {
 						</MenuItem>
 					</Menu>
 
-					<Tooltip id="tooltip-top" placement="bottom" title="Remux!: Remuneration Approximation!">
+					<Tooltip id="tooltip-top" placement="bottom" title="PayMan!: Remuneration calculations!">
 					<Typography variant="title" color="inherit" className={classes.flex}>
-			              		Remux!
+			              		PayMan!
 					</Typography>
 			      		</Tooltip>
 
