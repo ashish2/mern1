@@ -72,6 +72,9 @@ class Header extends Component {
 					<Typography variant="title" color="inherit" className={classes.flex}>
 			              		PayMan!
 					</Typography>
+					<Typography variant="title" color="inherit" className={classes.flex}>
+			              		PayDay!
+					</Typography>
 			      		</Tooltip>
 
 
