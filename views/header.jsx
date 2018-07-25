@@ -70,9 +70,6 @@ class Header extends Component {
 
 					<Tooltip id="tooltip-top" placement="bottom" title="PayMan!: Remuneration calculations!">
 					<Typography variant="title" color="inherit" className={classes.flex}>
-			              		PayMan!
-					</Typography>
-					<Typography variant="title" color="inherit" className={classes.flex}>
 			              		PayDay!
 					</Typography>
 			      		</Tooltip>

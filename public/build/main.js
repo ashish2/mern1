@@ -42690,11 +42690,11 @@ webpackJsonp([0,1],[
 						),
 						_react2.default.createElement(
 							_Tooltip2.default,
-							{ id: 'tooltip-top', placement: 'bottom', title: 'Remux!: Remuneration Approximation!' },
+							{ id: 'tooltip-top', placement: 'bottom', title: 'PayMan!: Remuneration calculations!' },
 							_react2.default.createElement(
 								_Typography2.default,
 								{ variant: 'title', color: 'inherit', className: classes.flex },
-								'Remux!'
+								'PayDay!'
 							)
 						),
 						_react2.default.createElement(
