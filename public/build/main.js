@@ -25,7 +25,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _store = __webpack_require__(/*! ./store */ 457);
+	var _store = __webpack_require__(/*! ./store */ 460);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -24766,7 +24766,7 @@ webpackJsonp([0,1],[
 	
 	var _main2 = _interopRequireDefault(_main);
 	
-	var _Footer = __webpack_require__(/*! ./components/Footer */ 449);
+	var _Footer = __webpack_require__(/*! ./components/Footer */ 452);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
@@ -42607,6 +42607,15 @@ webpackJsonp([0,1],[
 								null,
 								_react2.default.createElement(
 									_reactRouterDom.Link,
+									{ to: '/payday' },
+									'Payday'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									_reactRouterDom.Link,
 									{ to: '/login' },
 									'Login'
 								)
@@ -46331,27 +46340,27 @@ webpackJsonp([0,1],[
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 434);
+	var _Login = __webpack_require__(/*! ./Login */ 437);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 442);
+	var _TodoForm = __webpack_require__(/*! ./todo/TodoForm */ 445);
 	
 	var _TodoForm2 = _interopRequireDefault(_TodoForm);
 	
-	var _Todos = __webpack_require__(/*! ./components/Todos */ 443);
+	var _Todos = __webpack_require__(/*! ./components/Todos */ 446);
 	
 	var _Todos2 = _interopRequireDefault(_Todos);
 	
-	var _Users = __webpack_require__(/*! ./components/Users */ 445);
+	var _Users = __webpack_require__(/*! ./components/Users */ 448);
 	
 	var _Users2 = _interopRequireDefault(_Users);
 	
-	var _EarningCapacity = __webpack_require__(/*! ./components/EarningCapacity */ 447);
+	var _EarningCapacity = __webpack_require__(/*! ./components/EarningCapacity */ 450);
 	
 	var _EarningCapacity2 = _interopRequireDefault(_EarningCapacity);
 	
-	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 448);
+	var _EnsureLoggedInContainer = __webpack_require__(/*! ./EnsureLoggedInContainer */ 451);
 	
 	var _EnsureLoggedInContainer2 = _interopRequireDefault(_EnsureLoggedInContainer);
 	
@@ -46420,6 +46429,7 @@ webpackJsonp([0,1],[
 					null,
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
 					_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _Login2.default }),
+					_react2.default.createElement(PrivateRoute, { exact: true, path: '/payday', component: _home2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todoform', component: _TodoForm2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/todos', component: _Todos2.default }),
 					_react2.default.createElement(PrivateRoute, { exact: true, path: '/users', component: _Users2.default }),
@@ -46537,6 +46547,10 @@ webpackJsonp([0,1],[
 	var _FormControl = __webpack_require__(/*! @material-ui/core/FormControl */ 415);
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
+	
+	var _index = __webpack_require__(/*! ./langs/en/index */ 434);
+	
+	var _index2 = _interopRequireDefault(_index);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -46693,10 +46707,23 @@ webpackJsonp([0,1],[
 					this.props.submit(ev);
 				}
 			}
+	
+			/*
+	  */
+	
+		}, {
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				console.log("cDM, props ", this.props);
+	
+				var f = this.props.location.pathname.replace("/", "");
+				var path = "langs/en/" + f;
+				//import l from "langs/en/"+f;
+				//import(`${path}`).then(module => this.setState({ l: module.default }));
+			}
 		}, {
 			key: "render",
 			value: function render() {
-				console.log("this.props: ", this.props);
 	
 				var classes = this.props.classes;
 	
@@ -46705,11 +46732,11 @@ webpackJsonp([0,1],[
 	
 				var buttonClassname = (0, _classnames2.default)(_defineProperty({}, classes.buttonSuccess, this.props.ui.dataSuccess));
 	
-				var homeStr = "HOME";
-				var justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+				var homeStr = "";
+				var justStr = "";
 				//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 				//let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
-				var beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
+				var beforeStr = "";
 	
 				//let loading = true;
 	
@@ -46731,7 +46758,7 @@ webpackJsonp([0,1],[
 									_react2.default.createElement(
 										_Typography2.default,
 										{ variant: "title", gutterBottom: true },
-										homeStr
+										_index2.default.homeStr
 									),
 									_react2.default.createElement(
 										"div",
@@ -46739,12 +46766,12 @@ webpackJsonp([0,1],[
 										_react2.default.createElement(
 											"p",
 											null,
-											justStr
+											_index2.default.justStr
 										),
 										_react2.default.createElement(
 											"p",
 											null,
-											beforeStr
+											_index2.default.beforeStr
 										)
 									)
 								)
@@ -46758,7 +46785,7 @@ webpackJsonp([0,1],[
 									_react2.default.createElement(
 										_Typography2.default,
 										{ variant: "title", gutterBottom: true },
-										"Sample JD"
+										_index2.default.sampleJDHeader
 									),
 									_react2.default.createElement(
 										"div",
@@ -46766,37 +46793,7 @@ webpackJsonp([0,1],[
 										_react2.default.createElement(
 											"div",
 											null,
-											"6 months experience in React"
-										),
-										_react2.default.createElement(
-											"div",
-											null,
-											"1 yr experience in Python"
-										),
-										_react2.default.createElement(
-											"div",
-											null,
-											"6 months experience in Ruby"
-										),
-										_react2.default.createElement(
-											"div",
-											null,
-											"1 yr experience in PHP"
-										),
-										_react2.default.createElement(
-											"div",
-											null,
-											"1 yr experience in AWS"
-										),
-										_react2.default.createElement(
-											"div",
-											null,
-											"6 months experience in C++"
-										),
-										_react2.default.createElement(
-											"div",
-											null,
-											"6 months experience in Java"
+											_index2.default.sampleJDDesc
 										)
 									)
 								)
@@ -46815,7 +46812,7 @@ webpackJsonp([0,1],[
 								_react2.default.createElement(_TextField2.default, {
 									id: "multiline-static",
 									name: "jd",
-									label: "Paste Job Description here",
+									label: _index2.default.pasteJDLabel,
 									multiline: true,
 									fullWidth: true,
 									required: true,
@@ -56666,6 +56663,57 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 434 */
+/*!*********************************!*\
+  !*** ./views/langs/en/index.js ***!
+  \*********************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _home = __webpack_require__(/*! ./home */ 435);
+	
+	var lh = _interopRequireWildcard(_home);
+	
+	var _payday = __webpack_require__(/*! ./payday */ 436);
+	
+	var lp = _interopRequireWildcard(_payday);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	l = { home: lh, payday: lp };
+	
+	module.exports = l;
+
+/***/ }),
+/* 435 */
+/*!********************************!*\
+  !*** ./views/langs/en/home.js ***!
+  \********************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+	
+	l = {};
+	l.home = "HOME";
+	l.justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+	l.beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
+	l.sampleJDHeader = "Sample JD";
+	l.sampleJDDesc = "6 months experience in React, 1 yr experience in Python, 6 months experience in Ruby, 1 yr experience in PHP, 1 yr experience in AWS, 6 months experience in C++, 6 months experience in Java";
+	l.pasteJDLabel = "Paste Job Description here";
+	
+	module.exports = l;
+
+/***/ }),
+/* 436 */
+/*!**********************************!*\
+  !*** ./views/langs/en/payday.js ***!
+  \**********************************/
+/***/ (function(module, exports) {
+
+	"use strict";
+
+/***/ }),
+/* 437 */
 /*!*************************!*\
   !*** ./views/Login.jsx ***!
   \*************************/
@@ -56688,7 +56736,7 @@ webpackJsonp([0,1],[
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 435);
+	var _FormGroup = __webpack_require__(/*! @material-ui/core/FormGroup */ 438);
 	
 	var _FormGroup2 = _interopRequireDefault(_FormGroup);
 	
@@ -56696,11 +56744,11 @@ webpackJsonp([0,1],[
 	
 	var _FormControl2 = _interopRequireDefault(_FormControl);
 	
-	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 437);
+	var _FormControlLabel = __webpack_require__(/*! @material-ui/core/FormControlLabel */ 440);
 	
 	var _FormControlLabel2 = _interopRequireDefault(_FormControlLabel);
 	
-	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 439);
+	var _Switch = __webpack_require__(/*! @material-ui/core/Switch */ 442);
 	
 	var _Switch2 = _interopRequireDefault(_Switch);
 	
@@ -56829,7 +56877,7 @@ webpackJsonp([0,1],[
 	exports.default = Login;
 
 /***/ }),
-/* 435 */
+/* 438 */
 /*!************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/index.js ***!
   \************************************************/
@@ -56849,10 +56897,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 436));
+	var _FormGroup = _interopRequireDefault(__webpack_require__(/*! ./FormGroup */ 439));
 
 /***/ }),
-/* 436 */
+/* 439 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/FormGroup/FormGroup.js ***!
   \****************************************************/
@@ -56944,7 +56992,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 437 */
+/* 440 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/index.js ***!
   \*******************************************************/
@@ -56964,10 +57012,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 438));
+	var _FormControlLabel = _interopRequireDefault(__webpack_require__(/*! ./FormControlLabel */ 441));
 
 /***/ }),
-/* 438 */
+/* 441 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/FormControlLabel/FormControlLabel.js ***!
   \******************************************************************/
@@ -57143,7 +57191,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 439 */
+/* 442 */
 /*!*********************************************!*\
   !*** ./~/@material-ui/core/Switch/index.js ***!
   \*********************************************/
@@ -57163,10 +57211,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 440));
+	var _Switch = _interopRequireDefault(__webpack_require__(/*! ./Switch */ 443));
 
 /***/ }),
-/* 440 */
+/* 443 */
 /*!**********************************************!*\
   !*** ./~/@material-ui/core/Switch/Switch.js ***!
   \**********************************************/
@@ -57195,7 +57243,7 @@ webpackJsonp([0,1],[
 	
 	var _helpers = __webpack_require__(/*! ../utils/helpers */ 159);
 	
-	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 441));
+	var _SwitchBase = _interopRequireDefault(__webpack_require__(/*! ../internal/SwitchBase */ 444));
 	
 	var styles = function styles(theme) {
 	  return {
@@ -57398,7 +57446,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 441 */
+/* 444 */
 /*!****************************************************!*\
   !*** ./~/@material-ui/core/internal/SwitchBase.js ***!
   \****************************************************/
@@ -57708,7 +57756,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 442 */
+/* 445 */
 /*!*********************************!*\
   !*** ./views/todo/TodoForm.jsx ***!
   \*********************************/
@@ -57907,7 +57955,7 @@ webpackJsonp([0,1],[
 	exports.default = TodoForm;
 
 /***/ }),
-/* 443 */
+/* 446 */
 /*!***********************************!*\
   !*** ./views/components/Todos.js ***!
   \***********************************/
@@ -57933,7 +57981,7 @@ webpackJsonp([0,1],[
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 444);
+	var _todoActions = __webpack_require__(/*! ../actions/todoActions */ 447);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -58032,7 +58080,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Todos);
 
 /***/ }),
-/* 444 */
+/* 447 */
 /*!**************************************!*\
   !*** ./views/actions/todoActions.js ***!
   \**************************************/
@@ -58138,7 +58186,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 445 */
+/* 448 */
 /*!***********************************!*\
   !*** ./views/components/Users.js ***!
   \***********************************/
@@ -58161,7 +58209,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 446);
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 449);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -58292,7 +58340,7 @@ webpackJsonp([0,1],[
 	exports.default = Users;
 
 /***/ }),
-/* 446 */
+/* 449 */
 /*!**************************************!*\
   !*** ./views/actions/userActions.js ***!
   \**************************************/
@@ -58352,7 +58400,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 447 */
+/* 450 */
 /*!*********************************************!*\
   !*** ./views/components/EarningCapacity.js ***!
   \*********************************************/
@@ -58375,7 +58423,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _userActions = __webpack_require__(/*! ../actions/userActions */ 446);
+	var _userActions = __webpack_require__(/*! ../actions/userActions */ 449);
 	
 	var _Button = __webpack_require__(/*! @material-ui/core/Button */ 185);
 	
@@ -58506,7 +58554,7 @@ webpackJsonp([0,1],[
 	exports.default = EarningCapacity;
 
 /***/ }),
-/* 448 */
+/* 451 */
 /*!*******************************************!*\
   !*** ./views/EnsureLoggedInContainer.jsx ***!
   \*******************************************/
@@ -58524,7 +58572,7 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Login = __webpack_require__(/*! ./Login */ 434);
+	var _Login = __webpack_require__(/*! ./Login */ 437);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -58610,7 +58658,7 @@ webpackJsonp([0,1],[
 	exports.default = EnsureLoggedInContainer;
 
 /***/ }),
-/* 449 */
+/* 452 */
 /*!************************************!*\
   !*** ./views/components/Footer.js ***!
   \************************************/
@@ -58628,11 +58676,11 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 450);
+	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 453);
 	
 	var _BottomNavigation2 = _interopRequireDefault(_BottomNavigation);
 	
-	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 452);
+	var _BottomNavigationAction = __webpack_require__(/*! @material-ui/core/BottomNavigationAction */ 455);
 	
 	var _BottomNavigationAction2 = _interopRequireDefault(_BottomNavigationAction);
 	
@@ -58642,15 +58690,15 @@ webpackJsonp([0,1],[
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 454);
+	var _Restore = __webpack_require__(/*! @material-ui/icons/Restore */ 457);
 	
 	var _Restore2 = _interopRequireDefault(_Restore);
 	
-	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 455);
+	var _Favorite = __webpack_require__(/*! @material-ui/icons/Favorite */ 458);
 	
 	var _Favorite2 = _interopRequireDefault(_Favorite);
 	
-	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 456);
+	var _LocationOn = __webpack_require__(/*! @material-ui/icons/LocationOn */ 459);
 	
 	var _LocationOn2 = _interopRequireDefault(_LocationOn);
 	
@@ -58718,7 +58766,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _styles.withStyles)(styles)(Footer);
 
 /***/ }),
-/* 450 */
+/* 453 */
 /*!*******************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/index.js ***!
   \*******************************************************/
@@ -58738,10 +58786,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 451));
+	var _BottomNavigation = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigation */ 454));
 
 /***/ }),
-/* 451 */
+/* 454 */
 /*!******************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigation/BottomNavigation.js ***!
   \******************************************************************/
@@ -58858,7 +58906,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 452 */
+/* 455 */
 /*!*************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/index.js ***!
   \*************************************************************/
@@ -58878,10 +58926,10 @@ webpackJsonp([0,1],[
 	  }
 	});
 	
-	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 453));
+	var _BottomNavigationAction = _interopRequireDefault(__webpack_require__(/*! ./BottomNavigationAction */ 456));
 
 /***/ }),
-/* 453 */
+/* 456 */
 /*!******************************************************************************!*\
   !*** ./~/@material-ui/core/BottomNavigationAction/BottomNavigationAction.js ***!
   \******************************************************************************/
@@ -59091,7 +59139,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../process/browser.js */ 2)))
 
 /***/ }),
-/* 454 */
+/* 457 */
 /*!*****************************************!*\
   !*** ./~/@material-ui/icons/Restore.js ***!
   \*****************************************/
@@ -59117,7 +59165,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 455 */
+/* 458 */
 /*!******************************************!*\
   !*** ./~/@material-ui/icons/Favorite.js ***!
   \******************************************/
@@ -59143,7 +59191,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 456 */
+/* 459 */
 /*!********************************************!*\
   !*** ./~/@material-ui/icons/LocationOn.js ***!
   \********************************************/
@@ -59169,7 +59217,7 @@ webpackJsonp([0,1],[
 	exports.default = _default;
 
 /***/ }),
-/* 457 */
+/* 460 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -59185,27 +59233,27 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 458);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 461);
 	
 	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 459);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 462);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
 	var _redux = __webpack_require__(/*! redux */ 345);
 	
-	var _home = __webpack_require__(/*! ../reducers/home */ 461);
+	var _home = __webpack_require__(/*! ../reducers/home */ 464);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 462);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 465);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 463);
+	var _user = __webpack_require__(/*! ../reducers/user */ 466);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -59260,7 +59308,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 458 */
+/* 461 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -59271,7 +59319,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 459 */
+/* 462 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -59290,7 +59338,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 460);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 463);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -59493,7 +59541,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 460 */
+/* 463 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -59517,7 +59565,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 461 */
+/* 464 */
 /*!********************************!*\
   !*** ./views/reducers/home.js ***!
   \********************************/
@@ -59626,7 +59674,7 @@ webpackJsonp([0,1],[
 	exports.default = homeReducer;
 
 /***/ }),
-/* 462 */
+/* 465 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -59685,7 +59733,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 463 */
+/* 466 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/

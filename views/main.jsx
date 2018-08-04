@@ -54,6 +54,7 @@ export default class Main extends Component {
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route exact path="/login" component={Login} />
+					<PrivateRoute exact path="/payday" component={Home} />
 					<PrivateRoute exact path="/todoform" component={TodoForm} />
 					<PrivateRoute exact path="/todos" component={Todos} />
 					<PrivateRoute exact path="/users" component={Users} />

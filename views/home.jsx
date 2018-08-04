@@ -28,6 +28,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 
+import l from "./langs/en/index";
+
+
 const styles = theme => ({
 	container: {
 		display: 'flex',
@@ -165,9 +168,18 @@ class Home extends Component {
 		}
 	}
 
-	render() {
-		console.log("this.props: ", this.props);
+	/*
+	*/
+	componentDidMount() {
+		console.log( "cDM, props ", this.props);
 
+		let f = this.props.location.pathname.replace("/", "");
+		let path = "langs/en/"+f;
+		//import l from "langs/en/"+f;
+		//import(`${path}`).then(module => this.setState({ l: module.default }));
+	}
+
+	render() {
 
 		let classes = this.props.classes;
 
@@ -179,11 +191,11 @@ class Home extends Component {
 	          [classes.buttonSuccess]: this.props.ui.dataSuccess,
 	        });
 
-		let homeStr = "HOME";
-		let justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+		let homeStr = "";
+		let justStr = "";
 		//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 		//let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
-		let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
+		let beforeStr = "";
 
 		//let loading = true;
 		
@@ -195,27 +207,23 @@ class Home extends Component {
 				<Grid item xs={6}>
 				<Paper className={classes.paper}>
 					<Typography variant="title" gutterBottom>
-						{homeStr}
+						{l.homeStr}
 					</Typography>
 					<div>
-						<p>{justStr}</p>
-						<p>{beforeStr}</p>
+						<p>{l.justStr}</p>
+						<p>{l.beforeStr}</p>
 					</div>
 				</Paper>
 				</Grid>
 				<Grid item xs={6}>
 				<Paper className={classes.paper}>
 					<Typography variant="title" gutterBottom>
-						Sample JD
+						{l.sampleJDHeader}
 					</Typography>
 					<div> 
-						<div>6 months experience in React</div>
-						<div>1 yr experience in Python</div>
-						<div>6 months experience in Ruby</div>
-						<div>1 yr experience in PHP</div>
-						<div>1 yr experience in AWS</div>
-						<div>6 months experience in C++</div>
-						<div>6 months experience in Java</div>
+						<div>
+							{l.sampleJDDesc}
+						</div>
 					</div>
 				</Paper>
 				</Grid>
@@ -230,7 +238,7 @@ class Home extends Component {
 							<TextField
 		        					id="multiline-static"
 							  	name="jd"
-		        				  	label="Paste Job Description here"
+		        				  	label={l.pasteJDLabel}
 		        				  	multiline
 							  	fullWidth
 							  	required
