@@ -28,7 +28,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 
-import l from "./langs/en/index";
+import langs from "./langs/en/index";
 
 
 const styles = theme => ({
@@ -174,7 +174,7 @@ class Home extends Component {
 		console.log( "cDM, props ", this.props);
 
 		let f = this.props.location.pathname.replace("/", "");
-		let path = "langs/en/"+f;
+		//let path = "langs/en/"+f;
 		//import l from "langs/en/"+f;
 		//import(`${path}`).then(module => this.setState({ l: module.default }));
 	}
@@ -182,6 +182,16 @@ class Home extends Component {
 	render() {
 
 		let classes = this.props.classes;
+		
+		let f = this.props.location.pathname.replace("/", "");
+		if(f == "")
+			f = "home";
+
+		console.log("F f ", f);
+
+		let l = langs[f];
+
+		console.log("L l ", l);
 
 		// TODO: FTM, success shud be true/false depending on response from API
 		let success = false;
@@ -191,11 +201,8 @@ class Home extends Component {
 	          [classes.buttonSuccess]: this.props.ui.dataSuccess,
 	        });
 
-		let homeStr = "";
-		let justStr = "";
 		//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 		//let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
-		let beforeStr = "";
 
 		//let loading = true;
 		
@@ -210,8 +217,8 @@ class Home extends Component {
 						{l.homeStr}
 					</Typography>
 					<div>
-						<p>{l.justStr}</p>
-						<p>{l.beforeStr}</p>
+						<div>{l.justStr}</div>
+						<div>{l.beforeStr}</div>
 					</div>
 				</Paper>
 				</Grid>

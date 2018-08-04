@@ -42703,7 +42703,7 @@ webpackJsonp([0,1],[
 							_react2.default.createElement(
 								_Typography2.default,
 								{ variant: 'title', color: 'inherit', className: classes.flex },
-								'PayDay!'
+								'Home!'
 							)
 						),
 						_react2.default.createElement(
@@ -46717,7 +46717,7 @@ webpackJsonp([0,1],[
 				console.log("cDM, props ", this.props);
 	
 				var f = this.props.location.pathname.replace("/", "");
-				var path = "langs/en/" + f;
+				//let path = "langs/en/"+f;
 				//import l from "langs/en/"+f;
 				//import(`${path}`).then(module => this.setState({ l: module.default }));
 			}
@@ -46727,16 +46727,22 @@ webpackJsonp([0,1],[
 	
 				var classes = this.props.classes;
 	
+				var f = this.props.location.pathname.replace("/", "");
+				if (f == "") f = "home";
+	
+				console.log("F f ", f);
+	
+				var l = _index2.default[f];
+	
+				console.log("L l ", l);
+	
 				// TODO: FTM, success shud be true/false depending on response from API
 				var success = false;
 	
 				var buttonClassname = (0, _classnames2.default)(_defineProperty({}, classes.buttonSuccess, this.props.ui.dataSuccess));
 	
-				var homeStr = "";
-				var justStr = "";
 				//let beforeStr = "Before answering the question, What is your expected salary? at your new job/interview, make sure you just check what is it that others are earning in the industry for approx. the same JD.";
 				//let beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the salary that others are getting for the same JD as yours.";
-				var beforeStr = "";
 	
 				//let loading = true;
 	
@@ -46758,20 +46764,20 @@ webpackJsonp([0,1],[
 									_react2.default.createElement(
 										_Typography2.default,
 										{ variant: "title", gutterBottom: true },
-										_index2.default.homeStr
+										l.homeStr
 									),
 									_react2.default.createElement(
 										"div",
 										null,
 										_react2.default.createElement(
-											"p",
+											"div",
 											null,
-											_index2.default.justStr
+											l.justStr
 										),
 										_react2.default.createElement(
-											"p",
+											"div",
 											null,
-											_index2.default.beforeStr
+											l.beforeStr
 										)
 									)
 								)
@@ -46785,7 +46791,7 @@ webpackJsonp([0,1],[
 									_react2.default.createElement(
 										_Typography2.default,
 										{ variant: "title", gutterBottom: true },
-										_index2.default.sampleJDHeader
+										l.sampleJDHeader
 									),
 									_react2.default.createElement(
 										"div",
@@ -46793,7 +46799,7 @@ webpackJsonp([0,1],[
 										_react2.default.createElement(
 											"div",
 											null,
-											_index2.default.sampleJDDesc
+											l.sampleJDDesc
 										)
 									)
 								)
@@ -46812,7 +46818,7 @@ webpackJsonp([0,1],[
 								_react2.default.createElement(_TextField2.default, {
 									id: "multiline-static",
 									name: "jd",
-									label: _index2.default.pasteJDLabel,
+									label: l.pasteJDLabel,
 									multiline: true,
 									fullWidth: true,
 									required: true,
@@ -56680,9 +56686,9 @@ webpackJsonp([0,1],[
 	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
-	l = { home: lh, payday: lp };
+	var langs = { home: lh, payday: lp };
 	
-	module.exports = l;
+	module.exports = langs;
 
 /***/ }),
 /* 435 */
@@ -56693,13 +56699,14 @@ webpackJsonp([0,1],[
 
 	"use strict";
 	
-	l = {};
+	var l = {};
 	l.home = "HOME";
-	l.justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
-	l.beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
-	l.sampleJDHeader = "Sample JD";
-	l.sampleJDDesc = "6 months experience in React, 1 yr experience in Python, 6 months experience in Ruby, 1 yr experience in PHP, 1 yr experience in AWS, 6 months experience in C++, 6 months experience in Java";
-	l.pasteJDLabel = "Paste Job Description here";
+	l.homeStr = "HOME str";
+	l.justStr = "Just some string to give brief about some company.";
+	l.beforeStr = "Some more string to give some more knowledge about some random stuff.";
+	l.sampleJDHeader = "Sample";
+	l.sampleJDDesc = "some irrevalent samples here, some random numbers, description and a lot of random unrelated data.";
+	l.pasteJDLabel = "Paste here";
 	
 	module.exports = l;
 
@@ -56711,6 +56718,16 @@ webpackJsonp([0,1],[
 /***/ (function(module, exports) {
 
 	"use strict";
+	
+	var l = {};
+	l.home = "HOME";
+	l.justStr = "Just paste your job description here and get to know what others are earning in the industry for the same Job Description that you just got in your email.";
+	l.beforeStr = "Before answering the question, `What is your expected salary?`, in your new job interview, make sure you check what is the approximate fees that you can charge for that same Job Description.";
+	l.sampleJDHeader = "Sample JD";
+	l.sampleJDDesc = "6 months experience in React, 1 yr experience in Python, 6 months experience in Ruby, 1 yr experience in PHP, 1 yr experience in AWS, 6 months experience in C++, 6 months experience in Java";
+	l.pasteJDLabel = "Paste Job Description here";
+	
+	module.exports = l;
 
 /***/ }),
 /* 437 */
