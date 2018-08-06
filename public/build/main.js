@@ -25,7 +25,7 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 335);
 	
-	var _store = __webpack_require__(/*! ./store */ 460);
+	var _store = __webpack_require__(/*! ./store */ 462);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -58693,6 +58693,14 @@ webpackJsonp([0,1],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _Grid = __webpack_require__(/*! @material-ui/core/Grid */ 431);
+	
+	var _Grid2 = _interopRequireDefault(_Grid);
+	
+	var _Paper = __webpack_require__(/*! @material-ui/core/Paper */ 160);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
 	var _BottomNavigation = __webpack_require__(/*! @material-ui/core/BottomNavigation */ 453);
 	
 	var _BottomNavigation2 = _interopRequireDefault(_BottomNavigation);
@@ -58719,6 +58727,14 @@ webpackJsonp([0,1],[
 	
 	var _LocationOn2 = _interopRequireDefault(_LocationOn);
 	
+	var _WbSunny = __webpack_require__(/*! @material-ui/icons/WbSunny */ 460);
+	
+	var _WbSunny2 = _interopRequireDefault(_WbSunny);
+	
+	var _BeachAccess = __webpack_require__(/*! @material-ui/icons/BeachAccess */ 461);
+	
+	var _BeachAccess2 = _interopRequireDefault(_BeachAccess);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -58727,9 +58743,19 @@ webpackJsonp([0,1],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	// Core
+	
+	
+	// Icons
+	
+	
 	var styles = {
 		root: {
-			width: 500
+			width: 500,
+			margin: "0 auto"
+		},
+		flexGrow: {
+			flexGrow: 1
 		}
 	};
 	
@@ -58760,18 +58786,39 @@ webpackJsonp([0,1],[
 	
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: classes.flexGrow },
 					_react2.default.createElement(
-						_BottomNavigation2.default,
-						{ value: value, onChange: this.handleChange, className: classes.root },
-						_react2.default.createElement(_BottomNavigationAction2.default, { label: 'Recents', value: 'recents', icon: _react2.default.createElement(_Restore2.default, null) }),
-						_react2.default.createElement(_BottomNavigationAction2.default, { label: 'Favorites', value: 'favorites', icon: _react2.default.createElement(_Favorite2.default, null) }),
-						_react2.default.createElement(_BottomNavigationAction2.default, { label: 'Nearby', value: 'nearby', icon: _react2.default.createElement(_LocationOn2.default, null) }),
-						_react2.default.createElement(_BottomNavigationAction2.default, { label: 'Folder', value: 'folder', icon: _react2.default.createElement(
-								_Icon2.default,
-								null,
-								'folder'
-							) })
+						_Grid2.default,
+						{ container: true, spacing: 24, alignItems: 'flex-end' },
+						_react2.default.createElement(
+							_Grid2.default,
+							{ item: true, xs: 12 },
+							_react2.default.createElement(
+								_BottomNavigation2.default,
+								{ value: value, onChange: this.handleChange, className: classes.root },
+								_react2.default.createElement(_BottomNavigationAction2.default, { label: 'Recents', value: 'recents', icon: _react2.default.createElement(_Restore2.default, null) }),
+								_react2.default.createElement(_BottomNavigationAction2.default, {
+									label: 'Favorites',
+									value: 'favorites',
+									icon: _react2.default.createElement(_Favorite2.default, null)
+								}),
+								_react2.default.createElement(_BottomNavigationAction2.default, {
+									label: 'Nearby',
+									value: 'nearby',
+									icon: _react2.default.createElement(_LocationOn2.default, null)
+								}),
+								_react2.default.createElement(_BottomNavigationAction2.default, {
+									label: 'Sunny',
+									value: 'sunny',
+									icon: _react2.default.createElement(_WbSunny2.default, null)
+								}),
+								_react2.default.createElement(_BottomNavigationAction2.default, {
+									label: 'Beach',
+									value: 'Beach',
+									icon: _react2.default.createElement(_BeachAccess2.default, null)
+								})
+							)
+						)
 					)
 				);
 			}
@@ -59235,6 +59282,58 @@ webpackJsonp([0,1],[
 
 /***/ }),
 /* 460 */
+/*!*****************************************!*\
+  !*** ./~/@material-ui/icons/WbSunny.js ***!
+  \*****************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+	
+	var _react = _interopRequireDefault(__webpack_require__(/*! react */ 1));
+	
+	var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ 235));
+	
+	var _default = (0, _createSvgIcon.default)(_react.default.createElement("g", null, _react.default.createElement("path", {
+	  d: "M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
+	})), 'WbSunny');
+	
+	exports.default = _default;
+
+/***/ }),
+/* 461 */
+/*!*********************************************!*\
+  !*** ./~/@material-ui/icons/BeachAccess.js ***!
+  \*********************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/builtin/interopRequireDefault */ 69);
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = void 0;
+	
+	var _react = _interopRequireDefault(__webpack_require__(/*! react */ 1));
+	
+	var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ 235));
+	
+	var _default = (0, _createSvgIcon.default)(_react.default.createElement("g", null, _react.default.createElement("path", {
+	  d: "M13.127 14.56l1.43-1.43 6.44 6.443L19.57 21zm4.293-5.73l2.86-2.86c-3.95-3.95-10.35-3.96-14.3-.02 3.93-1.3 8.31-.25 11.44 2.88zM5.95 5.98c-3.94 3.95-3.93 10.35.02 14.3l2.86-2.86C5.7 14.29 4.65 9.91 5.95 5.98zm.02-.02l-.01.01c-.38 3.01 1.17 6.88 4.3 10.02l5.73-5.73c-3.13-3.13-7.01-4.68-10.02-4.3z"
+	})), 'BeachAccess');
+	
+	exports.default = _default;
+
+/***/ }),
+/* 462 */
 /*!******************************!*\
   !*** ./views/store/index.js ***!
   \******************************/
@@ -59250,27 +59349,27 @@ webpackJsonp([0,1],[
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _reduxLogger = __webpack_require__(/*! redux-logger */ 461);
+	var _reduxLogger = __webpack_require__(/*! redux-logger */ 463);
 	
 	var _reduxThunk = __webpack_require__(/*! redux-thunk */ 362);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
-	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 462);
+	var _reduxPromiseMiddleware = __webpack_require__(/*! redux-promise-middleware */ 464);
 	
 	var _reduxPromiseMiddleware2 = _interopRequireDefault(_reduxPromiseMiddleware);
 	
 	var _redux = __webpack_require__(/*! redux */ 345);
 	
-	var _home = __webpack_require__(/*! ../reducers/home */ 464);
+	var _home = __webpack_require__(/*! ../reducers/home */ 466);
 	
 	var _home2 = _interopRequireDefault(_home);
 	
-	var _todo = __webpack_require__(/*! ../reducers/todo */ 465);
+	var _todo = __webpack_require__(/*! ../reducers/todo */ 467);
 	
 	var _todo2 = _interopRequireDefault(_todo);
 	
-	var _user = __webpack_require__(/*! ../reducers/user */ 466);
+	var _user = __webpack_require__(/*! ../reducers/user */ 468);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -59325,7 +59424,7 @@ webpackJsonp([0,1],[
 	exports.default = store;
 
 /***/ }),
-/* 461 */
+/* 463 */
 /*!*********************************************!*\
   !*** ./~/redux-logger/dist/redux-logger.js ***!
   \*********************************************/
@@ -59336,7 +59435,7 @@ webpackJsonp([0,1],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 462 */
+/* 464 */
 /*!**************************************************!*\
   !*** ./~/redux-promise-middleware/dist/index.js ***!
   \**************************************************/
@@ -59355,7 +59454,7 @@ webpackJsonp([0,1],[
 	
 	exports.default = promiseMiddleware;
 	
-	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 463);
+	var _isPromise = __webpack_require__(/*! ./isPromise.js */ 465);
 	
 	var _isPromise2 = _interopRequireDefault(_isPromise);
 	
@@ -59558,7 +59657,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 463 */
+/* 465 */
 /*!******************************************************!*\
   !*** ./~/redux-promise-middleware/dist/isPromise.js ***!
   \******************************************************/
@@ -59582,7 +59681,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ }),
-/* 464 */
+/* 466 */
 /*!********************************!*\
   !*** ./views/reducers/home.js ***!
   \********************************/
@@ -59691,7 +59790,7 @@ webpackJsonp([0,1],[
 	exports.default = homeReducer;
 
 /***/ }),
-/* 465 */
+/* 467 */
 /*!********************************!*\
   !*** ./views/reducers/todo.js ***!
   \********************************/
@@ -59750,7 +59849,7 @@ webpackJsonp([0,1],[
 	exports.default = todosReducer;
 
 /***/ }),
-/* 466 */
+/* 468 */
 /*!********************************!*\
   !*** ./views/reducers/user.js ***!
   \********************************/
